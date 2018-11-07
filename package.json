@@ -1,0 +1,23 @@
+{
+  "name": "langutil",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chin98edwin/langutil.git"
+  },
+  "keywords": [
+    "localization",
+    "translation"
+  ],
+  "author": "chin98edwin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chin98edwin/langutil/issues"
+  },
+  "homepage": "https://github.com/chin98edwin/langutil#readme"
+}
