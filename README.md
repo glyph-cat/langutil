@@ -20,7 +20,7 @@ In your project's directory, run the command below:
 <br/>
 
 # Usage
-Below is a very basic working example:
+Below is a basic working example:
 
     import langutil from 'langutil'
 
@@ -50,8 +50,6 @@ _NOTE: The dictionary above is just an example. In an actual project, the dictio
 1. [`init(dictionary, language, auto)`](#init(dictionary,-language,-auto))
 2. [`setLanguage(language, auto)`](#setLanguage(language,-auto))
 3. [`localize(keyword, paramArray)`](#localize(keyword,-paramArray))
-<!-- 4. [`getSampleDictionary()`](#getSampleDictionary()) -->
-<!-- 5. [`getLanguageList()`](#getLanguageList()) -->
 <br/>
 
 ## `init(dictionary, language, auto)`
@@ -108,17 +106,9 @@ Valid examples:
 
 <br/>
 
-<!-- ## `getSampleDictionary()`
-
-Returns a sample dictionary in case you need one to refer to. <br/>
-
+## `hideLogs()`
+Calling this method will disable logs from langutil.
 <br/>
-
-## `getLanguageList()`
-Returns a list of the codes of languages that `langutil` is able to auto-detect in case you need to refer to. A complete list is also available [here](#language-list).
-
-
-<br/> -->
 
 # The Dictionary
 
@@ -137,10 +127,10 @@ The dictionary is where all of your localizations are stored. Let's take a look 
 | `Hello, %p`  | The localized string                             |
 | `%p`         | Placeholder                                      |
 
-_NOTE: A **keyword** is plain string that should be able to reflect a brief or partial meaning of the localized string. To avoid ambiguation, use uppercase letters only. Underscores and numbers are also allowed but they should not be the first character of the keyword. Valid examples: `'HELLO'`, `'HELLO_WORLD'`, `'ABOUT_PAGE_PARAGRAPH_3'`._
+***NOTE:***
+* A **keyword** is plain string that should be able to reflect a brief or partial meaning of the localized string. To avoid ambiguation, use uppercase letters only. Underscores and numbers are also allowed but they should not be the first character of the keyword. Valid examples: `'HELLO'`, `'HELLO_WORLD'`, `'ABOUT_PAGE_PARAGRAPH_3'`.
+* If you need langutil to output "%p" as a string, put `%%p` in the dictionary instead.
 
-<!-- A breakdown of the dictionary structure:
-Note: The keywords are names that you will refer to when localizing. To include additional parameters into the localizations, use `%p` as placeholders. -->
 
 <br/>
 
@@ -288,7 +278,7 @@ To avoid ambiguity and solve problems like determining simplified and traditiona
 ## Strengths
 * **Get notified of any unlocalized keywords during initialization**<br/>As long as there is at least one language that contains the keyword, any other language without it will be listed out.
 * **Make your localizations dynamic with placeholders**<br/>You can pass in as much variables as you want into your localizations.
-* **It is single and independent**<br/>`langutil` is just a single JavaScript file, and does not have any dependencies. Hence, it can be distributed and reused with as little hastle as possible.
+* **It's single and independent**<br/>`langutil` is just a single JavaScript file, and does not have any dependencies. Hence, it can be distributed and reused with as little hastle as possible.
 
 ## Limitations
 * **Localization of non-existent keywords cannot be detected during initialization**<br/>`langutil` cannot inspect each and every one of your project files. Hence, if a keyword does not exist in the dictionary at all, you will only be notified when the `localize()` method is called.

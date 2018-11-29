@@ -1,17 +1,18 @@
 /**
  * @author chin98edwin
- * @version 1.0.0
+ * @version 1.0.1
  * @copyright Copyright (c) 2018, chin98edwin
  * @description Langutil is a tool created to make localizing for JavaScript an simple task.
  */
 
-// —————————————————————————————— Configurable variables ——————————————————————————————
-var DEFAULT_LANGUAGE = 'english';
-var currentLanguage = DEFAULT_LANGUAGE;
-var importedDictionary = [];
-var unrecognized = [];
+const DEFAULT_LANGUAGE = 'english';
+var config = {
+    language: DEFAULT_LANGUAGE,
+    dictionary: [],
+    unrecognized: [],
+    showLogs: true,
+};
 
-// —————————————————————————————— Usable functions ——————————————————————————————
 const langutil = {
 
     /**
@@ -19,10 +20,10 @@ const langutil = {
      * Initialize langutil with a dictionary and language.
      * @example
      * import dictionary from './dictionary'; // dictionary.json
-     * setDictionaryAndLanguage(dictionary, 'english');
-     * @param {Object} dictionary The dictionary that will be used throughout the app for localization.
-     * @param {String} language The language that your keywords will be localizaed into.
-     * @param {Boolean} auto Optional, sets if the computer should figure out the client's browser language.
+     * langutil.init(dictionary, 'english');
+     * @param { Object } dictionary The dictionary that will be used throughout the app for localization.
+     * @param { String } language The language that your keywords will be localizaed into.
+     * @param { Boolean } auto Optional, sets if the computer should figure out the client's browser language.
      */
     init: function(dictionary, language, auto) {
         setDictionary(dictionary);
@@ -33,27 +34,27 @@ const langutil = {
      * @description
      * Sets the language to be used throughout the app.
      * @example
-     * setLanguage('english');
-     * @param {String} language The language that your keywords will be localizaed into.
-     * @param {Boolean} auto Optional, sets if the computer should figure out the client's browser language.
+     * langutil.setLanguage('english');
+     * @param { String } language The language that your keywords will be localizaed into.
+     * @param { Boolean } auto Optional, sets if the computer should figure out the client's browser language.
      */
     setLanguage: function(language, auto) {
         if (auto) {
             language = detectLanguage(language);
-            if (unrecognized.length > 0) {
-                var plural_code = unrecognized.length === 1 ? 'code' : 'codes';
-                var plural_are = unrecognized.length === 1 ? 'is' : 'are';
-                console.warn('The following language ' + plural_code + ' in the dictionary ' + plural_are + ' not within our language list: \'' + unrecognized.join('\', \'') + '\'. \n' +
+            if (config.unrecognized.length > 0 && config.showLogs) {
+                var plural_code = config.unrecognized.length === 1 ? 'code' : 'codes';
+                var plural_are = config.unrecognized.length === 1 ? 'is' : 'are';
+                console.warn('The following language ' + plural_code + ' in the dictionary ' + plural_are + ' not within our language list: \'' + config.unrecognized.join('\', \'') + '\'. \n' +
                 'We will not be able to make use of the localizations under the above mentioned '+ plural_code +' when language is set to auto detect. \n\nFor a list of recognized language codes, refer to https://www.github.com/chin98edwin/langutil/???'
                 );
             }
         }
-        currentLanguage = language;
+        config.language = language;
 
         // Check if the dictionary contains localizations for the language
         var languageRecognized = false;
         try {
-            var index = Object.keys(importedDictionary)
+            var index = Object.keys(config.dictionary)
             for (var i = 0; i < index.length; i++) {
                 if (language === index[i]) {
                     languageRecognized = true;
@@ -61,25 +62,27 @@ const langutil = {
                 }
             }
         } catch (error) { /* Do nothing for now */ }
-        if (!languageRecognized) {
+        if (!languageRecognized && config.showLogs) {
             console.warn('The dictionary does not contain any localizations for "' + language + '". ');
         }
     },
 
     /**
-     * @param {String} keyword The localization keyword.
-     * @param {Array} paramArray Optional, an array of parameters that can be passed into the localization.
+     * @param { String } keyword The localization keyword.
+     * @param { Array } paramArray Optional, an array of parameters that can be passed into the localization.
      * @example
-     * localize('YOUR_KEYWORD');
-     * localize('KEYWORD_WITH_PLACEHOLDERS', [param1, param2]);
-     * @returns {String} Localized string from the dictionary.
+     * langutil.localize('YOUR_KEYWORD');
+     * langutil.localize('KEYWORD_WITH_PLACEHOLDERS', [param1, param2]);
+     * @returns { String } Localized string from the dictionary.
      */
     localize: function(keyword, paramArray) {
         var localizedString = keyword.toUpperCase();
-        if (paramArray === undefined) { paramArray = []; }
+        if (paramArray === undefined) {
+            paramArray = [];
+        }
         try {
             // Get localized string from dictionary
-            localizedString = importedDictionary[currentLanguage][keyword];
+            localizedString = config.dictionary[config.language][keyword];
             // Escape character for %p
             localizedString = localizedString.replace(/(%%p)/g, '%q');
             // Start recognizing actual placeholders
@@ -91,10 +94,12 @@ const langutil = {
                 localizedString = localizedString.replace(/(%p)/, paramArray[i]);
             }
             // Check if parameters provided are sufficient
-            if (paramArrayIndex.length > placeholders.length) {
-                console.warn('The parameters provided for "' + keyword + '" exceeded the number of placeholders in the dictionary for "' + currentLanguage + '", hence they will be ignored. ')
-            } else if (paramArrayIndex.length < placeholders.length) {
-                console.error(placeholders.length + ' placeholders found in keyword "' + keyword + '" for "' + currentLanguage + '" but only received ' + paramArrayIndex.length + ' parameter(s). ')
+            if (config.showLogs) {
+                if (paramArrayIndex.length > placeholders.length) {
+                    console.warn('The parameters provided for "' + keyword + '" exceeded the number of placeholders in the dictionary for "' + config.language + '", hence they will be ignored. ');
+                } else if (paramArrayIndex.length < placeholders.length) {
+                    console.error(placeholders.length + ' placeholders found in keyword "' + keyword + '" for "' + config.language + '" but only received ' + paramArrayIndex.length + ' parameter(s). ');
+                }
             }
             // Replace empty placeholders with empty string
             localizedString = localizedString.replace(/(%p)/g, '');
@@ -104,8 +109,8 @@ const langutil = {
             localizedString = localizedString.replace(/(%n)/g, '\n');
         } catch (error) {
             if (error instanceof TypeError) {
-                if (importedDictionary.length !== 0) {
-                    console.warn('The localization for the keyword "' + keyword + '" has not been set for "' + currentLanguage + '". ');
+                if (config.dictionary.length !== 0) {
+                    console.warn('The localization for the keyword "' + keyword + '" has not been set for "' + config.language + '". ');
                 }
             } else {
                 console.error(error);
@@ -113,6 +118,14 @@ const langutil = {
         }
         return localizedString === undefined ? keyword.toUpperCase() : localizedString;
     },
+
+    /**
+     * @description Call this function to hide all logs and warnings related to langutil.
+     * @example langutil.hideLogs();
+     */
+    hideLogs: function() {
+        config.showLogs = false;
+    }
 
 };
 
@@ -123,15 +136,17 @@ export default langutil;
 /**
  * @description
  * Automatically determine the language used by the client's browser.
- * @param {Boolean} fallbackLanguage The language to be used if language could not be detected.
- * @returns {String} The detected language.
+ * @param { Boolean } fallbackLanguage The language to be used if language could not be detected.
+ * @returns { String } The detected language.
  */
 function detectLanguage(fallbackLanguage) {
     var langtoReturn = fallbackLanguage;
     var detectedLanguage = navigator.language || navigator.userLanguage;
     var languageFound = false;
     detectedLanguage = detectedLanguage.toLowerCase();
-    console.log(detectedLanguage)
+    if (config.showLogs) {
+        console.log('Detected language: ' + detectedLanguage);
+    }
 
     for (var i = 0; i < LANGUAGE_LIST.length && !languageFound; i++) {
         var refCode = LANGUAGE_LIST[i].code.toLowerCase();
@@ -161,10 +176,10 @@ function detectLanguage(fallbackLanguage) {
 /**
  * @description
  * Inspects the dictionary for errors.
- * @param {Object} dictionaryToSet The dictionary that will be used throughout the app for localization.
+ * @param { Object } dictionaryToSet The dictionary that will be used throughout the app for localization.
  */
 function inspectDictionary(dictionaryToSet) {
-    var i, j, k
+    var i, j, k;
 
     // (1) Check if dictionary is empty
     if (!dictionaryToSet) {
@@ -173,19 +188,22 @@ function inspectDictionary(dictionaryToSet) {
     var dictionaryKeys = Object.keys(dictionaryToSet);
 
     // (2) Check if the dictionary contains any language codes outside of the preset codes
-    unrecognized = [];
+    config.unrecognized = [];
     for (i = 0; i < dictionaryKeys.length; i++ ) {
         var languageRecognized = false;
         for (j = 0; j < LANGUAGE_LIST.length; j++) {
             if (dictionaryKeys[i] === LANGUAGE_LIST[j].code) {
-                languageRecognized = true; break;
+                languageRecognized = true;
+                break;
             }
         }
-        if (!languageRecognized) { unrecognized.push(dictionaryKeys[i]); }
+        if (!languageRecognized) {
+            config.unrecognized.push(dictionaryKeys[i]);
+        }
     }
 
     // (3) Get keywords from every language
-    var allKeywords = []
+    var allKeywords = [];
     for (i = 0; i < dictionaryKeys.length; i++) {
         var languageSet = dictionaryToSet[dictionaryKeys[i]];
         var languageSetKeywords = Object.keys(languageSet);
@@ -217,21 +235,23 @@ function inspectDictionary(dictionaryToSet) {
             var keyFound = false;
             try {
                 for (k = 0; k < languageSetKeywords.length; k++) {
-                    // console.log(dictionaryKeys[i], allKeys[j], languageSetKeys[k])
+                    // console.log(dictionaryKeys[i], allKeys[j], languageSetKeys[k]);
                     if (allKeywords[j] === languageSetKeywords[k]) {
                         keyFound = true;
                         break;
                     }
                 }
             } catch (error) { /* Do nothing for now */ }
-            if (!keyFound) { subMissingKeywords.push(allKeywords[j]); }
+            if (!keyFound) {
+                subMissingKeywords.push(allKeywords[j]);
+            }
         }
         if (subMissingKeywords.length > 0) {
             missingKeywords[dictionaryKeys[i]] = { language: dictionaryKeys[i], keys: subMissingKeywords };
         }
     }
     var missingKeywordsIndex = Object.keys(missingKeywords);
-    if (missingKeywordsIndex.length > 0) {
+    if (missingKeywordsIndex.length > 0 && config.showLogs) {
         var missingKeywordsList = '';
         for (i = 0; i < missingKeywordsIndex.length; i++) {
             missingKeywordsList += '• ' + missingKeywords[missingKeywordsIndex[i]].language + ': ' + [...missingKeywords[missingKeywordsIndex[i]].keys].join(', ');
@@ -246,8 +266,8 @@ function inspectDictionary(dictionaryToSet) {
 /**
  * @description
  * Checks if a keyword in the dictionary is valid.
- * @param {String} keywordToCheck The keyword of the dictionary
- * @returns {Boolean} true or false.
+ * @param { String } keywordToCheck The keyword of the dictionary
+ * @returns { Boolean } true or false.
  */
 function keywordIsValid(keywordToCheck) {
     var match = keywordToCheck.match(/([A-Z]+[A-Z|_|0-9]+[A-Z|0-9])/g);
@@ -265,11 +285,11 @@ function keywordIsValid(keywordToCheck) {
  * @example
  * import dictionary from './dictionary';
  * setDictionary(dictionary);
- * @param {Object} dictionary The dictionary that will be used throughout the app for localization.
+ * @param { Object } dictionary The dictionary that will be used throughout the app for localization.
  */
 function setDictionary(dictionary) {
     inspectDictionary(dictionary);
-    importedDictionary = dictionary;
+    config.dictionary = dictionary;
 }
 
 // —————————————————————————————— CONSTANTS ——————————————————————————————
@@ -312,8 +332,8 @@ const LANGUAGE_LIST = [
     { code: 'catalan', ref: ['cat', 'ca', 'valencian'] },
     { code: 'cebuano', ref: ['ceb'] },
     { code: 'chichewa', ref: ['chewa', 'nyanja', 'nya', 'ny'] },
-    { code: 'chinese_s', desc: 'Simplified', ref: ['simplified', 'hans', 'zh', 'chi', 'cn'] },
-    { code: 'chinese_t', desc: 'Traditional', ref: ['traditional', 'hant', 'zh', 'chi', 'cn'] },
+    { code: 'chinese_s', desc: 'Simplified', ref: ['sim', 'hans', 'zh', 'chi', 'cn'] },
+    { code: 'chinese_t', desc: 'Traditional', ref: ['trad', 'hant', 'zh', 'chi', 'cn'] },
     { code: 'corsican', ref: ['cos', 'co'] },
     { code: 'croatian', ref: ['hrv', 'hr'] },
     { code: 'czech', ref: ['ces', 'cs', 'cze'] },
@@ -405,6 +425,8 @@ const LANGUAGE_LIST = [
     { code: 'zulu', ref: ['zul', 'zu'] },
 ];
 
-// References
-// Language list are based on the translations offered in Google Translate at https://translate.google.com
-// Auto-detection by ref is based on some of the ISO language codes from https://en.wikipedia.org/wiki/List_of_ISO_639-2_codes
+/**
+ * — REFERENCES —
+ * Language list are based on the translations offered in Google Translate at https://translate.google.com
+ * Auto-detection by ref is based on some of the ISO language codes from https://en.wikipedia.org/wiki/List_of_ISO_639-2_codes
+ */

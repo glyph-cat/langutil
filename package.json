@@ -1,16 +1,16 @@
 {
   "name": "langutil",
-  "version": "1.0.0",
-  "description": "Langutil is a tool created to make localizing for JavaScript an simple task.",
+  "version": "1.0.1",
+  "description": "Localization for JavaScript made simple.",
   "main": "langutil.js",
   "scripts": {
-    "test": "echo \"No test specified yet\" && exit 1"
+    "test": "echo \"No test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/chin98edwin/langutil.git"
   },
-  "keywords": [ "localization", "translation", "language", "accessibility", "JavaScript" ],
+  "keywords": [ "localization", "translation", "language", "accessibility" ],
   "author": "chin98edwin",
   "license": "ISC",
   "bugs": {
