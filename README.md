@@ -4,11 +4,12 @@
 3. [Usage](#usage)
 4. [Methods](#methods)
 5. [The Dictionary](#the-dictionary)
-5. [Language List](#language-list)
-6. [Strengths and Limitations](#strengths-and-limitations)
+6. [Language List](#language-list)
+7. [Strengths and Limitations](#strengths-and-limitations)
+8. [Update History](#update-history)
 
 # Introduction
-Langutil is a localizing tool for JavaScript. In fact, it is made up of only one file and does not have any dependencies. Langutil is packed with three simple yet powerful functions. Keep on reading to get started.
+Langutil is a localizing tool for JavaScript. In fact, it is made up of only one file and does not have any dependencies. Langutil is packed with four essential functions. Keep on reading to get started.
 
 <br/>
 
@@ -28,7 +29,7 @@ Below is a basic working example:
         "english": {
             "HELLO": "Hello",
         },
-        "chinese_sim": {
+        "chinese_s": {
             "HELLO": "哈咯",
         }
     }
@@ -38,10 +39,10 @@ Below is a basic working example:
     console.log(langutil.localize('HELLO')) // Output: Hello
 
     // Switching to other languages
-    langutil.setLanguage('chinese_sim')
+    langutil.setLanguage('chinese_s')
     console.log(langutil.localize('HELLO')) // Output: 哈咯
 
-_NOTE: The dictionary above is just an example. In an actual project, the dictionary content would be much longer, hence it is advisable to save it as a separate JSON file and import it instead._
+*NOTE: The dictionary above is just an example. In an actual project, the dictionary content would be much longer, hence it is advisable to save it as a separate JSON file and import it instead.*
 
 <br/>
 
@@ -50,17 +51,18 @@ _NOTE: The dictionary above is just an example. In an actual project, the dictio
 1. [`init(dictionary, language, auto)`](#init(dictionary,-language,-auto))
 2. [`setLanguage(language, auto)`](#setLanguage(language,-auto))
 3. [`localize(keyword, paramArray)`](#localize(keyword,-paramArray))
+4. [`hideLogs()`](#-`hideLogs()`)
 <br/>
 
 ## `init(dictionary, language, auto)`
 This initializes langutil with a dictionary and language. This method must be called before `localize()` can be used. <br/>
-* **`dictionary: (Object)`**<br/>
-The dictionary that stores all your localizations.
-* **`language: (String)`**<br/>
-The language in which your content will be displayed. The language code that you provided must exist in your dictionary too.
+* **`dictionary: (Object)`**
+The dictionary that stores all your localizations. <br/>
+* **`language: (String)`**
+The language in which your content will be displayed. The language code that you provided must exist in your dictionary too. <br/>
 * **`auto: (Boolean)` [OPTIONAL]**<br/>Set it to `true` to let the computer figure out the client's browser language. In order for auto detection to work properly, the language code in your dictionary should match the ones in our [Language List](#language-list). `language` will be used as the fallback language if auto-detection fails.
 
-Valid examples:
+***Example:***
 
     langutil.init(dictionary, 'english')
     langutil.init(dictionary, 'english', false)
@@ -68,12 +70,12 @@ Valid examples:
 <br/>
 
 ## `setLanguage(language, auto)`
-Similar to `init()`, but this only sets the language and can be called anytime. This method can come in handy when users want to change the language.
-* **`language: (String)`**<br/>
+Similar to `init()`, but this only sets the language and can be called anytime. This method comes in handy when switching between languages in a preference page.<br/>
+* **`language: (String)`**
 The language in which your content will be displayed. The language code that you provided must exist in your dictionary too.
 * **`auto: (Boolean)` [OPTIONAL]**<br/>Set it to `true` to let the computer figure out the client's browser language. In order for auto detection to work properly, the language code in your dictionary should match the ones in our [Language List](#language-list). `language` will be used as the fallback language if auto-detection fails.
 
-Valid examples:
+***Example:***
 
     langutil.setLanguage('english')
     langutil.setLanguage('english', false)
@@ -81,19 +83,19 @@ Valid examples:
 <br/>
 
 ## `localize(keyword, paramArray)`
-This is the method that returns the localized strings based on your keywords and language set.
-* **`keyword: (String)`**<br/>
+This is the method that returns the localized strings based on your keywords and language set. <br/>
+* **`keyword: (String)`**
 A simple string that will be mapped to its localized form in the dictionary.
-* **`paramArray: (array)` [OPTIONAL]**<br/>
-There are times when it is not possible to define every possible string in the dictionary due to changing variables. This is how you can combine them with your localizations instead.
+* **`paramArray: (array)` [OPTIONAL]**
+There are times when it is not possible to define every possible string in the dictionary due to changing variables. This is how you can combine them with your localizations instead. <br/>
 
-Valid examples:
+***Example:***
 
-| Keyword               | Localization         |
-| --------------------- | -------------------- |
-| `HELLO`               | `Hello`              |
-| `N_CHARS_LEFT`        | `%p characters left` |
-| `HELLO_NAME_AND_NAME` | `Hello, %p and %p. ` |
+| Keyword               | Localization                      |
+| --------------------- | --------------------------------- |
+| `HELLO`               | `Hello`                           |
+| `N_CHARS_LEFT`        | `%p characters left`              |
+| `HELLO_NAME_AND_NAME` | `Hello, %p and %p. `              |
 
     localize('HELLO')
     // Output: Hello
@@ -107,7 +109,7 @@ Valid examples:
 <br/>
 
 ## `hideLogs()`
-Calling this method will disable logs from langutil.
+Use this method to disable logs from langutil. Any langutil methods that are called after this will no longer show logs and warnings. Critical errors will still be thrown.
 <br/>
 
 # The Dictionary
@@ -128,148 +130,43 @@ The dictionary is where all of your localizations are stored. Let's take a look 
 | `%p`         | Placeholder                                      |
 
 ***NOTE:***
-* A **keyword** is plain string that should be able to reflect a brief or partial meaning of the localized string. To avoid ambiguation, use uppercase letters only. Underscores and numbers are also allowed but they should not be the first character of the keyword. Valid examples: `'HELLO'`, `'HELLO_WORLD'`, `'ABOUT_PAGE_PARAGRAPH_3'`.
+* A **keyword** is plain string that should be able to reflect a brief or partial meaning of the localized string. To avoid ambiguation, use uppercase letters only. Underscores and numbers are also allowed but they should not be the first character of the keyword. Examples: `'HELLO'`, `'HELLO_WORLD'`, `'ABOUT_PAGE_PARAGRAPH_3'`.
 * If you need langutil to output "%p" as a string, put `%%p` in the dictionary instead.
 
 
 <br/>
 
 # Language List
-You are free to use your own way to represent languages in your dictionary. But when auto language detection is used, it automatically sets the language with the codes below.
+You are free to use custom values to represent the languages in your dictionary. For example, you can use `'en'` instead of `'english'` as long as you do so for both your code and dictionary.
 
-To avoid ambiguity and solve problems like determining simplified and traditional Chinese, a set of custom language codes that are similar to natural language is used.
+But when auto language detection is used, it automatically sets the language with the codes below. To avoid ambiguity and solve problems like differentiating simplified and traditional Chinese, a set of custom language codes that are similar to natural language is used.
 
-|       | Language Code    | Native Name           |
+|       | Language Codes |
 | -----:| ---------------- | --------------------- |
-| **A** | `abkhazan`       | Аҧсуа бызшәа |
-|       | `achinese`       | بهسا اچيه |
-|       | `acoli`          | Lwo |
-|       | `adangme`        | Dangme |
-|       | `adyghe`         | Адыгабзэ |
-|       | `afar`           | Qafaraf |
-|       | `afrikaans`      | Afrikaans |
-|       | `ainu`           | アイヌ・イタㇰ |
-|       | `albanian`       | Shqip |
-|       | `aleut`          | Унáӈам тунуý |
-|       | `altai_southern` | Алтай тили |
-|       | `amharic`        | አማርኛ |
-|       | `angika`         |  |
-|       | `arabic`         | العَرَبِيَّة |
-|       | `aragonese`      | aragonés |
-|       | `arapaho`        | Hinónoʼeitíít |
-|       | `arawak`         | Lokono |
-|       | `armenian`       | Հայերէն; Հայերեն |
-|       | `assamese`       | অসমীয়া |
-|       | `asturian`       | Asturianu |
-|       | `avaric`         | Магӏарул мацӏ |
-|       | `awadhi`         | अवधी |
-|       | `azerbaijani`    | Azərbaycan dili |
-| **B** | `balinese`       | ᬪᬵᬱᬩᬮᬶ |
-|       | `balinese`       | ᬪᬵᬱᬩᬮᬶ |
-|       | `bambara`        | ߓߊߡߊߣߊߣߞߊߣ |
-|       | `bashkir`        | Башҡорт теле |
-|       | `basa`           | Ɓasaá |
-|       | `basque`         | euskara |
-|       | `beja`           | Bidhaawyeet |
-|       | `belarusian`     | Беларуская мова |
-|       | `bemba`          | Chibemba |
-|       | `bengali`        | বাংলা |
-|       | `bosnian`        | bosanski |
-|       | `bulgarian`      | български език |
-| **C** | `catalan`        | català |
-|       | `cebuano`        | Sinugbuanong Binisayâ |
-|       | `chichewa`       | Chichewa |
-|       | `chinese_s`      | 简体中文 |
-|       | `chinese_t`      | 繁體中文 |
-|       | `corsican`       | Corsu |
-|       | `croatian`       | hrvatski |
-|       | `czech`          | čeština |
-| **D** | `danish`         | dansk |
-|       | `dutch`          | Nederlands |
-| **E** | `english`        | English |
-|       | `esperanto`      | Esperanto |
-|       | `estonian`       | eesti keel |
-| **F** | `filipino`       | Wikang Filipino |
-|       | `finnish`        | suomen kieli |
-|       | `french`         | français |
-|       | `frisian`        | Seeltersk; Frasch; Frysk
-| **G** | `galician`       | galego |
-|       | `georgian`       | ქართული |
-|       | `german`         | Deutsch |
-|       | `greek`          | Νέα Ελληνικά |
-|       | `gujarati`       | ગુજરાતી |
-| **H** | `haitian_creole` | kreyòl ayisyen |
-|       | `hausa`          | هَرْشَن |
-|       | `hawaiian`       | ʻŌlelo Hawaiʻi |
-|       | `hebrew`         | עברית |
-|       | `hindi`          | हिन्दी |
-|       | `hmong`          | lus Hmoob |
-|       | `hungarian`      | magyar nyelv |
-| **I** | `icelandic`      | íslenska |
-|       | `igbo`           | Asụsụ Igbo	|
-|       | `indonesian`     | Bahasa Indonesia |
-|       | `irish`          | Gaeilge |
-|       | `italian`        | italiano |
-| **J** | `japanese`       | 日本語 |
-|       | `javanese`       | ꦧꦱꦗꦮ |
-| **K** | `kannada`        | ಕನ್ನಡ |
-|       | `kazakh`         | қазақ тілі |
-|       | `khmer`          | ភាសាខ្មែរ |
-|       | `korean`         | 한국어 |
-|       | `kurdish`        | کوردی |
-|       | `kyrgyz`         | кыргызча |
-| **L** | `lao`            | ພາສາລາວ |
-|       | `latin`          | Lingua latīna |
-|       | `latvian`        | Latviešu valoda |
-|       | `lithuanian`     | lietuvių kalba |
-|       | `luxembourgish`  | Lëtzebuergesch |
-| **M** | `macedonian`     | македонски јазик |
-|       | `malagasy`       |  |
-|       | `malay`          | Bahasa Melayu |
-|       | `malayalam`      | മലയാളം |
-|       | `maltese`        | Malti |
-|       | `maori`          | Te Reo Maori |
-|       | `mapudungun`     |  |
-|       | `marathi`        | मराठी |
-|       | `mongolian`      | монгол хэл |
-|       | `myanmar`        | မြန်မာစာ |
-| **N** | `nepali`         | नेपाली भाषा |
-|       | `norwegian`      | norsk |
-| **O** | `pashto`         | پښتو |
-|       | `persian`        | فارسی |
-|       | `polish`         | Język polski |
-|       | `portugese`      | português |
-|       | `punjabi`        | ਪੰਜਾਬੀ |
-| **R** | `romanian`       | limba română |
-|       | `russian`        | русский язык |
-| **S** | `samoan`         | Gagana faʻa Sāmoa |
-|       | `scots_gaelic`   | Gàidhlig |
-|       | `serbian`        | српски |
-|       | `sesotho`        | Sesotho sa Leboa |
-|       | `shona`          | chiShona |
-|       | `sindhi`         | سنڌي |
-|       | `sinhala`        | සිංහල |
-|       | `slovak`         | slovenčina |
-|       | `slovenian`      | slovenski jezik |
-|       | `somali`         | af Soomaali |
-|       | `spanish`        | español |
-|       | `sundanese`      | ᮘᮞ ᮞᮥᮔ᮪ᮓ  |
-|       | `swahili`        | Kiswahili |
-|       | `swedish`        | svenska |
-| **T** | `tajik`          | тоҷикӣ |
-|       | `tamil`          | தமிழ் |
-|       | `telugu`         | తెలుగు |
-|       | `thai`           | ภาษาไทย |
-|       | `turkish`        | Türkçe |
-| **U** | `ukrainian`      | українська мова |
-|       | `urdu`           | اُردُو |
-|       | `uzbek`          | Oʻzbekcha |
-| **V** | `vietnamese`     | Tiếng Việt |
-| **W** | `welsh`          | Cymraeg |
-| **X** | `xhosa`          | isiXhosa |
-| **Y** | `yiddish`        | אידיש |
-|       | `yoruba`         | èdè Yorùbá |
-| **Z** | `zulu`           | isiZulu |
+| **A** | `abkhazan`, `achinese`, `acoli`, `adangme`, `adyghe`, `afar`, `afrikaans`, `ainu`, `albanian`, `aleut`, `altai_southern`, `amharic`, `angika`, `arabic`, `aragonese`, `arapaho`, `arawak`, `armenian`, `assamese`, `asturian`, `avaric`, `awadhi`, `azerbaijani` |
+| **B** | `balinese`, `bambara`, `bashkir`, `basa`, `basque`, `beja`, `belarusian`, `bemba`, `bengali`, `bosnian`, `bulgarian` |
+| **C** | `catalan`, `cebuano`, `chichewa`, `chinese_s`, `chinese_t`, `corsican`, `croatian`, `czech` |
+| **D** | `danish`, `dutch` |
+| **E** | `english`, `esperanto`, `estonian` |
+| **F** | `filipino`,`finnish`, `french`, `frisian` |
+| **G** | `galician`, `georgian`, `german`, `greek`, `gujarati` |
+| **H** | `haitian_creole`, `hausa`, `hawaiian`, `hebrew`, `hindi`, `hmong`, `hungarian` |
+| **I** | `icelandic`, `igbo`, `indonesian`, `irish`, `italian` |
+| **J** | `japanese`, `javanese` |
+| **K** | `kannada`, `kazakh`, `khmer`, `korean`, `kurdish`, `kyrgyz` |
+| **L** | `lao`, `latin`, `latvian`, `lithuanian`, `luxembourgish`|
+| **M** | `macedonian`, `malagasy`, `malay`, `malayalam`, `maltese`, `maori`, `mapudungun`, `marathi`, `mongolian`, `myanmar` |
+| **N** | `nepali`, `norwegian`|
+| **O** | `pashto`, `persian`, `polish`, `portugese`, `punjabi` |
+| **R** | `romanian`, `russian` |
+| **S** | `samoan`, `scots_gaelic`, `serbian`, `sesotho`, `shona`, `sindhi`, `sinhala`, `slovak`, `slovenian`, `somali`, `spanish`, `sundanese`, `swahili`, `swedish` |
+| **T** | `tajik`, `tamil`, `telugu`, `thai`, `turkish` |
+| **U** | `ukrainian`, `urdu`, `uzbek` |
+| **V** | `vietnamese` |
+| **W** | `welsh` |
+| **X** | `xhosa` |
+| **Y** | `yiddish`, `yoruba`|
+| **Z** | `zulu` |
 
 <br/>
 
@@ -284,6 +181,24 @@ To avoid ambiguity and solve problems like determining simplified and traditiona
 * **Localization of non-existent keywords cannot be detected during initialization**<br/>`langutil` cannot inspect each and every one of your project files. Hence, if a keyword does not exist in the dictionary at all, you will only be notified when the `localize()` method is called.
 * **Limited debugging ability**<br/>`langutil` cannot point out the line of code that has missing localizations. However, a warning will be shown in the console, indicating the unlocalized keyword.
 * **Limited auto language detection**<br/>`langutil` is currently able to detect up to 128 languages.
+<br/>
+
+# Update History
+
+## 1.0.0
+* Creation of langutil 3 core functions and the ability to auto-detect up to 128 languages.
+
+## 1.0.1
+* Added a new [`hideLogs()`](#-`hideLogs()`) function
+* Minor algorithm optimizations
+* Fixed a few documentation mistakes.
+
+## 1.0.2
+* Added Update History to Readme.
+* The [Language List](#language-list) table has been made more compact. Native names of the languages have been removed since a few are not able to displaye properly on most devices unless additional fonts are installed.
+* Minor algorithm optimizations
+* Fixed a few documentation mistakes.
+
 
 <br/><hr/>
 [Back to Table of Contents](#table-of-contents)
