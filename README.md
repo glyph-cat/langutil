@@ -48,10 +48,10 @@ Below is a basic working example:
 
 # Methods
 
-1. [`init(dictionary, language, auto)`](#init(dictionary,-language,-auto))
-2. [`setLanguage(language, auto)`](#setLanguage(language,-auto))
-3. [`localize(keyword, paramArray)`](#localize(keyword,-paramArray))
-4. [`hideLogs()`](#-`hideLogs()`)
+1. [`init(dictionary, language, auto)`](##init(dictionary,-language,-auto))
+2. [`setLanguage(language, auto)`](##setLanguage(language,-auto))
+3. [`localize(keyword, paramArray)`](##localize(keyword,-paramArray))
+4. [`hideLogs()`](##-`hideLogs()`)
 <br/>
 
 ## `init(dictionary, language, auto)`
@@ -142,7 +142,7 @@ You are free to use custom values to represent the languages in your dictionary.
 But when auto language detection is used, it automatically sets the language with the codes below. To avoid ambiguity and solve problems like differentiating simplified and traditional Chinese, a set of custom language codes that are similar to natural language is used.
 
 |       | Language Codes |
-| -----:| ---------------- | --------------------- |
+| -----:| ---------------- |
 | **A** | `abkhazan`, `achinese`, `acoli`, `adangme`, `adyghe`, `afar`, `afrikaans`, `ainu`, `albanian`, `aleut`, `altai_southern`, `amharic`, `angika`, `arabic`, `aragonese`, `arapaho`, `arawak`, `armenian`, `assamese`, `asturian`, `avaric`, `awadhi`, `azerbaijani` |
 | **B** | `balinese`, `bambara`, `bashkir`, `basa`, `basque`, `beja`, `belarusian`, `bemba`, `bengali`, `bosnian`, `bulgarian` |
 | **C** | `catalan`, `cebuano`, `chichewa`, `chinese_s`, `chinese_t`, `corsican`, `croatian`, `czech` |
@@ -189,7 +189,7 @@ But when auto language detection is used, it automatically sets the language wit
 * Creation of langutil 3 core functions and the ability to auto-detect up to 128 languages.
 
 ## 1.0.1
-* Added a new [`hideLogs()`](#-`hideLogs()`) function
+* Added a new [`hideLogs()`](##-`hideLogs()`) function
 * Minor algorithm optimizations
 * Fixed a few documentation mistakes.
 
