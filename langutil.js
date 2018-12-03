@@ -1,9 +1,12 @@
 /**
  * @author chin98edwin
- * @version 1.0.2
- * @copyright Copyright (c) 2018, chin98edwin
+ * @version 1.0.3
  * @description A simple localizing utility for JavaScript.
- */
+ * @copyright Copyright (c) 2018, chin98edwin
+ * @see https://www.npmjs.com/package/langutil#readme for documentation
+ * @license ISC — Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby granted, provided that the above copyright notice and this permission notice appear in all copies.
+ * THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+**/
 
 const DEFAULT_LANGUAGE = 'english';
 var config = {
@@ -13,17 +16,13 @@ var config = {
     showLogs: true, // Decides if logs and warnings from langutil should be shown
 };
 
-const langutil = {
+module.exports = langutil = {
 
     /**
-     * @description
-     * Initialize langutil with a dictionary and language.
-     * @example
-     * import dictionary from './dictionary'; // dictionary.json
-     * langutil.init(dictionary, 'english');
-     * @param { Object } dictionary The dictionary that will be used throughout the app for localization.
-     * @param { String } language The language that your keywords will be localizaed into.
-     * @param { Boolean } auto Optional, sets if the computer should figure out the client's browser language.
+     * @description Initialize langutil with a dictionary and language.
+     * @param {Object} dictionary The dictionary that will be used throughout the app for localization.
+     * @param {('abkhazan'|'achinese'|'acoli'|'adangme'|'adyghe'|'afar'|'afrikaans'|'ainu'|'albanian'|'aleut'|'altai_southern'|'amharic'|'angika'|'arabic'|'aragonese'|'arapaho'|'arawak'|'armenian'|'assamese'|'asturian'|'avaric'|'awadhi'|'azerbaijani'|'balinese'|'bambara'|'bashkir'|'basa'|'basque'|'beja'|'bemba'|'belarusian'|'bengali'|'bosnian'|'bulgarian'|'catalan'|'cebuano'|'chichewa'|'chinese_s'|'chinese_t'|'corsican'|'croatian'|'czech'|'danish'|'dutch'|'english'|'esperanto'|'estonian'|'filipino'|'finnish'|'french'|'frisian'|'galician'|'georgian'|'german'|'greek'|'gujarati'|'haitian_creole'|'hausa'|'hawaiian'|'hebrew'|'hindi'|'hmong'|'hungarian'|'icelandic'|'igbo'|'indonesian'|'irish'|'italian'|'japanese'|'javanese'|'kannada'|'kazakh'|'khmer'|'korean'|'kurdish'|'kyrgyz'|'lao'|'latin'|'latvian'|'lithuanian'|'luxembourgish'|'macedonian'|'malagasy'|'malay'|'malayalam'|'maltese'|'maori'|'mapudungun'|'marathi'|'mongolian'|'myanmar'|'nepali'|'norwegian'|'pashto'|'persian'|'polish'|'portugese'|'punjabi'|'romanian'|'russian'|'samoan'|'scots_gaelic'|'serbian'|'sesotho'|'shona'|'sindhi'|'sinhala'|'slovak'|'slovenian'|'somali'|'spanish'|'sundanese'|'swahili'|'swedish'|'tajik'|'tamil'|'telugu'|'thai'|'turkish'|'ukrainian'|'urdu'|'uzbek'|'vietnamese'|'welsh'|'xhosa'|'yiddish'|'yoruba'|'zulu')} language The language that your keywords will be localizaed into.
+     * @param {Boolean} [auto] Set it to true to let the computer figure out the client's browser language.
      */
     init: function(dictionary, language, auto) {
         setDictionary(dictionary);
@@ -31,79 +30,41 @@ const langutil = {
     },
 
     /**
-     * @description
-     * Sets the language to be used throughout the app.
-     * @example
-     * langutil.setLanguage('english');
-     * @param { String } language The language that your keywords will be localized into.
-     * @param { Boolean } auto Optional, sets if the computer should figure out the client's browser language.
+     * @description Sets the language to be used throughout the app.
+     * @param {'abkhazan'|'achinese'|'acoli'|'adangme'|'adyghe'|'afar'|'afrikaans'|'ainu'|'albanian'|'aleut'|'altai_southern'|'amharic'|'angika'|'arabic'|'aragonese'|'arapaho'|'arawak'|'armenian'|'assamese'|'asturian'|'avaric'|'awadhi'|'azerbaijani'|'balinese'|'bambara'|'bashkir'|'basa'|'basque'|'beja'|'bemba'|'belarusian'|'bengali'|'bosnian'|'bulgarian'|'catalan'|'cebuano'|'chichewa'|'chinese_s'|'chinese_t'|'corsican'|'croatian'|'czech'|'danish'|'dutch'|'english'|'esperanto'|'estonian'|'filipino'|'finnish'|'french'|'frisian'|'galician'|'georgian'|'german'|'greek'|'gujarati'|'haitian_creole'|'hausa'|'hawaiian'|'hebrew'|'hindi'|'hmong'|'hungarian'|'icelandic'|'igbo'|'indonesian'|'irish'|'italian'|'japanese'|'javanese'|'kannada'|'kazakh'|'khmer'|'korean'|'kurdish'|'kyrgyz'|'lao'|'latin'|'latvian'|'lithuanian'|'luxembourgish'|'macedonian'|'malagasy'|'malay'|'malayalam'|'maltese'|'maori'|'mapudungun'|'marathi'|'mongolian'|'myanmar'|'nepali'|'norwegian'|'pashto'|'persian'|'polish'|'portugese'|'punjabi'|'romanian'|'russian'|'samoan'|'scots_gaelic'|'serbian'|'sesotho'|'shona'|'sindhi'|'sinhala'|'slovak'|'slovenian'|'somali'|'spanish'|'sundanese'|'swahili'|'swedish'|'tajik'|'tamil'|'telugu'|'thai'|'turkish'|'ukrainian'|'urdu'|'uzbek'|'vietnamese'|'welsh'|'xhosa'|'yiddish'|'yoruba'|'zulu'} language The language that your keywords will be localized into.
+     * @param {Boolean} [auto] Set it to true to let the computer figure out the client's browser language.
      */
     setLanguage: function(language, auto) {
-        if (auto) {
-            language = detectLanguage(language);
-            if (config.unrecognized.length > 0 && config.showLogs) {
-                var plural_code = config.unrecognized.length === 1 ? 'code' : 'codes';
-                var plural_are = config.unrecognized.length === 1 ? 'is' : 'are';
-                console.warn('The following language ' + plural_code + ' in the dictionary ' + plural_are + ' not within our language list: \'' + config.unrecognized.join('\', \'') + '\'. \n' +
-                'We will not be able to make use of the localizations with the above mentioned '+ plural_code +' when language is set to auto detect. \n\nFor a list of recognized language codes, refer to https://github.com/chin98edwin/langutil#language-list'
-                );
-            }
-        }
+        language = auto ? detectLanguage(language) : language;
         config.language = language;
-
-        // Check if the dictionary contains localizations for the language
         if (config.showLogs) {
-            var languageRecognized = false;
+            // Check if the dictionary contains localizations for the language
+            var langRecognized = false;
             try {
                 var index = Object.keys(config.dictionary)
-                for (var i = 0; i < index.length && !languageRecognized; i++) {
+                for (var i = 0; i < index.length && !langRecognized; i++) {
                     if (language === index[i]) {
-                        languageRecognized = true;
+                        langRecognized = true;
                     }
                 }
-            } catch (error) { /* Do nothing for now */ }
-            if (!languageRecognized) {
+            } catch (error) {} // No action required
+            if (!langRecognized) {
                 console.warn('The dictionary does not contain any localizations for "' + language + '". ');
             }
         }
     },
 
     /**
-     * @param { String } keyword The localization keyword.
-     * @param { Array } paramArray Optional, an array of parameters that can be passed into the localization.
-     * @example
-     * langutil.localize('YOUR_KEYWORD');
-     * langutil.localize('KEYWORD_WITH_PLACEHOLDERS', [param1, param2]);
-     * @returns { String } Localized string from the dictionary.
+     * @description Maps the keyword to it's string in it's localizde form.
+     * @param {String} keyword The localization keyword.
+     * @param {Array} [paramArray] An array of parameters that can be passed into the localization.
+     * @returns {String} Localized string from the dictionary.
      */
-    localize: function(keyword, paramArray = []) {
+    localize: function(keyword, paramArray=[]) {
         var localizedString = keyword.toUpperCase();
         try {
-            // Get localized string from dictionary
             localizedString = config.dictionary[config.language][keyword];
-            // Escape character for %p
-            localizedString = localizedString.replace(/(%%p)/g, '%q');
-            // Start recognizing actual placeholders
-            var placeholders = /(%p)/g.exec(localizedString);
-            placeholders = placeholders === null ? [] : placeholders;
-            var size = Math.min((placeholders.length + 1), paramArray.length);
-            for (var i = 0; i < size; i++) {
-                localizedString = localizedString.replace(/(%p)/, paramArray[i]);
-            }
-            // Check if parameters provided are sufficient
-            if (config.showLogs) {
-                if (paramArray.length > placeholders.length) {
-                    console.warn('The parameters provided for "' + keyword + '" exceeded the number of placeholders in the dictionary for "' + config.language + '", hence they will be ignored. ');
-                } else if (paramArray.length < placeholders.length) {
-                    console.error(placeholders.length + ' placeholders found in keyword "' + keyword + '" for "' + config.language + '" but only received ' + paramArray.length + ' parameter(s). ');
-                }
-            }
-            // Replace empty placeholders with empty string
-            localizedString = localizedString.replace(/(%p)/g, '');
-            // Restore escaped %p
-            localizedString = localizedString.replace(/(%q)/g, '%p');
-            // Add line break (Experimental, only works in console so far)
-            localizedString = localizedString.replace(/(%n)/g, '\n');
+            localizedString = stringWithParams(localizedString, paramArray);
         } catch (error) {
             if (config.showLogs) {
                 if (error instanceof TypeError && config.dictionary.length !== 0) {
@@ -117,47 +78,88 @@ const langutil = {
     },
 
     /**
-     * @description Call this function to hide all logs and warnings related to langutil.
-     * @example langutil.hideLogs();
+     * @description
+     * Hides all logs and warnings from langutil functions after the line this functions is called.
+     * Warning: This function will be deprecated in future versions in favor of a more flexible method.
      */
     hideLogs: function() {
         config.showLogs = false;
-    }
+    },
+
+    // /**
+    //  * @description Shows or hides logs from langutil.
+    //  * @param {('hide'|'show')} toggle ...
+    //  * @param {Function} [fn] ...
+    //  */
+    // logs: function(toggle='hide', fn) {
+    //     const TOGGLE_VALUES = { show: true, hide: false }
+    //     try {
+    //         toggle = toggle.toLowerCase()
+    //         if (TOGGLE_VALUES[toggle]) {
+    //             toggle = TOGGLE_VALUES[toggle];
+    //         } else {
+    //             toggle = TOGGLE_VALUES.hide;
+    //             throw new Error('INVALID_TOGGLE_VALUE');
+    //         }
+    //     } catch (error) {
+    //         if (config.showLogs) {
+    //             if (error.message === 'INVALID_TOGGLE_VALUE') {
+    //                 console.warn('Invalid toggle value. Only accepts \'show\' or \'hide\'. ');
+    //             } else {
+    //                 console.error(e);
+    //             }
+    //         }
+    //     }
+
+    //     if (fn instanceof Function) {
+    //         config.showLogs = !config.showLogs;
+    //         var valueToReturn = fn();
+    //         config.showLogs = !config.showLogs;
+    //         if (valueToReturn) {
+    //             return valueToReturn;
+    //         }
+    //     } else {
+    //         config.showLogs = toggle;
+    //     }
+    // }
 
 };
 
-export default langutil;
-
-// —————————————————————————————— Private functions ——————————————————————————————
-
 /**
- * @description
- * Automatically determine the language used by the client's browser.
- * @param { Boolean } fallbackLanguage The language to be used if language could not be detected.
- * @todo If unable detect browser language, attempt to detect language by time zone
- * @returns { String } The detected language.
+ * @description Automatically determine the language used by the client's browser.
+ * @param {Boolean} fallbackLanguage The language to be used if language could not be detected.
+ * @todo If unable detect browser language, attempt to detect language by time zone.
+ * @returns {String} The detected language.
  */
 function detectLanguage(fallbackLanguage) {
-    var langtoReturn = fallbackLanguage;
-    var detectedLanguage = navigator.language || navigator.userLanguage;
     var languageFound = false;
-    detectedLanguage = detectedLanguage.toLowerCase();
-
-    for (var i = 0; i < LANGUAGE_LIST.length && !languageFound; i++) {
-        var refCode = LANGUAGE_LIST[i].code.toLowerCase();
-        if (detectedLanguage.includes(refCode)) {
-            langtoReturn = LANGUAGE_LIST[i].code;
-            languageFound = true;
-        }
-        for (var j = 0; j < LANGUAGE_LIST[i].ref.length && !languageFound; j++) {
-            var refLanguage = LANGUAGE_LIST[i].ref[j].toLowerCase();
-            if (detectedLanguage.includes(refLanguage)) {
-                langtoReturn = LANGUAGE_LIST[i].code;
-                languageFound = true;
+    var langtoReturn = fallbackLanguage;
+    try {
+        var detectedLanguage = navigator.language || navigator.userLanguage;
+            detectedLanguage = detectedLanguage.toLowerCase();
+            for (var i = 0; i < LANGUAGE_LIST.length && !languageFound; i++) {
+                var refCode = LANGUAGE_LIST[i].code.toLowerCase();
+                if (detectedLanguage.includes(refCode)) {
+                    langtoReturn = LANGUAGE_LIST[i].code;
+                    languageFound = true;
+                }
+                for (var j = 0; j < LANGUAGE_LIST[i].ref.length && !languageFound; j++) {
+                    var refLanguage = LANGUAGE_LIST[i].ref[j].toLowerCase();
+                    if (detectedLanguage.includes(refLanguage)) {
+                        langtoReturn = LANGUAGE_LIST[i].code;
+                        languageFound = true;
+                    }
+                }
+            }
+    } catch (error) {
+        if (config.showLogs) {
+            if (error instanceof ReferenceError) {
+                console.warn('You are probably using langutil in a non-browser environment. ');
+            } else {
+                console.error(error);
             }
         }
     }
-
     if (config.showLogs) {
         if (languageFound) {
             console.log('Auto-detected language: ' + langtoReturn);
@@ -169,9 +171,8 @@ function detectLanguage(fallbackLanguage) {
 }
 
 /**
- * @description
- * Inspects the dictionary for errors.
- * @param { Object } dictionaryToSet The dictionary that will be used throughout the app for localization.
+ * @description Inspects the dictionary for errors.
+ * @param {Object} dictionaryToSet The dictionary that will be used throughout the app for localization.
  * @throws Error will be thrown if dictionary is empty or dictionary contains invalid keywords.
  */
 function inspectDictionary(dictionaryToSet) {
@@ -183,7 +184,7 @@ function inspectDictionary(dictionaryToSet) {
     }
     var dictionaryKeys = Object.keys(dictionaryToSet);
 
-    // (2) Check if the dictionary contains any language codes outside of the preset codes
+    // (2) Check dictionary for unrecognized language codesa and show warning
     config.unrecognized = [];
     for (i = 0; i < dictionaryKeys.length; i++ ) {
         var languageRecognized = false;
@@ -195,6 +196,11 @@ function inspectDictionary(dictionaryToSet) {
         if (!languageRecognized) {
             config.unrecognized.push(dictionaryKeys[i]);
         }
+    }
+    if (config.unrecognized.length > 0 && config.showLogs) {
+        console.warn('The following language codes in the dictionary are not within our language list: \'' + config.unrecognized.join('\', \'') + '\'. \n' +
+        'We will not be able to make use of the localizations with the above mentioned codes when language is set to auto detect. \n\nFor a list of recognized language codes, see https://github.com/chin98edwin/langutil#language-list. '
+        );
     }
 
     // (3) Get keywords from every language
@@ -262,11 +268,12 @@ function inspectDictionary(dictionaryToSet) {
 /**
  * @description
  * Checks if a keyword in the dictionary is valid.
- * @param { String } keywordToCheck The keyword of the dictionary
- * @returns { Boolean } true or false.
+ * @param {String} keywordToCheck The keyword of the dictionary
+ * @returns {Boolean} true or false.
  */
 function keywordIsValid(keywordToCheck) {
-    var match = keywordToCheck.match(/([A-Z]+[A-Z|_|0-9]+[A-Z|0-9])/g);
+    var keywordFormat = /([A-Z]+[A-Z|_|0-9]+[A-Z|0-9])/g;
+    var match = keywordToCheck.match(keywordFormat);
     if (match) {
         return keywordToCheck === match.join('');
     }
@@ -274,22 +281,72 @@ function keywordIsValid(keywordToCheck) {
 }
 
 /**
- * @description
- * Sets the dictionary to be used throughout the app.
+ * @description Sets the dictionary to be used throughout the app.
  * This function should be called in the constructor() or componentWillMount() method.
  * For best practices, you should save your dictionary in a JSON file and import it into your app.
- * @example
- * import dictionary from './dictionary';
- * setDictionary(dictionary);
- * @param { Object } dictionary The dictionary that will be used throughout the app for localization.
+ * @param {Object} dictionary The dictionary that will be used throughout the app for localization.
  */
 function setDictionary(dictionary) {
     inspectDictionary(dictionary);
     config.dictionary = dictionary;
 }
 
-// —————————————————————————————— CONSTANTS ——————————————————————————————
+/**
+ * @description Replaces all occurences of %p in string with values from a set of arrays.
+ * @param {String} stringWithFormat The string to be formatted.
+ * @param {Array} [paramArray] An array of parameters that can be passed into the localization.
+ */
+function stringWithParams(stringWithFormat, paramArray=[]) {
+    // Escape character for %p with %%p
+    // A random string that is non-existent in the current string is generated and swapped with
+    var escape_p_Length = 2;
+    var escape_p_swapper = '%q';
+    while (stringWithFormat.includes(escape_p_swapper)) {
+        escape_p_swapper = getRandomString('0123456789abcdef', escape_p_Length++);
+    }
+    stringWithFormat = stringWithFormat.replace(/(%%p)/g, escape_p_swapper);
+    // Detect real placeholders and substitute them with parameters
+    var placeholders = /(%p)/g.exec(stringWithFormat);
+    placeholders = placeholders ? placeholders : [];
+    var placeholderCount = Math.min((placeholders.length + 1), paramArray.length);
+    for (var i = 0; i < placeholderCount; i++) {
+        stringWithFormat = stringWithFormat.replace(/(%p)/, paramArray[i]);
+    }
+    // ParamArray checking
+    if (config.showLogs) {
+        if (paramArray.length > placeholders.length) {
+            console.warn('EXTRANEOUS PARAMETERS. Expected ' + placeholders.length + ' but received ' + paramArray.length + '. \nString: ' + stringWithFormat);
+        } else if (paramArray.length < placeholders.length) {
+            console.error('INSUFFICIENT PARAMETERS. Expected ' + placeholders.length + ' but received ' + paramArray.length + '. \nString: ' + stringWithFormat);
+        }
+    }
+    // Replace empty placeholders with empty string
+    stringWithFormat = stringWithFormat.replace(/(%p)/g, '');
+    // Restore escaped %p
+    stringWithFormat = stringWithFormat.replace(new RegExp('(' + escape_p_swapper + ')', 'g'), '%p');
+    return stringWithFormat
+}
 
+/**
+ * @description Generates a random strng of a fixed length.
+ * @param {String} pattern The character set where random string will be generated from.
+ * @param {Number} length The length of random string.
+ * @returns {String} The randomized string.
+ */
+function getRandomString(pattern, length) {
+    var newHash = '';
+    do {
+        var randomIndex = Math.floor(Math.random() * pattern.length);
+        newHash += pattern[randomIndex];
+    } while (newHash.length < length);
+    return newHash;
+}
+
+/**
+ * @description Language List References
+ * @see https://en.wikipedia.org/wiki/List_of_ISO_639-2_codes
+ * @todo Add new languages from https://www.w3schools.com/tags/ref_language_codes.asp
+ */
 const LANGUAGE_LIST = [
     { code: 'abkhazan', ref: ['ab', 'abk'] },
     { code: 'achinese', ref: ['ace'] },
@@ -328,8 +385,9 @@ const LANGUAGE_LIST = [
     { code: 'catalan', ref: ['cat', 'ca', 'valencian'] },
     { code: 'cebuano', ref: ['ceb'] },
     { code: 'chichewa', ref: ['chewa', 'nyanja', 'nya', 'ny'] },
-    { code: 'chinese_s', desc: 'Simplified', ref: ['sim', 'hans', 'zh', 'chi', 'cn'] },
-    { code: 'chinese_t', desc: 'Traditional', ref: ['trad', 'hant', 'zh', 'chi', 'cn'] },
+    { code: 'chinese_s', desc: 'Simplified', ref: ['sim', 'hans'] },
+    { code: 'chinese_t', desc: 'Traditional', ref: ['trad', 'hant'] },
+    { code: 'chinese', ref: ['han', 'zh', 'chi', 'cn'] },
     { code: 'corsican', ref: ['cos', 'co'] },
     { code: 'croatian', ref: ['hrv', 'hr'] },
     { code: 'czech', ref: ['ces', 'cs', 'cze'] },
@@ -420,9 +478,3 @@ const LANGUAGE_LIST = [
     { code: 'yoruba', ref: ['yor', 'yo'] },
     { code: 'zulu', ref: ['zul', 'zu'] },
 ];
-
-/**
- * — REFERENCES —
- * Language list are based on the translations offered in Google Translate at https://translate.google.com
- * Auto-detection by ref is based on some of the ISO language codes from https://en.wikipedia.org/wiki/List_of_ISO_639-2_codes
- */
