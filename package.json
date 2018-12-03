@@ -1,10 +1,10 @@
 {
   "name": "langutil",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Localization for JavaScript made simple.",
   "main": "langutil.js",
   "scripts": {
-    "test": "echo \"No test specified\" && exit 1"
+    "test": "node test.js"
   },
   "repository": {
     "type": "git",
