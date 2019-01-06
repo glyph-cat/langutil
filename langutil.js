@@ -1,12 +1,12 @@
 /**
  * @author chin98edwin
- * @version 1.0.3
- * @description A simple localizing utility for JavaScript.
  * @copyright Copyright (c) 2018, chin98edwin
- * @see https://www.npmjs.com/package/langutil#readme for documentation
+ * @description A simple localizing utility for JavaScript.
+ * @version 1.1.0
+ * @see https://www.npmjs.com/package/langutil#readme
  * @license ISC — Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby granted, provided that the above copyright notice and this permission notice appear in all copies.
  * THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
-**/
+ **/
 
 const DEFAULT_LANGUAGE = 'english';
 var config = {
@@ -16,12 +16,12 @@ var config = {
     showLogs: true, // Decides if logs and warnings from langutil should be shown
 };
 
-module.exports = langutil = {
+const langutil = {
 
     /**
      * @description Initialize langutil with a dictionary and language.
      * @param {Object} dictionary The dictionary that will be used throughout the app for localization.
-     * @param {('abkhazan'|'achinese'|'acoli'|'adangme'|'adyghe'|'afar'|'afrikaans'|'ainu'|'albanian'|'aleut'|'altai_southern'|'amharic'|'angika'|'arabic'|'aragonese'|'arapaho'|'arawak'|'armenian'|'assamese'|'asturian'|'avaric'|'awadhi'|'azerbaijani'|'balinese'|'bambara'|'bashkir'|'basa'|'basque'|'beja'|'bemba'|'belarusian'|'bengali'|'bosnian'|'bulgarian'|'catalan'|'cebuano'|'chichewa'|'chinese_s'|'chinese_t'|'corsican'|'croatian'|'czech'|'danish'|'dutch'|'english'|'esperanto'|'estonian'|'filipino'|'finnish'|'french'|'frisian'|'galician'|'georgian'|'german'|'greek'|'gujarati'|'haitian_creole'|'hausa'|'hawaiian'|'hebrew'|'hindi'|'hmong'|'hungarian'|'icelandic'|'igbo'|'indonesian'|'irish'|'italian'|'japanese'|'javanese'|'kannada'|'kazakh'|'khmer'|'korean'|'kurdish'|'kyrgyz'|'lao'|'latin'|'latvian'|'lithuanian'|'luxembourgish'|'macedonian'|'malagasy'|'malay'|'malayalam'|'maltese'|'maori'|'mapudungun'|'marathi'|'mongolian'|'myanmar'|'nepali'|'norwegian'|'pashto'|'persian'|'polish'|'portugese'|'punjabi'|'romanian'|'russian'|'samoan'|'scots_gaelic'|'serbian'|'sesotho'|'shona'|'sindhi'|'sinhala'|'slovak'|'slovenian'|'somali'|'spanish'|'sundanese'|'swahili'|'swedish'|'tajik'|'tamil'|'telugu'|'thai'|'turkish'|'ukrainian'|'urdu'|'uzbek'|'vietnamese'|'welsh'|'xhosa'|'yiddish'|'yoruba'|'zulu')} language The language that your keywords will be localizaed into.
+     * @param {('abkhazan'|'achinese'|'acoli'|'adangme'|'adyghe'|'afar'|'afrikaans'|'ainu'|'akan'|'albanian'|'aleut'|'altai_southern'|'amharic'|'angika'|'arabic'|'aragonese'|'arapaho'|'arawak'|'armenian'|'assamese'|'asturian'|'avaric'|'avestan'|'aymara'|'awadhi'|'azerbaijani'|'balinese'|'bambara'|'bashkir'|'basa'|'basque'|'beja'|'bemba'|'belarusian'|'bengali'|'bihari'|'bislama'|'breton'|'bosnian'|'burmese'|'bulgarian'|'bulgarian_old'|'catalan'|'cebuano'|'chamorro'|'chechen'|'chichewa'|'chinese_s'|'chinese_t'|'chinese'|'chuvash'|'corsican'|'cornish'|'corsican'|'cree'|'croatian'|'czech'|'danish'|'divehi'|'dutch'|'dzongka'|'english'|'esperanto'|'estonian'|'ewe'|'faroese'|'fijian'|'filipino'|'finnish'|'french'|'fula'|'gaelic_scot'|'gaelic_manx'|'frisian'|'frisian_western'|'galician'|'georgian'|'german'|'greek'|'gujarati'|'greenlandic'|'guarani'|'haitian_creole'|'hausa'|'hawaiian'|'hebrew'|'herero'|'hindi'|'hirimotu'|'hmong'|'hungarian'|'icelandic'|'ido'|'igbo'|'indonesian'|'interlingua'|'interlingue'|'inuktitut'|'inupiak'|'irish'|'italian'|'japanese'|'javanese'|'kannada'|'kazakh'|'kanuri'|'kashmiri'|'khmer'|'korean'|'kurdish'|'kikuyu'|'kinyarwanda'|'kirundi'|'komi'|'kongo'|'kwanyama'|'kyrgyz'|'lao'|'latin'|'latvian'|'limburger'|'lingala'|'lithuanian'|'lugakatanga'|'luganda'|'luxembourgish'|'macedonian'|'malagasy'|'malay'|'malayalam'|'manx'|'maltese'|'maori'|'mapudungun'|'marathi'|'marshallese'|'moldavian'|'mongolian'|'nauru'|'navajo'|'ndonga'|'ndebele_northern'|'nepali'|'norwegian'|'norwegian_bokmal'|'norwegian_nynorsk'|'nuosu'|'occitan'|'ojibwe'|'oriya'|'oromo'|'ossetian'|'pali'|'pashto'|'persian'|'polish'|'portugese'|'punjabi'|'quechua'|'romansh'|'romanian'|'russian'|'sami'|'samoan'|'sango'|'sanskrit'|'scots_gaelic'|'serbian'|'serbian_croatian'|'sesotho'|'setswana'|'shona'|'sindhi'|'sinhala'|'siswati'|'slovak'|'slovenian'|'somali'|'southern_ndebele'|'spanish'|'sundanese'|'swahili'|'swati'|'swedish'|'tagalog'|'tajik'|'tahitian'|'tamil'|'tatar'|'telugu'|'thai'|'tibetan'|'turkish'|'tigrinya'|'tonga'|'tsonga'|'turkmen'|'twi'|'uyghur'|'ukrainian'|'urdu'|'uzbek'|'venda'|'vietnamese'|'volapuk'|'wallon'|'welsh'|'wolof'|'xhosa'|'yiddish'|'yoruba'|'zhuang'|'zulu')} language The language that your keywords will be localizaed into.
      * @param {Boolean} [auto] Set it to true to let the computer figure out the client's browser language.
      */
     init: function(dictionary, language, auto) {
@@ -31,7 +31,7 @@ module.exports = langutil = {
 
     /**
      * @description Sets the language to be used throughout the app.
-     * @param {'abkhazan'|'achinese'|'acoli'|'adangme'|'adyghe'|'afar'|'afrikaans'|'ainu'|'albanian'|'aleut'|'altai_southern'|'amharic'|'angika'|'arabic'|'aragonese'|'arapaho'|'arawak'|'armenian'|'assamese'|'asturian'|'avaric'|'awadhi'|'azerbaijani'|'balinese'|'bambara'|'bashkir'|'basa'|'basque'|'beja'|'bemba'|'belarusian'|'bengali'|'bosnian'|'bulgarian'|'catalan'|'cebuano'|'chichewa'|'chinese_s'|'chinese_t'|'corsican'|'croatian'|'czech'|'danish'|'dutch'|'english'|'esperanto'|'estonian'|'filipino'|'finnish'|'french'|'frisian'|'galician'|'georgian'|'german'|'greek'|'gujarati'|'haitian_creole'|'hausa'|'hawaiian'|'hebrew'|'hindi'|'hmong'|'hungarian'|'icelandic'|'igbo'|'indonesian'|'irish'|'italian'|'japanese'|'javanese'|'kannada'|'kazakh'|'khmer'|'korean'|'kurdish'|'kyrgyz'|'lao'|'latin'|'latvian'|'lithuanian'|'luxembourgish'|'macedonian'|'malagasy'|'malay'|'malayalam'|'maltese'|'maori'|'mapudungun'|'marathi'|'mongolian'|'myanmar'|'nepali'|'norwegian'|'pashto'|'persian'|'polish'|'portugese'|'punjabi'|'romanian'|'russian'|'samoan'|'scots_gaelic'|'serbian'|'sesotho'|'shona'|'sindhi'|'sinhala'|'slovak'|'slovenian'|'somali'|'spanish'|'sundanese'|'swahili'|'swedish'|'tajik'|'tamil'|'telugu'|'thai'|'turkish'|'ukrainian'|'urdu'|'uzbek'|'vietnamese'|'welsh'|'xhosa'|'yiddish'|'yoruba'|'zulu'} language The language that your keywords will be localized into.
+     * @param {('abkhazan'|'achinese'|'acoli'|'adangme'|'adyghe'|'afar'|'afrikaans'|'ainu'|'akan'|'albanian'|'aleut'|'altai_southern'|'amharic'|'angika'|'arabic'|'aragonese'|'arapaho'|'arawak'|'armenian'|'assamese'|'asturian'|'avaric'|'avestan'|'aymara'|'awadhi'|'azerbaijani'|'balinese'|'bambara'|'bashkir'|'basa'|'basque'|'beja'|'bemba'|'belarusian'|'bengali'|'bihari'|'bislama'|'breton'|'bosnian'|'burmese'|'bulgarian'|'bulgarian_old'|'catalan'|'cebuano'|'chamorro'|'chechen'|'chichewa'|'chinese_s'|'chinese_t'|'chinese'|'chuvash'|'corsican'|'cornish'|'corsican'|'cree'|'croatian'|'czech'|'danish'|'divehi'|'dutch'|'dzongka'|'english'|'esperanto'|'estonian'|'ewe'|'faroese'|'fijian'|'filipino'|'finnish'|'french'|'fula'|'gaelic_scot'|'gaelic_manx'|'frisian'|'frisian_western'|'galician'|'georgian'|'german'|'greek'|'gujarati'|'greenlandic'|'guarani'|'haitian_creole'|'hausa'|'hawaiian'|'hebrew'|'herero'|'hindi'|'hirimotu'|'hmong'|'hungarian'|'icelandic'|'ido'|'igbo'|'indonesian'|'interlingua'|'interlingue'|'inuktitut'|'inupiak'|'irish'|'italian'|'japanese'|'javanese'|'kannada'|'kazakh'|'kanuri'|'kashmiri'|'khmer'|'korean'|'kurdish'|'kikuyu'|'kinyarwanda'|'kirundi'|'komi'|'kongo'|'kwanyama'|'kyrgyz'|'lao'|'latin'|'latvian'|'limburger'|'lingala'|'lithuanian'|'lugakatanga'|'luganda'|'luxembourgish'|'macedonian'|'malagasy'|'malay'|'malayalam'|'manx'|'maltese'|'maori'|'mapudungun'|'marathi'|'marshallese'|'moldavian'|'mongolian'|'nauru'|'navajo'|'ndonga'|'ndebele_northern'|'nepali'|'norwegian'|'norwegian_bokmal'|'norwegian_nynorsk'|'nuosu'|'occitan'|'ojibwe'|'oriya'|'oromo'|'ossetian'|'pali'|'pashto'|'persian'|'polish'|'portugese'|'punjabi'|'quechua'|'romansh'|'romanian'|'russian'|'sami'|'samoan'|'sango'|'sanskrit'|'scots_gaelic'|'serbian'|'serbian_croatian'|'sesotho'|'setswana'|'shona'|'sindhi'|'sinhala'|'siswati'|'slovak'|'slovenian'|'somali'|'southern_ndebele'|'spanish'|'sundanese'|'swahili'|'swati'|'swedish'|'tagalog'|'tajik'|'tahitian'|'tamil'|'tatar'|'telugu'|'thai'|'tibetan'|'turkish'|'tigrinya'|'tonga'|'tsonga'|'turkmen'|'twi'|'uyghur'|'ukrainian'|'urdu'|'uzbek'|'venda'|'vietnamese'|'volapuk'|'wallon'|'welsh'|'wolof'|'xhosa'|'yiddish'|'yoruba'|'zhuang'|'zulu')} language The language that your keywords will be localized into.
      * @param {Boolean} [auto] Set it to true to let the computer figure out the client's browser language.
      */
     setLanguage: function(language, auto) {
@@ -80,50 +80,40 @@ module.exports = langutil = {
     /**
      * @description
      * Hides all logs and warnings from langutil functions after the line this functions is called.
-     * Warning: This function will be deprecated in future versions in favor of a more flexible method.
+     * @deprecated Since 1.1.0. Use `langutil.logs.hide()` or `langutil.logs.show()` instead.
      */
     hideLogs: function() {
         config.showLogs = false;
     },
 
-    // /**
-    //  * @description Shows or hides logs from langutil.
-    //  * @param {('hide'|'show')} toggle ...
-    //  * @param {Function} [fn] ...
-    //  */
-    // logs: function(toggle='hide', fn) {
-    //     const TOGGLE_VALUES = { show: true, hide: false }
-    //     try {
-    //         toggle = toggle.toLowerCase()
-    //         if (TOGGLE_VALUES[toggle]) {
-    //             toggle = TOGGLE_VALUES[toggle];
-    //         } else {
-    //             toggle = TOGGLE_VALUES.hide;
-    //             throw new Error('INVALID_TOGGLE_VALUE');
-    //         }
-    //     } catch (error) {
-    //         if (config.showLogs) {
-    //             if (error.message === 'INVALID_TOGGLE_VALUE') {
-    //                 console.warn('Invalid toggle value. Only accepts \'show\' or \'hide\'. ');
-    //             } else {
-    //                 console.error(e);
-    //             }
-    //         }
-    //     }
+    /**
+     * @returns {string} The current language applied to langutil.
+     */
+    getLanguage: function() {
+        return config.language
+    },
 
-    //     if (fn instanceof Function) {
-    //         config.showLogs = !config.showLogs;
-    //         var valueToReturn = fn();
-    //         config.showLogs = !config.showLogs;
-    //         if (valueToReturn) {
-    //             return valueToReturn;
-    //         }
-    //     } else {
-    //         config.showLogs = toggle;
-    //     }
-    // }
+    logs: {
+
+        /**
+         * @description Hides logs from langutil.
+         */
+        hide: function() {
+            config.showLogs = false
+        },
+
+        /**
+         * @description Shows logs from langutil. Logs are shown by default.
+         */
+        show: function() {
+            config.showLogs = true
+        }
+
+    },
 
 };
+
+module.exports = langutil;
 
 /**
  * @description Automatically determine the language used by the client's browser.
@@ -345,136 +335,221 @@ function getRandomString(pattern, length) {
 /**
  * @description Language List References
  * @see https://en.wikipedia.org/wiki/List_of_ISO_639-2_codes
- * @todo Add new languages from https://www.w3schools.com/tags/ref_language_codes.asp
+ * @see https://www.w3schools.com/tags/ref_language_codes.asp
  */
 const LANGUAGE_LIST = [
     { code: 'abkhazan', ref: ['ab', 'abk'] },
     { code: 'achinese', ref: ['ace'] },
     { code: 'acoli', ref: ['ach'] },
     { code: 'adangme', ref: ['ada'] },
-    { code: 'adyghe', desc: 'Adygei', ref: ['ady', 'adygei'] },
+    { code: 'adyghe', ref: ['ady'] },
     { code: 'afar', ref: ['aa', 'aar'] },
     { code: 'afrikaans', ref: ['afr', 'af'] },
     { code: 'ainu', ref: ['ain'] },
-    { code: 'albanian', ref: ['alb', 'sqi', 'sq'] },
+    { code: 'akan', ref: ['akan'] },
+    { code: 'albanian', ref: ['alb', 'sqi'] },
     { code: 'aleut', ref: ['ale'] },
-    { code: 'altai_southern', ref: ['alt', 'altai'] },
+    { code: 'altai_southern', ref: ['alt'] },
     { code: 'amharic', ref: ['amh'] },
     { code: 'angika', ref: ['anp'] },
     { code: 'arabic', ref: ['ar'] },
     { code: 'aragonese', ref: ['an', 'arg'] },
     { code: 'arapaho', ref: ['arp'] },
     { code: 'arawak', ref: ['arw'] },
-    { code: 'armenian', ref: ['arm', 'hye', 'hy'] },
-    { code: 'assamese', ref: ['as', 'asm'] },
+    { code: 'armenian', ref: ['arm', 'hye'] },
+    { code: 'assamese', ref: ['asm'] },
     { code: 'asturian', ref: ['ast', 'bable', 'leonese', 'sturleonese'] },
     { code: 'avaric', ref: ['av'] },
+    { code: 'avestan', ref: ['ae'] },
+    { code: 'aymara', ref: ['ay'] },
     { code: 'awadhi', ref: ['awa'] },
-    { code: 'azerbaijani', ref: ['aze', 'az'] },
+    { code: 'azerbaijani', ref: ['aze'] },
     { code: 'balinese', ref: ['ban'] },
     { code: 'bambara', ref: ['bm', 'bam'] },
     { code: 'bashkir', ref: ['ba', 'bak'] },
     { code: 'basa', ref: ['bas'] },
-    { code: 'basque', ref: ['baq', 'eus', 'eu'] },
+    { code: 'basque', ref: ['baq', 'eus'] },
     { code: 'beja', ref: ['bej', 'bedawiyet'] },
-    { code: 'bemba', ref: ['bem', 'chibemba'] },
-    { code: 'belarusian', ref: ['bel', 'be'] },
+    { code: 'bemba', ref: ['bem'] },
+    { code: 'belarusian', ref: ['bel'] },
     { code: 'bengali', ref: ['ben', 'bn'] },
+    { code: 'bihari', ref: ['bh'] },
+    { code: 'bislama', ref: ['bi'] },
+    { code: 'breton', ref: ['br'] },
     { code: 'bosnian', ref: ['bos', 'bs'] },
+    { code: 'burmese', ref: ['bur', 'mya', 'my'] },
     { code: 'bulgarian', ref: ['bul', 'bg'] },
-    { code: 'catalan', ref: ['cat', 'ca', 'valencian'] },
+    { code: 'bulgarian_old', ref: ['cu'] },
+    { code: 'catalan', ref: ['cat', 'valencian'] },
     { code: 'cebuano', ref: ['ceb'] },
-    { code: 'chichewa', ref: ['chewa', 'nyanja', 'nya', 'ny'] },
+    { code: 'chamorro', ref: ['ch'] },
+    { code: 'chechen', ref: ['ce'] },
+    { code: 'chichewa', ref: ['chewa', 'nya'] },
     { code: 'chinese_s', desc: 'Simplified', ref: ['sim', 'hans'] },
     { code: 'chinese_t', desc: 'Traditional', ref: ['trad', 'hant'] },
-    { code: 'chinese', ref: ['han', 'zh', 'chi', 'cn'] },
+    { code: 'chinese', ref: ['han', 'zh'] },
+    { code: 'chuvash', ref: ['cv'] },
     { code: 'corsican', ref: ['cos', 'co'] },
+    { code: 'cornish', ref: ['kw'] },
+    { code: 'corsican', ref: ['co'] },
+    { code: 'cree', ref: ['cr'] },
     { code: 'croatian', ref: ['hrv', 'hr'] },
     { code: 'czech', ref: ['ces', 'cs', 'cze'] },
     { code: 'danish', ref: ['dan', 'da'] },
+    { code: 'divehi', ref: ['dv', 'maldivian'] },
     { code: 'dutch', ref: ['dut', 'nld', 'nl', 'flemish'] },
+    { code: 'dzongka', ref: ['dz'] },
     { code: 'english', ref: ['eng', 'en'] },
     { code: 'esperanto', ref: ['epo', 'eo'] },
     { code: 'estonian', ref: ['est', 'et'] },
+    { code: 'ewe', ref: ['ee'] },
+    { code: 'faroese', ref: ['fo'] },
+    { code: 'fijian', ref: ['fj'] },
     { code: 'filipino', ref: ['fil', 'pilipino'] },
     { code: 'finnish', ref: ['fin', 'fi'] },
     { code: 'french', ref: ['fr', 'fra', 'fre'] },
+    { code: 'fula', ref: ['ff, pulaar'] },
+    { code: 'gaelic_scot', ref: ['gd'] },
+    { code: 'gaelic_manx', ref: ['gv'] },
     { code: 'frisian', ref: ['frs', 'frr', 'fry'] },
+    { code: 'frisian_western', ref: ['fy'] },
     { code: 'galician', ref: ['gl', 'glg'] },
     { code: 'georgian', ref: ['ka', 'kat', 'geo'] },
     { code: 'german', ref: ['de', 'deu', 'ger'] },
     { code: 'greek', ref: ['el', 'ell', 'gre'] },
     { code: 'gujarati', ref: ['gu', 'guj'] },
+    { code: 'greenlandic', ref: ['kl'] },
+    { code: 'guarani', ref: ['gn'] },
     { code: 'haitian_creole', ref: ['ht', 'hat'] },
     { code: 'hausa', ref: ['ha', 'hau'] },
     { code: 'hawaiian', ref: ['haw'] },
     { code: 'hebrew', ref: ['he', 'heb'] },
+    { code: 'herero', ref: ['hz'] },
     { code: 'hindi', ref: ['hi', 'hin'] },
+    { code: 'hirimotu', ref: ['ho'] },
     { code: 'hmong', ref: ['hmn'] },
     { code: 'hungarian', ref: ['hu', 'hun'] },
     { code: 'icelandic', ref: ['is', 'isl', 'ice'] },
+    { code: 'ido', ref: ['io'] },
     { code: 'igbo', ref: ['ig', 'ibo'] },
-    { code: 'indonesian', ref: ['indo', 'ind', 'in'] },
+    { code: 'indonesian', ref: ['ind', 'in', 'id'] },
+    { code: 'interlingua', ref: ['ia'] },
+    { code: 'interlingue', ref: ['ie'] },
+    { code: 'inuktitut', ref: ['iu'] },
+    { code: 'inupiak', ref: ['ik'] },
     { code: 'irish', ref: ['ga', 'gle'] },
     { code: 'italian', ref: ['it', 'ita'] },
     { code: 'japanese', ref: ['ja', 'jpn'] },
     { code: 'javanese', ref: ['jv', 'jav'] },
     { code: 'kannada', ref: ['kn', 'kan'] },
     { code: 'kazakh', ref: ['kk', 'kaz'] },
+    { code: 'kanuri', ref: ['kr'] },
+    { code: 'kashmiri', ref: ['ks'] },
     { code: 'khmer', ref: ['km', 'khm'] },
     { code: 'korean', ref: ['ko', 'kor'] },
     { code: 'kurdish', ref: ['kur', 'ku', 'kurmanji'] },
+    { code: 'kikuyu', ref: ['ki'] },
+    { code: 'kinyarwanda', ref: ['rwanda', 'rw'] },
+    { code: 'kirundi', ref: ['rn'] },
+    { code: 'komi', ref: ['kv'] },
+    { code: 'kongo', ref: ['kg'] },
+    { code: 'kwanyama', ref: ['kj'] },
     { code: 'kyrgyz', ref: ['kir', 'ky', 'kirghiz'] },
     { code: 'lao', ref: ['lao', 'lo'] },
     { code: 'latin', ref: ['lat', 'la'] },
     { code: 'latvian', ref: ['lav', 'lv'] },
-    { code: 'lithuanian', ref: ['lez'] },
+    { code: 'limburger', ref: ['li'] },
+    { code: 'lingala', ref: ['ln'] },
+    { code: 'lithuanian', ref: ['lez', 'lt'] },
+    { code: 'lugakatanga', ref: ['lu'] },
+    { code: 'luganda', ref: ['lg'] },
     { code: 'luxembourgish', ref: ['ltz', 'lb', 'letzeburgesch'] },
     { code: 'macedonian', ref: ['mac', 'mk', 'mkd'] },
     { code: 'malagasy', ref: ['mg', 'mlg'] },
-    { code: 'malay', ref: ['ms', 'malay', 'melayu'] },
+    { code: 'malay', ref: ['ms', 'malay'    ] },
     { code: 'malayalam', ref: ['mal', 'ml'] },
+    { code: 'manx', ref: ['gv'] },
     { code: 'maltese', ref: ['mlt', 'mt'] },
     { code: 'maori', ref: ['mao', 'mri', 'mi'] },
     { code: 'mapudungun', ref: ['arn', 'mapuche'] },
     { code: 'marathi', ref: ['mar', 'mr'] },
+    { code: 'marshallese', ref: ['mh'] },
+    { code: 'moldavian', ref: ['mo'] },
     { code: 'mongolian', ref: ['mon', 'mn'] },
-    { code: 'myanmar', ref: ['bur', 'mya', 'my', 'burmese'] },
+    { code: 'nauru', ref: ['na'] },
+    { code: 'navajo', ref: ['nv'] },
+    { code: 'ndonga', ref: ['ng'] },
+    { code: 'ndebele_northern', ref: ['nd'] },
     { code: 'nepali', ref: ['nep', 'ne'] },
     { code: 'norwegian', ref: ['nor', 'no'] },
+    { code: 'norwegian_bokmal', ref: ['nb'] },
+    { code: 'norwegian_nynorsk', ref: ['nn'] },
+    { code: 'nuosu', ref: ['ii'] },
+    { code: 'occitan', ref: ['oc'] },
+    { code: 'ojibwe', ref: ['oj'] },
+    { code: 'oriya', ref: ['or'] },
+    { code: 'oromo', ref: ['om'] },
+    { code: 'ossetian', ref: ['os'] },
+    { code: 'pali', ref: ['pi'] },
     { code: 'pashto', ref: ['pus', 'ps', 'pushto'] },
     { code: 'persian', ref: ['fas', 'fa', 'per'] },
     { code: 'polish', ref: ['pol', 'po'] },
     { code: 'portugese', ref: ['por', 'pt'] },
     { code: 'punjabi', ref: ['pan', 'pa'] },
+    { code: 'quechua', ref: ['qu'] },
+    { code: 'romansh', ref: ['rm'] },
     { code: 'romanian', ref: ['ron', 'ro', 'rum'] },
     { code: 'russian', ref: ['rus', 'ru'] },
+    { code: 'sami', ref: ['se'] },
     { code: 'samoan', ref: ['smo', 'sm'] },
+    { code: 'sango', ref: ['sg'] },
+    { code: 'sanskrit', ref: ['sa'] },
     { code: 'scots_gaelic', ref: ['gla', 'gd'] },
     { code: 'serbian', ref: ['srp', 'sr'] },
-    { code: 'sesotho', ref: ['nso', 'pedi', 'sepedi', 'sotho'] },
+    { code: 'serbian_croatian', ref: ['sh'] },
+    { code: 'sesotho', ref: ['st', 'nso', 'pedi'] },
+    { code: 'setswana', ref: ['tn'] },
     { code: 'shona', ref: ['sna', 'sn'] },
+    // { code: 'sichuan_yi', ref: ['ii'] },
     { code: 'sindhi', ref: ['snd', 'sd'] },
-    { code: 'sinhala', ref: ['sin', 'si', 'sinhalese'] },
+    { code: 'sinhala', ref: ['sin', 'si'] },
+    { code: 'siswati', ref: ['ss'] },
     { code: 'slovak', ref: ['slk', 'sl'] },
     { code: 'slovenian', ref: ['slv', 'sl'] },
     { code: 'somali', ref: ['som', 'so'] },
+    { code: 'southern_ndebele', ref: ['nr'] },
     { code: 'spanish', ref: ['spa', 'es', 'castilian'] },
     { code: 'sundanese', ref: ['sun', 'su'] },
     { code: 'swahili', ref: ['swa', 'sw'] },
+    { code: 'swati', ref: ['ss'] },
     { code: 'swedish', ref: ['swe', 'sv'] },
+    { code: 'tagalog', ref: ['tl'] },
     { code: 'tajik', ref: ['tgk', 'tg'] },
+    { code: 'tahitian', ref: ['ty'] },
     { code: 'tamil', ref: ['tam', 'ta'] },
+    { code: 'tatar', ref: ['tt'] },
     { code: 'telugu', ref: ['tel', 'te'] },
     { code: 'thai', ref: ['tha', 'th'] },
+    { code: 'tibetan', ref: ['bo'] },
     { code: 'turkish', ref: ['tur', 'tr'] },
+    { code: 'tigrinya', ref: ['ti'] },
+    { code: 'tonga', ref: ['to'] },
+    { code: 'tsonga', ref: ['ts'] },
+    { code: 'turkmen', ref: ['tk'] },
+    { code: 'twi', ref: ['tw'] },
+    { code: 'uyghur', ref: ['ug'] },
     { code: 'ukrainian', ref: ['ukr', 'uk'] },
     { code: 'urdu', ref: ['urd', 'ur'] },
     { code: 'uzbek', ref: ['uzb', 'uz'] },
+    { code: 'venda', ref: ['ve'] },
     { code: 'vietnamese', ref: ['vie', 'vi'] },
+    { code: 'volapuk', ref: ['vo'] },
+    { code: 'wallon', ref: ['wa'] },
     { code: 'welsh', ref: ['wel', 'cym', 'cy'] },
+    { code: 'wolof', ref: ['wo'] },
     { code: 'xhosa', ref: ['xho', 'xh'] },
     { code: 'yiddish', ref: ['yid', 'yi'] },
     { code: 'yoruba', ref: ['yor', 'yo'] },
+    { code: 'zhuang', ref: ['za', 'chuang'] },
     { code: 'zulu', ref: ['zul', 'zu'] },
 ];
