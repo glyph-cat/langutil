@@ -95,37 +95,16 @@ This is the method that returns the localized strings based on your keywords and
 
 <br/>
 
-## `logs(toggle, fn?)`
-Shows or hides logs from langutil. Logs will be shown by default if this method is never called.
-Use this method without passing in the `fn` parameter to control if langtuil should continue to show/hide logs.
-Use this method with the `fn` parameter to only show/hide logs within the surrounded block of code.
-* **`toggle: ('show'|'hide')`**<br/>Controls if logs should be shown.
-* **`fn?: (Function)`**<br/>The block of code where you explicitly want to show or hide logs.
-
-***Example:***
-
-    langutil.logs('show')
-    // Langutil logs will be shown
-
-    langutil.logs('hide', ()=>{
-        // Langutil logs in this block will be hidden
-    }
-
-    // Langutil logs will still be shown here
+## `logs.show()`
+Instructs `langutil` to show its logs (shown by default). This method can be called before `init()`.
 <br/>
 
-    langutil.logs('hide')
-    // Langutil logs will be hidden
-
-    langutil.logs('show', ()=>{
-        // Langutil logs in this block will be shown
-    }
-
-    // Langutil logs will remain hidden here
+## `logs.hide()`
+Instructs `langutil` to hide its logs. This means any logs, warnings and errors by `langutil` will be hidden away. This method can be called before `init()`.
 <br/>
 
 ## `hideLogs()`
-***NOTE: Deprecated since 1.1.0, use `logs()` instead***<br/>
+***NOTE: Deprecated since 1.1.0, use `logs.show()` or `logs.hide()` instead***<br/>
 Call this method to disable logs from langutil. Any langutil methods that are called after this will no longer show logs and warnings. Critical errors will still be thrown so that they don't go unnoticed. This method can be called before `init()`.
 
 <br/><br/>
@@ -206,6 +185,9 @@ However, when auto language detection is used, it automatically sets the languag
 ## 1.1.0
 * `showLogs()` (still usable) will be replaced by `logs.hide()` and `logs.show()`.
 * Added 84 new languages to auto detection algorithm.
+
+## 1.1.1
+* Added some quick hixes to the documentation.
 
 **[Click here to read the complete update history](https://github.com/chin98edwin/langutil/blob/master/UpdateHistory.md)**
 <br/><hr/>
