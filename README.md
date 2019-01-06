@@ -1,8 +1,7 @@
 [![NPM](https://nodei.co/npm/langutil.png)](https://nodei.co/npm/langutil/)
 
-Langutil is a localizing tool for JavaScript. In fact, it is made up of only one file and does not have any dependencies. Langutil is packed with four essential functions. Keep on reading to get started.
+Langutil is a localizing tool for JavaScript. In fact, it is made up of only one file and does not have any dependencies. Langutil is packed with four essential functions. <br/> Keep on reading to get started.
 
-# Table of Contents
 1. [Installation](#installation)
 2. [Usage](#usage)
 3. [Methods](#methods)
@@ -47,11 +46,11 @@ Below is a basic working example:
 3. [`localize(keyword, paramArray)`](##localize(keyword,-paramArray))
 4. [`hideLogs()`](##-`hideLogs()`)
 
-## `init(dictionary, language, auto)`
+## `init(dictionary, language, auto?)`
 This initializes langutil with a dictionary and language. This method must be called before `setLanguage()` and `localize()` can be used.
 * **`dictionary: (Object)`**<br/>The dictionary that stores all your localizations.
 * **`language: (String)`**<br/>Refer to `setLanguage()`
-* **`auto: (Boolean)` [OPTIONAL]**<br/>Refer to `setLanguage()`
+* **`auto?: (Boolean)`**<br/>Refer to `setLanguage()`
 
 ***Example:***
 
@@ -61,10 +60,10 @@ This initializes langutil with a dictionary and language. This method must be ca
 
 <br/>
 
-## `setLanguage(language, auto)`
+## `setLanguage(language, auto?)`
 Similar to `init()`, but this only sets the language and can be called anytime. This method comes in handy when switching between languages in a preference page.
 * **`language: (String)`**<br/>The language in which your content will be displayed. The language code that you provided must exist in your dictionary too.
-* **`auto: (Boolean)` [OPTIONAL]**<br/>This only works for browsers. Set it to `true` to let the computer figure out the client's browser language. The `language` parameter will be used as the fallback language if auto-detection fails. In order for auto detection to work properly, the language code in your dictionary should match the ones in our [Language List](##language-list).
+* **`auto?: (Boolean)`**<br/>Optional. This only works for browsers. Set it to `true` to let the computer figure out the client's browser language. The `language` parameter will be used as the fallback language if auto-detection fails. In order for auto detection to work properly, the language code in your dictionary should match the ones in our [Language List](##language-list).
 
 ***Example:***
 
@@ -73,10 +72,10 @@ Similar to `init()`, but this only sets the language and can be called anytime. 
     langutil.setLanguage('english', true)
 <br/>
 
-## `localize(keyword, paramArray)`
+## `localize(keyword, paramArray?)`
 This is the method that returns the localized strings based on your keywords and language set.
 * **`keyword: (String)`**<br/>A simple string that will be mapped to its localized form in the dictionary.
-* **`paramArray: (array)` [OPTIONAL]**<br/>There are times when it is not possible to define every possible string in the dictionary due to changing variables. This is how you can combine them with your localizations instead.
+* **`paramArray?: (Array)`**<br/>Optional. There are times when it is not possible to define every possible string in the dictionary due to changing variables. This is how you can combine them with your localizations instead.
 
 ***Example:***
 | Keyword               | Localization         |
@@ -85,20 +84,50 @@ This is the method that returns the localized strings based on your keywords and
 | `N_CHARS_LEFT`        | `%p characters left` |
 | `HELLO_NAME_AND_NAME` | `Hello, %p and %p.`  |
 
-    localize('HELLO')
+    langutil.localize('HELLO')
     // Output: Hello
 
-    localize('N_CHARS_LEFT', [50])
+    langutil.localize('N_CHARS_LEFT', [50])
     // Output: 50 characters left
 
-    localize('HELLO_NAME_AND_NAME', ['Adam', 'Susie'])
+    langutil.localize('HELLO_NAME_AND_NAME', ['Adam', 'Susie'])
     // Output: Hello, Adam and Susie.
 
 <br/>
 
+## `logs(toggle, fn?)`
+Shows or hides logs from langutil. Logs will be shown by default if this method is never called.
+Use this method without passing in the `fn` parameter to control if langtuil should continue to show/hide logs.
+Use this method with the `fn` parameter to only show/hide logs within the surrounded block of code.
+* **`toggle: ('show'|'hide')`**<br/>Controls if logs should be shown.
+* **`fn?: (Function)`**<br/>The block of code where you explicitly want to show or hide logs.
+
+***Example:***
+
+    langutil.logs('show')
+    // Langutil logs will be shown
+
+    langutil.logs('hide', ()=>{
+        // Langutil logs in this block will be hidden
+    }
+
+    // Langutil logs will still be shown here
+<br/>
+
+    langutil.logs('hide')
+    // Langutil logs will be hidden
+
+    langutil.logs('show', ()=>{
+        // Langutil logs in this block will be shown
+    }
+
+    // Langutil logs will remain hidden here
+<br/>
+
 ## `hideLogs()`
-Use this method to disable logs from langutil. Any langutil methods that are called after this will no longer show logs and warnings. Critical errors will still be thrown so that they don't go unnoticed. This method can be called before `init()`.<br/>
-*NOTE: This will be deprecated in future versions in favor of a more flexible method.*
+***NOTE: Deprecated since 1.1.0, use `logs()` instead***<br/>
+Call this method to disable logs from langutil. Any langutil methods that are called after this will no longer show logs and warnings. Critical errors will still be thrown so that they don't go unnoticed. This method can be called before `init()`.
+
 <br/><br/>
 
 # The Dictionary
@@ -131,30 +160,32 @@ However, when auto language detection is used, it automatically sets the languag
 
 |       | Language Codes |
 | -----:| ---------------- |
-| **A** | `abkhazan`, `achinese`, `acoli`, `adangme`, `adyghe`, `afar`, `afrikaans`, `ainu`, `albanian`, `aleut`, `altai_southern`, `amharic`, `angika`, `arabic`, `aragonese`, `arapaho`, `arawak`, `armenian`, `assamese`, `asturian`, `avaric`, `awadhi`, `azerbaijani` |
-| **B** | `balinese`, `bambara`, `bashkir`, `basa`, `basque`, `beja`, `belarusian`, `bemba`, `bengali`, `bosnian`, `bulgarian` |
-| **C** | `catalan`, `cebuano`, `chichewa`, `chinese_s`, `chinese_t`, `chinese`, `corsican`, `croatian`, `czech` |
-| **D** | `danish`, `dutch` |
-| **E** | `english`, `esperanto`, `estonian` |
-| **F** | `filipino`,`finnish`, `french`, `frisian` |
-| **G** | `galician`, `georgian`, `german`, `greek`, `gujarati` |
-| **H** | `haitian_creole`, `hausa`, `hawaiian`, `hebrew`, `hindi`, `hmong`, `hungarian` |
-| **I** | `icelandic`, `igbo`, `indonesian`, `irish`, `italian` |
+| **A** | `abkhazan`, `achinese`, `acoli`, `adangme`, `adyghe`, `afar`, `afrikaans`, `ainu`, `akan`, `albanian`, `aleut`, `altai_southern`, `amharic`, `angika`, `arabic`, `aragonese`, `arapaho`, `arawak`, `armenian`, `assamese`, `asturian`, `avaric`, `avestan`, `aymara`, `awadhi`, `azerbaijani` |
+| **B** | `balinese`, `bambara`, `bashkir`, `basa`, `basque`, `beja`, `bemba`, `belarusian`, `bengali`, `bihari`, `bislama`, `breton`, `bosnian`, `burmese`, `bulgarian`, `bulgarian_old` |
+| **C** | `catalan`, `cebuano`, `chamorro`, `chechen`, `chichewa`, `chinese_s`, `chinese_t`, `chinese`, `chuvash`, `corsican`, `cornish`, `corsican`, `cree`, `croatian`, `czech` |
+| **D** | `danish`, `divehi`, `dutch`, `dzongka` |
+| **E** | `english`, `esperanto`, `estonian`, `ewe` |
+| **F** | `faroese`, `fijian`, `filipino`, `finnish`, `french`, `fula`, `gaelic_scot`, `gaelic_manx`, `frisian`, `frisian_western` |
+| **G** | `galician`, `georgian`, `german`, `greek`, `gujarati`, `greenlandic`, `guarani` |
+| **H** | `haitian_creole`, `hausa`, `hawaiian`, `hebrew`, `herero`, `hindi`, `hirimotu`, `hmong`, `hungarian` |
+| **I** | `icelandic`, `ido`, `igbo`, `indonesian`, `interlingua`, `interlingue`, `inuktitut`, `inupiak`, `irish`, `italian` |
 | **J** | `japanese`, `javanese` |
-| **K** | `kannada`, `kazakh`, `khmer`, `korean`, `kurdish`, `kyrgyz` |
-| **L** | `lao`, `latin`, `latvian`, `lithuanian`, `luxembourgish`|
-| **M** | `macedonian`, `malagasy`, `malay`, `malayalam`, `maltese`, `maori`, `mapudungun`, `marathi`, `mongolian`, `myanmar` |
-| **N** | `nepali`, `norwegian`|
-| **O** | `pashto`, `persian`, `polish`, `portugese`, `punjabi` |
-| **R** | `romanian`, `russian` |
-| **S** | `samoan`, `scots_gaelic`, `serbian`, `sesotho`, `shona`, `sindhi`, `sinhala`, `slovak`, `slovenian`, `somali`, `spanish`, `sundanese`, `swahili`, `swedish` |
-| **T** | `tajik`, `tamil`, `telugu`, `thai`, `turkish` |
-| **U** | `ukrainian`, `urdu`, `uzbek` |
-| **V** | `vietnamese` |
-| **W** | `welsh` |
+| **K** | `kannada`, `kazakh`, `kanuri`, `kashmiri`, `khmer`, `korean`, `kurdish`, `kikuyu`, `kinyarwanda`, `kirundi`, `komi`, `kongo`, `kwanyama`, `kyrgyz` |
+| **L** | `lao`, `latin`, `latvian`, `limburger`, `lingala`, `lithuanian`, `lugakatanga`, `luganda`, `luxembourgish` |
+| **M** | `macedonian`, `malagasy`, `malay`, `malayalam`, `manx`, `maltese`, `maori`, `mapudungun`, `marathi`, `marshallese`, `moldavian`, `mongolian` |
+| **N** | `nauru`, `navajo`, `ndonga`, `ndebele_northern`, `nepali`, `norwegian`, `norwegian_bokmal`, `norwegian_nynorsk`, `nuosu` |
+| **O** | `occitan`, `ojibwe`, `oriya`, `oromo`, `ossetian` |
+| **P** | `pali`, `pashto`, `persian`, `polish`, `portugese`, `punjabi` |
+| **Q** | `quechua` |
+| **R** | `romansh`, `romanian`, `russian` |
+| **S** | `sami`, `samoan`, `sango`, `sanskrit`, `scots_gaelic`, `serbian`, `serbian_croatian`, `sesotho`, `setswana`, `shona`, `sindhi`, `sinhala`, `siswati`, `slovak`, `slovenian`, `somali`, `southern_ndebele`, `spanish`, `sundanese`, `swahili`, `swati`, `swedish` |
+| **T** | `tagalog`, `tajik`, `tahitian`, `tamil`, `tatar`, `telugu`, `thai`, `tibetan`, `turkish`, `tigrinya`, `tonga`, `tsonga`, `turkmen`, `twi` |
+| **U** | `uyghur`, `ukrainian`, `urdu`, `uzbek` |
+| **V** | `venda`, `vietnamese`, `volapuk` |
+| **W** | `wallon`, `welsh`, `wolof` |
 | **X** | `xhosa` |
 | **Y** | `yiddish`, `yoruba`|
-| **Z** | `zulu` |
+| **Z** | `zhuang`, `zulu` |
 
 <br/>
 
@@ -172,13 +203,9 @@ However, when auto language detection is used, it automatically sets the languag
 <br/>
 
 # Update Logs
-## 1.0.3
-* Fixed the issue where the '%q's in localization will be replaced with '%p's. Previously, the algorithm temporarily swapped '%%p' with '%q' to allow escaping '%p'.
-* Adapted syntax for CommonJS.
-* Added auto suggestions from the Language List to `init()` and `setLanguage()`.
-* Added the `chinese` (not simplified ot traditional specific) option to the Language List.
-* Examples have been removed from inline documentation as more detailed ones are already available in this readme file.
-* `hideLogs()` will be deprecated in future versions in favor of a more flexible method.
+## 1.1.0
+* `showLogs()` (still usable) will be replaced by `logs.hide()` and `logs.show()`.
+* Added 84 new languages to auto detection algorithm.
 
 **[Click here to read the complete update history](https://github.com/chin98edwin/langutil/blob/master/UpdateHistory.md)**
 <br/><hr/>
