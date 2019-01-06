@@ -21,3 +21,6 @@
 ## 1.1.0
 * `showLogs()` (still usable) will be replaced by `logs.hide()` and `logs.show()`.
 * Added 84 new languages to auto detection algorithm: `akan`, `avestan`, `aymara`, `bihari`, `bislama`, `breton`, `burmese`, `bulgarian_old`, `chamorro`, `chechen`, `chuvash`, `cornish`, `cree`, `divehi`, `dzongka`, `ewe`, `faroese`, `fijian`, `fula`, `gaelic_scot`, `gaelic_manx`, `frisian_western`, `greenlandic`, `guarani`, `herero`, `hirimotu`, `ido`, `interlingua`, `interlingue`, `inuktitut`, `inupiak`, `kanuri`, `kashmiri`, `kikuyu`, `kinyarwanda`, `kirundi`, `komi`, `kongo`, `kwanyama`, `limburger`, `lingala`, `lugakatanga`, `luganda`, `manx`, `marshallese`, `moldavian`, `nauru`, `navajo`, `ndonga`, `ndebele_northern`, `norwegian_bokmal`, `norwegian_nynorsk`, `nuosu`, `occitan`, `ojibwe`, `oriya`, `oromo`, `ossetian`, `pali`, `quechua`, `romansh`, `sami`, `sango`, `sanskrit`, `serbian_croatian`, `setswana`, `siswati`, `southern_ndebele`, `swati`, `tagalog`, `tahitian`, `tatar`, `tibetan`, `tigrinya`, `tonga`, `tsonga`, `turkmen`, `twi`, `uyghur`, `venda`, `volapuk`, `wallon`, `wolof` and `zhuang`.
+
+## 1.1.1
+* Added some quick hixes to the documentation.
