@@ -24,3 +24,6 @@
 
 ## 1.1.1
 * Added some quick hixes to the documentation.
+
+## 1.1.2
+* Performance optimization for production mode.

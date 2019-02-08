@@ -44,7 +44,9 @@ Below is a basic working example:
 1. [`init(dictionary, language, auto)`](##init(dictionary,-language,-auto))
 2. [`setLanguage(language, auto)`](##setLanguage(language,-auto))
 3. [`localize(keyword, paramArray)`](##localize(keyword,-paramArray))
-4. [`hideLogs()`](##-`hideLogs()`)
+4. [`logs.show()`](##`logs.show()`)
+5. [`logs.hide()`](##`logs.hide()`)
+6. [`hideLogs()`](##-`hideLogs()`)
 
 ## `init(dictionary, language, auto?)`
 This initializes langutil with a dictionary and language. This method must be called before `setLanguage()` and `localize()` can be used.
@@ -96,15 +98,15 @@ This is the method that returns the localized strings based on your keywords and
 <br/>
 
 ## `logs.show()`
-Instructs `langutil` to show its logs (shown by default). This method can be called before `init()`.
+Shows all logs from `langutil`. Logs are shown by default in development mode. This method can be called before `init()`.
 <br/>
 
 ## `logs.hide()`
-Instructs `langutil` to hide its logs. This means any logs, warnings and errors by `langutil` will be hidden away. This method can be called before `init()`.
+Hides all logs from `langutil`. This method can be called before `init()`.
 <br/>
 
 ## `hideLogs()`
-***NOTE: Deprecated since 1.1.0, use `logs.show()` or `logs.hide()` instead***<br/>
+***NOTE: Since 1.1.0. Will be completely removed by June 2019. Use `langutil.logs.hide()` or `langutil.logs.show()` instead***<br/>
 Call this method to disable logs from langutil. Any langutil methods that are called after this will no longer show logs and warnings. Critical errors will still be thrown so that they don't go unnoticed. This method can be called before `init()`.
 
 <br/><br/>
@@ -182,12 +184,9 @@ However, when auto language detection is used, it automatically sets the languag
 <br/>
 
 # Update Logs
-## 1.1.0
-* `showLogs()` (still usable) will be replaced by `logs.hide()` and `logs.show()`.
-* Added 84 new languages to auto detection algorithm.
 
-## 1.1.1
-* Added some quick hixes to the documentation.
+## 1.1.2
+* Performance optimization for production mode.
 
 **[Click here to read the complete update history](https://github.com/chin98edwin/langutil/blob/master/UpdateHistory.md)**
 <br/><hr/>
