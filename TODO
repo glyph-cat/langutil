@@ -2,11 +2,7 @@
 • Sort languages
 • Test language detection in VM
 
-——— FUNCTIONS ———
-Add:
-• langutil.localizeByKey('string', { key1: 'text', key2: 'text })
-
 ——— DEMOS ———
-(√) Console
+( ) Console
 ( ) create-react-app
 ( ) React Native

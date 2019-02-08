@@ -1,19 +1,20 @@
 /**
  * @author chin98edwin
  * @copyright Copyright (c) 2018, chin98edwin
- * @description A simple localizing utility for JavaScript.
- * @version 1.1.1
- * @see https://www.npmjs.com/package/langutil#readme
- * @license ISC — Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby granted, provided that the above copyright notice and this permission notice appear in all copies.
- * THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+ * @description Localization for JavaScript made simple.
+ * @version 1.1.2
  **/
 
 const DEFAULT_LANGUAGE = 'english';
+var useDev = false;
+try {
+    useDev = (process.env.NODE_ENV === 'development');
+} catch (error) {/**/}
 var config = {
     language: DEFAULT_LANGUAGE, // The language to be used
     dictionary: [], // Where all localizations are stored
     unrecognized: [], // Stores the unrecognized languages for logging
-    showLogs: true, // Decides if logs and warnings from langutil should be shown
+    showLogs: useDev, // Decides if logs and warnings from langutil should be shown
 };
 
 const langutil = {
@@ -56,7 +57,7 @@ const langutil = {
 
     /**
      * @description Maps the keyword to it's string in it's localizde form.
-     * @param {String} keyword The localization keyword.
+     * @param {String} keyword The keyword for localization.
      * @param {Array} [paramArray] An array of parameters that can be passed into the localization.
      * @returns {String} Localized string from the dictionary.
      */
@@ -78,12 +79,11 @@ const langutil = {
     },
 
     /**
-     * @description
-     * Hides all logs and warnings from langutil functions after the line this functions is called.
-     * @deprecated Since 1.1.0. Use `langutil.logs.hide()` or `langutil.logs.show()` instead.
+     * @description Hides all logs and warnings from langutil functions after the line this functions is called.
+     * @deprecated Since 1.1.0. Will be completely removed by June 2019. Use `langutil.logs.hide()` or `langutil.logs.show()` instead.
      */
     hideLogs: function() {
-        config.showLogs = false;
+        if (useDev) { config.showLogs = false; }
     },
 
     /**
@@ -99,14 +99,14 @@ const langutil = {
          * @description Hides logs from langutil.
          */
         hide: function() {
-            config.showLogs = false
+            if (useDev) { config.showLogs = false; }
         },
 
         /**
-         * @description Shows logs from langutil. Logs are shown by default.
+         * @description Shows logs from langutil. Logs are shown in development mode by default.
          */
         show: function() {
-            config.showLogs = true
+            if (useDev) { config.showLogs = true; }
         }
 
     },
@@ -277,7 +277,7 @@ function keywordIsValid(keywordToCheck) {
  * @param {Object} dictionary The dictionary that will be used throughout the app for localization.
  */
 function setDictionary(dictionary) {
-    inspectDictionary(dictionary);
+    if (useDev) { inspectDictionary(dictionary); }
     config.dictionary = dictionary;
 }
 

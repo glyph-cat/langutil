@@ -18,7 +18,7 @@ const DICTIONARY = {
         "PARAM_ESCAPE": "这 %p 是一个占位符，但这个 %%p 和这个 %q 不是。这 %p 又是另一个占位符。"
     },
     "no_lang": {
-
+        // Nothing here :3
     }
 }
 
