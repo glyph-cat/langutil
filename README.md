@@ -189,5 +189,11 @@ However, when auto language detection is used, it automatically sets the languag
 * Performance optimization for production mode.
 
 **[Click here to read the complete update history](https://github.com/chin98edwin/langutil/blob/master/UpdateHistory.md)**
+
+<br/><hr/>
+If you liked my project, consider supporting me on PayPal :)
+
+[![Imgur](https://i.imgur.com/txNa9BC.png)](https://www.paypal.me/chin98edwin)
+
 <br/><hr/>
 [Back to Table of Contents](#table-of-contents)
