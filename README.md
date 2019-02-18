@@ -180,13 +180,12 @@ However, when auto language detection is used, it automatically sets the languag
 ## Limitations
 * **Localization of non-existent keywords cannot be detected during initialization**<br/>`langutil` cannot inspect each and every one of your project files. Hence, if a keyword does not exist in the dictionary at all, you will only be notified when the `localize()` method is called.
 * **Limited debugging ability**<br/>`langutil` cannot point out the line of code that has missing localizations. However, a warning will be shown in the console, indicating the unlocalized keyword.
-* **Limited auto language detection**<br/>`langutil` is currently able to detect up to 128 languages.
 <br/>
 
 # Update Logs
 
-## 1.1.2
-* Performance optimization for production mode.
+## 1.1.3
+* Fixed a bug where certain valid keywords are recognized as invalid.
 
 **[Click here to read the complete update history](https://github.com/chin98edwin/langutil/blob/master/UpdateHistory.md)**
 
