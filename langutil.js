@@ -2,7 +2,7 @@
  * @author chin98edwin
  * @copyright Copyright (c) 2018, chin98edwin
  * @description Localization for JavaScript made simple.
- * @version 1.1.2
+ * @version 1.1.3
  **/
 
 const DEFAULT_LANGUAGE = 'english';
@@ -163,14 +163,13 @@ function detectLanguage(fallbackLanguage) {
 /**
  * @description Inspects the dictionary for errors.
  * @param {Object} dictionaryToSet The dictionary that will be used throughout the app for localization.
- * @throws Error will be thrown if dictionary is empty or dictionary contains invalid keywords.
  */
 function inspectDictionary(dictionaryToSet) {
     var i, j, k;
 
     // (1) Check if dictionary is empty
     if (!dictionaryToSet) {
-        throw new Error('Dictionary is empty');
+        console.error('Dictionary is empty');
     }
     var dictionaryKeys = Object.keys(dictionaryToSet);
 
@@ -211,7 +210,7 @@ function inspectDictionary(dictionaryToSet) {
     }
     if (invalidKeywords.length > 0) {
         var plural_keyword = invalidKeywords.length > 1 ? 'keywords' : 'keyword';
-        throw new Error('Invalid ' + plural_keyword + ' found in dictionary: "' +
+        console.error('Invalid ' + plural_keyword + ' found in dictionary: "' +
         invalidKeywords.join('", "') + '"\nKeywords should only contain uppercase letters to prevent ambiguation. Underscores and numbers are allowed but not as the first character of the keyword. ');
     }
 
@@ -262,7 +261,7 @@ function inspectDictionary(dictionaryToSet) {
  * @returns {Boolean} true or false.
  */
 function keywordIsValid(keywordToCheck) {
-    var keywordFormat = /([A-Z]+[A-Z|_|0-9]+[A-Z|0-9])/g;
+    var keywordFormat = /([A-Z]?[A-Z|_|0-9]?[A-Z|0-9])/g;
     var match = keywordToCheck.match(keywordFormat);
     if (match) {
         return keywordToCheck === match.join('');

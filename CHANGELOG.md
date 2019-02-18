@@ -27,3 +27,6 @@
 
 ## 1.1.2
 * Performance optimization for production mode.
+
+## 1.1.3
+* Fixed a bug where certain valid keywords are recognized as invalid.
