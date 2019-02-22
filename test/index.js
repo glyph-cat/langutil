@@ -51,7 +51,7 @@ const TESTS = [
         console.log('Test for `no_lang` dictionary, localize() should return the keyword itself since it is not defined. ');
         langutil.setLanguage('no_lang');
         var toTest = langutil.localize('HELLO');
-        var expected = 'HELLO';
+        var expected = '_HELLO_';
         console.log('"' + expected + '" and "' + toTest + '" should be the same. ');
         return expected === toTest;
     },

@@ -184,8 +184,9 @@ However, when auto language detection is used, it automatically sets the languag
 
 # Update Logs
 
-## 1.1.3
-* Fixed a bug where certain valid keywords are recognized as invalid.
+## 1.1.4
+* Minor performance fixes.
+* Keywords will be shown between underscores if they fail to localize. (Eg: \_FOO\_ )
 
 **[Click here to read the complete update history](https://github.com/chin98edwin/langutil/blob/master/UpdateHistory.md)**
 
