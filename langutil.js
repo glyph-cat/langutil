@@ -2,7 +2,7 @@
  * @author chin98edwin
  * @copyright Copyright (c) 2018, chin98edwin
  * @description Localization for JavaScript made simple.
- * @version 1.1.3
+ * @version 1.1.4
  **/
 
 const DEFAULT_LANGUAGE = 'english';
@@ -22,7 +22,7 @@ const langutil = {
     /**
      * @description Initialize langutil with a dictionary and language.
      * @param {Object} dictionary The dictionary that will be used throughout the app for localization.
-     * @param {('abkhazan'|'achinese'|'acoli'|'adangme'|'adyghe'|'afar'|'afrikaans'|'ainu'|'akan'|'albanian'|'aleut'|'altai_southern'|'amharic'|'angika'|'arabic'|'aragonese'|'arapaho'|'arawak'|'armenian'|'assamese'|'asturian'|'avaric'|'avestan'|'aymara'|'awadhi'|'azerbaijani'|'balinese'|'bambara'|'bashkir'|'basa'|'basque'|'beja'|'bemba'|'belarusian'|'bengali'|'bihari'|'bislama'|'breton'|'bosnian'|'burmese'|'bulgarian'|'bulgarian_old'|'catalan'|'cebuano'|'chamorro'|'chechen'|'chichewa'|'chinese_s'|'chinese_t'|'chinese'|'chuvash'|'corsican'|'cornish'|'corsican'|'cree'|'croatian'|'czech'|'danish'|'divehi'|'dutch'|'dzongka'|'english'|'esperanto'|'estonian'|'ewe'|'faroese'|'fijian'|'filipino'|'finnish'|'french'|'fula'|'gaelic_scot'|'gaelic_manx'|'frisian'|'frisian_western'|'galician'|'georgian'|'german'|'greek'|'gujarati'|'greenlandic'|'guarani'|'haitian_creole'|'hausa'|'hawaiian'|'hebrew'|'herero'|'hindi'|'hirimotu'|'hmong'|'hungarian'|'icelandic'|'ido'|'igbo'|'indonesian'|'interlingua'|'interlingue'|'inuktitut'|'inupiak'|'irish'|'italian'|'japanese'|'javanese'|'kannada'|'kazakh'|'kanuri'|'kashmiri'|'khmer'|'korean'|'kurdish'|'kikuyu'|'kinyarwanda'|'kirundi'|'komi'|'kongo'|'kwanyama'|'kyrgyz'|'lao'|'latin'|'latvian'|'limburger'|'lingala'|'lithuanian'|'lugakatanga'|'luganda'|'luxembourgish'|'macedonian'|'malagasy'|'malay'|'malayalam'|'manx'|'maltese'|'maori'|'mapudungun'|'marathi'|'marshallese'|'moldavian'|'mongolian'|'nauru'|'navajo'|'ndonga'|'ndebele_northern'|'nepali'|'norwegian'|'norwegian_bokmal'|'norwegian_nynorsk'|'nuosu'|'occitan'|'ojibwe'|'oriya'|'oromo'|'ossetian'|'pali'|'pashto'|'persian'|'polish'|'portugese'|'punjabi'|'quechua'|'romansh'|'romanian'|'russian'|'sami'|'samoan'|'sango'|'sanskrit'|'scots_gaelic'|'serbian'|'serbian_croatian'|'sesotho'|'setswana'|'shona'|'sindhi'|'sinhala'|'siswati'|'slovak'|'slovenian'|'somali'|'southern_ndebele'|'spanish'|'sundanese'|'swahili'|'swati'|'swedish'|'tagalog'|'tajik'|'tahitian'|'tamil'|'tatar'|'telugu'|'thai'|'tibetan'|'turkish'|'tigrinya'|'tonga'|'tsonga'|'turkmen'|'twi'|'uyghur'|'ukrainian'|'urdu'|'uzbek'|'venda'|'vietnamese'|'volapuk'|'wallon'|'welsh'|'wolof'|'xhosa'|'yiddish'|'yoruba'|'zhuang'|'zulu')} language The language that your keywords will be localizaed into.
+     * @param {('abkhazan'|'achinese'|'acoli'|'adangme'|'adyghe'|'afar'|'afrikaans'|'ainu'|'akan'|'albanian'|'aleut'|'altai_southern'|'amharic'|'angika'|'arabic'|'aragonese'|'arapaho'|'arawak'|'armenian'|'assamese'|'asturian'|'avaric'|'avestan'|'aymara'|'awadhi'|'azerbaijani'|'balinese'|'bambara'|'bashkir'|'basa'|'basque'|'beja'|'bemba'|'belarusian'|'bengali'|'bihari'|'bislama'|'breton'|'bosnian'|'burmese'|'bulgarian'|'bulgarian_old'|'catalan'|'cebuano'|'chamorro'|'chechen'|'chichewa'|'chinese_s'|'chinese_t'|'chinese'|'chuvash'|'corsican'|'cornish'|'corsican'|'cree'|'croatian'|'czech'|'danish'|'divehi'|'dutch'|'dzongka'|'english'|'esperanto'|'estonian'|'ewe'|'faroese'|'fijian'|'filipino'|'finnish'|'french'|'fula'|'gaelic_scot'|'gaelic_manx'|'frisian'|'frisian_western'|'galician'|'georgian'|'german'|'greek'|'gujarati'|'greenlandic'|'guarani'|'haitian_creole'|'hausa'|'hawaiian'|'hebrew'|'herero'|'hindi'|'hirimotu'|'hmong'|'hungarian'|'icelandic'|'ido'|'igbo'|'indonesian'|'interlingua'|'interlingue'|'inuktitut'|'inupiak'|'irish'|'italian'|'japanese'|'javanese'|'kannada'|'kazakh'|'kanuri'|'kashmiri'|'khmer'|'korean'|'kurdish'|'kikuyu'|'kinyarwanda'|'kirundi'|'komi'|'kongo'|'kwanyama'|'kyrgyz'|'lao'|'latin'|'latvian'|'limburger'|'lingala'|'lithuanian'|'lugakatanga'|'luganda'|'luxembourgish'|'macedonian'|'malagasy'|'malay'|'malayalam'|'manx'|'maltese'|'maori'|'mapudungun'|'marathi'|'marshallese'|'moldavian'|'mongolian'|'nauru'|'navajo'|'ndonga'|'ndebele_northern'|'nepali'|'norwegian'|'norwegian_bokmal'|'norwegian_nynorsk'|'nuosu'|'occitan'|'ojibwe'|'oriya'|'oromo'|'ossetian'|'pali'|'pashto'|'persian'|'polish'|'portugese'|'punjabi'|'quechua'|'romansh'|'romanian'|'russian'|'sami'|'samoan'|'sango'|'sanskrit'|'scots_gaelic'|'serbian'|'serbian_croatian'|'sesotho'|'setswana'|'shona'|'sindhi'|'sinhala'|'siswati'|'slovak'|'slovenian'|'somali'|'southern_ndebele'|'spanish'|'sundanese'|'swahili'|'swati'|'swedish'|'tagalog'|'tajik'|'tahitian'|'tamil'|'tatar'|'telugu'|'thai'|'tibetan'|'turkish'|'tigrinya'|'tonga'|'tsonga'|'turkmen'|'twi'|'uyghur'|'ukrainian'|'urdu'|'uzbek'|'venda'|'vietnamese'|'volapuk'|'wallon'|'welsh'|'wolof'|'xhosa'|'yiddish'|'yoruba'|'zhuang'|'zulu')} language The language that your keywords will be localized into.
      * @param {Boolean} [auto] Set it to true to let the computer figure out the client's browser language.
      */
     init: function(dictionary, language, auto) {
@@ -49,21 +49,22 @@ const langutil = {
                     }
                 }
             } catch (error) {} // No action required
-            if (!langRecognized) {
+            if (!langRecognized && config.showLogs) {
                 console.warn('The dictionary does not contain any localizations for "' + language + '". ');
             }
         }
     },
 
     /**
-     * @description Maps the keyword to it's string in it's localizde form.
+     * @description Maps the keyword to it's string in it's localized form.
      * @param {String} keyword The keyword for localization.
      * @param {Array} [paramArray] An array of parameters that can be passed into the localization.
      * @returns {String} Localized string from the dictionary.
      */
     localize: function(keyword, paramArray=[]) {
-        var localizedString = keyword.toUpperCase();
+        var localizedString = keyword
         try {
+            localizedString = localizedString.toUpperCase();
             localizedString = config.dictionary[config.language][keyword];
             localizedString = stringWithParams(localizedString, paramArray);
         } catch (error) {
@@ -75,7 +76,7 @@ const langutil = {
                 }
             }
         }
-        return localizedString === undefined ? keyword.toUpperCase() : localizedString;
+        return localizedString === undefined ? ['_', keyword, '_'].join('') : localizedString;
     },
 
     /**

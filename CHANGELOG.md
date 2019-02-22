@@ -30,3 +30,6 @@
 
 ## 1.1.3
 * Fixed a bug where certain valid keywords are recognized as invalid.
+
+## 1.1.4
+* Minor performance fixes.
