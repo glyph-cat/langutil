@@ -2,7 +2,7 @@
  * @author chin98edwin
  * @copyright Copyright (c) 2018, chin98edwin
  * @description Localization for JavaScript made simple.
- * @version 1.1.4
+ * @version 1.1.5
  **/
 
 const DEFAULT_LANGUAGE = 'english';
@@ -82,6 +82,7 @@ const langutil = {
     /**
      * @description Hides all logs and warnings from langutil functions after the line this functions is called.
      * @deprecated Since 1.1.0. Will be completely removed by June 2019. Use `langutil.logs.hide()` or `langutil.logs.show()` instead.
+     * @todo Remove in June 2019
      */
     hideLogs: function() {
         if (useDev) { config.showLogs = false; }
@@ -174,7 +175,7 @@ function inspectDictionary(dictionaryToSet) {
     }
     var dictionaryKeys = Object.keys(dictionaryToSet);
 
-    // (2) Check dictionary for unrecognized language codesa and show warning
+    // (2) Check dictionary for unrecognized language codes and show warning
     config.unrecognized = [];
     for (i = 0; i < dictionaryKeys.length; i++ ) {
         var languageRecognized = false;
@@ -210,9 +211,7 @@ function inspectDictionary(dictionaryToSet) {
         }
     }
     if (invalidKeywords.length > 0) {
-        var plural_keyword = invalidKeywords.length > 1 ? 'keywords' : 'keyword';
-        console.error('Invalid ' + plural_keyword + ' found in dictionary: "' +
-        invalidKeywords.join('", "') + '"\nKeywords should only contain uppercase letters to prevent ambiguation. Underscores and numbers are allowed but not as the first character of the keyword. ');
+        warnInvalidKeywords(invalidKeywords)
     }
 
     // (5) Check if dictionary contain keywords that some languages do not have
@@ -330,6 +329,12 @@ function getRandomString(pattern, length) {
         newHash += pattern[randomIndex];
     } while (newHash.length < length);
     return newHash;
+}
+
+function warnInvalidKeywords(invalidKeywords) {
+    var plural_keyword = invalidKeywords.length > 1 ? 'keywords' : 'keyword';
+    console.error('Invalid ' + plural_keyword + ' found in dictionary: "' +
+    invalidKeywords.join('", "') + '"\nKeywords should only contain uppercase letters to prevent ambiguation. Underscores and numbers are allowed but not as the first character of the keyword. ');
 }
 
 /**
