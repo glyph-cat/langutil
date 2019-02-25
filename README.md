@@ -10,6 +10,11 @@ Langutil is a localizing tool for JavaScript. In fact, it is made up of only one
 6. [Strengths and Limitations](#strengths-and-limitations)
 7. [Update Logs](#update-logs)
 
+# ️❗️Notice
+As of version 2.0.0, `langutil` will no longer be a single-file library. As `langutil` keeps expanding, the only rational approach is to split out some of the modules to ensure that the maintainence workflow remains smooth and uncompromised. Version 2.0.0 is expected to be released between March - April 2019.
+<br/>
+<br/>
+
 # Installation
 In your project's directory, run the command below:
 
@@ -184,9 +189,9 @@ However, when auto language detection is used, it automatically sets the languag
 
 # Update Logs
 
-## 1.1.4
-* Minor performance fixes.
-* Keywords will be shown between underscores if they fail to localize. (Eg: \_FOO\_ )
+## 1.1.5
+* Minor performance optimization.
+* Fixed some documentation errors.
 
 **[Click here to read the complete update history](https://github.com/chin98edwin/langutil/blob/master/UpdateHistory.md)**
 

@@ -33,3 +33,7 @@
 
 ## 1.1.4
 * Minor performance fixes.
+
+## 1.1.5
+* Minor performance optimization.
+* Fixed some documentation errors.
