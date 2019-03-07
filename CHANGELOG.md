@@ -1,39 +1,42 @@
-# Update History
+# langutil 2.0.0
 
-## 1.0.0
-* Creation of langutil with 3 core functions and the ability to auto-detect up to 128 languages.
+## Define dictionaries by Keywords
+* Dictionaries can now be grouped by keywords. Don't worry though, your old definitions still work just as they should. However, this will be the prefered convention from this version onwards. Example:
+<!---->
 
-## 1.0.1
-* Added a new `hideLogs()` function.
+    import langutil, { createKey } from 'langutil';
+    const dictionary = [
+        createKey('GOOD_MORNING', {
+            "en": "Good morning",
+            "ja": "お早うございます",
+            "ms": "Selamat Pagi",
+            "zh-cn": "早安"
+        }),
+    ]
+    langutil.init(dictionary, "en");
 
-## 1.0.2
-* Added Update History to Readme.
-* The Language List table has been made more compact. Native names of the languages have been removed since a few are not able to displaye properly on most devices unless additional fonts are installed.
+* Take note that the dictionary is defined as an **array** here.
+<br/><br/>
 
-## 1.0.3
-* Fixed the issue where the '%q's in localization will be replaced with '%p's. Previously, the algorithm temporarily swapped '%%p' with '%q' to allow escaping '%p'.
-* Adapted syntax for CommonJS.
-* Added auto suggestions from the Language List to `init()` and `setLanguage()`.
-* Added the `chinese` (not simplified ot traditional specific) option to the Language List.
-* Examples have been removed from inline documentation as more detailed ones are already available in this readme file.
-* `hideLogs()` will be deprecated in future versions in favor of a more flexible method.
+## New `createKey()` method
+* With `createKey()` you can define localizations very easily with the help of auto-complete.
+<br/><br/>
+![scnshot](https://github.com/chin98edwin/langutil/tree/master/assets/createKey.png)
 
-## 1.1.0
-* `showLogs()` (still usable) will be replaced by `logs.hide()` and `logs.show()`.
-* Added 84 new languages to auto detection algorithm: `akan`, `avestan`, `aymara`, `bihari`, `bislama`, `breton`, `burmese`, `bulgarian_old`, `chamorro`, `chechen`, `chuvash`, `cornish`, `cree`, `divehi`, `dzongka`, `ewe`, `faroese`, `fijian`, `fula`, `gaelic_scot`, `gaelic_manx`, `frisian_western`, `greenlandic`, `guarani`, `herero`, `hirimotu`, `ido`, `interlingua`, `interlingue`, `inuktitut`, `inupiak`, `kanuri`, `kashmiri`, `kikuyu`, `kinyarwanda`, `kirundi`, `komi`, `kongo`, `kwanyama`, `limburger`, `lingala`, `lugakatanga`, `luganda`, `manx`, `marshallese`, `moldavian`, `nauru`, `navajo`, `ndonga`, `ndebele_northern`, `norwegian_bokmal`, `norwegian_nynorsk`, `nuosu`, `occitan`, `ojibwe`, `oriya`, `oromo`, `ossetian`, `pali`, `quechua`, `romansh`, `sami`, `sango`, `sanskrit`, `serbian_croatian`, `setswana`, `siswati`, `southern_ndebele`, `swati`, `tagalog`, `tahitian`, `tatar`, `tibetan`, `tigrinya`, `tonga`, `tsonga`, `turkmen`, `twi`, `uyghur`, `venda`, `volapuk`, `wallon`, `wolof` and `zhuang`.
+## Language list now follows ISO language codes
+* Language list have been completely replaced by language codes (Don't worry your old stuff still works, but there will be a warning shown to encourage you to switch over to the new convention)
+* Refer http://4umi.com/web/html/languagecodes.php
+<br/><br/>
 
-## 1.1.1
-* Added some quick hixes to the documentation.
+## TypeScript Integration
+* langutil now makes use of the `index.d.ts` file to allow a better auto-complete experience.
+<br/><br/>
 
-## 1.1.2
-* Performance optimization for production mode.
+## Minified version is here
+* Hooray, there's finally a minified version of langutil for a real performance boost. The overall file size has also been drastically reduced... by **75%**!
+<br/><br/>
 
-## 1.1.3
-* Fixed a bug where certain valid keywords are recognized as invalid.
-
-## 1.1.4
-* Minor performance fixes.
-
-## 1.1.5
-* Minor performance optimization.
-* Fixed some documentation errors.
+## Everything in one file
+* We're glad to announce that langutil is still one single file *(phew)*.
+* We managed to simplify everything info one file, but that does not guarantee that langutil will stay as one file forever.
+* The only significant change so far is that this package uses TypeScript file and langutil is being splitted into two counterparts - one for **development** and one for **production**.

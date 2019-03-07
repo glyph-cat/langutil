@@ -1,3 +1,6 @@
+——— FUNCTIONALITY ———
+( ) Return different values<any> based on keyword
+
 ——— LANGUAGES ———
 • Sort languages
 • Test language detection in VM
@@ -5,4 +8,4 @@
 ——— DEMOS ———
 ( ) Console
 ( ) create-react-app
-( ) React Native
+( ) React Native (Refer https://facebook.github.io/react-native/docs/appregistry for setup)
