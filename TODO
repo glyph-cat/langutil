@@ -1,5 +1,12 @@
 ——— FUNCTIONALITY ———
+( ) Return list of defined languages in the dictionary
 ( ) Return different values<any> based on keyword
+( ) Capitalizing options:
+    • none (default)
+    • first-letter
+    • title-case
+    • all-caps
+( ) Manually run a node script to check for undefined keywords:
 
 ——— LANGUAGES ———
 • Sort languages

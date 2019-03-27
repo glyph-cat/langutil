@@ -2,16 +2,16 @@
  * @author chin98edwin
  * @copyright Copyright (c) 2018 - 2019, chin98edwin
  * @description Localization for JavaScript made simple.
- * @version 2.0.0
+ * @version 2.1.0
 **/
 
 declare namespace langutil {
 
     /**
      * @description Initialize langutil with a dictionary and language.
-     * @param dictionary The dictionary that will be used throughout the app for localization.
-     * @param language The language that your keywords will be localized into.
-     * @param autoDetect Set it to true to let the computer figure out the client's browser language.
+     * @param dictionary The object storing all your localizations.
+     * @param language The display language.
+     * @param autoDetect Should the computer figure out the client's browser language?
      */
     function init(
         dictionary: object | Array<Keyword>,
@@ -20,9 +20,9 @@ declare namespace langutil {
     ): void;
 
     /**
-     * @description Sets the language to be used throughout the app.
-     * @param language The language that your keywords will be localized into.
-     * @param autoDetect Set it to true to let the computer figure out the client's browser language.
+     * @description Sets the display language.
+     * @param language The display language.
+     * @param autoDetect Should the computer figure out the client's browser language?
      */
     function setLanguage(
         language: LanguageCodes,
@@ -31,8 +31,9 @@ declare namespace langutil {
 
     /**
      * @description Creates a key for your dictionary.
-     * @param keyword The keyword for localization.
-     * @param localizations The translation of the keywords.
+     * @param keyword A short string representing the localized value.
+     * @param localizations The translation.
+     * @returns A Keyword object.
      */
     function createKey(
         keyword: string,
@@ -40,21 +41,53 @@ declare namespace langutil {
     ): Keyword;
 
     /**
-     * @description Maps the keyword to it's string in it's localized form.
-     * @param keyword The keyword for localization.
+     * @description Maps a keyword to its localized value.
+     * @param keyword A short string representing the localized value.
      * @param paramArray An array of parameters that can be passed into the localization.
-     * @returns Localized string from the dictionary.
+     * @returns The localized value.
      */
     function localize(
         keyword: string,
         paramArray?: Array<unknown>
-    ): string;
+    ): unknown;
 
     /**
-     * @description Get the language langutil is currently using.
-     * @returns The current language.
+     * @description Maps a keyword to its localized value with additional options.
+     * @param arguments The `keyword`, `paramArray`, `casing`, `transform` function.
+     * @returns The localized value.
      */
-    function getLanguage(): string;
+    function localizeWith(
+        arguments: {
+            /**
+             * @description The keyword for localization.
+             */
+            keyword: string;
+            /**
+             * @description An array of parameters that can be passed into the localization.
+             */
+            paramArray?: Array<unknown>;
+            /**
+             * @description Casing styles that will be applied to if the localized value is a string.
+             */
+            casing?: localizableCasings;
+            /**
+             * @description Applies a transformation to the localized value.
+             */
+            transform?: (localizedValue: any) => {};
+        }
+    ): unknown;
+
+    /**
+     * @description Get the currently set language.
+     * @returns The language code.
+     */
+    function getLanguage(): LanguageCodes;
+
+    /**
+     * @description Get the list of language that have been defined in the dictionary.
+     * @returns An array of languages codes.
+     */
+    function getDefinedLanguages(): Array<LanguageCodes>;
 
     /**
      * @description Controls the visibility of logs from langutil.
@@ -73,7 +106,7 @@ declare namespace langutil {
     /**
      * @description Hides all logs and warnings from langutil functions after the line this functions is called.
      * @deprecated Will be completely removed by June 2019. Use `langutil.logs.hide()` or `langutil.logs.show()` instead.
-     * @todo Remove in June 2019
+     * @todo Remove in June 2019.
      */
     function hideLogs(): void;
 
@@ -89,6 +122,13 @@ interface Keyword {
      */
     localizations: LocalizableLanguages;
 }
+
+type localizableCasings =
+| "lowercase"
+| "localeLowercase"
+| "uppercase"
+| "localeUppercase"
+| "titleCase"
 
 interface LocalizableLanguages {
     /** Afrikaans */ "af": string;

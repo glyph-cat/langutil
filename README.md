@@ -1,13 +1,24 @@
 [![NPM](https://nodei.co/npm/langutil.png)](https://nodei.co/npm/langutil/)
 
-Langutil is a localizing tool for JavaScript. In fact, it is made up of only one file and does not have any dependencies. Langutil is packed with four essential functions. <br/> Keep on reading to get started.
+Langutil is a localizing tool for JavaScript. In fact, it is made up of only one file and does not have any dependencies. It is packed with several powerful and flexible functions for you to localize your app. Keep on reading to get started.
+
+## Top Features
+
+* ### **☝️ Everything in one file**<br/>The implementation comes in just one file and is free of dependencies.
+* ### **📖 Powerful dictionary inspection tool**<br/>Get notified about any languages or localizations that you may have missed out in your dictionary.
+* ### **⚙️️ Dynamic Localizations**<br/>Pass an array of parameters and have them swapped into the placeholders of your localizations.
+* ### **💫 Very, Very Flexible output values**<br/>You can set anything as the output localization. Yes, you got that right. Numbers, functions, images, boolean values... basically any data type that works in JavaScript. You probably wouldn't need all this flexibilty... but hey, it just works!
+* ### **🦄 Apply Transformation to your Localizations**<br/>Apply casing styles such as **UPPER CASE**, **lower case**, **Title Case**. You can even define your own transformations with a custom function!
+
+<br/>
+
+# Table of Contents
 
 1. [Installation](#installation)
 2. [Usage](#usage)
 3. [Methods](#methods)
-4. [Language List](#language-list)
-5. [Strengths and Limitations](#strengths-and-limitations)
-6. [Update Logs](#update-logs)
+4. [Update Logs](#update-logs)
+<br/>
 
 # Installation
 In your project's directory, run the command below:
@@ -48,7 +59,7 @@ Below is a basic working example:
 
 ## `init(dictionary, language, autoDetect?): void`
 This initializes langutil with a dictionary and language.
-* **`dictionary: (Array<Keyword>|Object)`**<br/>The dictionary that stores all your localizations.
+* **`dictionary: (Array<Keyword>|Object)`**<br/>The object storing all your localizations.
 * **`language: (string)`**<br/>Refer to `setLanguage()`
 * **`autoDetect?: (boolean)`**<br/>Refer to `setLanguage()`
 
@@ -62,7 +73,7 @@ This initializes langutil with a dictionary and language.
 
 ## `setLanguage(language, autoDetect?): void`
 Allows the prefered language to be changed during runtime such as when switching between languages in a preference page.
-* **`language: (string)`**<br/>The language in which your content will be displayed. The language code that you provided must exist in your dictionary too.
+* **`language: (string)`**<br/>The language in which your content will be displayed. The language code that you provided here has to be in your dictionary too. You're free to use other strings to represent the languages in your dictionary. But we encourage you to use ISO language codes in order for your localizations to work with langutil's auto-detect feature.
 * **`autoDetect?: (boolean)`**<br/>Optional. This only works for browsers for now. Set it to `true` to let the computer figure out the client's browser language. The `language` parameter will be used as a fallback value if auto-detection fails.
 
 ***Valid Examples:***
@@ -75,7 +86,7 @@ Allows the prefered language to be changed during runtime such as when switching
 ## `createKey(keyword, localizations): Keyword`
 Helps you create keywords for your dictionary.
 * **`keyword: (string)`**<br/>A plain string that should be able to reflect a brief or partial meaning of the localized string.
-* **`localizations(object): `** The translation of the keyword.
+* **`localizations(object): `** The translations.
 
 *Example:*
 
@@ -99,10 +110,10 @@ Helps you create keywords for your dictionary.
 
 <br/>
 
-## `localize(keyword, paramArray?): string`
-This is the method that returns the localized strings based on the definitions in your dictionary.
-* **`keyword: (string)`**<br/>A simple string that will be mapped to its localized value in the dictionary.
-* **`paramArray?: (Array<any>)`**<br/>Optional. There are times when it is not possible to define every possible string in the dictionary due to changing variables. This is how you can combine them with your localizations instead.
+## `localize(keyword, paramArray?): unknown`
+Maps a keyword to its localized value with additional options.
+* **`keyword: (string)`**<br/>A short string representing the localized value.
+* **`paramArray?: (Array<unknown>)`**<br/>Optional. There are times when it is not possible to define every possible string in the dictionary due to changing variables. This is how you can combine them with your localizations instead.
 
 ***Valid Examples:***
 | Keyword               | Localization         |
@@ -122,6 +133,33 @@ This is the method that returns the localized strings based on the definitions i
 
 <br/>
 
+## `localizeWith({ keyword, paramArray?, casing?, transform? }): unknown`
+Maps a keyword to its localized value with additional options.
+* **`keyword: (string)`**<br/>A short string representing the localized value.
+* **`paramArray?: (Array<unknown>)`**<br/>Optional. There are times when it is not possible to define every possible string in the dictionary due to changing variables. This is how you can combine them with your localizations instead.
+* **`casing: (localizableCasings)`**<br/>Casing styles that will be applied to if the localized value is a string.
+`localizableCasings` should be one of `"lowercase"`, `"localeLowercase"`, `"uppercase"`, `"localeUppercase"`, `"titleCase"`.
+* **`transform: (Function)`**<br/>Applies a transformation to the localized value. The localized value (after casing styles are applied) will be pass as a prop for your function.
+
+***Valid Examples:***
+| Keyword             | Localization     |
+| ------------------- | ---------------- |
+| `HELLO_WORLD_PARAM` | `Hello world %p` |
+
+    langutil.localizeWith({
+        keyword: 'HELLO_WORLD_PARAM',
+        paramArray: ['foo bar'],
+        casing: 'upperCase',
+        transform: (value)=>{
+            // Transformation that removes all vowels
+            return value.replace(/[AEIOU]/g, '')
+        }
+    })
+
+    // Output: HLL WRLD F BR
+
+<br/>
+
 ## `logs.show()`
 Shows all logs from `langutil`. Logs are shown by default in development mode and disabled entirely in production mode regardless of this method.
 <br/>
@@ -134,31 +172,18 @@ Hides all logs from `langutil`. Logs are shown by default in development mode an
 ***NOTE: To be removed entirely by June 2019. Use `langutil.logs.hide()` or `langutil.logs.show()` instead***<br/>
 Call this method to disable logs from langutil. Any langutil methods that are called after this will no longer show logs and warnings.
 
-<br/><br/>
 
-# Language List
-You're free to use other strings to represent languages in your dictionary. But in order for your localizations to work in conjunction with langutil's auto-detect feature, we encourage you to use ISO language codes in your dictionary.
-
-<br/>
-
-# Strengths and Limitations
-
-## Strengths
-* **Powerful dictionary inspection tool**<br/>Langutil notifies you of any languages or localizations that you may have missed out in your dictionary.
-* **Make your localizations dynamic with placeholders**<br/>You can pass in as much variables as you want into your localizations.
-* **It's single and independent**<br/>`langutil` comes in one file and does not have any dependencies. So you can even distribute and reuse it by just copying out the source file if you wish with as little hassle as possible.
-
-## Limitations
-* **Limited Debugging**<br/>`langutil` cannot inspect each and every one of your project files. If you try to `localize` a non-existed keyword in your code, you will only receive a warning at runtime.
-<br/>
 <br/>
 <hr/>
 
+# Update Logs
 **[Click here to read the complete update history](https://github.com/chin98edwin/langutil/blob/master/UpdateHistory.md)**
+<br/><br/>
 
 <hr/>
 If you liked my project, consider supporting me on PayPal :)
 
 [![Imgur](https://i.imgur.com/txNa9BC.png)](https://www.paypal.me/chin98edwin)
 <hr/>
+
 [Back to Table of Contents](#table-of-contents)

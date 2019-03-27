@@ -1,4 +1,10 @@
-# langutil 2.0.0
+# langutil 2.1.0
+* Added new method `localizeWith()` for more powerful localizing capabilities: Apply **casing styles** and **custom transformations** to the localized value! 🦄
+* Added new method `getDefinedLanguages()` which allows you to access the list of languages defined in the dictionary during runtime.
+* You can now assign anything to your localized value, for instance, you might want to have a different logo image for each language if you have a tagline in your logo.
+* Fixed a critical bug where there production build fails if logs are shown.
+
+# Previously in 2.0.0
 
 ## Define dictionaries by Keywords
 * Dictionaries can now be grouped by keywords. Don't worry though, your old definitions still work just as they should. However, this will be the prefered convention from this version onwards. Example:
@@ -21,7 +27,7 @@
 ## New `createKey()` method
 * With `createKey()` you can define localizations very easily with the help of auto-complete.
 <br/><br/>
-![scnshot](https://github.com/chin98edwin/langutil/tree/master/assets/createKey.png)
+![scnshot](https://raw.githubusercontent.com/chin98edwin/langutil/master/assets/createKey.png)
 
 ## Language list now follows ISO language codes
 * Language list have been completely replaced by language codes (Don't worry your old stuff still works, but there will be a warning shown to encourage you to switch over to the new convention)
