@@ -10,18 +10,29 @@
     "index.js"
   ],
   "scripts": {
-    "test": "node test",
-    "minify": "node minify"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/chin98edwin/langutil.git"
   },
-  "keywords": [ "localization", "translation", "language", "accessibility" ],
+  "keywords": [
+    "localization",
+    "translation",
+    "language",
+    "accessibility"
+  ],
   "author": "chin98edwin",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/chin98edwin/langutil/issues"
   },
-  "homepage": "https://github.com/chin98edwin/langutil#readme"
+  "homepage": "https://github.com/chin98edwin/langutil#readme",
+  "devDependencies": {
+    "jest": "^24.5.0"
+  },
+  "jest": {
+    "verbose": false,
+    "testPathIgnorePatterns": ["/__tests__/baseImplementation/"]
+  }
 }
