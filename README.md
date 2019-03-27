@@ -4,11 +4,11 @@ Langutil is a localizing tool for JavaScript. In fact, it is made up of only one
 
 ## Top Features
 
-* ### **☝️ Everything in one file**<br/>The implementation comes in just one file and is free of dependencies.
-* ### **📖 Powerful dictionary inspection tool**<br/>Get notified about any languages or localizations that you may have missed out in your dictionary.
-* ### **⚙️️ Dynamic Localizations**<br/>Pass an array of parameters and have them swapped into the placeholders of your localizations.
-* ### **💫 Very, Very Flexible output values**<br/>You can set anything as the output localization. Yes, you got that right. Numbers, functions, images, boolean values... basically any data type that works in JavaScript. You probably wouldn't need all this flexibilty... but hey, it just works!
-* ### **🦄 Apply Transformation to your Localizations**<br/>Apply casing styles such as **UPPER CASE**, **lower case**, **Title Case**. You can even define your own transformations with a custom function!
+* **☝️ Everything in one file**<br/>The implementation comes in just one file and is free of dependencies.
+* **📖 Powerful dictionary inspection tool**<br/>Get notified about any languages or localizations that you may have missed out in your dictionary.
+* **⚙️️ Dynamic Localizations**<br/>Pass an array of parameters and have them swapped into the placeholders of your localizations.
+* **💫 Very, Very Flexible output values**<br/>You can set anything as the output localization. Yes, you got that right. Numbers, functions, images, boolean values... basically any data type that works in JavaScript. You probably wouldn't need all this flexibilty... but hey, it just works!
+* **🦄 Apply Transformation to your Localizations**<br/>Apply casing styles such as **UPPER CASE**, **lower case**, **Title Case**. You can even define your own transformations with a custom function!
 
 <br/>
 
