@@ -138,7 +138,7 @@ Maps a keyword to its localized value with additional options.
 * **`keyword: (string)`**<br/>A short string representing the localized value.
 * **`paramArray?: (Array<unknown>)`**<br/>Optional. There are times when it is not possible to define every possible string in the dictionary due to changing variables. This is how you can combine them with your localizations instead.
 * **`casing: (localizableCasings)`**<br/>Casing styles that will be applied to if the localized value is a string.
-`localizableCasings` should be one of `"lowercase"`, `"localeLowercase"`, `"uppercase"`, `"localeUppercase"`, `"titleCase"`.
+`localizableCasings` should be one of `"lowercase"`, `"localeLowercase"`, `"uppercase"`, `"localeUppercase"`, `"titleCase"`, `"sentenceCase"`.
 * **`transform: (Function)`**<br/>Applies a transformation to the localized value. The localized value (after casing styles are applied) will be pass as a prop for your function.
 
 ***Valid Examples:***

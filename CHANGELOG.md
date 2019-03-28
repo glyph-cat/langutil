@@ -1,8 +1,10 @@
-# langutil 2.1.0
+# langutil 2.1.X
 * Added new method `localizeWith()` for more powerful localizing capabilities: Apply **casing styles** and **custom transformations** to the localized value! 🦄
 * Added new method `getDefinedLanguages()` which allows you to access the list of languages defined in the dictionary during runtime.
 * You can now assign anything to your localized value, for instance, you might want to have a different logo image for each language if you have a tagline in your logo.
 * Fixed a critical bug where there production build fails if logs are shown.
+* Fixed some documentation errors.
+* Added new option `sentenceCase` for the `casing` parameeter in `localizeWith()`.
 
 # Previously in 2.0.0
 

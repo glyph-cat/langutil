@@ -171,6 +171,15 @@ module.exports = function () {
         expect(output).toBe(expectedValue)
     })
 
+    test("localizeWith: sentenceCase", () => {
+        const output = langutil.localizeWith({
+            keyword: 'HELLO_WORLD',
+            casing: 'sentenceCase'
+        })
+        const expectedValue = 'Hello world'
+        expect(output).toBe(expectedValue)
+    })
+
     test("localizeWith: invalid casing", () => {
         const output = langutil.localizeWith({
             keyword: 'HELLO_WORLD',

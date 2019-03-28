@@ -53,3 +53,9 @@
 * Added new method `getDefinedLanguages()` which allows you to access the list of languages defined in the dictionary during runtime.
 * You can now assign anything to your localized value, for instance, you might want to have a different logo image for each language if you have a tagline in your logo.
 * Fixed a critical bug where there production build fails if logs are shown.
+
+## 2.1.1
+* Fixed some documentation errors.
+
+## 2.1.1
+* Added new option `sentenceCase` for the `casing` parameeter in `localizeWith()`.
