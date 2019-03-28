@@ -129,6 +129,7 @@ type localizableCasings =
 | "uppercase"
 | "localeUppercase"
 | "titleCase"
+| "sentenceCase"
 
 interface LocalizableLanguages {
     /** Afrikaans */ "af": string;
