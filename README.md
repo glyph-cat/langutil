@@ -1,4 +1,4 @@
-[![NPM](https://nodei.co/npm/langutil.png)](https://nodei.co/npm/langutil/)
+[![NPM](https://nodei.co/npm/langutil.png)](https://nodei.co/npm/langutil/) [![Build Status](https://travis-ci.com/chin98edwin/langutil.svg?branch=master)](https://travis-ci.com/chin98edwin/langutil)
 
 Langutil is a localizing tool for JavaScript. In fact, it is made up of only one file and does not have any dependencies. It is packed with several powerful and flexible functions for you to localize your app. Keep on reading to get started.
 
