@@ -6,9 +6,9 @@ Langutil is a localizing tool for JavaScript. In fact, it is made up of only one
 
 * **☝️ Everything in one file**<br/>The implementation comes in just one file and is free of dependencies.
 * **📖 Powerful dictionary inspection tool**<br/>Get notified about any languages or localizations that you may have missed out in your dictionary.
-* **⚙️️ Dynamic Localizations**<br/>Pass an array of parameters and have them swapped into the placeholders of your localizations.
+* **⚡️ Dynamic Localizations**<br/>Pass an array of parameters and have them swapped into the placeholders of your localizations.
 * **💫 Very, Very Flexible output values**<br/>You can set anything as the output localization. Yes, you got that right. Numbers, functions, images, boolean values... basically any data type that works in JavaScript. You probably wouldn't need all this flexibilty... but hey, it just works!
-* **🦄 Apply Transformation to your Localizations**<br/>Apply casing styles such as **UPPER CASE**, **lower case**, **Title Case**. You can even define your own transformations with a custom function!
+* **🦄 Apply Transformation to your Localizations**<br/>Apply casing styles such as **UPPER CASE**, **lower case**, **Title Case** or **Sentence case**. You can even define your own transformations with a custom function!
 
 <br/>
 
@@ -23,7 +23,13 @@ Langutil is a localizing tool for JavaScript. In fact, it is made up of only one
 # Installation
 In your project's directory, run the command below:
 
+**Using Node Package Manager (NPM):**
+
     npm install langutil
+
+**Using Yarn:**
+
+    yarn add langutil
 
 # Usage
 Below is a basic working example:
@@ -53,6 +59,7 @@ Below is a basic working example:
 2. [`setLanguage`](##-`setLanguage(language,-autoDetect?):-void`)
 3. [`createKey`](##-`createKey(keyword,-localizations):-Keyword`)
 4. [`localize`](##-`localize(keyword,-paramArray?):-string`)
+4. [`localizeWith`](##-`localizeWith({-keyword,-paramArray?,-casing?,-transform?-}):-unknown`)
 5. [`logs.show`](##`logs.show()`)
 6. [`logs.hide`](##`logs.hide()`)
 7. [`hideLogs`](##-`hideLogs()`)
