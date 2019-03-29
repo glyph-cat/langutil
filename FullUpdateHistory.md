@@ -56,6 +56,8 @@
 
 ## 2.1.1
 * Fixed some documentation errors.
-
-## 2.1.1
 * Added new option `sentenceCase` for the `casing` parameeter in `localizeWith()`.
+
+## 2.1.2
+* Fixed an issue where you may encounter an error with a message like "**this.localize is not a function**".
+

@@ -5,8 +5,9 @@
 * Fixed a critical bug where there production build fails if logs are shown.
 * Fixed some documentation errors.
 * Added new option `sentenceCase` for the `casing` parameeter in `localizeWith()`.
+* Fixed an issue where you may encounter an error with a message like "**this.localize is not a function**".
 
-# Previously in 2.0.0
+# Hightlights in 2.0.0
 
 ## Define dictionaries by Keywords
 * Dictionaries can now be grouped by keywords. Don't worry though, your old definitions still work just as they should. However, this will be the prefered convention from this version onwards. Example:
