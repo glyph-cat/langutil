@@ -1,0 +1,10 @@
+{
+    "name": "demo-node-js",
+    "author": "chin98edwin",
+    "description": "In your terminal, cd to this directory and run npm start",
+    "main": "node index.js",
+    "dependencies": {
+        "langutil": "^2.1.2"
+    },
+    "license": "ISC"
+}
