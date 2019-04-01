@@ -1,12 +1,12 @@
 # Table of Contents
-1. [`init`](##-`init(dictionary,-language,-autoDetect?):-void`)
-2. [`setLanguage`](##-`setLanguage(language,-autoDetect?):-void`)
-3. [`createKey`](##-`createKey(keyword,-localizations):-Keyword`)
-4. [`localize`](##-`localize(keyword,-paramArray?):-string`)
-4. [`localizeWith`](##-`localizeWith({-keyword,-paramArray?,-casing?,-transform?-}):-unknown`)
-5. [`logs.show`](##`logs.show()`)
-6. [`logs.hide`](##`logs.hide()`)
-7. [`hideLogs`](##-`hideLogs()`)
+1. [`init`](#-`init`)
+2. [`setLanguage`](#-`setLanguage`)
+3. [`createKey`](#-`createKey`)
+4. [`localize`](#-`localize`)
+4. [`localizeWith`](#-`localizeWith`)
+5. [`logs.show`](#`logs.show`)
+6. [`logs.hide`](#`logs.hide`)
+7. [`hideLogs`](#-`hideLogs`)
 
 <br/>
 

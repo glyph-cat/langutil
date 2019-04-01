@@ -1,6 +1,6 @@
 {
   "name": "langutil",
-  "version": "2.1.2",
+  "version": "2.1.3",
   "description": "Localization for JavaScript made simple. ",
   "main": "index.js",
   "types": "index.d.ts",
@@ -32,7 +32,7 @@
     "jest": "^24.5.0"
   },
   "jest": {
-    "verbose": false,
+    "verbose": true,
     "testPathIgnorePatterns": ["/__tests__/baseImplementation/"]
   }
 }

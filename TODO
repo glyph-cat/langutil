@@ -1,5 +1,4 @@
 ( ) Create an npm executable that checks for undefined keywords in the entire project directory
-( ) Automatic language detection for react-native
 ( ) demo-create-react-app
 ( ) demo-expo
 ( ) Rearrange language list to accomodate language codes returned from iOS
