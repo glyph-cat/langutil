@@ -61,3 +61,8 @@
 ## 2.1.2
 * Fixed an issue where you may encounter an error with a message like "**this.localize is not a function**".
 
+## 2.1.3
+* Silenced the unneccessary warning messages when `casing` and `transform` parameters in `localizeWith()` are not defined as they are optional.
+* Auto language detection is now supported in React Native.
+* Documentations have been updated to reduce package size.
+* Fixed the bug where langutil will always launch in minified mode by default.

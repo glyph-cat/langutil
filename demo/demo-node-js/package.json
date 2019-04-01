@@ -4,7 +4,7 @@
     "description": "In your terminal, cd to this directory and run npm start",
     "main": "node index.js",
     "dependencies": {
-        "langutil": "^2.1.2"
+        "langutil": "^2.1.3"
     },
     "license": "ISC"
 }

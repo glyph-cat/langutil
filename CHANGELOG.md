@@ -6,6 +6,10 @@
 * Fixed some documentation errors.
 * Added new option `sentenceCase` for the `casing` parameeter in `localizeWith()`.
 * Fixed an issue where you may encounter an error with a message like "**this.localize is not a function**".
+* Silenced the unneccessary warning messages when `casing` and `transform` parameters in `localizeWith()` are not defined as they are optional.
+* Auto language detection is now supported in React Native.
+* Documentations have been updated to reduce package size.
+* Fixed the bug where langutil will always launch in minified mode by default.
 
 # Hightlights in 2.0.0
 

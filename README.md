@@ -59,9 +59,9 @@ In your project's directory, run the command below:
 
 # Further Reading
 
-* Check out the [**Demos**]()
-* Read the [**Full Documentation**]()
-* Read the [**Update History**]()
+* Check out the [**Demos**](https://github.com/chin98edwin/langutil/tree/master/demo)
+* Read the [**Full Documentation**](https://github.com/chin98edwin/langutil/blob/master/docs/Api.md)
+* Read the [**Update History**](https://github.com/chin98edwin/langutil/blob/master/docs/UpdateHistory.md)
 * Supporting me in sustaining this project by [**donating via PayPal**](https://www.paypal.me/chin98edwin)
 <br/><br/>
 <hr/>

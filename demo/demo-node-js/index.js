@@ -1,3 +1,7 @@
+/**
+ * @description Demo project showing usage of langutil in Node JS.
+ */
+
 const langutil, { localize, localizeWith } = require('langutil')
 const dictionary = require('./dictionary')
 
