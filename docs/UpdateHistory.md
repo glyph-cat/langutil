@@ -66,3 +66,9 @@
 * Auto language detection is now supported in React Native.
 * Documentations have been updated to reduce package size.
 * Fixed the bug where langutil will always launch in minified mode by default.
+
+## 2.2.0
+* In case the automatically detected language is not supported in the dictionary, langutil look for an alternative language from the dictionary. For example, if your dictionary contains localizations for `"en"`, but the automatically detected language is `"en_us"`, langutil will set the language to `"en"`.
+* Fixed an issue where false warnings about insufficient parameters are shown.
+* New `logs.focus()` function allows to you see langutil logs in a specific block of code while hiding the rest, that is, onlt necessary if the logs were already hidden prior to that block.
+* New `isAuto()` function to know whether autoDetection is set to true.

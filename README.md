@@ -59,10 +59,10 @@ In your project's directory, run the command below:
 
 # Further Reading
 
-* Check out the [**Demos**](https://github.com/chin98edwin/langutil/tree/master/demo)
-* Read the [**Full Documentation**](https://github.com/chin98edwin/langutil/blob/master/docs/Api.md)
-* Read the [**Update History**](https://github.com/chin98edwin/langutil/blob/master/docs/UpdateHistory.md)
-* Supporting me in sustaining this project by [**donating via PayPal**](https://www.paypal.me/chin98edwin)
+* Check out the [Demos](https://github.com/chin98edwin/langutil/tree/master/demo) (Only `demo-node-js` is complete for the time being)
+* Read the [Full Documentation](https://github.com/chin98edwin/langutil/blob/master/docs/Api.md)
+* Read the [Update History](https://github.com/chin98edwin/langutil/blob/master/docs/UpdateHistory.md)
+* Support me in sustaining this project by [donating via PayPal](https://www.paypal.me/chin98edwin)
 <br/><br/>
 <hr/>
 

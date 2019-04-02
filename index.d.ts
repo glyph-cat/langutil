@@ -90,6 +90,12 @@ declare namespace langutil {
     function getDefinedLanguages(): Array<LanguageCodes>;
 
     /**
+     * @description Checks if autoDetect is turned on.
+     * @returns The auto detect status.
+     */
+    function isAuto(): boolean;
+
+    /**
      * @description Controls the visibility of logs from langutil.
      */
     namespace logs {
@@ -101,6 +107,14 @@ declare namespace langutil {
          * @description Shows logs from langutil. Logs are shown in development mode by default.
          */
         function show(): void
+        /**
+         * @description If you have hidden away langutil logs at the beginning of your code and only want to log a portion of it, place your code inside a callback in this function.
+         * @param callback The callback which you want langutil to focus its logs on.
+         * @returns Whether the callback was sucessful or not.
+         */
+        function focus(
+            callback: Function
+        ): boolean
     }
 
     /**
