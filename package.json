@@ -1,6 +1,6 @@
 {
   "name": "langutil",
-  "version": "2.1.3",
+  "version": "2.2.0",
   "description": "Localization for JavaScript made simple. ",
   "main": "index.js",
   "types": "index.d.ts",
