@@ -72,3 +72,6 @@
 * Fixed an issue where false warnings about insufficient parameters are shown.
 * New `logs.focus()` function allows to you see langutil logs in a specific block of code while hiding the rest, that is, onlt necessary if the logs were already hidden prior to that block.
 * New `isAuto()` function to know whether autoDetection is set to true.
+
+## 2.2.1
+* Emergency fix for a bug where auto detect in v2.2.0 fails for React Native apps
