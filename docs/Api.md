@@ -4,8 +4,10 @@
 3. [`createKey`](#-`createKey`)
 4. [`localize`](#-`localize`)
 4. [`localizeWith`](#-`localizeWith`)
+4. [`isAuto`](#-`isAuto`)
 5. [`logs.show`](#`logs.show`)
 6. [`logs.hide`](#`logs.hide`)
+6. [`logs.focus`](#`logs.focus`)
 7. [`hideLogs`](#-`hideLogs`)
 
 <br/>
@@ -22,9 +24,9 @@ You may encounter some `unknown` data types below. But in reality, it's not all 
 Use this function to initialize langutil with a dictionary and language. This function must be called first in order for your localizations to take effect. <br/>
 
 **`init(dictionary, language, autoDetect?): void`**
-* `dictionary: (Array<Keyword>|Object)`<br/>The object storing all your localizations.
-* `language: (string)`<br/>Refer to `setLanguage`
-* `autoDetect?: (boolean)`<br/>Refer to `setLanguage`
+* **`dictionary: (Array<Keyword>|Object)`**<br/>The object storing all your localizations.
+* **`language: (string)`**<br/>Refer to `setLanguage`
+* **`autoDetect?: (boolean)`**<br/>Refer to `setLanguage`
 
 
 ***Valid Examples:***
@@ -41,8 +43,8 @@ Use this function to initialize langutil with a dictionary and language. This fu
 Allows the prefered language to be changed during runtime such as when switching between languages in a preference page. By default, this function is triggered you call the `init` function. <br/>
 
 **`setLanguage(language, autoDetect?): void`**
-* `language: (string)`<br/>The language in which your content will be displayed.
-* `autoDetect?: (boolean)`<br/>Optional. This only works in browsers for now. Set it to `true` to let the computer figure out the client's browser language. In case auto-detect fails, `language` will be used as a fallback instead.
+* **`language: (string)`**<br/>The language in which your content will be displayed.
+* **`autoDetect?: (boolean)`**<br/>Optional. This only works in browsers for now. Set it to `true` to let the computer figure out the client's browser language. In case auto-detect fails, `language` will be used as a fallback instead.
 
 ***NOTE:*** *The language code that you provide here has to be in your dictionary too. You're free to use other strings to represent the languages in your dictionary. But we encourage you to use ISO language codes in order for your localizations to work with langutil's auto-detect feature.*
 
@@ -63,8 +65,8 @@ Allows the prefered language to be changed during runtime such as when switching
 Allows you to define your dictionary by keyword.<br/>
 
 **`createKey(keyword, localizations): Keyword`**
-* `keyword: (string)`<br/>A plain string that should be able to reflect a brief or partial meaning of the localized string.
-* `localizations(object): ` The translations.
+* **`keyword: (string)`**<br/>A plain string that should be able to reflect a brief or partial meaning of the localized string.
+* **`localizations: (object)`** The translations.
 
 ***Valid Example:***
 
@@ -93,10 +95,11 @@ Maps a keyword to its localized value.<br/>
 
 **`localize(keyword, paramArray?): unknown`**
 
-* `keyword: (string)`<br/>A short string representing the localized value.
-* `paramArray?: (Array<unknown>)`<br/>Optional. There are times when it is not possible to define every possible string in the dictionary due to changing variables. This is how you can combine them with your localizations instead.
+* **`keyword: (string)`**<br/>A short string representing the localized value.
+* **`paramArray?: (Array<unknown>)`**<br/>Optional. There are times when it is not possible to define every possible string in the dictionary due to changing variables. This is how you can combine them with your localizations instead.
 
 ***Valid Examples:***
+
 | Keyword               | Localization         |
 | --------------------- | -------------------- |
 | `HELLO`               | `Hello`              |
@@ -119,13 +122,14 @@ Maps a keyword to its localized value with additional options.<br/>
 
 **`localizeWith({ keyword, paramArray?, casing?, transform? }): unknown`**
 
-* `keyword: (string)`<br/>A short string representing the localized value.
-* `paramArray?: (Array<unknown>)`<br/>Optional. There are times when it is not possible to define every possible string in the dictionary due to changing variables. This is how you can combine them with your localizations instead.
-* `casing: (localizableCasings)`<br/>Casing styles that will be applied to if the localized value is a string.
+* **`keyword: (string)`**<br/>A short string representing the localized value.
+* **`paramArray?: (Array<unknown>)`**<br/>Optional. There are times when it is not possible to define every possible string in the dictionary due to changing variables. This is how you can combine them with your localizations instead.
+* **`casing: (localizableCasings)`**<br/>Casing styles that will be applied to if the localized value is a string.
 Its value should be one of `"lowercase"`, `"localeLowercase"`, `"uppercase"`, `"localeUppercase"`, `"titleCase"`, `"sentenceCase"`.
-* `transform?: (Function)`<br/>Applies a transformation to the localized value. The localized value (after casing styles are applied) will be pass as a prop for your function.
+* **`transform?: (Function)`**<br/>Applies a transformation to the localized value. The localized value (after casing styles are applied) will be pass as a prop for your function.
 
 ***Valid Example:***
+
 | Keyword             | Localization     |
 | ------------------- | ---------------- |
 | `HELLO_WORLD_PARAM` | `Hello world %p` |
@@ -145,6 +149,14 @@ Its value should be one of `"lowercase"`, `"localeLowercase"`, `"uppercase"`, `"
 
 <br/>
 
+# `isAuto`
+Checks if `autoDetect` is turned on.
+
+***Valid Example:***
+
+    langutil.isAuto()
+<br/>
+
 # `logs.show`
 Shows all logs from `langutil`. Logs are shown by default in development mode and disabled entirely in production mode regardless of this method.
 
@@ -159,6 +171,23 @@ Hides all logs from `langutil`. Logs are shown by default in development mode an
 ***Valid Example:***
 
     langutil.logs.hide()
+<br/>
+
+# `logs.focus`
+If you have hidden away langutil logs at the beginning of your code and only want to log a portion of it, place your code inside a callback in this function.
+
+**`logs.focus(callback): boolean`**
+
+* **`callback: (Function)`**<br/>The callback which you want langutil to focus its logs on.
+
+***Valid Example:***
+
+    langutil.logs.focus(()=>{
+        var localizedString = langutil.localizeWith({
+            keyword: "HELLO_PARAM",
+            paramArray: ["World"]
+        })
+    })
 <br/>
 
 # `hideLogs`
