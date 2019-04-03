@@ -10,6 +10,9 @@
     "index.js"
   ],
   "scripts": {
+    "lint-dev": "./node_modules/.bin/eslint lib/langutil.dev.js",
+    "lint-dev-fix": "./node_modules/.bin/eslint lib/langutil.dev.js --fix",
+    "lint-min": "./node_modules/.bin/eslint lib/langutil.min.js",
     "test": "jest"
   },
   "repository": {
@@ -29,10 +32,13 @@
   },
   "homepage": "https://github.com/chin98edwin/langutil#readme",
   "devDependencies": {
+    "eslint": "^5.16.0",
     "jest": "^24.5.0"
   },
   "jest": {
     "verbose": true,
-    "testPathIgnorePatterns": ["/__tests__/baseImplementation/"]
+    "testPathIgnorePatterns": [
+      "/__tests__/baseImplementation/"
+    ]
   }
 }
