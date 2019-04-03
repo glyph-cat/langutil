@@ -75,3 +75,6 @@
 
 ## 2.2.1
 * Emergency fix for a bug where auto detect in v2.2.0 fails for React Native apps
+
+## 2.2.2
+* Fixed _the_ issue where false warnings about insufficient parameters are shown. For sure!
