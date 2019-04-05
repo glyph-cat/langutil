@@ -1,6 +1,7 @@
 ( ) demo-html
 ( ) demo-create-react-app
-( ) demo-expo
+( ) demo-expo (With React Navigation)
+( ) demo-react-native-init (With React Native Navigation)
 ( ) Create an npm executable that checks for undefined keywords in the entire project directory
 ( ) Rearrange language list to accomodate language codes returned from iOS
 ( ) Follow IETF language codes? https://datahub.io/core/language-codes#resource-ietf-language-tags
@@ -9,5 +10,39 @@ v3
 ( ) Allow callbacks in setter functions such as init() and setLanguage()
 ( ) Modify function -> init(dict, lang, { auto, callback })
 ( ) Modify function -> setLanguage(lang, { auto, callback })
-( ) Change getLanguage and getDefinedLanguages to a read-only property instead of a function
+( ) Change isAuto, getLanguage and getDefinedLanguages... refer below
 ( ) Remove hideLogs()
+
+Functions:
+    langutil.init(
+        dictionary: object | Array<Keyword>,
+        language: string,
+        {
+            auto?: boolean,
+            onDone: Function
+        }
+    ): unknown // returns the value of the function, if any
+    langutil.setLanguage(
+        language: string,
+        {
+            auto?: boolean,
+            onDone: Function
+        }
+    ): unknown // returns the value of the function, if any
+    langutil.localize(keyword: string): unknown
+    langutil.localizeWith({
+        keyword: 'HELLO',
+        paramArray: [],
+        casing: '',
+        transform: ()=>{}
+    }): unknown
+    langutil.lang: {
+        auto(): boolean
+        current(): string
+        allDefined(): Array<string>
+    }
+    langutil.logs: {
+        hide(): void
+        show(): void
+        focus(callback: Function): boolean
+    }

@@ -1,7 +1,12 @@
 {
   "name": "langutil",
-  "version": "2.2.2",
   "description": "Localization for JavaScript made simple. ",
+  "version": "2.2.2",
+  "author": "chin98edwin",
+  "directories": {
+    "doc": "docs",
+    "lib": "lib"
+  },
   "main": "index.js",
   "types": "index.d.ts",
   "files": [
@@ -25,7 +30,7 @@
     "language",
     "accessibility"
   ],
-  "author": "chin98edwin",
+  "readme": "README.md",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/chin98edwin/langutil/issues"
@@ -38,7 +43,8 @@
   "jest": {
     "verbose": true,
     "testPathIgnorePatterns": [
-      "/__tests__/baseImplementation/"
+      "/__tests__/baseImplementation/",
+      "/demo"
     ]
   }
 }
