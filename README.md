@@ -4,7 +4,7 @@ Langutil is a localizing tool for JavaScript. It comes with several powerful and
 
 ## Top Features
 
-* **☝️ Everything in one file**<br/>The core implementation comes in just one file and is free of dependencies.
+* **☝️ Everything in one file**<br/>The core implementation comes in just one file and is free of dependencies. (React Native is optional)
 * **📖 Powerful dictionary inspection tool**<br/>You can get notified about any languages or localizations that you may have forgot to define.
 * **⚡️ Dynamic Localizations**<br/>Pass an array of parameters and have them swapped into your localizations with the help of placeholders.
 * **💫 Very, Very Flexible output values**<br/>Set anything as the output localization. Yes, you got that right. Numbers, functions, images, boolean values... basically any data type that works in JavaScript. You probably wouldn't need all this flexibilty... but hey, it just works!
