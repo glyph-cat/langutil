@@ -1,5 +1,4 @@
-[![NPM](https://nodei.co/npm/langutil.png)](https://nodei.co/npm/langutil/)<br/>[![npm](https://img.shields.io/npm/v/langutil.svg)](https://github.com/chin98edwin/langutil/blob/master/CHANGELOG.md) ![npm bundle size](https://img.shields.io/bundlephobia/min/langutil.svg) [![npm](https://img.shields.io/npm/dw/langutil.svg)](https://npm-stat.com/charts.html?package=langutil) [![Build Status](https://travis-ci.com/chin98edwin/langutil.svg?branch=master)](https://travis-ci.com/chin98edwin/langutil)
-
+[![NPM](https://nodei.co/npm/langutil.png)](https://nodei.co/npm/langutil/)<br/>[![npm](https://img.shields.io/npm/v/langutil.svg)](https://github.com/chin98edwin/langutil/blob/master/CHANGELOG.md) ![npm bundle size](https://img.shields.io/bundlephobia/min/langutil.svg) [![npm](https://img.shields.io/npm/dw/langutil.svg)](https://npm-stat.com/charts.html?package=langutil) [![Travis (.com)](https://img.shields.io/travis/com/chin98edwin/langutil.svg)](https://travis-ci.com/chin98edwin/langutil)
 
 Langutil is a localizing tool for JavaScript. It comes with several powerful and flexible functions yet all in one file. Keep on reading to get started.
 

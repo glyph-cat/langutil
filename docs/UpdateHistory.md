@@ -78,3 +78,6 @@
 
 ## 2.2.2
 * Fixed _the_ issue where false warnings about insufficient parameters are shown. For sure!
+
+## 2.2.3
+* Fixed a bug with auto detect
