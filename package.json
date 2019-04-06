@@ -1,7 +1,7 @@
 {
   "name": "langutil",
   "description": "Localization for JavaScript made simple. ",
-  "version": "2.2.2",
+  "version": "2.2.3",
   "author": "chin98edwin",
   "directories": {
     "doc": "docs",
@@ -41,10 +41,13 @@
     "jest": "^24.5.0"
   },
   "jest": {
-    "verbose": true,
+    "verbose": false,
     "testPathIgnorePatterns": [
       "/__tests__/baseImplementation/",
       "/demo"
     ]
+  },
+  "optionalDependencies": {
+    "react-native": "latest"
   }
 }
