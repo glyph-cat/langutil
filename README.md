@@ -16,7 +16,8 @@ Langutil is a localizing tool for JavaScript. It comes with several powerful and
 
 1. [Installation](#installation)
 2. [Basic Example](#basic-example)
-3. [Further Reading](#further-reading)
+3. [Quick Links](#quick-links)
+3. [Demos](#demos)
 <br/>
 
 # Installation
@@ -29,6 +30,10 @@ In your project's directory, run the command below:
 **Using Yarn:**
 
     yarn add langutil
+
+**By Cloning:**
+
+    cd path/to/your/project && git clone https://github.com/chin98edwin/langutil.git
 
 # Basic Example
 
@@ -57,10 +62,17 @@ In your project's directory, run the command below:
 
 <br/>
 
-# Further Reading
-
-* Check out the [Demos](https://github.com/chin98edwin/langutil/tree/master/demo) (Only `demo-node-js` is complete for the time being)
+# Quick Links
 * Read the [Full Documentation](https://github.com/chin98edwin/langutil/blob/master/docs/Api.md)
+<!-- * More on defining the [Dictionary]() -->
 * Read the [Update History](https://github.com/chin98edwin/langutil/blob/master/docs/UpdateHistory.md)
 * Support me in sustaining this project by [donating via PayPal](https://www.paypal.me/chin98edwin)
+<br/><br/>
+
+# Demos
+* `demo-create-react-app` (Coming soon)
+* `demo-expo` (Coming soon)
+* `demo-html` (Coming soon)
+* `demo-node-js` [**(View on GitHub)**](https://github.com/chin98edwin/langutil/tree/master/demo/demo-node-js)
+* `demo-react-native-init` (Coming soon)
 <br/><br/>
