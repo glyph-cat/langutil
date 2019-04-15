@@ -5,11 +5,107 @@
     <head>
         <meta charset="UTF-8">
         <title>Langutil Demo</title>
+        <link rel="stylesheet" href="index.css">
+        <script type="text/javascript" src="node_modules/langutil/lib/langutil.min.js"></script>
+        <script>
+
+            function initLangutil() {
+                const dictionary = [
+                    langutil.createKey('HELLO_NAME', {
+                        "en": "Hello, %p.",
+                        "ja": "こんにちは，%pさん。",
+                        "zh-cn": "哈咯，%p。",
+                    })
+                ]
+                langutil.init(dictionary, "en")
+            }
+
+            function toggleSwitcher() {
+                // const toggleState = document.getElementById('').
+            }
+
+            function formatSheetItem(language) {
+                const currentLanguage = langutil.getLanguage()
+                if (language === currentLanguage) {
+                    // ...
+                } else {
+                    // ...
+                }
+            }
+
+            function updateLanguage(newLanguage) {
+                langutil.setLanguage(newLanguage)
+                // TODO: Collapse switcher menu
+            }
+
+            function onNameChange() {
+                setTimeout(() => {
+                    const newName = document.getElementById('prompt-input').value
+                    const newBtnState = newName.length <= 0 ? true : false
+                    document.getElementById('prompt-button').disabled = newBtnState
+                })
+            }
+
+            function updateName() {
+                const newName = document.getElementById('prompt-input').value
+                document.getElementById('greeter').innerText = langutil.localizeWith({
+                    keyword: 'HELLO_NAME',
+                    paramArray: [newName]
+                })
+            }
+
+        </script>
     </head>
 
-    <body>
+    <body onload="initLangutil()">
 
-        <h1>Hello World</h1>
+        <h1 id="title">Langutil Demo</h1>
+
+        <div id="subcontainer">
+            <div id="prompt-form">
+                <p id="prompt-instructions">
+                    Please enter your name:
+                    <input id="prompt-input" value="user" onkeydown="onNameChange()"
+                    minlength="1" maxlength="16"/>
+                </p>
+                <button id="prompt-button" onclick="updateName()">Submit</button>
+            </div>
+            <br/>
+            <h2 id="greeter">Hello, user. </h2>
+        </div>
+
+        <div id="switch-container">
+
+            <div id="switch-button-container" onclick="toggleSwitcher()">
+                <span id="switch-label">EN</span>
+            </div>
+
+            <div id="switch-sheet-container">
+
+                <div id="switch-sheet-item"
+                onclick="updateLanguage('en')"
+                onload="formatSheetItem('en')">
+                    <span>English</span>
+                    <span id="switch-sheet-item-tick">✓</span>
+                </div>
+
+                <div id="switch-sheet-item"
+                onclick="updateLanguage('ja')"
+                onload="formatSheetItem('ja')">
+                    <span>日本語</span>
+                    <span id="switch-sheet-item-tick">✓</span>
+                </div>
+
+                <div id="switch-sheet-item"
+                onclick="updateLanguage('zh-cn')"
+                onload="formatSheetItem('zh-cn')">
+                    <span>中文</span>
+                    <span id="switch-sheet-item-tick">✓</span>
+                </div>
+
+            </div>
+
+        </div>
 
     </body>
 

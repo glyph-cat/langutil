@@ -1,8 +1,8 @@
 {
     "name": "demo-node-js",
-    "version": "0.0.1",
+    "version": "1.0.0",
     "author": "chin98edwin",
-    "description": "In your terminal, cd to this directory and run npm start",
+    "description": "Demo of langutl in node environment. ",
     "main": "node index.js",
     "dependencies": {
         "langutil": "latest"
