@@ -81,3 +81,7 @@
 
 ## 2.2.3
 * Fixed a bug with auto detect
+
+## 2.2.4
+* Added docs about "Dictionary"
+* Changed `react-native` from optional dependency to peer dependency
