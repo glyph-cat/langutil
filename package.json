@@ -47,7 +47,7 @@
       "/demo"
     ]
   },
-  "optionalDependencies": {
+  "peerDependencies": {
     "react-native": "latest"
   }
 }

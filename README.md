@@ -64,7 +64,7 @@ In your project's directory, run the command below:
 
 # Quick Links
 * Read the [Full Documentation](https://github.com/chin98edwin/langutil/blob/master/docs/Api.md)
-<!-- * More on defining the [Dictionary]() -->
+* More on defining the [Dictionary](https://github.com/chin98edwin/langutil/blob/master/docs/Dictionary.md)
 * Read the [Update History](https://github.com/chin98edwin/langutil/blob/master/docs/UpdateHistory.md)
 * Support me in sustaining this project by [donating via PayPal](https://www.paypal.me/chin98edwin)
 <br/><br/>
