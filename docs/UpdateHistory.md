@@ -85,3 +85,12 @@
 ## 2.2.4
 * Added docs about "Dictionary"
 * Changed `react-native` from optional dependency to peer dependency
+
+## 2.3.0
+* Internal optimization for better performance and debugging experience.
+* The repo now includes templates for dictionaries, some of the most commonly used words are readily translated. More translations will be added over time. It is not included in the package to maintain a small size.
+* Additions for React:
+    * New <Localizable> component that acts as a wrapper for HTML or React elements.
+* Additions React Native:
+    * New <Localizable> component that acts as a wrapper for the `<Text>` tag.
+    * Language detection for React Native has been splitted out from the core and moved into the additions folder

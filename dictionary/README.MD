@@ -1,0 +1,1 @@
+A template dictionary including some of the most commonly used words out of the box.

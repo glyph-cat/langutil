@@ -1,16 +1,24 @@
 # Table of Contents
-1. [`init`](#-`init`)
-2. [`setLanguage`](#-`setLanguage`)
-3. [`createKey`](#-`createKey`)
-4. [`localize`](#-`localize`)
-4. [`localizeWith`](#-`localizeWith`)
-4. [`isAuto`](#-`isAuto`)
-5. [`logs.show`](#`logs.show`)
-6. [`logs.hide`](#`logs.hide`)
-6. [`logs.focus`](#`logs.focus`)
-7. [`hideLogs`](#-`hideLogs`)
-
-<br/>
+1. [Functions](#-1.-Functions)
+    * [init](##-`init`)
+    * [setLanguage](##-`setLanguage`)
+    * [createKey](##-`createKey`)
+    * [localize](##-`localize`)
+    * [localizeWith](##-`localizeWith`)
+    * [isAuto](##-`isAuto`)
+    * [logs](##-`logs`)
+        * [show](###-`show`)
+        * [hide](###-`hide`)
+        * [focus](###-focus`)
+2. [Additions](#-2.-Additions)
+    * [Localizable](##-`Localizable`)
+    * [detectLanguage](##-`detectLanguage`)
+3. [Interfaces](#-3.-Interfaces)
+    * ...
+4. [Types](#-4.-Types)
+    * [LocalizableCasings](##-LocalizableCasings)
+5. [Appendix](#-5.-Appendix)
+    * [Language List](##-Language-List)
 
 ## Note
 You may encounter some `unknown` data types below. But in reality, it's not all the mysterious. The `unknown` type is very similar to the `any` type.
@@ -20,35 +28,55 @@ You may encounter some `unknown` data types below. But in reality, it's not all 
 <br/><hr/>
 <br/>
 
-# `init`
-Use this function to initialize langutil with a dictionary and language. This function must be called first in order for your localizations to take effect. <br/>
+# 1. Functions
 
-**`init(dictionary, language, autoDetect?): void`**
-* **`dictionary: (Array<Keyword>|Object)`**<br/>The object storing all your localizations.
-* **`language: (string)`**<br/>Refer to `setLanguage`
-* **`autoDetect?: (boolean)`**<br/>Refer to `setLanguage`
+_Note: Parameters with a trailing question mark (Eg: `param?`) are optional._
 
+<br/>
 
-***Valid Examples:***
+## `init`
+Use this function to initialize langutil with a dictionary and language. This function must be called first in order for your localizations to take effect.
+
+| Parameter | Description | Type | Default Value |
+| --- | --- | --- | --- |
+| `dictionary` | The object storing all your localizations. | `Array<`[`Keyword`]()`>` or `object` | |
+| `language` | Refer to `setLanguage` | [`LanguageCodes`]() | |
+| `auto?` | Refer to `setLanguage` | `boolean` | `false` |
+<br/>
+
+_(This function does not return any values.)_
+
+<br/>
+
+***Examples:***
 
     import dictionary from './dictionary'
 
     langutil.init(dictionary, 'en')
     langutil.init(dictionary, 'en', false)
     langutil.init(dictionary, 'en', true)
+    // All syntaxes above are valid
 
 <br/>
 
-# `setLanguage`
-Allows the prefered language to be changed during runtime such as when switching between languages in a preference page. By default, this function is triggered you call the `init` function. <br/>
+## `setLanguage`
+Allows the prefered language to be changed during runtime such as when switching between languages in a preference page. By default, this function is triggered you call the `init` function.
 
-**`setLanguage(language, autoDetect?): void`**
-* **`language: (string)`**<br/>The language in which your content will be displayed.
-* **`autoDetect?: (boolean)`**<br/>Optional. This only works in browsers for now. Set it to `true` to let the computer figure out the client's browser language. In case auto-detect fails, `language` will be used as a fallback instead.
+| Parameter  | Description | Type | Default Value |
+| --- | --- | --- | --- |
+| `language` | The language in which your content will be displayed. | [`LanguageCodes`]() | |
+| `auto?` | Should the device attempt to figure out the user's language? if it fails, `language` will be used as fallback instead. | `boolean` | `false` |
+<br/>
 
-***NOTE:*** *The language code that you provide here has to be in your dictionary too. You're free to use other strings to represent the languages in your dictionary. But we encourage you to use ISO language codes in order for your localizations to work with langutil's auto-detect feature.*
+_(This function does not return any values.)_
 
-***Valid Examples:***
+<br/>
+
+The way auto language detection works in React Native is slightly different. It will be explained in [another section](##-`detectLanguage`) of this documentation.
+
+<br/>
+
+***Examples:***
 
     // The basic method
     langutil.setLanguage('en')
@@ -58,19 +86,41 @@ Allows the prefered language to be changed during runtime such as when switching
 
     // For such scenarios, be sure to have
     // a language called "unicorn" in your dictionary
+    // However, auto detect will not be able to make use of this language because is not one of the listed languages by ISO.
     langutil.setLanguage('unicorn', true)
 <br/>
 
-# `createKey`
-Allows you to define your dictionary by keyword.<br/>
+## `createKey`
+Allows you to define your dictionary by keyword.
 
-**`createKey(keyword, localizations): Keyword`**
-* **`keyword: (string)`**<br/>A plain string that should be able to reflect a brief or partial meaning of the localized string.
-* **`localizations: (object)`** The translations.
+| Parameter  | Description | Type |
+| --- | --- | --- |
+| `keyword` | A plain string that should be able to reflect a brief or partial meaning of the localized string. | `string` |
+| `localizations` | The translations. | `object` |
+<br/>
 
-***Valid Example:***
+| Returns | Type |
+| --- | --- |
+| A Keyword object. | [`Keyword`]() |
+<br/>
+
+***Examples:***
 
     // dictionary.js
+
+    // Method 1: Defined by languages
+    export default {
+        "en": {
+            "HELLO_NAME": "Hello, %p. ",
+            "GOODBYE": "Goodbye"
+        },
+        "zh-cn": {
+            "HELLO_NAME": "%p，你好。",
+            "GOODBYE": "再见"
+        }
+    }
+
+    // Method 2: Defined by keywords
     import { createKey } from 'langutil'
 
     export default [
@@ -90,15 +140,21 @@ Allows you to define your dictionary by keyword.<br/>
 
 <br/>
 
-# `localize`
-Maps a keyword to its localized value.<br/>
+## `localize`
+Maps a keyword to its localized value.
 
-**`localize(keyword, paramArray?): unknown`**
+| Parameter  | Description | Type |
+| --- | --- | --- |
+| `keyword` | A short string representing the localized value. | `string` |
+| `paramArray?` | There are times when it is not possible to define every possible string in the dictionary due to changing variables. This is how you can combine them with your localizations instead. | `Array<unknown>` |
+<br/>
 
-* **`keyword: (string)`**<br/>A short string representing the localized value.
-* **`paramArray?: (Array<unknown>)`**<br/>Optional. There are times when it is not possible to define every possible string in the dictionary due to changing variables. This is how you can combine them with your localizations instead.
+| Returns | Type |
+| --- | --- |
+| The localized value. | `unknown` |
+<br/>
 
-***Valid Examples:***
+***Examples:***
 
 | Keyword               | Localization         |
 | --------------------- | -------------------- |
@@ -117,18 +173,28 @@ Maps a keyword to its localized value.<br/>
 
 <br/>
 
-# `localizeWith`
-Maps a keyword to its localized value with additional options.<br/>
+## `localizeWith`
+Maps a keyword to its localized value with additional options.
 
-**`localizeWith({ keyword, paramArray?, casing?, transform? }): unknown`**
+| Parameter  | Description | Type |
+| --- | --- | --- |
+| `props` | Configuration props for the localization | `object` |
+<br/>
 
-* **`keyword: (string)`**<br/>A short string representing the localized value.
-* **`paramArray?: (Array<unknown>)`**<br/>Optional. There are times when it is not possible to define every possible string in the dictionary due to changing variables. This is how you can combine them with your localizations instead.
-* **`casing: (localizableCasings)`**<br/>Casing styles that will be applied to if the localized value is a string.
-Its value should be one of `"lowercase"`, `"localeLowercase"`, `"uppercase"`, `"localeUppercase"`, `"titleCase"`, `"sentenceCase"`.
-* **`transform?: (Function)`**<br/>Applies a transformation to the localized value. The localized value (after casing styles are applied) will be pass as a prop for your function.
+| Props | Decription | Type |
+| --- | --- | --- |
+| `keyword` | A short string representing the localized value. | `string` |
+| `paramArray?` | There are times when it is not possible to define every possible string in the dictionary due to changing variables. This is how you can combine them with your localizations instead. | `Array<unknown>` |
+| `casing?` | Casing styles that will be applied to if the localized value is a string. | [`LocalizableCasings`]() |
+| `transform?` | Applies a transformation to the localized value. The localized value (after casing styles are applied) will be pass as a prop for your function. | `Function` |
+<br/>
 
-***Valid Example:***
+| Returns | Type |
+| --- | --- |
+| The localized value. | `unknown` |
+<br/>
+
+***Example:***
 
 | Keyword             | Localization     |
 | ------------------- | ---------------- |
@@ -149,53 +215,164 @@ Its value should be one of `"lowercase"`, `"localeLowercase"`, `"uppercase"`, `"
 
 <br/>
 
-# `isAuto`
-Checks if `autoDetect` is turned on.
+## `isAuto`
+Checks if auto language detection is enabled.
 
-***Valid Example:***
+| Returns | Type |
+| --- | --- |
+| Usage of auto language detection. | `boolean` |
+<br/>
+
+***Example:***
 
     langutil.isAuto()
 <br/>
 
-# `logs.show`
+## `logs`
+This object contains 3 functions for all your logging needs.
+
+### `show`
 Shows all logs from `langutil`. Logs are shown by default in development mode and disabled entirely in production mode regardless of this method.
 
-***Valid Example:***
+***Example:***
 
     langutil.logs.show()
 <br/>
 
-# `logs.hide`
+### `hide`
 Hides all logs from `langutil`. Logs are shown by default in development mode and disabled entirely in production mode regardless of this method.
 
-***Valid Example:***
+***Example:***
 
     langutil.logs.hide()
 <br/>
 
-# `logs.focus`
+### `focus`
 If you have hidden away langutil logs at the beginning of your code and only want to log a portion of it, place your code inside a callback in this function.
 
-**`logs.focus(callback): boolean`**
+The callback which you want langutil to focus its logs on.
 
-* **`callback: (Function)`**<br/>The callback which you want langutil to focus its logs on.
+| Parameter  | Description | Type |
+| --- | --- | --- |
+| `callback` | The callback which you want langutil to focus its logs on. | `Function` |
+<br/>
+
+| Returns | Type |
+| --- | --- |
+| Whether the callback was sucessful or not. | `boolean` |
+<br/>
 
 ***Valid Example:***
 
+    let localizedString
     langutil.logs.focus(()=>{
-        var localizedString = langutil.localizeWith({
+        localizedString = langutil.localizeWith({
             keyword: "HELLO_PARAM",
             paramArray: ["World"]
         })
     })
 <br/>
 
-# `hideLogs`
-Call this method to disable logs from langutil. Any langutil methods that are called after this will no longer show logs and warnings.
+# 2. Additions
+Additions can be imported separately only when needed. As of now, there are two addition packs: one for [React](https://reactjs.org) and one for [React Native](https://facebook.github.io/react-native/).
 
-***Valid Example:***
+<br/>
 
-    langutil.logs.show()
+## `Localizable`
+A wrapper component for rendering HTML or custom React elements as well as `<Text/>` in React Native.
+
+| Props | Decription | Type | Used in React | Used in React Native |
+| --- | --- | --- | --- | --- |
+| `keyword` | A short string representing the localized value. | `string` | Yes | Yes |
+| `paramArray?` | There are times when it is not possible to define every possible string in the dictionary due to changing variables. This is how you can combine them with your localizations instead. | `Array<unknown>` | Yes | Yes |
+| `casing?` | Casing styles that will be applied to if the localized value is a string. | [`LocalizableCasings`]() | Yes | Yes |
+| `transform?` | Applies a transformation to the localized value. The localized value (after casing styles are applied) will be pass as a prop for your function. | `Function` | Yes | Yes |
+| `renderAs?` | Specify which type of HTML/React element you would like your localizations to be rendered into. By default it is rendered as a `<span>`. | `unknown` | Yes | **No** |
+<br/>
+
+***Examples:***
+
+    // --- REACT ---
+    import React from 'react'
+    import { Localizable } from 'langutil/react-additions'
+
+    export default function MyScreen() {
+        return (
+            <div>
+                <Localizable renderAs="h1" keyword="WELCOME_TO_MY_PAGE">
+                <Localizable renderAs="p" keyword="LOREM_IPSUM">
+            </div>
+        )
+    }
+<br/>
+
+    // --- REACT NATIVE ---
+    import React from 'react'
+    import { StyleSheet, View } from 'react-native'
+    import { Localizable } from 'langutil/native-additions'
+
+    export default function MyScreen() {
+        return (
+            <View>
+                <Localizable keyword="WELCOME_TO_MY_PAGE" style={styles.title}>
+                <Localizable keyword="LOREM_IPSUM" style={styles.content}>
+            </View>
+        )
+    }
+
+    const styles = StyleSheet.create({
+        title: {
+            fontSize: 32,
+            fontWeight: 'bold'
+        },
+        content: {
+            fontSize: 16
+        }
+    })
+<br/>
+
+## `detectLanguage`
+Detect language in _(and only for)_ React Native.
+
+***Example:***
+
+    import { init } from 'langutil'
+    import dictionary from './dictionary'
+    import { detectLanguage } from 'langutil/native-additions'
+
+    // ❌ This will not work
+    init(dictionary, 'en', true)
+
+    // ✅ This will work
+    init(dictionary, 'en', detectLanguage)
+<br/>
+
+# 3. Interfaces
+
+...
 
 
-***NOTE: This function will be removed by June 2019. Use `langutil.logs.hide()` or `langutil.logs.show()` instead.***
+<br/>
+
+# 4. Types
+
+## LocalizableCasings
+* `"lowercase"`
+* `"localeLowercase"`
+* `"uppercase"`
+* `"localeUppercase"`
+* `"titleCase"`
+* `"sentenceCase"`
+
+<br/>
+
+# 5. Appendix
+
+## Language List
+
+> Pending...
+
+
+<br/>
+
+

@@ -2,7 +2,7 @@
  * @author chin98edwin
  * @copyright Copyright (c) 2018 - 2019, chin98edwin
  * @description Localization for JavaScript made simple.
- * @version 2.2.4
+ * @version 2.3.0
 **/
 
 declare namespace langutil {
@@ -11,22 +11,22 @@ declare namespace langutil {
      * @description Initialize langutil with a dictionary and language.
      * @param dictionary The object storing all your localizations.
      * @param language The display language.
-     * @param autoDetect Should the computer figure out the client's browser language?
+     * @param auto Should the device figure out the client's browser language?
      */
     function init(
         dictionary: object | Array<Keyword>,
         language: LanguageCodes,
-        autoDetect?: boolean
+        auto?: boolean | Function
     ): void;
 
     /**
      * @description Sets the display language.
      * @param language The display language.
-     * @param autoDetect Should the computer figure out the client's browser language?
+     * @param auto Should the device figure out the client's browser language?
      */
     function setLanguage(
         language: LanguageCodes,
-        autoDetect?: boolean
+        auto?: boolean | Function
     ): void;
 
     /**
@@ -53,11 +53,11 @@ declare namespace langutil {
 
     /**
      * @description Maps a keyword to its localized value with additional options.
-     * @param arguments The `keyword`, `paramArray`, `casing`, `transform` function.
+     * @param props Configuration props for the localization.
      * @returns The localized value.
      */
     function localizeWith(
-        arguments: {
+        props: {
             /**
              * @description The keyword for localization.
              */
@@ -69,7 +69,7 @@ declare namespace langutil {
             /**
              * @description Casing styles that will be applied to if the localized value is a string.
              */
-            casing?: localizableCasings;
+            casing?: LocalizableCasings;
             /**
              * @description Applies a transformation to the localized value.
              */
@@ -96,7 +96,7 @@ declare namespace langutil {
     function isAuto(): boolean;
 
     /**
-     * @description Controls the visibility of logs from langutil.
+     * @description Controls the visibility of logs from langutil. By default, logs are shown in development mode. When in production mode, logs will not be displayed at all, even if `logs.show()` or `logs.focus()` has been called.
      */
     namespace logs {
         /**
@@ -104,7 +104,7 @@ declare namespace langutil {
          */
         function hide(): void
         /**
-         * @description Shows logs from langutil. Logs are shown in development mode by default.
+         * @description Shows logs from langutil.
          */
         function show(): void
         /**
@@ -116,13 +116,6 @@ declare namespace langutil {
             callback: Function
         ): boolean
     }
-
-    /**
-     * @description Hides all logs and warnings from langutil functions after the line this functions is called.
-     * @deprecated Will be completely removed by June 2019. Use `langutil.logs.hide()` or `langutil.logs.show()` instead.
-     * @todo Remove in June 2019.
-     */
-    function hideLogs(): void;
 
 }
 
@@ -137,13 +130,24 @@ interface Keyword {
     localizations: LocalizableLanguages;
 }
 
-type localizableCasings =
-| "lowercase"
-| "localeLowercase"
-| "uppercase"
-| "localeUppercase"
-| "titleCase"
-| "sentenceCase"
+interface LocalizeWithProps {
+    /**
+     * @description The keyword for localization.
+     */
+    keyword: string;
+    /**
+     * @description An array of parameters that can be passed into the localization.
+     */
+    paramArray?: Array<unknown>;
+    /**
+     * @description Casing styles that will be applied to if the localized value is a string.
+     */
+    casing?: LocalizableCasings;
+    /**
+     * @description Applies a transformation to the localized value.
+     */
+    transform?: (localizedValue: any) => {};
+}
 
 interface LocalizableLanguages {
     /** Afrikaans */ "af": string;
@@ -264,6 +268,14 @@ interface LocalizableLanguages {
     /** Yiddish */ "ji": string;
     /** Zulu */ "zu": string;
 }
+
+type LocalizableCasings =
+| "lowercase"
+| "localeLowercase"
+| "uppercase"
+| "localeUppercase"
+| "titleCase"
+| "sentenceCase"
 
 type LanguageCodes = "af" | "sq" | "ar-sa" | "ar-iq" | "ar-eg" | "ar-ly" | "ar-dz" | "ar-ma" | "ar-tn" | "ar-om" | "ar-ye" | "ar-sy" | "ar-jo" | "ar-lb" | "ar-kw" | "ar-ae" | "ar-bh" | "ar-qa" | "eu" | "bg" | "be" | "ca" | "zh-tw" | "zh-cn" | "zh-hk" | "zh-sg" | "hr" | "cs" | "da" | "nl" | "nl-be" | "en" | "en-us" | "en-gb" | "en-au" | "en-ca" | "en-nz" | "en-ie" | "en-za" | "en-jm" | "en" | "en-bz" | "en-tt" | "et" | "fo" | "fa" | "fi" | "fr" | "fr-be" | "fr-ca" | "fr-ch" | "fr-lu" | "gd" | "gd-ie" | "de" | "de-ch" | "de-at" | "de-lu" | "de-li" | "el" | "he" | "hi" | "hu" | "is" | "id" | "it" | "it-ch" | "ja" | "ko" | "ko" | "lv" | "lt" | "mk" | "mt" | "no" | "no" | "pl" | "pt-br" | "pt" | "rm" | "ro" | "ro-mo" | "ru" | "ru-mo" | "sz" | "sr" | "sr" | "sk" | "sl" | "sb" | "es" | "es" | "es-ar" | "es-gt" | "es-cr" | "es-pa" | "es-do" | "es-mx" | "es-ve" | "es-co" | "es-pe" | "es-ec" | "es-cl" | "es-uy" | "es-py" | "es-bo" | "es-sv" | "es-hn" | "es-ni" | "es-pr" | "sx" | "sv" | "sv-fi" | "th" | "ts" | "tn" | "tr" | "uk" | "ur" | "ve" | "vi" | "xh" | "ji" | "zu"
 
