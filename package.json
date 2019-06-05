@@ -1,7 +1,7 @@
 {
   "name": "langutil",
   "description": "Localization for JavaScript made simple. ",
-  "version": "2.2.4",
+  "version": "2.2.5",
   "author": "chin98edwin",
   "directories": {
     "doc": "docs",
@@ -12,7 +12,9 @@
   "files": [
     "/lib",
     "index.d.ts",
-    "index.js"
+    "index.js",
+    "/react-additions",
+    "/native-additions"
   ],
   "scripts": {
     "lint-dev": "./node_modules/.bin/eslint lib/langutil.dev.js",
@@ -25,10 +27,10 @@
     "url": "https://github.com/chin98edwin/langutil.git"
   },
   "keywords": [
-    "localization",
-    "translation",
+    "accessibility",
     "language",
-    "accessibility"
+    "localization",
+    "translation"
   ],
   "readme": "README.md",
   "license": "ISC",
@@ -46,8 +48,5 @@
       "/__tests__/baseImplementation/",
       "/demo"
     ]
-  },
-  "peerDependencies": {
-    "react-native": "latest"
   }
 }

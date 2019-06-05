@@ -6,10 +6,6 @@ module.exports = function () {
      *                    LOG                    *
      * * * * * * * * * * * * * * * * * * * * * * */
 
-    test("hideLogs", () => {
-        langutil.hideLogs()
-    })
-
     test("logs.hide", () => {
         langutil.logs.hide()
     })
