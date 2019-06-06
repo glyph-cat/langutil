@@ -88,7 +88,8 @@
 
 ## 2.3.0
 * Internal optimization for better performance and debugging experience.
-* The repo now includes templates for dictionaries, some of the most commonly used words are readily translated. More translations will be added over time. It is not included in the package to maintain a small size.
+* Automatic language detection for React Native is no longer included in the core to avoid conflict with webpack config in some cases. It has been splitted out as a function and can be imported from `'langutil/native-additions'`
+* The [repo](https://github.com/chin98edwin/langutil/tree/master/dictionary) now includes template dictionaries, some of the most commonly used words are readily translated. More translations will be added over time.
 * Additions for React:
     * New <Localizable> component that acts as a wrapper for HTML or React elements.
 * Additions React Native:
