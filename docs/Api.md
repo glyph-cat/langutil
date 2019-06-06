@@ -379,7 +379,7 @@ Detect language in _(and only for)_ React Native.
 | ... | ... | `string` |
 
 
-Please refer to [Language List](##-Language-List) in the Appendix for a complete list of language codes.
+Please refer to [Language List](##-Language-List) in the Appendix for a complete list of language and their codes.
 
 <br/>
 
@@ -408,8 +408,6 @@ Please refer to [Language List](##-Language-List) in the Appendix for a complete
 # 5. Appendix
 
 ## Language List
-
-GoTo: []()
 
 | | Language | Code |
 | --- | --- | --- |
