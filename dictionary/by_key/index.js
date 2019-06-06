@@ -1,4 +1,4 @@
-const { createKey } = require("../../index");
+const { createKey } = require("langutil");
 
 module.exports = [
     createKey("ACCOUNT", {
@@ -41,10 +41,6 @@ module.exports = [
         "en": "Help",
         "ms": "Pertolongan"
     }),
-    createKey("NAME", {
-        "en": "Name",
-        "ms": "Nama"
-    }),
     createKey("LOGIN", {
         "en": "Login",
         "ms": "Log masuk"
@@ -52,6 +48,10 @@ module.exports = [
     createKey("LOGOUT", {
         "en": "Logout",
         "ms": "Log keluar"
+    }),
+    createKey("NAME", {
+        "en": "Name",
+        "ms": "Nama"
     }),
     createKey("MALE", {
         "en": "Male",
