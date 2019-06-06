@@ -22,7 +22,7 @@ Langutil is a localizing tool for JavaScript. It comes with several powerful and
 1. [Installation](#installation)
 2. [Basic Example](#basic-example)
 3. [Quick Links](#quick-links)
-3. [Demos](#demos)
+3. [Demo Projects](#demo-projects)
 <br/>
 
 # Installation
@@ -58,7 +58,8 @@ In your project's directory, run the command below:
             "zh-cn": "哈咯"
         }
     ]
-<!---->
+<br/>
+
     // <your-project>/index.js
 
     import { init, localizeWith } from 'langutil'
@@ -80,10 +81,13 @@ In your project's directory, run the command below:
 * [Support me on PayPal](https://www.paypal.me/chin98edwin)
 <br/><br/>
 
-# Demos
-* `demo-create-react-app` (Coming soon)
-* `demo-expo` (Coming soon)
-* `demo-html` (Coming soon)
-* `demo-node-js` [**(View on GitHub)**](https://github.com/chin98edwin/langutil/tree/master/demo/demo-node-js)
-* `demo-react-native-init` (Coming soon)
+# Demo Projects
+
+| Usage with | Repo | Status |
+| --- | --- | --- |
+| `create-react-app` | [GitHub](https://github.com/chin98edwin/langutil-demo-create-react-app) | ❌ **Incomplete** |
+| Expo | [GitHub](https://github.com/chin98edwin/langutil-demo-expo) | ❌ **Incomplete** |
+| NodeJS | [GitHub](https://github.com/chin98edwin/langutil-demo-node-js/) | ✅ Complete |
+| `react-native init` | [GitHub](https://github.com/chin98edwin/langutil-demo-react-native-init) | ❌ **Incomplete** |
+
 <br/><br/>
