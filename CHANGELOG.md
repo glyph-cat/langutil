@@ -17,10 +17,11 @@ A typical file used to initialize `langutil` would now look like this:
 
 </pre>
 
-What if I forgot to change?
-* Your app will not break but automatic language detecttion
+<br/>
 
-***NOTE:** If you are using langutil ≥2.3.0 in React Native and you've only set the `auto` parameter to `true`, your app will not break (phew), but automatic language detection will stop working*
+***What happens if I don't to change?***
+* Your app will not break but automatic language detection will stop to work on your apps, as a result, whatever language code that was passed in will be used.
+
 
 <br/>
 
