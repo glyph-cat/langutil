@@ -1,1 +1,0 @@
-Please make sure you run `npm install` (first time after download) prior to launching any of the demos.

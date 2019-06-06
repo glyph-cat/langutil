@@ -379,8 +379,7 @@ Detect language in _(and only for)_ React Native.
 | ... | ... | `string` |
 
 
-
-Refer to [Appendix](#-5.-Appendix) for a complete list of language codes.
+Please refer to [Language List](##-Language-List) in the Appendix for a complete list of language codes.
 
 <br/>
 
@@ -402,7 +401,7 @@ Refer to [Appendix](#-5.-Appendix) for a complete list of language codes.
 * `"ar-sa"`
 * ... _(and so on)_
 
-Refer to [Appendix](#-5.-Appendix) for a complete list of language codes.
+Please refer to [Language List](##-Language-List) in the Appendix for a complete list of language codes.
 
 <br/>
 
@@ -410,9 +409,125 @@ Refer to [Appendix](#-5.-Appendix) for a complete list of language codes.
 
 ## Language List
 
-> Pending...
+GoTo: []()
 
-
+| | Language | Code |
+| --- | --- | --- |
+| **A** | Afrikaans | `"af"` |
+| | Albanian | `"sq"` |
+| | Arabic (Saudi Arabia) | `"ar-sa"` |
+| | Arabic (Iraq) | `"ar-iq"` |
+| | Arabic (Egypt) | `"ar-eg"` |
+| | Arabic (Libya) | `"ar-ly"` |
+| | Arabic (Algeria) | `"ar-dz"` |
+| | Arabic (Morocco) | `"ar-ma"` |
+| | Arabic (Tunisia) | `"ar-tn"` |
+| | Arabic (Oman) | `"ar-om"` |
+| | Arabic (Yemen) | `"ar-ye"` |
+| | Arabic (Syria) | `"ar-sy"` |
+| | Arabic (Jordan) | `"ar-jo"` |
+| | Arabic (Lebanon) | `"ar-lb"` |
+| | Arabic (Kuwait) | `"ar-kw"` |
+| | Arabic (Bahrain) | `"ar-bh"` |
+| | Arabic (Qatar) | `"ar-qa"` |
+| **B** | Basque | `"eu"` |
+| | Bulgarian | `"bg"` |
+| | Belarusian | `"be"` |
+| **C** | Catalan | `"ca"` |
+| | Chinese (Taiwan) | `"zh-tw"` |
+| | Chinese (PRC) | `"zh-cn"` |
+| | Chinese (Hong Kong SAR) | `"zh-hk"` |
+| | Chinese (Singapore) | `"zh-sg"` |
+| | Croatian | `"hr"` |
+| | Czech | `"cs"` |
+| **D** | Danish | `"da"` |
+| | Dutch (Standard) | `"nl"` |
+| | Dutch (Belgium) | `"nl-be"` |
+| **E** | English, English (Caribbean) | `"en"` |
+| | English (United States) | `"en-us"` |
+| | English (United Kingdom) | `"en-gb"` |
+| | English (Australia) | `"en-au"` |
+| | English (Canada) | `"en-ca"` |
+| | English (New Zealand) | `"en-nz"` |
+| | English (Ireland) | `"en-ie"` |
+| | English (South Africa) | `"en-za"` |
+| | English (Jamaica) | `"en-jm"` |
+| | English (Belize) | `"en-bz"` |
+| | English (Trinidad) | `"en-tt"` |
+| | Estonian | `"et"` |
+| **F** | Faeroese | `"fo"` |
+| | Farsi | `"fa"` |
+| | Finnish | `"fi"` |
+| | French (Standard) | `"fr"` |
+| | French (Belgium) | `"fr-be"` |
+| | French (Canada) | `"fr-ca"` |
+| | French (Switzerland) | `"fr-ch"` |
+| | French (Luxembourg) | `"fr-lu"` |
+| **G** | Gaelic (Scotland) | `"gd"` |
+| | Gaelic (Ireland) | `"gd-ie"` |
+| | German (Standard) | `"de"` |
+| | German (Switzerland) | `"de-ch"` |
+| | German (Austria) | `"de-at"` |
+| | German (Luxembourg) | `"de-lu"` |
+| | German (Liechtenstein) | `"de-li"` |
+| | Greek | `"el"` |
+| **H** | Hebrew | `"he"` |
+| | Hindi | `"hi"` |
+| | Hungarian | `"hu"` |
+| **I** | Icelandic | `"is"` |
+| | Indonesian | `"id"` |
+| | Italian (Standard) | `"it"` |
+| | Italian (Switzerland) | `"it-ch"` |
+| **J** | Japanese | `"ja"` |
+| **K** | Korean, Korean (Johab) | `"ko"` |
+| **L** | Latvian | `"lv"` |
+| | Lithuanian | `"lt"` |
+| **M** | Macedonian | `"mk"` |
+| | Malaysian | `"ms"` |
+| | Maltese | `"mt"` |
+| **N** | Norwegian (Bokmal), Norwegian (Nynorsk) | `"no"` |
+| **P** | Polish | `"pl"` |
+| | Portuguese (Brazil) | `"pt-br"` |
+| | Portuguese (Portugal) | `"pt"` |
+| **R** | Romanian | `"ro"` |
+| | Romanian (Moldavia) | `"ro-mo"` |
+| | Russian | `"ru"` |
+| | Russian (Moldavia) | `"ru-mo"` |
+| **S** | Sami (Lappish) | `"sz"` |
+| | Serbian (Cyrillic), Serbian (Latin) | `"sr"` |
+| | Slovak | `"sk"` |
+| | Slovenian | `"sl"` |
+| | Sorbian | `"sb"` |
+| | Spanish (Argentina) | `"es-ar"` |
+| | Spanish (Guatemala) | `"es-gt"` |
+| | Spanish (Costa Rica) | `"es-cr"` |
+| | Spanish (Panama) | `"es-pa"` |
+| | Spanish (Dominican Republic) | `"es-do"` |
+| | Spanish (Mexico) | `"es-mx"` |
+| | Spanish (Venezuela) | `"es-ve"` |
+| | Spanish (Colombia) | `"es-co"` |
+| | Spanish (Peru) | `"es-pe"` |
+| | Spanish (Ecuador) | `"es-ec"` |
+| | Spanish (Chile) | `"es-cl"` |
+| | Spanish (Uruguay) | `"es-uy"` |
+| | Spanish (Paraguay) | `"es-py"` |
+| | Spanish (Bolivia) | `"es-bo"` |
+| | Spanish (El Salvador) | `"es-sv"` |
+| | Spanish (Honduras) | `"es-hn"` |
+| | Spanish (Nicaragua) | `"es-ni"` |
+| | Spanish (Puerto Rico) | `"es-pr"` |
+| | Sutu | `"sx"` |
+| | Swedish | `"sv"` |
+| | Swedish (Finland) | `"sv-fi"` |
+| **T** | Thai | `"th"` |
+| | Tsonga | `"ts"` |
+| | Tswana | `"tn"` |
+| | Turkish | `"tr"` |
+| **U** | Ukrainian | `"uk"` |
+| | Urdu | `"ur"` |
+| **V** | Venda | `"ve"` |
+| | Vietnamese | `"vi"` |
+| **X** | Xhosa | `"xh"` |
+| **Y** | Yiddish | `"ji"` |
+| **Z** | Zulu | `"zu"` |
 <br/>
-
-

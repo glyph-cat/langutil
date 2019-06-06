@@ -2,6 +2,7 @@ import * as React from "react"
 import * as ReactNative from "react-native"
 
 interface NativeLocalizableProps {
+    children: string;
     /**
      * @description The keyword for localization.
      */
