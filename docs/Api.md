@@ -42,8 +42,8 @@ Use this function to initialize langutil with a dictionary and language. This fu
 
 | Parameter | Description | Type | Default Value |
 | --- | --- | --- | --- |
-| `dictionary` | The object storing all your localizations. | `Array<`[`Keyword`]()`>` or `object` | |
-| `language` | Refer to `setLanguage` | [`LanguageCodes`]() | |
+| `dictionary` | The object storing all your localizations. | `Array<`[`Keyword`](##-`Keyword`)`>` or `object` | |
+| `language` | Refer to `setLanguage` | [`LanguageCodes`](##-`LanguageCodes`) | |
 | `auto?` | Refer to `setLanguage` | `boolean` | `false` |
 <br/>
 
