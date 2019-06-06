@@ -23,13 +23,13 @@ interface ReactLocalizableProps {
     renderAs?: unknown;
 }
 
-type localizableCasings =
-    | "lowercase"
-    | "localeLowercase"
-    | "uppercase"
-    | "localeUppercase"
-    | "titleCase"
-    | "sentenceCase"
+type LocalizableCasings =
+| "lowercase"
+| "localeLowercase"
+| "uppercase"
+| "localeUppercase"
+| "titleCase"
+| "sentenceCase"
 
 /**
  * @description A wrapper component for rendering HTML/React elements.

@@ -4,11 +4,10 @@ module.exports = { Localizable: Localizable };
 function Localizable({
     keyword, children, paramArray = [], casing, transform, renderAs = "span", ...otherProps
 }) {
-    let kWordToUse = ""
-    if (keyword) { kWordToUse = keyword } else if (children) { kWordToUse = children }
+    if (!children && keyword) { children = keyword; }
     if (typeof children === "string") {
         children = langutil.localizeWith({
-            keyword: kWordToUse,
+            keyword: children,
             paramArray: paramArray,
             casing: casing,
             transform: transform
