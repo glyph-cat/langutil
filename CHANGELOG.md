@@ -29,6 +29,7 @@ A typical file used to initialize `langutil` would now look like this:
 
 For React,
 
+    import React from 'react'
     import { Localizable } from 'langutil/react-additions'
 
     const Screen = () => (
@@ -51,6 +52,7 @@ For React,
 <br/>
 For React Native,
 
+    import React from 'react'
     import { Alert, View } from 'react-native'
     import { Localizable } from 'langutil/native-additions'
 
