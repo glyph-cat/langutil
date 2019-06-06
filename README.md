@@ -80,9 +80,9 @@ In your project's directory, run the command below:
 
 | Usage with | Repo | Status |
 | --- | --- | --- |
-| `create-react-app` | [GitHub](https://github.com/chin98edwin/langutil-demo-create-react-app) | ❌ **Incomplete** |
-| Expo | [GitHub](https://github.com/chin98edwin/langutil-demo-expo) | ❌ **Incomplete** |
+| `create-react-app` | [GitHub](https://github.com/chin98edwin/langutil-demo-create-react-app) | 🔶 **In Progress** |
+| Expo | [GitHub](https://github.com/chin98edwin/langutil-demo-expo) | 🔶 **In Progress** |
 | NodeJS | [GitHub](https://github.com/chin98edwin/langutil-demo-node-js/) | ✅ Complete |
-| `react-native init` | [GitHub](https://github.com/chin98edwin/langutil-demo-react-native-init) | ❌ **Incomplete** |
+| `react-native init` | [GitHub](https://github.com/chin98edwin/langutil-demo-react-native-init) | 🔶 **In Progress** |
 
 <br/><br/>
