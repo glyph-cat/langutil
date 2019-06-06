@@ -7,6 +7,11 @@
 
 Langutil is a localizing tool for JavaScript. It comes with several powerful and flexible functions with it's core functions all in one file. Additional modules for special use cases can be imported separately only when needed. Keep on reading to get started.
 
+1. [Installation](#installation)
+2. [Basic Example](#basic-example)
+3. [Quick Links](#quick-links)
+3. [Demo Projects](#demo-projects)
+
 ## Top Features
 
 * **☝️ Everything in one file**<br/>The core implementation comes in just one file and is free of dependencies. (Works with React and React Native too)
@@ -15,14 +20,6 @@ Langutil is a localizing tool for JavaScript. It comes with several powerful and
 * **💫 Very, Very Flexible output values**<br/>Set anything as the output localization. Yes, you got that right. Numbers, functions, images, boolean values... basically any data type that works in JavaScript. You probably wouldn't need all this flexibilty... but hey, it just works!
 * **🦄 Apply Transformation to your Localizations**<br/>Apply casing styles such as **UPPER CASE**, **lower case**, **Title Case** or **Sentence case**. You can even define your own transformations with a custom function!
 
-<br/>
-
-# Table of Contents
-
-1. [Installation](#installation)
-2. [Basic Example](#basic-example)
-3. [Quick Links](#quick-links)
-3. [Demo Projects](#demo-projects)
 <br/>
 
 # Installation
@@ -36,9 +33,7 @@ In your project's directory, run the command below:
 
     yarn add langutil
 
-**By Cloning:**
-
-    cd path/to/your/project && git clone https://github.com/chin98edwin/langutil.git
+<br/>
 
 # Basic Example
 
