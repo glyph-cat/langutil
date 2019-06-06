@@ -20,13 +20,13 @@ interface NativeLocalizableProps {
     transform?: (localizedValue: any) => {};
 }
 
-type localizableCasings =
-    | "lowercase"
-    | "localeLowercase"
-    | "uppercase"
-    | "localeUppercase"
-    | "titleCase"
-    | "sentenceCase"
+type LocalizableCasings =
+| "lowercase"
+| "localeLowercase"
+| "uppercase"
+| "localeUppercase"
+| "titleCase"
+| "sentenceCase"
 
 /**
  * @description A wrapper component for <Text/>.

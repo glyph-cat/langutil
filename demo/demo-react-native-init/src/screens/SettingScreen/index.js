@@ -1,7 +1,7 @@
 import React from 'react'
 import { ScrollView, StyleSheet, Text } from 'react-native'
 
-export default class Screen extends React.Component {
+export default class SettingScreen extends React.Component {
 
     render() {
         return (

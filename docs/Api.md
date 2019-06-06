@@ -14,9 +14,12 @@
     * [Localizable](##-`Localizable`)
     * [detectLanguage](##-`detectLanguage`)
 3. [Interfaces](#-3.-Interfaces)
-    * ...
+    * [Keyword](##-`Keyword`)
+    * [LocalizeWithProps](##-`LocalizeWithProps`)
+    * [LocalizableLanguages](##-`LocalizableLanguages`)
 4. [Types](#-4.-Types)
-    * [LocalizableCasings](##-LocalizableCasings)
+    * [LocalizableCasings](##-`LocalizableCasings`)
+    * [LanguageCodes](##-`LanguageCodes`)
 5. [Appendix](#-5.-Appendix)
     * [Language List](##-Language-List)
 
@@ -64,7 +67,7 @@ Allows the prefered language to be changed during runtime such as when switching
 
 | Parameter  | Description | Type | Default Value |
 | --- | --- | --- | --- |
-| `language` | The language in which your content will be displayed. | [`LanguageCodes`]() | |
+| `language` | The language in which your content will be displayed. | [`LanguageCodes`](##-`LanguageCodes`) | |
 | `auto?` | Should the device attempt to figure out the user's language? if it fails, `language` will be used as fallback instead. | `boolean` | `false` |
 <br/>
 
@@ -101,7 +104,7 @@ Allows you to define your dictionary by keyword.
 
 | Returns | Type |
 | --- | --- |
-| A Keyword object. | [`Keyword`]() |
+| A Keyword object. | [`Keyword`](##-`Keyword`) |
 <br/>
 
 ***Examples:***
@@ -185,7 +188,7 @@ Maps a keyword to its localized value with additional options.
 | --- | --- | --- |
 | `keyword` | A short string representing the localized value. | `string` |
 | `paramArray?` | There are times when it is not possible to define every possible string in the dictionary due to changing variables. This is how you can combine them with your localizations instead. | `Array<unknown>` |
-| `casing?` | Casing styles that will be applied to if the localized value is a string. | [`LocalizableCasings`]() |
+| `casing?` | Casing styles that will be applied to if the localized value is a string. | [`LocalizableCasings`](##-`LocalizableCasings`) |
 | `transform?` | Applies a transformation to the localized value. The localized value (after casing styles are applied) will be pass as a prop for your function. | `Function` |
 <br/>
 
@@ -248,7 +251,7 @@ Hides all logs from `langutil`. Logs are shown by default in development mode an
 <br/>
 
 ### `focus`
-If you have hidden away langutil logs at the beginning of your code and only want to log a portion of it, place your code inside a callback in this function.
+If you have choosen to hide away langutil logs from the beginning and only want to log a portion of it, place your code inside a callback in this function.
 
 The callback which you want langutil to focus its logs on.
 
@@ -285,7 +288,7 @@ A wrapper component for rendering HTML or custom React elements as well as `<Tex
 | --- | --- | --- | --- | --- |
 | `keyword` | A short string representing the localized value. | `string` | Yes | Yes |
 | `paramArray?` | There are times when it is not possible to define every possible string in the dictionary due to changing variables. This is how you can combine them with your localizations instead. | `Array<unknown>` | Yes | Yes |
-| `casing?` | Casing styles that will be applied to if the localized value is a string. | [`LocalizableCasings`]() | Yes | Yes |
+| `casing?` | Casing styles that will be applied to if the localized value is a string. | [`LocalizableCasings`](##-`LocalizableCasings`) | Yes | Yes |
 | `transform?` | Applies a transformation to the localized value. The localized value (after casing styles are applied) will be pass as a prop for your function. | `Function` | Yes | Yes |
 | `renderAs?` | Specify which type of HTML/React element you would like your localizations to be rendered into. By default it is rendered as a `<span>`. | `unknown` | Yes | **No** |
 <br/>
@@ -349,20 +352,57 @@ Detect language in _(and only for)_ React Native.
 
 # 3. Interfaces
 
-...
+## `Keyword`
 
+| Parameter | Description | Type |
+| --- | --- | --- |
+| `keyword` | The keyword for localization. | `string` |
+| `localizations` | The translations of the keyword in each language. | [`LocalizableLanguages`](##-`LocalizableLanguages`) |
+<br/>
+
+## `LocalizeWithProps`
+
+| Parameter | Description | Type |
+| --- | --- | --- |
+| `keyword` | The keyword for localization. | `string` |
+| `paramArray?` | An array of parameters that can be passed into the localization. | `Array<unknown>` |
+| `casing?` | Casing styles that will be applied to if the localized value is a string. | [`LocalizableCasings`](##-LocalizableCasings) |
+| `transform?` | Applies a transformation to the localized value. | `Function` |
+<br/>
+
+## `LocalizableLanguages`
+| Parameter | Description | Type |
+| --- | --- | --- |
+| `"af"` | Afrikaans | `string` |
+| `"sq"` | Albanian | `string` |
+| `"ar-sa"` | Arabic (Saudi Arabia) | `string` |
+| ... | ... | `string` |
+
+
+
+Refer to [Appendix](#-5.-Appendix) for a complete list of language codes.
 
 <br/>
 
 # 4. Types
 
-## LocalizableCasings
+## `LocalizableCasings`
 * `"lowercase"`
 * `"localeLowercase"`
 * `"uppercase"`
 * `"localeUppercase"`
 * `"titleCase"`
 * `"sentenceCase"`
+
+<br/>
+
+## `LanguageCodes`
+* `"af"`
+* `"sq"`
+* `"ar-sa"`
+* ... _(and so on)_
+
+Refer to [Appendix](#-5.-Appendix) for a complete list of language codes.
 
 <br/>
 

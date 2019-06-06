@@ -6,17 +6,16 @@ module.exports = { Localizable: Localizable, detectLanguage: detectLanguage };
 function detectLanguage() {
     const getLocale = Platform.select({
         ios: () => { return NativeModules.SettingsManager.settings.AppleLocale },
-        android: () => { return NativeModules.I18nManager.localeIdentifier }
+        android: () => { return NativeModules.I18nManager.localeIdentifier },
     });
     return getLocale();
 }
 
 function Localizable({ keyword, children, paramArray = [], casing, transform, ...otherProps }) {
-    let kWordToUse = ""
-    if (keyword) { kWordToUse = keyword } else if (children) { kWordToUse = children }
+    if (!children && keyword) { children = keyword; }
     if (typeof children === "string") {
         children = langutil.localizeWith({
-            keyword: kWordToUse,
+            keyword: children,
             paramArray: paramArray,
             casing: casing,
             transform: transform
