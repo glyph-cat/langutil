@@ -95,3 +95,8 @@
 * Additions React Native:
     * New <Localizable> component that acts as a wrapper for the `<Text>` tag.
     * Language detection for React Native has been splitted out from the core and moved into the additions folder
+
+## 2.3.1
+* Hot fix for a problem in TypeScript.
+
+<br/>
