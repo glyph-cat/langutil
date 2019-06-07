@@ -1,11 +1,3 @@
-( ) demo-html
-( ) demo-create-react-app
-( ) demo-expo (With React Navigation)
-( ) demo-react-native-init (With React Native Navigation)
 ( ) Create an npm executable that checks for undefined keywords in the entire project directory
 ( ) Rearrange language list to accomodate language codes returned from iOS
 ( ) Follow IETF language codes? https://datahub.io/core/language-codes#resource-ietf-language-tags
-( ) Remove hideLogs()
-
-v3
-( ) <Localizable/> component (Experimental at the moment)

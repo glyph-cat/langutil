@@ -12,7 +12,7 @@ interface ReactLocalizableProps {
     /**
      * @description Casing styles that will be applied to if the localized value is a string.
      */
-    casing?: localizableCasings;
+    casing?: LocalizableCasings;
     /**
      * @description Applies a transformation to the localized value.
      */

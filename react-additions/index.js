@@ -1,4 +1,4 @@
-const React = require('react');
+const React = require("react");
 const langutil = require("langutil");
 module.exports = { Localizable: Localizable };
 function Localizable({

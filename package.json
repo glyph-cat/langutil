@@ -17,6 +17,7 @@
     "/native-additions"
   ],
   "scripts": {
+    "lint-additions": "./node_modules/.bin/eslint native-additions react-additions",
     "lint-dev": "./node_modules/.bin/eslint lib/langutil.dev.js",
     "lint-dev-fix": "./node_modules/.bin/eslint lib/langutil.dev.js --fix",
     "lint-min": "./node_modules/.bin/eslint lib/langutil.min.js",

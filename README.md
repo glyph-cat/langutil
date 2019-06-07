@@ -1,6 +1,6 @@
 [![NPM](https://nodei.co/npm/langutil.png)](https://nodei.co/npm/langutil/)
 <br/>
-[![npm](https://img.shields.io/npm/v/langutil.svg)](https://github.com/chin98edwin/langutil/blob/master/CHANGELOG.md)
+[![npm](https://img.shields.io/npm/v/langutil.svg)](https://www.npmjs.com/package/langutil)
 ![npm bundle size](https://img.shields.io/bundlephobia/min/langutil.svg)
 [![npm](https://img.shields.io/npm/dt/langutil.svg)](https://npm-stat.com/charts.html?package=langutil)
 [![Travis CI](https://img.shields.io/travis/com/chin98edwin/langutil.svg)](https://travis-ci.com/chin98edwin/langutil)
