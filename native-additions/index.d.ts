@@ -19,6 +19,10 @@ interface NativeLocalizableProps {
      * @description Applies a transformation to the localized value.
      */
     transform?: (localizedValue: any) => {};
+    /**
+     * @description Specify a custom component that you would like your localizations to be rendered into. By default it is rendered as a `<Text>` from th React Native library.
+     */
+    renderAs?: unknown;
 }
 
 type LocalizableCasings =

@@ -99,4 +99,8 @@
 ## 2.3.1
 * Hot fix for a problem in TypeScript.
 
+## 2.3.2
+* Warnings are shown in groups for missing localizations.
+* You can pass in custom components via the `renderAs` prop in React Native like how it can be done in React.
+
 <br/>

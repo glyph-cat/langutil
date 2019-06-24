@@ -1,3 +1,4 @@
+( ) A function in dev-additions that can help restructure how the dictionary is defined (byKey or byLang)
 ( ) Create an npm executable that checks for undefined keywords in the entire project directory
 ( ) Rearrange language list to accomodate language codes returned from iOS
 ( ) Follow IETF language codes? https://datahub.io/core/language-codes#resource-ietf-language-tags

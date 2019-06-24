@@ -11,7 +11,9 @@ function detectLanguage() {
     return getLocale();
 }
 
-function Localizable({ keyword, children, paramArray = [], casing, transform, ...otherProps }) {
+function Localizable({
+    keyword, children, paramArray = [], casing, transform, renderAs = Text, ...otherProps
+}) {
     if (!children && keyword) { children = keyword; }
     if (typeof children === "string") {
         children = langutil.localizeWith({
@@ -21,5 +23,5 @@ function Localizable({ keyword, children, paramArray = [], casing, transform, ..
             transform: transform
         });
     }
-    return React.createElement(Text, otherProps, children);
+    return React.createElement(renderAs, otherProps, children);
 }

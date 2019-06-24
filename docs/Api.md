@@ -284,41 +284,62 @@ Additions can be imported separately only when needed. As of now, there are two 
 ## `Localizable`
 A wrapper component for rendering HTML or custom React elements as well as `<Text/>` in React Native.
 
-| Props | Decription | Type | Used in React | Used in React Native |
-| --- | --- | --- | --- | --- |
-| `keyword` | A short string representing the localized value. | `string` | Yes | Yes |
-| `paramArray?` | There are times when it is not possible to define every possible string in the dictionary due to changing variables. This is how you can combine them with your localizations instead. | `Array<unknown>` | Yes | Yes |
-| `casing?` | Casing styles that will be applied to if the localized value is a string. | [`LocalizableCasings`](##-`LocalizableCasings`) | Yes | Yes |
-| `transform?` | Applies a transformation to the localized value. The localized value (after casing styles are applied) will be pass as a prop for your function. | `Function` | Yes | Yes |
-| `renderAs?` | Specify which type of HTML/React element you would like your localizations to be rendered into. By default it is rendered as a `<span>`. | `unknown` | Yes | **No** |
+| Props | Decription | Type |
+| --- | --- | --- |
+| `keyword` | A short string representing the localized value. | `string` |
+| `paramArray?` | There are times when it is not possible to define every possible string in the dictionary due to changing variables. This is how you can combine them with your localizations instead. | `Array<unknown>` |
+| `casing?` | Casing styles that will be applied to if the localized value is a string. | [`LocalizableCasings`](##-`LocalizableCasings`) |
+| `transform?` | Applies a transformation to the localized value. The localized value (after casing styles are applied) will be pass as a prop for your function. | `Function` |
+| `renderAs?` | Specify which type of HTML/React element or custom component you would like your localizations to be rendered into. By default it is rendered as a `<span>` in React and `<Text/>` in React Native. | `unknown` |
 <br/>
 
-***Examples:***
+***Example (React):***
 
-    // --- REACT ---
     import React from 'react'
     import { Localizable } from 'langutil/react-additions'
+
+    const CustomComponent({ text }) {
+        return (
+            <div>
+                <div>{/* Something else here */}</div>
+                <span>{text}</span>
+                <div>{/* Something else here */}</div>
+            </iv>
+        )
+    }
 
     export default function MyScreen() {
         return (
             <div>
                 <Localizable renderAs="h1" keyword="WELCOME_TO_MY_PAGE">
                 <Localizable renderAs="p" keyword="LOREM_IPSUM">
+                <Localizable renderAs={CustomComponent} keyword="FOO_BAR">
             </div>
         )
     }
 <br/>
 
-    // --- REACT NATIVE ---
+***Example (React Native):***
+
     import React from 'react'
     import { StyleSheet, View } from 'react-native'
     import { Localizable } from 'langutil/native-additions'
+
+    function CustomComponent({ text }) {
+        return (
+            <View>
+                <View>{/* Something else here */}</View>
+                <Text>{text}</Text>
+                <View>{/* Something else here */}</View>
+            </View>
+        )
+    }
 
     export default function MyScreen() {
         return (
             <View>
                 <Localizable keyword="WELCOME_TO_MY_PAGE" style={styles.title}>
-                <Localizable keyword="LOREM_IPSUM" style={styles.content}>
+                <Localizable renderAs={CustomComponent} keyword="LOREM_IPSUM" style={styles.content}>
             </View>
         )
     }
@@ -343,7 +364,7 @@ Detect language in _(and only for)_ React Native.
     import dictionary from './dictionary'
     import { detectLanguage } from 'langutil/native-additions'
 
-    // ❌ This will not work
+    // ❌ This will not work, 'en' will be set as the language
     init(dictionary, 'en', true)
 
     // ✅ This will work
