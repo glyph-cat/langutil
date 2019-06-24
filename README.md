@@ -1,5 +1,3 @@
-[![NPM](https://nodei.co/npm/langutil.png)](https://nodei.co/npm/langutil/)
-<br/>
 [![npm](https://img.shields.io/npm/v/langutil.svg)](https://www.npmjs.com/package/langutil)
 ![npm bundle size](https://img.shields.io/bundlephobia/min/langutil.svg)
 [![npm](https://img.shields.io/npm/dt/langutil.svg)](https://npm-stat.com/charts.html?package=langutil)
