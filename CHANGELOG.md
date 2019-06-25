@@ -1,4 +1,4 @@
-# langutil 2.3.0
+# langutil 2.3.X
 
 ## Changes to automatic language detection in React Native
 Automatic language detection for React Native is no longer included in the core to avoid conflict with webpack config in some cases. It has been splitted out as a function and can be imported from `'langutil/native-additions'`.
@@ -75,6 +75,11 @@ For React Native,
 
 ## Template Dictionaries
 * The [repo](https://github.com/chin98edwin/langutil/tree/master/dictionary) now includes template dictionaries, some of the most commonly used words are readily translated. More translations will be added over time.
+
+<br/>
+
+## Grouped Warning for Missing Localizations
+* Warnings for missing localizations are now grouped to reduce the clutter in your console. For example, all missing localizations in a screen will be shown in one log when they are mounted, as you navigate to another screen (with missing localizations), another log will show up summarizing the missing localizations in that screen.
 
 <br/>
 
