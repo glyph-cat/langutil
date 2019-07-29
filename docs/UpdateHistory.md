@@ -103,4 +103,7 @@
 * Grouped warnings for missing localizations.
 * You can pass in custom components via the `renderAs` prop in React Native like how it can be done in React.
 
+## 2.3.3
+* Fixed issue where already-warned keywords still show up in group warnings.
+
 <br/>
