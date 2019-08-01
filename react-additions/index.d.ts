@@ -21,6 +21,10 @@ interface ReactLocalizableProps {
      * @description Specify which type of HTML/React element you would like your localizations to be rendered into. By default it is rendered as a `<span>`.
      */
     renderAs?: unknown;
+    /**
+     * @description Ignore warnings about empty keywords.
+     */
+    allowEmpty?: boolean;
 }
 
 type LocalizableCasings =

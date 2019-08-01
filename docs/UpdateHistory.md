@@ -106,4 +106,9 @@
 ## 2.3.3
 * Fixed issue where already-warned keywords still show up in group warnings.
 
+## 2.4.0
+* `<Localizable/>` will update itself when `setLanguage()` is called
+* New `allowEmpty` parameter to suppress warnings about empty keywords
+* Snooze dictionary inspection until a given date
+
 <br/>

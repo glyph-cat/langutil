@@ -10,6 +10,7 @@
         * [show](###-`show`)
         * [hide](###-`hide`)
         * [focus](###-focus`)
+        * [snoozeInspectionUntil](###-snoozeInspectionUntil`)
 2. [Additions](#-2.-Additions)
     * [Localizable](##-`Localizable`)
     * [detectLanguage](##-`detectLanguage`)
@@ -53,12 +54,17 @@ _(This function does not return any values.)_
 
 ***Examples:***
 
+    import langutil from 'langutil'
     import dictionary from './dictionary'
 
     langutil.init(dictionary, 'en')
     langutil.init(dictionary, 'en', false)
     langutil.init(dictionary, 'en', true)
     // All syntaxes above are valid
+
+<br/>
+
+The way auto language detection works in React Native is slightly different. It will be explained in [another section](##-`detectLanguage`) of this documentation.
 
 <br/>
 
@@ -150,6 +156,7 @@ Maps a keyword to its localized value.
 | --- | --- | --- |
 | `keyword` | A short string representing the localized value. | `string` |
 | `paramArray?` | There are times when it is not possible to define every possible string in the dictionary due to changing variables. This is how you can combine them with your localizations instead. | `Array<unknown>` |
+| `allowEmpty` | Ignore warnings about empty keywords. | `bool` |
 <br/>
 
 | Returns | Type |
@@ -179,17 +186,13 @@ Maps a keyword to its localized value.
 ## `localizeWith`
 Maps a keyword to its localized value with additional options.
 
-| Parameter  | Description | Type |
-| --- | --- | --- |
-| `props` | Configuration props for the localization | `object` |
-<br/>
-
 | Props | Decription | Type |
 | --- | --- | --- |
 | `keyword` | A short string representing the localized value. | `string` |
 | `paramArray?` | There are times when it is not possible to define every possible string in the dictionary due to changing variables. This is how you can combine them with your localizations instead. | `Array<unknown>` |
 | `casing?` | Casing styles that will be applied to if the localized value is a string. | [`LocalizableCasings`](##-`LocalizableCasings`) |
 | `transform?` | Applies a transformation to the localized value. The localized value (after casing styles are applied) will be pass as a prop for your function. | `Function` |
+| `allowEmpty` | Ignore warnings about empty keywords. | `bool` |
 <br/>
 
 | Returns | Type |
@@ -253,8 +256,6 @@ Hides all logs from `langutil`. Logs are shown by default in development mode an
 ### `focus`
 If you have choosen to hide away langutil logs from the beginning and only want to log a portion of it, place your code inside a callback in this function.
 
-The callback which you want langutil to focus its logs on.
-
 | Parameter  | Description | Type |
 | --- | --- | --- |
 | `callback` | The callback which you want langutil to focus its logs on. | `Function` |
@@ -276,6 +277,23 @@ The callback which you want langutil to focus its logs on.
     })
 <br/>
 
+### `snoozeInspectionUntil`
+If your dictionary has not yet been completed and the warning about missing localizations bother you, you can use this to suppress the warning until a given date.
+
+| Parameter  | Description | Type |
+| --- | --- | --- |
+| `due` | The due date where warning will be shown again. | `Date` |
+<br/>
+
+_(This function does not return any values.)_
+
+<br/>
+
+***Example:***
+
+    langutil.logs.snoozeInspectionUntil('2019/12/31')
+<br/>
+
 # 2. Additions
 Additions can be imported separately only when needed. As of now, there are two addition packs: one for [React](https://reactjs.org) and one for [React Native](https://facebook.github.io/react-native/).
 
@@ -291,6 +309,7 @@ A wrapper component for rendering HTML or custom React elements as well as `<Tex
 | `casing?` | Casing styles that will be applied to if the localized value is a string. | [`LocalizableCasings`](##-`LocalizableCasings`) |
 | `transform?` | Applies a transformation to the localized value. The localized value (after casing styles are applied) will be pass as a prop for your function. | `Function` |
 | `renderAs?` | Specify which type of HTML/React element or custom component you would like your localizations to be rendered into. By default it is rendered as a `<span>` in React and `<Text/>` in React Native. | `unknown` |
+| `allowEmpty` | Ignore warnings about empty keywords. | `bool` |
 <br/>
 
 ***Example (React):***
@@ -361,8 +380,8 @@ Detect language in _(and only for)_ React Native.
 ***Example:***
 
     import { init } from 'langutil'
-    import dictionary from './dictionary'
     import { detectLanguage } from 'langutil/native-additions'
+    import dictionary from './dictionary'
 
     // ❌ This will not work, 'en' will be set as the language
     init(dictionary, 'en', true)
@@ -389,6 +408,7 @@ Detect language in _(and only for)_ React Native.
 | `paramArray?` | An array of parameters that can be passed into the localization. | `Array<unknown>` |
 | `casing?` | Casing styles that will be applied to if the localized value is a string. | [`LocalizableCasings`](##-LocalizableCasings) |
 | `transform?` | Applies a transformation to the localized value. | `Function` |
+| `allowEmpty` | Ignore warnings about empty keywords. | `bool` |
 <br/>
 
 ## `LocalizableLanguages`

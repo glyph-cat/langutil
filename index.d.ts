@@ -2,7 +2,7 @@
  * @author chin98edwin
  * @copyright Copyright (c) 2018 - 2019, chin98edwin
  * @description Localization for JavaScript made simple.
- * @version 2.3.3
+ * @version 2.4.0
 **/
 
 declare namespace langutil {
@@ -44,11 +44,13 @@ declare namespace langutil {
      * @description Maps a keyword to its localized value.
      * @param keyword A short string representing the localized value.
      * @param paramArray An array of parameters that can be passed into the localization.
+     * @param allowEmpty Ignore warnings about empty keywords.
      * @returns The localized value.
      */
     function localize(
         keyword: string,
-        paramArray?: Array<unknown>
+        paramArray?: Array<unknown>,
+        allowEmpty?: boolean
     ): unknown;
 
     /**
@@ -74,6 +76,10 @@ declare namespace langutil {
              * @description Applies a transformation to the localized value.
              */
             transform?: (localizedValue: any) => {};
+            /**
+             * @description Ignore warnings about empty keywords.
+             */
+            allowEmpty?: boolean;
         }
     ): unknown;
 
@@ -115,6 +121,11 @@ declare namespace langutil {
         function focus(
             callback: Function
         ): boolean
+        /**
+         * @description If your dictionary has not yet been completed and the warning about missing localizations bother you, you can use this to suppress the warning until a given date.
+         * @param due The due date where warning will be shown again.
+         */
+        function snoozeInspectionUntil(due: Date): void
     }
 
 }
