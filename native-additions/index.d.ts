@@ -23,6 +23,10 @@ interface NativeLocalizableProps {
      * @description Specify a custom component that you would like your localizations to be rendered into. By default it is rendered as a `<Text>` from th React Native library.
      */
     renderAs?: unknown;
+    /**
+     * @description Ignore warnings about empty keywords.
+     */
+    allowEmpty?: boolean;
 }
 
 type LocalizableCasings =

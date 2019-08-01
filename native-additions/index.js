@@ -1,7 +1,6 @@
 const React = require("react");
 const { NativeModules, Platform, Text } = require("react-native");
 const langutil = require("langutil");
-module.exports = { Localizable: Localizable, detectLanguage: detectLanguage };
 
 function detectLanguage() {
     const getLocale = Platform.select({
@@ -11,17 +10,33 @@ function detectLanguage() {
     return getLocale();
 }
 
-function Localizable({
-    keyword, children, paramArray = [], casing, transform, renderAs = Text, ...otherProps
-}) {
-    if (!children && keyword) { children = keyword; }
-    if (typeof children === "string") {
-        children = langutil.localizeWith({
-            keyword: children,
-            paramArray: paramArray,
-            casing: casing,
-            transform: transform
+class Localizable extends React.Component {
+
+    constructor(props) {
+        super(props);
+        langutil.internalHook.subscribeToOnLangChange((langutilId, hook) => {
+            this.langutilId = langutilId;
+            hook(() => { this.setState({}); });
         });
     }
-    return React.createElement(renderAs, otherProps, children);
+
+    componentWillUnmount() {
+        langutil.internalHook.unsubscribeToOnLangChange(this.langutilId);
+    }
+
+    render() {
+        const {
+            keyword, children, paramArray = [], casing, transform, renderAs = Text, allowEmpty, ...otherProps
+        } = this.props;
+        let child = !children && keyword ? keyword : children;
+        if (typeof child === "string") {
+            child = langutil.localizeWith({
+                keyword: child, paramArray, casing, transform, allowEmpty
+            });
+        }
+        return React.createElement(renderAs, otherProps, child);
+    }
+
 }
+
+module.exports = { Localizable, detectLanguage };

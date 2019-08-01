@@ -1,89 +1,16 @@
-# langutil 2.3.X
+# langutil 2.4.X
 
-## Changes to automatic language detection in React Native
-Automatic language detection for React Native is no longer included in the core to avoid conflict with webpack config in some cases. It has been splitted out as a function and can be imported from `'langutil/native-additions'`.
-
-A typical file used to initialize `langutil` would now look like this:
-
-<pre>
-
-
-    import { init } from 'langutil'
-    <ins>import { detectLanguage } from 'langutil/native-additions'</ins>
-    import dictionary from './dictionary'
-
-    <del>init(dictionary, "en", true)</del>
-    <ins>init(dictionary, "en", detectLanguage)</ins>
-
-</pre>
+## `<Localizable/>` will update itself when `setLanguage()` is called
+When calling `setLanguage()`, translations implemented through `<Localizable/>` will be automatically updated to display the localizations of the new language. With this, there's no longer the need to call `setState` on parent components or require users to restart your app for language changes to take effect.
 
 <br/>
 
-***What happens if I don't to change?***
-* Your app will not break but automatic language detection will stop to work on your apps, as a result, whatever language code that was passed in will be used.
-
-
-<br/>
-
-## New `<Localizable/>` component
-
-For React,
-
-    import React from 'react'
-    import { Localizable } from 'langutil/react-additions'
-
-    const Screen = () => (
-        <div>
-            <Localizable
-                renderAs="h1"
-                keyword="HELLO_NAME_HOW_ARE_YOU",
-                paramArray={["John"]}
-                casing="sentenceCase"
-                onClick={()=>{ window.alert("Hello again") }}
-                style={{
-                    color: "#FFAA00",
-                    fontStyle: "italic"
-                }}
-            />
-        </div>
-    )
-
-
-<br/>
-For React Native,
-
-    import React from 'react'
-    import { Alert, View } from 'react-native'
-    import { Localizable } from 'langutil/native-additions'
-
-    const Screen = () => (
-        <View>
-            <Localizable
-                // The `renderAs` prop is only available in React
-                keyword="HELLO_NAME_HOW_ARE_YOU",
-                paramArray={["John"]}
-                casing="sentenceCase"
-                onPress={()=>{ Alert.alert("Hello again") }}
-                style={{
-                    color: "#FFAA00",
-                    fontStyle: "italic"
-                }}
-            />
-        </View>
-    )
-<br/>
-
-## Template Dictionaries
-* The [repo](https://github.com/chin98edwin/langutil/tree/master/dictionary) now includes template dictionaries, some of the most commonly used words are readily translated. More translations will be added over time.
+## New `allowEmpty` parameter to suppress warnings about empty keywords
+To help reduce clutter in logs, `allowEmpty` is now a parameter of `localize`, `localizeWith` and `<Localizable/>`. This is useful for conditional rendering where the keyword may end up being an empty string.
 
 <br/>
 
-## Grouped Warning for Missing Localizations
-* Warnings for missing localizations are now grouped to reduce the clutter in your console. For example, all missing localizations in a screen will be shown in one log when they are mounted, as you navigate to another screen (with missing localizations), another log will show up summarizing the missing localizations in that screen.
-
-<br/>
-
-## Miscellaneous
-* Internal optimization for better performance and debugging experience.
+## Snooze dictionary inspection until a given date
+The new `logs.snoozeInspectionUntil(due: Date)` function allows you to suppress the warning message about missing localizations that appears right after the langutil is initialized. Depening on the size of the dictionary, the warning message could end up being very long and bothersome. Use this method to temporarily hide it away.
 
 <br/>
