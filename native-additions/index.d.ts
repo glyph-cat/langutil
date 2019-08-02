@@ -20,7 +20,8 @@ interface NativeLocalizableProps {
      */
     transform?: (localizedValue: any) => {};
     /**
-     * @description Specify a custom component that you would like your localizations to be rendered into. By default it is rendered as a `<Text>` from th React Native library.
+     * @description Specify a custom component that you would like your localizations to be rendered into. By default it is rendered as a `<Text>` from the React Native library.
+     * To obtain the raw value of the localization, use `renderAs="value"`.
      */
     renderAs?: unknown;
     /**

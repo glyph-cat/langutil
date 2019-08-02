@@ -1,6 +1,7 @@
 const React = require("react");
 const { NativeModules, Platform, Text } = require("react-native");
 const langutil = require("langutil");
+const { LangProvider } = require("langutil/react-additions");
 
 function detectLanguage() {
     const getLocale = Platform.select({
@@ -10,20 +11,7 @@ function detectLanguage() {
     return getLocale();
 }
 
-class Localizable extends React.Component {
-
-    constructor(props) {
-        super(props);
-        langutil.internalHook.subscribeToOnLangChange((langutilId, hook) => {
-            this.langutilId = langutilId;
-            hook(() => { this.setState({}); });
-        });
-    }
-
-    componentWillUnmount() {
-        langutil.internalHook.unsubscribeToOnLangChange(this.langutilId);
-    }
-
+class Localizable extends LangProvider {
     render() {
         const {
             keyword, children, paramArray = [], casing, transform, renderAs = Text, allowEmpty, ...otherProps
@@ -34,9 +22,12 @@ class Localizable extends React.Component {
                 keyword: child, paramArray, casing, transform, allowEmpty
             });
         }
-        return React.createElement(renderAs, otherProps, child);
+        if (renderAs === "value") {
+            return child;
+        } else {
+            return React.createElement(renderAs, otherProps, child);
+        }
     }
-
 }
 
-module.exports = { Localizable, detectLanguage };
+module.exports = { detectLanguage, LangProvider, Localizable };
