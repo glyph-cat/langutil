@@ -19,6 +19,7 @@ interface ReactLocalizableProps {
     transform?: (localizedValue: any) => {};
     /**
      * @description Specify which type of HTML/React element you would like your localizations to be rendered into. By default it is rendered as a `<span>`.
+     * To obtain the raw value of the localization, use `renderAs="value"`.
      */
     renderAs?: unknown;
     /**
@@ -34,6 +35,11 @@ type LocalizableCasings =
 | "localeUppercase"
 | "titleCase"
 | "sentenceCase"
+
+/**
+ * @description A wrapper component that re-renders when the language has been changed.
+ */
+export function LangProvider(children: unknown)
 
 /**
  * @description A wrapper component for rendering HTML/React elements.

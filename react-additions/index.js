@@ -1,10 +1,10 @@
 const React = require("react");
 const langutil = require("langutil");
 
-class Localizable extends React.Component {
+class LangProvider extends React.Component {
 
-    constructor(props) {
-        super(props);
+    constructor() {
+        super();
         langutil.internalHook.subscribeToOnLangChange((langutilId, hook) => {
             this.langutilId = langutilId;
             hook(() => { this.setState({}); });
@@ -16,6 +16,13 @@ class Localizable extends React.Component {
     }
 
     render() {
+        return this.props.children;
+    }
+
+}
+
+class Localizable extends LangProvider {
+    render() {
         const {
             keyword, children, paramArray = [], casing, transform, renderAs = "span", allowEmpty, ...otherProps
         } = this.props;
@@ -25,9 +32,12 @@ class Localizable extends React.Component {
                 keyword: child, paramArray, casing, transform, allowEmpty
             });
         }
-        return React.createElement(renderAs, otherProps, child);
+        if (renderAs === "value") {
+            return child;
+        } else {
+            return React.createElement(renderAs, otherProps, child);
+        }
     }
-
 }
 
-module.exports = { Localizable };
+module.exports = { LangProvider, Localizable };
