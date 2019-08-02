@@ -30,4 +30,4 @@ class Localizable extends LangProvider {
     }
 }
 
-module.exports = { detectLanguage, LangProvider, Localizable };
+module.exports = { detectLanguage, Localizable };
