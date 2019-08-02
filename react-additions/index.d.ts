@@ -37,11 +37,6 @@ type LocalizableCasings =
 | "sentenceCase"
 
 /**
- * @description A wrapper component that re-renders when the language has been changed.
- */
-export function LangProvider(children: unknown)
-
-/**
  * @description A wrapper component for rendering HTML/React elements.
  */
 export function Localizable(
