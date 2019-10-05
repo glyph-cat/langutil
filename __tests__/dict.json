@@ -1,0 +1,40 @@
+{
+    "byKey": {
+        "LOGIN": {
+            "en": "Login",
+            "zh": "登入"
+        },
+        "SECRET_CODE": {
+            "en": 100,
+            "zh": 200
+        },
+        "THE_QUICK_BROWN_FOX": {
+            "en": "The quick brown fox jumped over the fence",
+            "zh": "那敏捷的棕色狐狸跳过了篱笆"
+        },
+        "WELCOME_USER_ARR": {
+            "en": "Welcome, %p. %%p is escaped here.",
+            "zh": "%p，您好。这里的 %%p 已被转义。"
+        },
+        "WELCOME_USER_OBJ": {
+            "en": "Welcome, {:user}. {::user} is escaped here.",
+            "zh": "{:user}，您好。这里的 {::user} 已被转义。"
+        }
+    },
+    "byLang": {
+        "en": {
+            "LOGIN": "Login",
+            "SECRET_CODE": 100,
+            "THE_QUICK_BROWN_FOX": "The quick brown fox jumped over the fence",
+            "WELCOME_USER_ARR": "Welcome, %p. %%p is escaped here.",
+            "WELCOME_USER_OBJ": "Welcome, {:user}. {::user} is escaped here."
+        },
+        "zh": {
+            "LOGIN": "登入",
+            "SECRET_CODE": 200,
+            "THE_QUICK_BROWN_FOX": "那敏捷的棕色狐狸跳过了篱笆",
+            "WELCOME_USER_ARR": "%p，您好。这里的 %%p 已被转义。",
+            "WELCOME_USER_OBJ": "{:user}，您好。这里的 {::user} 已被转义。"
+        }
+    }
+}

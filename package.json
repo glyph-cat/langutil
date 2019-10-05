@@ -1,7 +1,7 @@
 {
   "name": "langutil",
   "description": "Localization for JavaScript made simple. ",
-  "version": "2.4.0",
+  "version": "3.0.0",
   "author": "chin98edwin",
   "directories": {
     "doc": "docs",
@@ -17,8 +17,8 @@
     "/native-additions"
   ],
   "scripts": {
-    "lint": "./node_modules/.bin/eslint lib/langutil.dev.js native-additions react-additions scripts/",
-    "lint-fix": "./node_modules/.bin/eslint lib/langutil.dev.js native-additions react-additions scripts/ --fix",
+    "lint": "./node_modules/.bin/eslint lib/langutil.js native-additions/index.js react-additions/index.js dev-additions/ scripts/",
+    "lint-fix": "./node_modules/.bin/eslint lib/langutil.js native-additions/index.js react-additions/index.js dev-additions/ scripts/ --fix",
     "test": "jest",
     "deploy-patch": "jest && node scripts/increaseVersionNumber --patch && npm publish",
     "deploy-minor": "jest && node scripts/increaseVersionNumber --minor && npm publish",
@@ -40,16 +40,15 @@
     "url": "https://github.com/chin98edwin/langutil/issues"
   },
   "homepage": "https://github.com/chin98edwin/langutil#readme",
+  "peerDependencies": {
+    "hoist-non-react-statics": "*"
+  },
   "devDependencies": {
     "chalk": "^2.4.2",
     "eslint": "^5.16.0",
     "jest": "^24.5.0"
   },
   "jest": {
-    "verbose": false,
-    "testPathIgnorePatterns": [
-      "/__tests__/baseImplementation/",
-      "/demo"
-    ]
+    "verbose": false
   }
 }

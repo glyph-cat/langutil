@@ -11,89 +11,86 @@ Langutil is a very flexible localizing tool for JavaScript. It works with React 
 4. [Demo Projects](#Demo-Projects)
 5. [Concerns in React Native](#-Concerns-in-React-Native)
 
-## Top Features
-
-* **☝️ Everything in one file**<br/>The core implementation comes in just one file and is free of dependencies. (Additional modules for working with React and React Native available as separate imports)
-* **📖 Powerful dictionary inspection tool**<br/>Get informed if the localizations for each language in the dictionary does not tally.
-* **⚡️ Dynamic Localizations**<br/>Pass in parameters and have them swapped into your localizations.
-* **💫 Flexible output values**<br/>Set anything as the output localization. Yes, you got that right. Numbers, functions, images, boolean values... basically any data type that works in JavaScript. You probably wouldn't need all this flexibilty... but it's there if you need it.
-* **🦄 Apply Transformation to your Localizations**<br/>Apply casing styles such as **UPPER CASE**, **lower case**, **Title Case** or **Sentence case**. You can even define your own transformations with a custom function!
-
 <br/>
 
 # Installation
-In your project's directory, run the command below:
 
-**Using Node Package Manager (NPM):**
+In your project's directory, run either of the commands below:
 
+    # Using NPM
     npm install langutil
 
-**Using Yarn:**
-
+    # Using Yarn
     yarn add langutil
 
 <br/>
 
 # Basic Example
 
-    // <your-project>/dictionary.js
-
-    // Method 1: Defined by languages
-    export default {
-        "en": { "HELLO": "Hello" },
-        "zh-cn": { "HELLO": "哈咯" }
+    // In your-project/dictionary.json
+    {
+        "en": {
+            "ACCOUNT": "Account",
+            "LOGIN": "Login"
+        },
+        "zh": {
+            "ACCOUNT": "账户",
+            "LOGIN": "登入"
+        }
     }
 
-    // Method 2: Defined by keywords
-    import { createKey } from 'langutil'
-    export default [
-        createKey('HELLO'), {
-            "en": "Hello",
-            "zh-cn": "哈咯"
-        }
-    ]
 <br/>
 
-    // <your-project>/index.js
-
-    import { init, localizeWith } from 'langutil'
+    // In your-project/index.js
+    import { init, localize } from 'langutil'
     import dictionary from './dictionary'
 
-    init(dictionary, 'en')
-    var localizedString = localizeWith({ keyword: 'HELLO' })
-    console.log(localizedString) // Output: Hello
+    init(dictionary, 'en') // Initialization
+    console.log(localize('ACCOUNT')) // Output: Account
 
-    setLanguage('zh-cn') // Switching to other languages
-    localizedString = localizeWith({ keyword: 'HELLO' })
-    console.log(localizedString) // Output: 哈咯
+    setLanguage('zh') // Switching to other languages
+    console.log(localize('LOGIN')) // Output: 登入
+
+<br/>
+
+    // Implementating in React or React Native
+    // NOTE: Peer dependency 'hoist-non-react-statics' is required
+
+    import { localize } from 'langutil'
+    import { withLang } from 'langutl/react-additions'
+
+    const MyComponent = () => <p>{localize(LOGIN)}</p>
+    export default withLang(MyComponent)
 
 <br/>
 
 # Quick Links
-* [Update History](https://github.com/chin98edwin/langutil/blob/master/docs/UpdateHistory.md)
-* [Full Documentation](https://github.com/chin98edwin/langutil/blob/master/docs/Api.md)
-* [Support me on PayPal](https://www.paypal.me/chin98edwin)
-<br/><br/>
 
-# Demo Projects
+- [Update History](https://github.com/chin98edwin/langutil/blob/master/docs/UpdateHistory.md)
+- [Full Documentation](https://github.com/chin98edwin/langutil/blob/master/docs/Api.md)
+- [Support me on PayPal](https://www.paypal.me/chin98edwin)
+  <br/><br/>
 
-| Usage | Initialized with | Repo | Status |
-| --- | --- | --- | --- |
-| React | `create-react-app` | [GitHub](https://github.com/chin98edwin/langutil-demo-create-react-app) | 🔶 **In Progress** |
-| Expo | `expo init` | [GitHub](https://github.com/chin98edwin/langutil-demo-expo) | 🔶 **In Progress** |
-| NodeJS | `npm init` | [GitHub](https://github.com/chin98edwin/langutil-demo-node-js/) | ✅ Complete |
+<!-- # Demo Projects
+
+| Usage        | Initialized with    | Repo                                                                     | Status             |
+| ------------ | ------------------- | ------------------------------------------------------------------------ | ------------------ |
+| React        | `create-react-app`  | [GitHub](https://github.com/chin98edwin/langutil-demo-create-react-app)  | 🔶 **In Progress** |
+| Expo         | `expo init`         | [GitHub](https://github.com/chin98edwin/langutil-demo-expo)              | 🔶 **In Progress** |
+| NodeJS       | `npm init`          | [GitHub](https://github.com/chin98edwin/langutil-demo-node-js/)          | ✅ Complete        |
 | React Native | `react-native init` | [GitHub](https://github.com/chin98edwin/langutil-demo-react-native-init) | 🔶 **In Progress** |
 
-<br/>
+<br/> -->
 
 # Concerns in React Native
 
 Langutil runs purely on JavaScript. This means you do not need to run `react-native link` or mess around with the configuration at native level after installing.
 
-Langutil would be a good candidate to consider if:
-* your app is created using `expo init`
-* you do not wish to deal with your project at a native level (Eg: Configuring it with XCode or Android Studio)
+Langutil would be a good library to consider especially if:
 
-If your app is created using `react-native init`, langutil will still work. But the fact that you have chosen to initialize your project this way instead `expo init` probably means you are confident enough to deal with native code. If this is the case and you would like to have a finer control over your app, you may consider using other packages that handles localization at native level.
+- your app is created using `expo init`, or
+- you do not wish to deal with your project at native level (Using Android Studio or XCode).
+
+Langutl still works even if your app is created using `react-native init`. But the fact that you have chosen to initialize your project with this command probably means that you're confident enough to deal with your project natively. If this is the case and you would like to have a finer control over your app, you may consider using other packages that handles localization at native level.
 
 <br/>
