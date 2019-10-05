@@ -9,6 +9,12 @@ yarn-debug.log*
 yarn-error.log*
 lerna-debug.log*
 
+# Playground
+*.playground.js
+*.playground.jsx
+*.playground.ts
+*.playground.tsx
+
 # Diagnostic reports (https://nodejs.org/api/report.html)
 report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
 

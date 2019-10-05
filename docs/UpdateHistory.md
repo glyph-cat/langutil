@@ -91,9 +91,9 @@
 * Automatic language detection for React Native is no longer included in the core to avoid conflict with webpack config in some cases. It has been splitted out as a function and can be imported from `'langutil/native-additions'`
 * The [repo](https://github.com/chin98edwin/langutil/tree/master/dictionary) now includes template dictionaries, some of the most commonly used words are readily translated. More translations will be added over time.
 * Additions for React:
-    * New <Localizable> component that acts as a wrapper for HTML or React elements.
+    * New `<Localizable>` component that acts as a wrapper for HTML or React elements.
 * Additions React Native:
-    * New <Localizable> component that acts as a wrapper for the `<Text>` tag.
+    * New `<Localizable>` component that acts as a wrapper for the `<Text>` tag.
     * Language detection for React Native has been splitted out from the core and moved into the additions folder
 
 ## 2.3.1
@@ -110,5 +110,13 @@
 * `<Localizable/>` will update itself when `setLanguage()` is called
 * New `allowEmpty` parameter to suppress warnings about empty keywords
 * Snooze dictionary inspection until a given date
+
+## 3.0.0
+* Localizing function is now simplified to only one function: `localize()`
+* New `withLang()` higher-order component in favor of `<Localizable/>`
+* New `AUTO_DETECT` implementation
+* Dictionary inspection now do not happen by default in favor of performance
+* Structure your dictionary by keywords or language in the shape of an object, langutil will automatically determine which method you're using
+* New `setDictionary()` function in case you want to lazy load your localizations.
 
 <br/>
