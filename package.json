@@ -39,7 +39,7 @@
   "bugs": {
     "url": "https://github.com/chin98edwin/langutil/issues"
   },
-  "homepage": "https://github.com/chin98edwin/langutil#readme",
+  "homepage": "https://chin98edwin.github.io/langutil/",
   "peerDependencies": {
     "hoist-non-react-statics": "*"
   },
