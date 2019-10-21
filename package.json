@@ -46,7 +46,7 @@
   "devDependencies": {
     "chalk": "^2.4.2",
     "eslint": "^5.16.0",
-    "jest": "^24.5.0"
+    "jest": "^24.9.0"
   },
   "jest": {
     "verbose": false
