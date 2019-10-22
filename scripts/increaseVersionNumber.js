@@ -42,7 +42,7 @@ const APPENDABLES = [
         replace: `* @version ${newVersion}`
     },
     {
-        path: 'lib/langutil.dev.js',
+        path: 'lib/langutil.js',
         target: `* @version ${oldVersion}`,
         replace: `* @version ${newVersion}`
     },
@@ -52,13 +52,17 @@ const APPENDABLES = [
         replace: `* @version ${newVersion}`
     },
 ];
+
+const DRY_RUN = process.argv[3] === '--dry-run';
 for (let i = 0; i < APPENDABLES.length; i++) {
     const { path, target, replace } = APPENDABLES[i];
     try {
         let currentlyProcessing = fs.readFileSync(path, { encoding: 'utf-8' });
         currentlyProcessing = currentlyProcessing.replace(target, replace);
         // console.log('\n\n\n' + currentlyProcessing) + '\n\n\n';
-        // TODO: (RISKY) Append changes to actual file
+        if (!DRY_RUN) {
+            // TODO: (RISKY) Append changes to actual file
+        }
         console.log(`${greenBright('✓')} ${path}`);
     } catch (error) {
         console.log(`${redBright('×')} ${path}`);
