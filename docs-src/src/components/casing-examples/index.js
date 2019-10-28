@@ -1,7 +1,7 @@
 import React from 'react'
 import { localize } from 'langutil'
 import { withLang } from 'langutil/react-additions'
-import { Code } from '../../components/document'
+import { Code, Table, THead, Th, TBody, Tr, Td } from '../../components/document'
 
 function CasingExamples() {
   const casings = [
@@ -15,36 +15,28 @@ function CasingExamples() {
   let toRender = []
   for (let i = 0; i < casings.length; i++) {
     toRender.push(
-      <tr key={i}>
-        <td><Code>'{casings[i]}'</Code></td>
-        <td>{localize({ keyword: 'THE_QUICK_BROWN_FOX', casing: casings[i] })}</td>
-      </tr>
+      <Tr key={i}>
+        <Td><Code>'{casings[i]}'</Code></Td>
+        <Td>{localize({ keyword: 'THE_QUICK_BROWN_FOX', casing: casings[i] })}</Td>
+      </Tr>
     )
   }
   return (
-    <table
-      border="1"
-      cellPadding={10} cellSpacing={0}
-      className='document-body'
-      style={{
-        border: 'solid 1px #777777',
-        borderCollapse: 'collapse',
-      }}
-    >
-      <thead>
-        <tr style={{ backgroundColor: '#DDDDDD' }}>
-          <th>{localize('CASING')}</th>
-          <th>{localize('OUTPUT')}</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>{localize('ORIGINAL_BRACKET')}</td>
-          <td>{localize('THE_QUICK_BROWN_FOX')}</td>
-        </tr>
+    <Table>
+      <THead>
+        <Tr>
+          <Th children={localize('CASING')} />
+          <Th children={localize('OUTPUT')} />
+        </Tr>
+      </THead>
+      <TBody>
+        <Tr>
+          <Td children={localize('ORIGINAL_BRACKET')} />
+          <Td children={localize('THE_QUICK_BROWN_FOX')} />
+        </Tr>
         {toRender}
-      </tbody>
-    </table>
+      </TBody>
+    </Table>
   )
 }
 

@@ -1,0 +1,8 @@
+.code-title {
+  margin: 0;
+  margin: 0.5em 0;
+  font-size: 1.65em;
+  font-weight: bold;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}

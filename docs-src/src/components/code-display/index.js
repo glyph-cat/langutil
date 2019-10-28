@@ -107,7 +107,7 @@ const CopyButton = withLang(({ onClick }) => {
           className='material-icons code-disp-toolbar-button-icon'
           children='file_copy'
         />
-        {localize('COPY')}
+        {localize({ keyword: 'COPY', casing: 'upperCase' })}
       </div>
     </button>
   )

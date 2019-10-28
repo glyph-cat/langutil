@@ -5,7 +5,7 @@ import { H1, Body } from '../../components/document'
 import CodeSamples from '../../code-samples'
 import CasingExamples from '../../components/casing-examples'
 
-const ApplyCasings = () => (
+export default withLang(() => (
   <>
     <H1 children={localize('APPLY_CASINGS')} />
     <Body children={localize('DOC_BODY_LANGUTIL_ALSO_ALLOW_STYLE_LOC')} />
@@ -14,6 +14,4 @@ const ApplyCasings = () => (
     <Body children={localize('DOC_BODY_BELOW_IS_COMPLETE_LIST_OF_CASINGS')} />
     <CasingExamples />
   </>
-)
-
-export default withLang(ApplyCasings)
+))

@@ -22,7 +22,7 @@ class DocSidebar extends React.Component {
   }
 
   onChangeFooterHeightInView = (height) => {
-    this.setState({ footerHeightInView: Math.max(0, height) })
+    this.setState({ footerHeightInView: Math.min(Math.max(0, height), VALUES.footerHeight) })
   }
 
   render() {

@@ -1,7 +1,7 @@
 .doc-unavailable-container {
   align-items: center;
   display: grid;
-  height: 90%;
+  height: 75vh;
   justify-items: center;
 }
 
@@ -12,6 +12,10 @@
   justify-items: center;
 }
 
-.doc-unavailable-img {
-  opacity: 1;
+.doc-unavailable-text {
+  text-align: center;
+}
+
+.doc-unavailable-react-kawaii {
+  font-size: 0.85em;
 }

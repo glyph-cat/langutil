@@ -13,13 +13,25 @@ export const Body = ({ className, ...props }) => (
   <p className={['document-body', className].join(' ')} {...props} />
 )
 
-// export const P = ({ className, ...props }) => (
-//   <p className={['document-body', className].join(' ')} {...props} />
-// )
+export const Table = ({ className, ...props }) => (
+  <table
+    className={['document-body document-table', className].join(' ')}
+    border="1" cellPadding={10} cellSpacing={0}
+    {...props}
+  />
+)
 
-// export const Span = ({ className, ...props }) => (
-//   <p className={['document-body', className].join(' ')} {...props} />
-// )
+export const THead = ({ className, ...props }) => (
+  <thead className={['document-thead', className].join(' ')} {...props} />
+)
+
+export const TBody = (props) => <tbody {...props} />
+
+export const Th = (props) => <th {...props} />
+
+export const Tr = (props) => <tr {...props} />
+
+export const Td = (props) => <td {...props} />
 
 export const Code = ({ className, ...props }) => (
   <code className={['document-code', className].join(' ')} {...props} />
