@@ -1,5 +1,13 @@
 {
     "byKey": {
+        "FORCE_ESCAPE_ARR": {
+            "en": "This is a %%p",
+            "zh": "这是一个 %%p"
+        },
+        "FORCE_ESCAPE_OBJ": {
+            "en": "This is a {::key}",
+            "zh": "这是一个 {::key}"
+        },
         "LOGIN": {
             "en": "Login",
             "zh": "登入"
@@ -23,6 +31,8 @@
     },
     "byLang": {
         "en": {
+            "FORCE_ESCAPE_ARR": "This is a %%p",
+            "FORCE_ESCAPE_OBJ": "This is a {::key}",
             "LOGIN": "Login",
             "SECRET_CODE": 100,
             "THE_QUICK_BROWN_FOX": "The quick brown fox jumped over the fence",
@@ -30,6 +40,8 @@
             "WELCOME_USER_OBJ": "Welcome, {:user}. {::user} is escaped here."
         },
         "zh": {
+            "FORCE_ESCAPE_ARR": "这是一个 %%p",
+            "FORCE_ESCAPE_OBJ": "这是一个 {::key}",
             "LOGIN": "登入",
             "SECRET_CODE": 200,
             "THE_QUICK_BROWN_FOX": "那敏捷的棕色狐狸跳过了篱笆",

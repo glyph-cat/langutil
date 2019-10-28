@@ -30,6 +30,18 @@
           expect(output).toBe('Login');
         });
 
+        it('localize [No paramarray but has placeholders]', () => {
+          // Expect %%p to become %p even without param
+          const output = localize('FORCE_ESCAPE_ARR');
+          expect(output).toBe('This is a %p');
+        });
+
+        it('localize [No paramobject but has placeholders]', () => {
+          // Expect {::key} to become {:key} even without param
+          const output = localize('FORCE_ESCAPE_OBJ');
+          expect(output).toBe('This is a {:key}');
+        });
+
         it('localize(keyword, paramArray)', () => {
           const output = localize('WELCOME_USER_ARR', ['Adam']);
           expect(output).toBe('Welcome, Adam. %p is escaped here.');
