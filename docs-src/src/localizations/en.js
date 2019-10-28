@@ -4,6 +4,14 @@ module.exports = {
   'ADVANCED': 'Advanced',
   'ALTERNATIVE_SYNTAX': 'Alternative syntax',
   'API': 'API',
+
+  'API_DESC_INIT': ({ setD, setL }) => <>Initialize langutil with a dictionary and language. Shorthand for {setD} and {setL}.</>,
+  'API_DESC_SET_DICTIONARY': ({ init }) => <>Sets the dictionary. We encourage using {init} and not changing the contents of the dictionary in halfway. Unless the dictionary has been splitted up into sections for lazy loading.</>,
+  'API_DESC_SET_LANGUAGE': 'Sets the language.',
+  'API_PARAM_DICT': 'The object containing all localizations.',
+  'API_PARAM_LANG': 'The language to use.',
+  'API_PARAM_DETECTOR': ({ auto }) => <>A langutil built-in function, pass {auto} into this parameter to allow auto-language detection.</>,
+
   'APP_BOUNDARY_ERROR_OCCURED': 'We\'re sorry, an error occured.',
   'APPLY_CASINGS': 'Apply casings',
   'APPLY_TRANSFORMATION': 'Apply transformation',
@@ -12,10 +20,13 @@ module.exports = {
   'BASICS': 'Basics',
   'BUILDER': 'Builder',
 
-  // 'CASING': 'Casing',
+  'CASING': 'Casing',
   'CASINGS': 'Casings',
   'CHANGELOG': 'Changelog',
   'COPY': 'Copy',
+
+  'DEFAULT_VALUE': 'Default value',
+  'DESCRIPTION': 'Description',
 
   'DOC_BODY_ADDITIONALLY_USE_CAN_USE_AUTO_DETECT': ({ autoDetect }) => <>Additionally, you can use {autoDetect} to let langutil figure out what language the device using.</>,
   'DOC_BODY_AS_YOU_BUILD_YOUR_PROJ': 'As you build your project, you will realize that amount of localizations begin to increase exponentially, if not, by a lot! It is because of that, it is better to split localizations into different files then combined them in an index file.',
@@ -35,10 +46,7 @@ module.exports = {
   'DOC_BODY_THEN_ADD_SOME_LOC': 'Then add some localization into the language files.',
   'DOC_BODY_TO_DISPLAY_KEY_IN_LOC': ({ k1, k2 }) => <>To display {k1} in your localizations, escape it with {k2}.</>,
   'DOC_BODY_USE_SETLANG_TO_SWITCH_LANG': ({ setL }) => <>Use {setL} to switch between languages.</>,
-
   'DOC_BODY_USE_LOC_TO_TRANSLATE': ({ loc }) => <>Use {loc} to translate your content.</>,
-  // 'DOC_BODY_USE_LOC_TO_TRANSLATE': 'Use {:loc} to translate your content.',
-
   'DOC_BODY_YOU_MAY_ADD_MORE_FILES': 'You may add more files for other languages',
 
   // 'DOC_BODY_': '',
@@ -73,6 +81,7 @@ module.exports = {
   'INSTALLATION': 'Installation',
   'INSTALLATION_AND_SETUP': 'Installation & Setup',
 
+  'LIKE_THIS_KAWAII_IMG': ({ link }) => <>Like this cute image? Check out {link} for more.</>,
   'LOADING_ELLIPSIS': 'Loading...',
   'LOC_JS_MADE_SIMPLE': 'Localization for JavaScript made simple',
   'LOCALIZING_JSX': 'Localizing JSX',
@@ -84,6 +93,7 @@ module.exports = {
   'OUTPUT_HELLO_WORLD': 'Output: Hello world',
   'ORIGINAL_BRACKET': '(Original)',
 
+  'PARAMETER': 'Parameter',
   'PARAMETERS': 'Parameters',
 
   'SWITCH_LANGUAGE': 'Switch language',
@@ -92,6 +102,7 @@ module.exports = {
 
   // 'TRANSFORMATIONS': 'Transformations',
   'THE_QUICK_BROWN_FOX': 'The quick brown fox jumped over the fence.',
+  'TYPE': 'Type',
 
   'USAGE': 'Usage',
   'USING_NPM': 'Using NPM',

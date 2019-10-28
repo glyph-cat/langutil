@@ -53,6 +53,10 @@ const getSections = () => [
         text: 'localizeWith'
       },
       {
+        to: DOCPATHS.v3.withLang,
+        text: 'withLang'
+      },
+      {
         to: DOCPATHS.v3.autoDetect,
         text: 'AUTO_DETECT'
       },

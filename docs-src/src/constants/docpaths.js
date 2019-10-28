@@ -15,6 +15,7 @@ const DOCPATHS = {
     localize: api(3)('localize'),
     localizeWith: api(3)('localize-with'),
     autoDetect: api(3)('auto-detect'),
+    withLang: api(3)('with-lang'),
     alternative_syntax: advanced(3)('alternative-syntax'),
     localizing_jsx: advanced(3)('localizing-jsx'),
   }

@@ -5,7 +5,7 @@ import { H1, H2, Body, Code } from '../../components/document'
 import { asProps } from '../../modules'
 import CodeSamples from '../../code-samples'
 
-const InsertParameters = () => (
+export default withLang(() => (
   <>
 
     <H1 children={localize('INSERT_PARAMETERS')} />
@@ -40,10 +40,8 @@ const InsertParameters = () => (
     <CodeSamples.ParamObject />
     <Body children={localize({
       keyword: 'DOC_BODY_TO_DISPLAY_KEY_IN_LOC',
-      transform: asProps({ k1: <Code>{`'{:key}'`}</Code>, k2: <Code>{`'{::key}'`}</Code>})
+      transform: asProps({ k1: <Code>{`'{:key}'`}</Code>, k2: <Code>{`'{::key}'`}</Code> })
     })} />
 
   </>
-)
-
-export default withLang(InsertParameters)
+))

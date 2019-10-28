@@ -5,7 +5,7 @@ import { H1, Body, Code, SectionBreak } from '../../components/document'
 import { asProps } from '../../modules'
 import CodeSamples from '../../code-samples'
 
-const BasicUsage = () => (
+export default withLang(() => (
   <>
 
     <H1 children={localize('INITIALIZING')} />
@@ -39,6 +39,4 @@ const BasicUsage = () => (
     <CodeSamples.SwitchingLanguages />
 
   </>
-)
-
-export default withLang(BasicUsage)
+))
