@@ -84,6 +84,11 @@
           expect(output).toBe('The Quick Brown Fox Jumped Over The Fence');
         });
 
+        it('localize with \'sentenceCase\', partial casings should be preserved.', () => {
+          const output = localize({ keyword: 'FILES_WITH_JSX', casing: 'sentenceCase' });
+          expect(output).toBe('Files with JSX extension are used for React.');
+        });
+
         it('localize({ keyword, transform })', () => {
           const original = localize('SECRET_CODE');
           const output = localize({
