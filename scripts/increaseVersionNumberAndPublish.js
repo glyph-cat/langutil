@@ -1,6 +1,11 @@
 const fs = require('fs');
-const { default: { red, redBright, bold, greenBright, yellow } } = require('chalk');
+const { exec } = require('child_process');
+const { default: { red, redBright, bold, greenBright, yellow, cyanBright } } = require('chalk');
 const formatBadParam = value => typeof value === 'string' ? `'${value}'` : typeof value;
+
+// Usage:
+// npm run deploy -- --(type) (--dry-run)
+// Where `type` is one of 'patch', 'minor' or 'major'
 
 const INCREMENT_ACTIONS = (value = '') => {
     value = value.split('.');
@@ -27,6 +32,8 @@ const { version: oldVersion } = JSON.parse(fs.readFileSync('package.json', 'utf-
 // Increment of version number
 console.log('Performing increment...');
 let newVersion = INCREMENT_ACTIONS(oldVersion)[INCREMENT_TYPE];
+console.log('Computed increment output:');
+console.log(` • NEW: ${newVersion}\n • OLD: ${oldVersion}`);
 
 // Append new version number
 console.log('\nAppending new version number to the following files:');
@@ -53,6 +60,9 @@ const APPENDABLES = [
     },
 ];
 
+const getTruncatedPreview = str => str.substr(0, 200) + '......';
+
+// Dry run functionality pending
 const DRY_RUN = process.argv[3] === '--dry-run';
 for (let i = 0; i < APPENDABLES.length; i++) {
     const { path, target, replace } = APPENDABLES[i];
@@ -60,8 +70,9 @@ for (let i = 0; i < APPENDABLES.length; i++) {
         let currentlyProcessing = fs.readFileSync(path, { encoding: 'utf-8' });
         currentlyProcessing = currentlyProcessing.replace(target, replace);
         // console.log('\n\n\n' + currentlyProcessing) + '\n\n\n';
+        console.log('\n\n', getTruncatedPreview(currentlyProcessing));
         if (!DRY_RUN) {
-            // TODO: (RISKY) Append changes to actual file
+            fs.writeFileSync(path, currentlyProcessing, { encoding: 'utf-8' });
         }
         console.log(`${greenBright('✓')} ${path}`);
     } catch (error) {
@@ -69,7 +80,23 @@ for (let i = 0; i < APPENDABLES.length; i++) {
     }
 }
 
+console.log('\nPublishing to NPM...');
+if (!DRY_RUN) {
+    exec('npm publish', (err, stdout, ) => {
+        console.log(stdout);
+        if (err) {
+            console.error(err);
+        } else {
+            console.log(greenBright('Successfully published to NPM!'));
+        }
+    });
+} else {
+    console.log(greenBright('Successfully published to NPM!'));
+}
+
 // Final report
 const formatType = value => value.replace(/\-/g, '').toUpperCase();
 console.log('\nVersion number increase successful!');
-console.log(`${yellow(oldVersion)} --${bold('(' + formatType(INCREMENT_TYPE) + ')')}-> ${greenBright(newVersion)}\n`);
+console.log(`${yellow(oldVersion)} --${bold('(' + formatType(INCREMENT_TYPE) + ')')}-> ${greenBright(newVersion)}`);
+
+if (DRY_RUN) { console.log(cyanBright('\n\n--- DRY RUN COMPLETE ---\n\n')); }
