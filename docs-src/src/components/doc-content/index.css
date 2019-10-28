@@ -1,0 +1,13 @@
+.doc-content-container {
+  align-items: flex-start;
+  padding: 1.5em;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  gap: 1em;
+}
+
+.doc-content-component-container {
+  align-items: flex-start;
+  padding: 1em;
+  display: grid;
+}
