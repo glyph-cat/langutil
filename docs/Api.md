@@ -114,7 +114,7 @@ If you have chosen to hide away langutil logs but want to log a portion of code 
 ## `createKey`
 Allows you to define your dictionary by keyword.
 
-Deprecated since: 2.4.0 (To be removed in the next minor update)
+Deprecated since: 2.4.0 (Will be removed by March 2020)
 
 | Parameter  | Description | Type |
 | --- | --- | --- |
@@ -129,7 +129,7 @@ Deprecated since: 2.4.0 (To be removed in the next minor update)
 ## `getLanguage`
 Get the currently set language.
 
-Deprecated since: 2.4.0 (To be removed in the next minor update)
+Deprecated since: 2.4.0 (Will be removed by March 2020)
 * **Returns:** The string representation of the language.
 * **Return Type:** `string`
 
@@ -138,7 +138,7 @@ Deprecated since: 2.4.0 (To be removed in the next minor update)
 ## `localizeWith`
 Maps a keyword to its localized value.
 
-Deprecated since: 2.4.0 (To be removed in the next minor update)
+Deprecated since: 2.4.0 (Will be removed by March 2020)
 
 | Parameter | Decription | Type |
 | --- | --- | --- |
@@ -156,6 +156,6 @@ Deprecated since: 2.4.0 (To be removed in the next minor update)
 ## `snoozeInspectionUntil`
 If your dictionary has not yet been completed and the warning about missing localizations bother you, you can use this to suppress the warning until a given date.
 
-Deprecated since: 2.4.0 (To be removed in the next minor update)
+Deprecated since: 2.4.0 (Will be removed by March 2020)
 
 Dictionary inspection do not happen by default in favor of performance, you can use `inspectDict` from `dev-additions` to run the inspection.
