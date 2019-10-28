@@ -49,6 +49,7 @@
     "jest": "^24.9.0"
   },
   "jest": {
-    "verbose": false
+    "verbose": false,
+    "testPathIgnorePatterns": ["docs-src/"]
   }
 }
