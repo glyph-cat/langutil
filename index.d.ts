@@ -123,21 +123,21 @@ declare namespace langutil {
    * @description Creates a key for your dictionary.
    * @param keyword A short string representing the localized value.
    * @param localizations The translation.
-   * @deprecated 2.4.0 (To be removed in the next minor update)
+   * @deprecated 2.4.0 (Will be removed by March 2020)
    * @returns A Keyword object.
    */
   function createKey(keyword: string, localizations: object): Keyword;
 
   /**
    * @description Get the currently set language.
-   * @deprecated 2.4.0 (To be removed in the next minor update)
+   * @deprecated 2.4.0 (Will be removed by March 2020)
    * @returns The string representation of the language.
    */
   function getLanguage(): string;
 
   /**
    * @description Maps a keyword to its localized value.
-   * @deprecated 2.4.0 (To be removed in the next minor update)
+   * @deprecated 2.4.0 (Will be removed by March 2020)
    * @returns The localized value.
    */
   function localizeWith(props: {
@@ -161,7 +161,7 @@ declare namespace langutil {
 
   /**
    * @description If your dictionary has not yet been completed and the warning about missing localizations bother you, you can use this to suppress the warning until a given date.
-   * @deprecated 2.4.0 (To be removed in the next minor update)
+   * @deprecated 2.4.0 (Will be removed by March 2020)
    * @param due The due date where warning will be shown again.
    */
   function snoozeInspectionUntil(due: Date): void;
