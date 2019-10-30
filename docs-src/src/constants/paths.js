@@ -5,6 +5,7 @@ const PATHS = {
   changelog: '/changelog',
   // api: '/api',
   builder: '/builder',
+  // playground: '/playground',
 }
 
 export default PATHS

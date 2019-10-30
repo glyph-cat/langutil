@@ -1,5 +1,4 @@
 import React from 'react'
-import { withLang } from 'langutil/react-additions'
 import { localize } from 'langutil'
 import CodeDisplay, { Line, Key, Com, Var, Def, Str, Func, Type } from '../../components/code-display'
 
@@ -21,4 +20,4 @@ const HomeDemo = () => (
   </CodeDisplay>
 )
 
-export default withLang(HomeDemo)
+export default HomeDemo

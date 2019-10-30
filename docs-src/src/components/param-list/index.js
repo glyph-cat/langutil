@@ -1,6 +1,5 @@
 import React from 'react'
 import { Code, Table, THead, Th, TBody, Tr, Td } from '../../components/document'
-import { withLang } from 'langutil/react-additions'
 import { localize } from 'langutil'
 
 function ParamList({ data = {} }) {
@@ -30,17 +29,15 @@ function ParamList({ data = {} }) {
   )
 }
 
-const HeaderRow = withLang(() => {
-  return (
-    <THead>
-      <Tr>
-        <Th children={localize('PARAMETER')} />
-        <Th children={localize('TYPE')} />
-        <Th children={localize('DESCRIPTION')} />
-        <Th children={localize('DEFAULT_VALUE')} />
-      </Tr>
-    </THead>
-  )
-})
+const HeaderRow = () => (
+  <THead>
+    <Tr>
+      <Th children={localize('PARAMETER')} />
+      <Th children={localize('TYPE')} />
+      <Th children={localize('DESCRIPTION')} />
+      <Th children={localize('DEFAULT_VALUE')} />
+    </Tr>
+  </THead>
+)
 
 export default ParamList

@@ -1,14 +1,16 @@
 let defaultExtracted = false
 let CodeSamples = {
   // Demo: require('./demo'),
+  ApiInit: require('./api-init'),
+  ApiSetLanguage: require('./api-set-language'),
   Casings: require('./casings'),
   DictionaryPrimaryExample: require('./dictionary-primary-example'),
   DictionarySecondaryExample: require('./dictionary-secondary-example'),
   DictionaryIndexExample: require('./dictionary-index-example'),
   FolderStructure: require('./folder-structure'),
   HomeDemo: require('./home-demo'),
-  Initialize: require('./initialize'),
-  Install: require('./install'),
+  InstallUsingNpm: require('./install-using-npm'),
+  InstallUsingYarn: require('./install-using-yarn'),
   ParamArray: require('./paramarray'),
   ParamArrayDictionary: require('./paramarray-dictionary'),
   ParamObject: require('./paramobject'),

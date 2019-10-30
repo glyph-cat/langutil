@@ -1,7 +1,6 @@
 import React from 'react'
 import { Link, withRouter } from 'react-router-dom'
 import { localize, getCurrentLanguage } from 'langutil'
-import { withLang } from 'langutil/react-additions'
 import { scrollToTop } from '../../modules'
 import { SectionContext } from '../../context'
 import './index.css'
@@ -78,4 +77,4 @@ class DocPrevNext extends React.Component {
 
 }
 
-export default withRouter(withLang(DocPrevNext))
+export default withRouter(DocPrevNext)

@@ -2,12 +2,12 @@ import React, { useState } from 'react'
 import { Link, withRouter } from 'react-router-dom'
 import { localize, setLanguage } from 'langutil'
 import { withLang } from 'langutil/react-additions'
-import { scrollToTop } from '../../modules'
+import { scrollToTop, getDocs } from '../../modules'
 import { PATHS, STRINGS, VALUES } from '../../constants'
 import ghIcon from '../../assets/github-icon.svg'
 import langutilIcon from '../../assets/langutil-icon.svg'
 // import Modal from '../../components/modal'
-import getNavLinks from './navlinks'
+// import getNavLinks from './navlinks'
 import './index.css'
 
 function pathIsMatch(to, exact) {
@@ -40,6 +40,13 @@ const NavLink = withRouter(({ to, exact, children }) => {
   )
 })
 
+// TOFIX: Version number not changing when switching to docs for other versions
+const DocVersion = withRouter(({ match: { params: { version } } }) => {
+  console.log('version:', version)
+  const latestVersion = Object.keys(getDocs())[0]
+  return <span className='navbar-version-num' children={version ? version : latestVersion} />
+})
+
 function Navbar() {
   const [showLangMenu, setShowLangMenu] = useState(false)
 
@@ -51,12 +58,6 @@ function Navbar() {
 
   const widthIsCompact = window.innerWidth < VALUES.compactWidthThreshold
 
-  let navlinkArray = []
-  const NAV_LINKS = getNavLinks()
-  for (let i = 0; i < NAV_LINKS.length; i++) {
-    const { to, exact, children } = NAV_LINKS[i]
-    navlinkArray.push(<NavLink key={i} to={to} exact={exact} children={children} />)
-  }
   return (
     <>
       {/* <Modal show>
@@ -64,7 +65,7 @@ function Navbar() {
       </Modal> */}
       <nav className='navbar-container'
         style={{
-          gridTemplateColumns: `repeat(${navlinkArray.length + 1},auto) 1fr auto auto`,
+          gridTemplateColumns: `repeat(${2 + 1},auto) 1fr auto auto`,
           height: VALUES.navbarHeight,
         }}
       >
@@ -73,6 +74,9 @@ function Navbar() {
           className='navbar-navlink-container navbar-logo-container'
           to={PATHS.home}
           onClick={scrollToTop}
+          style={{
+            gridTemplateColumns: widthIsCompact ? '' : 'repeat(2, auto)',
+          }}
         >
           <img className='navbar-logo-img' src={langutilIcon} alt='Homepage' />
           {
@@ -83,8 +87,20 @@ function Navbar() {
           }
         </Link>
 
-        {/* Other links + spacing */}
-        {navlinkArray}
+        {/* Docs */}
+        <NavLink to={PATHS.docs}>
+          <div>
+            {localize('DOCS')}
+            <DocVersion />
+          </div>
+        </NavLink>
+
+        {/* Changelog */}
+        <NavLink to={PATHS.changelog}>
+          {localize('CHANGELOG')}
+        </NavLink>
+
+        {/* Spacing */}
         <div />
 
         {/* Translation */}

@@ -1,0 +1,12 @@
+.changelog-scn-container {
+  display: grid;
+  padding: 2em;
+}
+
+.changelog-scn-h2 {
+  margin-inline-start: 1.5em;
+}
+
+.changelog-scn-li {
+  margin-inline-start: 2.25em;
+}

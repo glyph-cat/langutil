@@ -1,10 +1,9 @@
 import React from 'react'
 import { localize } from 'langutil'
-import { withLang } from 'langutil/react-additions'
 import CodeDisplay, { Line, Com, Var, Str, Func, Type, Def } from '../../components/code-display'
 
 const Usage = () => (
-  <CodeDisplay>
+  <CodeDisplay title={localize('BASIC_USAGE')}>
     <Line>
       <Def>let</Def> <Var>greet</Var> = <Func>localize</Func>(<Str>'HELLO_WORLD'</Str>)
     </Line>
@@ -15,4 +14,4 @@ const Usage = () => (
   </CodeDisplay>
 )
 
-export default withLang(Usage)
+export default Usage

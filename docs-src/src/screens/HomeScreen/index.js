@@ -12,6 +12,7 @@ class HomeScreen extends React.Component {
   render() {
     return (
       <div className='home-scn-container'>
+
         <div className='home-scn-banner-container'>
           <Body
             className='home-scn-banner-title'
@@ -23,6 +24,7 @@ class HomeScreen extends React.Component {
             children={localize({ keyword: 'GET_STARTED', casing: 'upperCase' })}
           />
         </div>
+
         <div className='home-scn-howItWorks-container'>
           <div className=''>
             <H1
@@ -32,6 +34,7 @@ class HomeScreen extends React.Component {
             <CodeSamples.HomeDemo />
           </div>
         </div>
+
       </div>
     )
   }

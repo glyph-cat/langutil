@@ -11,13 +11,27 @@ const Navigator = () => {
       <Navbar />
       <Suspense fallback={<Loader />}>
         <Switch>
+
           <Route exact path={PATHS.root} component={RootScreen} />
+
           <Route path={PATHS.home} component={HomeScreen} />
-          <Route path={`${PATHS.docs}/:id`} component={DocScreen} />
-          <Route path={PATHS.docs} component={DocScreen} />
-          {/* <Route path={PATHS.changelog} component={ChangelogScreen} /> */}
+
+          <Route path={`${PATHS.docs}/:version/:section/:id`} component={DocContentScreen} />
+          <Route path={`${PATHS.docs}/:version/:section`} component={DocSectionBrowserScreen} />
+          <Route path={`${PATHS.docs}/:version`} component={DocVersionBrowserScreen} />
+          <Route path={PATHS.docs} component={DocRootScreen} />
+
+          <Route path={PATHS.changelog} component={ChangelogScreen} />
+
           {/* <Route path={PATHS.builder} component={BuilderScreen} /> */}
+
+          {/* <Route path={`${PATHS.playground}/:version/:section/:id`} component={PlaygroundScreen} /> */}
+          {/* <Route path={`${PATHS.playground}/:version/:section`} component={PlaygroundScreen} /> */}
+          {/* <Route path={`${PATHS.playground}/:version`} component={PlaygroundScreen} /> */}
+          {/* <Route path={PATHS.playground} component={PlaygroundScreen} /> */}
+
           <Route path={PATHS.root} component={RootScreen} />
+
         </Switch>
       </Suspense>
       <Footer />
@@ -29,6 +43,11 @@ export default Navigator
 
 const RootScreen = lazy(() => import('../screens/RootScreen'))
 const HomeScreen = lazy(() => import('../screens/HomeScreen'))
-const DocScreen = lazy(() => import('../screens/DocScreen'))
+const DocRootScreen = lazy(() => import('../screens/DocRootScreen'))
+const DocVersionBrowserScreen = lazy(() => import('../screens/DocVersionBrowserScreen'))
+const DocSectionBrowserScreen = lazy(() => import('../screens/DocSectionBrowserScreen'))
+const DocContentScreen = lazy(() => import('../screens/DocContentScreen'))
+const ChangelogScreen = lazy(() => import('../screens/ChangelogScreen'))
 // const BuilderScreen = lazy(() => import('../screens/BuilderScreen'))
-// const ChangelogScreen = lazy(() => import('../screens/ChangelogScreen'))
+// const PlaygroundScreen = lazy(() => import('../screens/PlaygroundScreen'))
+// const PlaygroundScreen = lazy(async () => undefined) // For testing the loader

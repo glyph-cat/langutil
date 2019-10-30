@@ -1,6 +1,5 @@
 import React from 'react'
 import { localize } from 'langutil'
-import { withLang } from 'langutil/react-additions'
 import { Code, Table, THead, Th, TBody, Tr, Td } from '../../components/document'
 
 function CasingExamples() {
@@ -40,4 +39,4 @@ function CasingExamples() {
   )
 }
 
-export default withLang(CasingExamples)
+export default CasingExamples
