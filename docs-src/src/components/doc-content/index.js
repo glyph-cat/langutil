@@ -2,15 +2,20 @@ import React, { Suspense, lazy } from 'react'
 import { withRouter } from 'react-router-dom'
 import DocPrevNext from '../../components/doc-prev-next'
 import DocUnavailable from '../../components/doc-unavailable'
-// import { SectionBreak } from '../../components/document'
 import './index.css'
 
-function DocContent({ match: { params: { id } } }) {
-  // console.log('docId:', id)
+function DocContent({ match: { params: { version: v, section: s, id } } }) {
   let componentFound = false
   let DocComponent = () => <DocUnavailable />
-  try { if (require(`../../documentations/${id}`)) { componentFound = true } } catch (e) { }
-  if (componentFound) { DocComponent = lazy(() => import(`../../documentations/${id}`)) }
+  // console.log(`path: ${`../../documentations/${v}_${s}_${id}`}`)
+  try {
+    if (require(`../../documentations/${v}_${s}_${id}`)) {
+      componentFound = true
+    }
+  } catch (e) { }
+  if (componentFound) {
+    DocComponent = lazy(() => import(`../../documentations/${v}_${s}_${id}`))
+  }
   const prevnext = <DocPrevNext />
   return (
     <Suspense fallback={<div />}>

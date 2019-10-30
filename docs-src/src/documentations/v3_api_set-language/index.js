@@ -4,6 +4,7 @@ import { withLang } from 'langutil/react-additions'
 import { Body, Code } from '../../components/document'
 import CodeTitle from '../../components/code-title'
 import ParamList from '../../components/param-list'
+import CodeSamples from '../../code-samples'
 import { asProps } from '../../modules'
 
 export default withLang(() => {
@@ -33,6 +34,8 @@ export default withLang(() => {
       <br />
 
       <ParamList data={params} />
+
+      <CodeSamples.ApiSetLanguage />
 
     </>
   )

@@ -1,19 +1,19 @@
 .document-h1 {
   margin: 0;
   margin-bottom: 0.5em;
-  font-size: 2em;
+  font-size: 26pt;
   font-weight: bold;
 }
 
 .document-h2 {
   margin: 0;
   margin: 0.5em 0;
-  font-size: 1.5em;
+  font-size: 22pt;
   font-weight: bold;
 }
 
 .document-body {
-  font-size: 1.2em;
+  font-size: 16pt;
   line-height: 150%;
   margin: 0;
   margin-bottom: 0.25em;
@@ -23,9 +23,7 @@
   background-color: #ff2b8011;
   border-radius: 0.25em;
   color: #ff2b80;
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
-  font-size: 0.9em;
+  font-size: 14pt;
   font-style: normal;
   padding: 0.1em 0.25em 0.1em 0.25em;
 }
@@ -37,4 +35,8 @@
 
 .document-thead {
   background-color: #dddddd;
+}
+
+.document-td {
+  vertical-align: top;
 }

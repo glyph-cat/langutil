@@ -1,7 +1,6 @@
 import React from 'react'
 import { localize } from 'langutil'
-import { withLang } from 'langutil/react-additions'
-import CodeDisplay, { Line, Com, Str, Type } from '../../components/code-display'
+import CodeDisplay, { Line, Str, Type } from '../../components/code-display'
 
 const ParamArrayDictionary = () => (
   <CodeDisplay title={`localizations/${localize('DOC_EXAMPLE_PRIMARY_LANG')}.js`}>
@@ -20,4 +19,4 @@ const ParamArrayDictionary = () => (
   </CodeDisplay>
 )
 
-export default withLang(ParamArrayDictionary)
+export default ParamArrayDictionary

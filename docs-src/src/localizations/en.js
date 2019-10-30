@@ -1,20 +1,22 @@
 const React = require('react')
 
 module.exports = {
+
   'ADVANCED': 'Advanced',
   'ALTERNATIVE_SYNTAX': 'Alternative syntax',
   'API': 'API',
+  'APP_BOUNDARY_ERROR_OCCURED': 'We\'re sorry, an error occured.',
+  'APPLY_CASINGS': 'Apply casings',
+  'APPLY_TRANSFORMATION': 'Apply transformation',
 
+  'API_DESC_GET_CURRENT_LANG': 'Get the currently set language.',
+  'API_DESC_GET_DEFINED_LANG': 'Get the list of language that have been defined in the dictionary.',
   'API_DESC_INIT': ({ setD, setL }) => <>Initialize langutil with a dictionary and language. Shorthand for {setD} and {setL}.</>,
   'API_DESC_SET_DICTIONARY': ({ init }) => <>Sets the dictionary. We encourage using {init} and not changing the contents of the dictionary in halfway. Unless the dictionary has been splitted up into sections for lazy loading.</>,
   'API_DESC_SET_LANGUAGE': 'Sets the language.',
   'API_PARAM_DICT': 'The object containing all localizations.',
   'API_PARAM_LANG': 'The language to use.',
   'API_PARAM_DETECTOR': ({ auto }) => <>A langutil built-in function, pass {auto} into this parameter to allow auto-language detection.</>,
-
-  'APP_BOUNDARY_ERROR_OCCURED': 'We\'re sorry, an error occured.',
-  'APPLY_CASINGS': 'Apply casings',
-  'APPLY_TRANSFORMATION': 'Apply transformation',
 
   'BASIC_USAGE': 'Basic usage',
   'BASICS': 'Basics',
@@ -23,7 +25,12 @@ module.exports = {
   'CASING': 'Casing',
   'CASINGS': 'Casings',
   'CHANGELOG': 'Changelog',
+
+  'CHANGELOG_CREATION_OF_LANGUTIL': 'Creation of langutil with 3 core functions and the ability to auto-detect up to 128 languages.',
+  'CHANGELOG_ADDED_HIDELOGS': ({ hide }) => <>Added a new {hide} function.</>,
+
   'COPY': 'Copy',
+  'COPIED': 'Copied',
 
   'DEFAULT_VALUE': 'Default value',
   'DESCRIPTION': 'Description',
@@ -62,12 +69,13 @@ module.exports = {
 
   'DOC_NEXT_PARAM': 'Next: %p ▶',
   'DOC_PREV_PARAM': '◀ Prev: %p',
-  'DOC_UNAVAILABLE': 'Document unavailable',
   'DOCS': 'Docs',
   'DYNAMIC_LOCALIZATIONS': 'Dynamic localizations',
 
+  'FAIL_COPY_DESC': 'We\'re deeply sorry, an error occured. Please copy the item manually. ',
   'FOOTER_COPYRIGHT': 'Copyright © %p chin98edwin',
 
+  'FOLDER_STRUCTURE': 'Folder structure',
   'GET_STARTED': 'Get started',
 
   'HELLO_WORLD': 'Hello world',
@@ -96,12 +104,16 @@ module.exports = {
   'PARAMETER': 'Parameter',
   'PARAMETERS': 'Parameters',
 
+  'REACT_KAWAII_PROMO_TEXT': ({ link }) => <>Like this cute image? Check out {link} for more.</>,
+  // 'REPO': 'Repo',
+
   'SWITCH_LANGUAGE': 'Switch language',
   'SWITCHING_LANGUAGES': 'Switching languages',
   'SETTING_UP': 'Setting up',
 
   // 'TRANSFORMATIONS': 'Transformations',
   'THE_QUICK_BROWN_FOX': 'The quick brown fox jumped over the fence.',
+  'THIS_DOC_IS_UNAVAILABLE': 'This document is unavailable',
   'TYPE': 'Type',
 
   'USAGE': 'Usage',

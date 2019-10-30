@@ -2,7 +2,7 @@ import React from 'react'
 import { H1 } from '../../components/document'
 import './index.css'
 
-function CodeTitle({ name, params }) {
+function CodeTitle({ name, params = {} }) {
   let paramList = []
   const pIndex = Object.keys(params)
   for (let i = 0; i < pIndex.length; i++) {
@@ -11,7 +11,7 @@ function CodeTitle({ name, params }) {
     paramList.push(`${pIndex[i]}${isOptional ? '?' : ''}`)
   }
   const text = `${name}(${paramList.join(', ')})`
-  return <H1 className='code-title' children={text} />
+  return <H1 className='code-title code' children={text} />
 }
 
 export default CodeTitle

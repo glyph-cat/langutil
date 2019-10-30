@@ -31,11 +31,24 @@ export const Th = (props) => <th {...props} />
 
 export const Tr = (props) => <tr {...props} />
 
-export const Td = (props) => <td {...props} />
+export const Td = ({ className, ...props }) => (
+  <td className={['document-td', className].join(' ')} {...props} />
+)
 
 export const Code = ({ className, ...props }) => (
-  <code className={['document-code', className].join(' ')} {...props} />
+  <code className={['document-code code', className].join(' ')} {...props} />
 )
+
+export const Ol = ({ className, ...props }) => (
+  <ol className={['document-body', className].join(' ')} {...props} />
+)
+
+export const Ul = ({ className, ...props }) => (
+  <ul className={['document-body', className].join(' ')} {...props} />
+)
+
+export const Li = (props) => <li {...props} />
+
 
 export const SectionBreak = () => <><br /><br /><br /></>
 

@@ -1,6 +1,5 @@
 import React from 'react'
 import { localize } from 'langutil'
-import { withLang } from 'langutil/react-additions'
 import CodeDisplay, { Line, Com, Var, Str, Func, Type, Def } from '../../components/code-display'
 
 const ParamArray = () => {
@@ -30,4 +29,4 @@ const ParamArray = () => {
   )
 }
 
-export default withLang(ParamArray)
+export default ParamArray

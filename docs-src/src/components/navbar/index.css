@@ -55,7 +55,6 @@
 .navbar-logo-container {
   align-items: center;
   display: grid;
-  grid-template-columns: repeat(2, auto);
   column-gap: 0.5em;
   -webkit-column-gap: 0.5em;
   -moz-column-gap: 0.5em;

@@ -1,10 +1,9 @@
 import React from 'react'
 import { localize } from 'langutil'
-import { withLang } from 'langutil/react-additions'
 import CodeDisplay, { Line, Com } from '../../components/code-display'
 
 const FolderStructure = () => (
-  <CodeDisplay mode='none'>
+  <CodeDisplay title={localize('FOLDER_STRUCTURE')} mode='none'>
     <Line>└─┬ src</Line>
     <Line>  └─┬ localizations</Line>
     <Line indent={1}>├── index.js</Line>
@@ -14,4 +13,4 @@ const FolderStructure = () => (
   </CodeDisplay>
 )
 
-export default withLang(FolderStructure)
+export default FolderStructure

@@ -9,7 +9,8 @@ export default withLang(() => (
 
     <H1 children={localize('INSTALLATION')} />
     <Body children={localize('DOC_BODY_IN_YOUR_DIRECTORY')} />
-    <CodeSamples.Install />
+    <CodeSamples.InstallUsingNpm />
+    <CodeSamples.InstallUsingYarn />
 
     <SectionBreak />
 

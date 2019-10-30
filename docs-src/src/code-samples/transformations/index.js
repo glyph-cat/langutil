@@ -1,6 +1,5 @@
 import React from 'react'
 import { localize } from 'langutil'
-import { withLang } from 'langutil/react-additions'
 import CodeDisplay, { Line, Key, Com, Var, Str, Func, Type, Def, Rgx, Rgxe } from '../../components/code-display'
 
 const Transformations = () => {
@@ -33,4 +32,4 @@ const Transformations = () => {
   )
 }
 
-export default withLang(Transformations)
+export default Transformations

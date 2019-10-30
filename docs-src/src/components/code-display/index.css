@@ -7,8 +7,8 @@
 }
 
 .code-disp-title {
-  color: #ddeeff;
-  /* font-weight: bold; */
+  color: #88AA88;
+  font-weight: bold;
   font-size: 11pt;
   margin: 0;
 }
@@ -23,7 +23,7 @@
 }
 
 .code-disp-toolbar-button {
-  background-color: #ffffff;
+  background-color: #aaccff;
   color: #4a4a4a;
   cursor: pointer;
   border: none;

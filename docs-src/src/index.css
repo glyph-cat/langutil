@@ -20,6 +20,11 @@ code {
     monospace;
 }
 
+.code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
 /* ADAPTIVE TEXT */
 
 /* @media only screen and (max-height: 800px), (max-width: 800px) {

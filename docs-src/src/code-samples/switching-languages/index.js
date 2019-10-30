@@ -1,6 +1,5 @@
 import React from 'react'
 import { localize } from 'langutil'
-import { withLang } from 'langutil/react-additions'
 import CodeDisplay, { Line, Com, Key, Var, Str, Func, Type } from '../../components/code-display'
 
 const SwitchingLanguages = () => (
@@ -23,4 +22,4 @@ const SwitchingLanguages = () => (
   </CodeDisplay>
 )
 
-export default withLang(SwitchingLanguages)
+export default SwitchingLanguages

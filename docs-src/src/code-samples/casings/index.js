@@ -1,5 +1,4 @@
 import React from 'react'
-import { withLang } from 'langutil/react-additions'
 import { localize } from 'langutil'
 import CodeDisplay, { Line, Com, Var, Def, Str, Func, Type } from '../../components/code-display'
 
@@ -32,4 +31,4 @@ const Casings = () => {
   )
 }
 
-export default withLang(Casings)
+export default Casings
