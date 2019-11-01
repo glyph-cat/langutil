@@ -4,7 +4,7 @@ import { withLang } from 'langutil/react-additions'
 import { Body, Code } from '../../components/document'
 import CodeTitle from '../../components/code-title'
 import CodeSamples from '../../code-samples'
-import { asProps } from '../../modules'
+import { withProps } from '../../modules'
 
 export default withLang(() => {
   return (
@@ -14,7 +14,7 @@ export default withLang(() => {
 
       <Body children={localize({
         keyword: 'API_DESC_AUTO_DETECT',
-        transform: asProps({ init: <Code>init()</Code>, setL: <Code>setLanguage()</Code> })
+        transform: withProps({ init: <Code>init()</Code>, setL: <Code>setLanguage()</Code> })
       })} />
 
       <CodeSamples.ApiAutoDetect />
