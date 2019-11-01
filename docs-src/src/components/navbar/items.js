@@ -84,9 +84,9 @@ export function GitHubLink() {
       href={STRINGS.githubRepo}
       target='_blank' rel='noopener noreferrer'
       style={{ width: VALUES.navbarHeight }}
-      title={localize('VIEW_IN_GITHUB')}
+      title={localize('VIEW_ON_GITHUB')}
     >
-      <img className='navbar-navlink-img' src={ghIcon} alt={localize('VIEW_IN_GITHUB')} />
+      <img className='navbar-navlink-img' src={ghIcon} alt={localize('VIEW_ON_GITHUB')} />
     </a>
   )
 }
