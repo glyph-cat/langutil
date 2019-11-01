@@ -78,7 +78,7 @@ function inspectDict(dict) {
     if (dictIsEmpty(dict)) { console.error('(!) Dictionary is empty'); return true; }
   } else {
     console.error(formatInv({ expected: { dict }, toBe: ['object'] }));
-    return true
+    return true;
   }
 
   let noErrors = true;
