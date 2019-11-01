@@ -1,7 +1,7 @@
 import React from 'react'
 import { localize } from 'langutil'
 import { H1, Body, Code, SectionBreak } from '../../components/document'
-import { asProps } from '../../modules'
+import { withProps } from '../../modules'
 import CodeSamples from '../../code-samples'
 
 export default () => (
@@ -14,7 +14,7 @@ export default () => (
     <CodeSamples.ApiInit />
     <Body children={localize({
       keyword: 'DOC_BODY_ADDITIONALLY_USE_CAN_USE_AUTO_DETECT',
-      transform: asProps({ autoDetect: <Code>AUTO_DETECT</Code> })
+      transform: withProps({ autoDetect: <Code>AUTO_DETECT</Code> })
     })} />
 
     <SectionBreak />
@@ -23,7 +23,7 @@ export default () => (
     <Body children={
       localize({
         keyword: 'DOC_BODY_USE_LOC_TO_TRANSLATE',
-        transform: asProps({ loc: <Code>localize</Code> }),
+        transform: withProps({ loc: <Code>localize</Code> }),
       })
     } />
     <CodeSamples.Usage />
@@ -33,7 +33,7 @@ export default () => (
     <H1 children={localize('SWITCHING_LANGUAGES')} />
     <Body children={localize({
       keyword: 'DOC_BODY_USE_SETLANG_TO_SWITCH_LANG',
-      transform: asProps({ setL: <Code>setLanguage</Code> }),
+      transform: withProps({ setL: <Code>setLanguage</Code> }),
     })} />
     <CodeSamples.SwitchingLanguages />
 
