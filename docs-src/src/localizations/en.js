@@ -125,7 +125,10 @@ module.exports = {
   'DOC_NEXT_PARAM': 'Next: %p ▶',
   'DOC_PREV_PARAM': '◀ Prev: %p',
   'DOCS': 'Docs',
+  'DOCUMENTATION': 'Documentation',
   'DYNAMIC_LOCALIZATIONS': 'Dynamic localizations',
+
+  'EXTERNAL_LINKS': 'External links',
 
   'FAIL_COPY_DESC': 'We\'re deeply sorry, an error occured. Please copy the item manually. ',
   'FOOTER_COPYRIGHT': 'Copyright © %p chin98edwin',
@@ -180,10 +183,13 @@ module.exports = {
   'PARAMETER': 'Parameter',
   'PARAMETERS': 'Parameters',
 
+  'QUICK_LINKS': 'Quick links',
+
   'REACT_KAWAII_PROMO_TEXT': ({ link }) => <>Like this cute image? Check out {link} for more.</>,
   'RETURNS': 'Returns',
   // 'REPO': 'Repo',
 
+  'SOME_PARAMETER': 'Some parameter',
   'SWITCH_LANGUAGE': 'Switch language',
   'SWITCHING_LANGUAGES': 'Switching languages',
   'SETTING_UP': 'Setting up',
@@ -198,7 +204,8 @@ module.exports = {
   'USING_NPM': 'Using NPM',
   'USING_YARN': 'Using Yarn',
 
-  'VIEW_IN_GITHUB': 'View in GitHub',
+  'VIEW_ON_NPM': 'View on NPM',
+  'VIEW_ON_GITHUB': 'View on GitHub',
 
   'WEB': 'Web',
 

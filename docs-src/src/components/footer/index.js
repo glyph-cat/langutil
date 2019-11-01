@@ -1,20 +1,12 @@
 import React from 'react'
 import { debounce } from 'lodash'
-// import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { localize } from 'langutil'
 import { withLang } from 'langutil/react-additions'
 import { Body } from '../../components/document'
 import { bridge } from '../../modules'
-import { VALUES } from '../../constants'
+import { PATHS, VALUES, STRINGS } from '../../constants'
 import './index.css'
-
-// Also include:
-// NPM Link
-// GitHub Link
-// Switch languages
-// Docs: Basic, API, Advanced
-// copyright
-// changelog
 
 class Footer extends React.Component {
 
@@ -54,32 +46,82 @@ class Footer extends React.Component {
     return (
       <>
         {reachedBottom ?
-          <div className='footer-container' style={{ height: VALUES.footerHeight, opacity: 0 }} />
+          <div className='footer-elem' style={{ height: VALUES.footerHeight, opacity: 0 }} />
           :
           null
         }
         <footer
-          className='footer-container'
+          className='footer-elem'
           style={{
             bottom: reachedBottom ? 0 : '',
             height: VALUES.footerHeight,
             position: reachedBottom ? 'fixed' : 'absolute',
           }}
         >
-          {/* <Link
-            to='/docs/v2/advanced/alternative-syntax'
-            style={{ backgroundColor: '#00AAAA88', margin: '2em' }}
-            children='Go to V2 (testing)'
-          /> */}
-          <Body
-            className=''
-            style={{
-              marginTop: 250,
-              fontSize: '0.85em',
-              textAlign: 'center',
-            }}
-            children={localize('FOOTER_COPYRIGHT', [new Date().getFullYear()])}
-          />
+          <div className='footer-container'>
+
+            <div className='footer-upper-container'>
+              <div
+                className='footer-upper-column-container'
+                style={{ gridTemplateRows: `repeat(${2}, auto) 1fr` }}
+              >
+                <p
+                  className='footer-upper-column-title'
+                  children={localize('QUICK_LINKS', null, 'upperCase')}
+                />
+                <Link
+                  className='footer-links'
+                  to={PATHS.docs}
+                  children={localize('DOCUMENTATION')}
+                />
+                <Link
+                  className='footer-links'
+                  to={PATHS.changelog}
+                  children={localize('CHANGELOG')}
+                />
+              </div>
+              <div
+                className='footer-upper-column-container'
+                style={{ gridTemplateRows: `repeat(${2}, auto) 1fr` }}
+              >
+                <p
+                  className='footer-upper-column-title'
+                  children={localize('SWITCH_LANGUAGE', null, 'upperCase')}
+                />
+                <span
+                  className='footer-links'
+                  children='English (More coming soon)'
+                />
+              </div>
+              <div
+                className='footer-upper-column-container'
+                style={{ gridTemplateRows: `repeat(${2}, auto) 1fr` }}
+              >
+                <p
+                  className='footer-upper-column-title'
+                  children={localize('EXTERNAL_LINKS', null, 'upperCase')}
+                />
+                <a
+                  className='footer-links'
+                  href={STRINGS.githubRepo}
+                  children={localize('VIEW_ON_GITHUB')}
+                />
+                <a
+                  className='footer-links'
+                  href={STRINGS.npmPage}
+                  children={localize('VIEW_ON_NPM')}
+                />
+              </div>
+            </div>
+
+            <div className='footer-lower-container'>
+              <Body
+                className='footer-copyright-text'
+                children={localize('FOOTER_COPYRIGHT', [new Date().getFullYear()])}
+              />
+            </div>
+
+          </div>
         </footer>
       </>
     )
