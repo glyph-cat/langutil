@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import { localize } from 'langutil'
 import { withLang } from 'langutil/react-additions'
 import { Body } from '../../components/document'
-import { bridge } from '../../modules'
+import { bridge, scrollToTop } from '../../modules'
 import { PATHS, VALUES, STRINGS } from '../../constants'
 import './index.css'
 
@@ -73,11 +73,13 @@ class Footer extends React.Component {
                   className='footer-links'
                   to={PATHS.docs}
                   children={localize('DOCUMENTATION')}
+                  onClick={scrollToTop}
                 />
                 <Link
                   className='footer-links'
                   to={PATHS.changelog}
                   children={localize('CHANGELOG')}
+                  onClick={scrollToTop}
                 />
               </div>
               <div
