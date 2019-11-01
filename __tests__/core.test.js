@@ -137,6 +137,12 @@
         expect(computed).toBe(expected);
       });
 
+      it('applyParam (object) UNTALLY', () => {
+        const computed = applyParam('Welcome, {:user}. Add {:foo}. Escaped {::user}.', { user: 'Adam', bar: 'baz' });
+        const expected = 'Welcome, Adam. Add {:foo}. Escaped {:user}.';
+        expect(computed).toBe(expected);
+      });
+
       it('applyCasing (lowerCase)', () => {
         const computed = applyCasing('HELLO WORLD', 'lowerCase');
         const expected = 'hello world';
@@ -183,14 +189,6 @@
         const hashLength = 10;
         expect(getRandomHash(hashLength).length).toBe(hashLength);
       });
-
-      // it('formatInv ()', () => {
-      //   // ...
-      // });
-
-      // it('formatInv ()', () => {
-      //   // ...
-      // });
 
       // it('formatInv ()', () => {
       //   // ...
