@@ -1,0 +1,17 @@
+.doc-unavailable-container {
+  align-items: center;
+  display: grid;
+  height: 75vh;
+  justify-items: center;
+}
+
+.doc-unavailable-subcontainer {
+  align-items: center;
+  display: grid;
+  gap: 1em;
+  justify-items: center;
+}
+
+.doc-unavailable-text {
+  text-align: center;
+}

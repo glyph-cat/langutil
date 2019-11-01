@@ -1,6 +1,6 @@
 {
   "name": "langutil",
-  "description": "Localization for JavaScript made simple. ",
+  "description": "Localization for JavaScript made simple",
   "version": "3.0.1",
   "author": "chin98edwin",
   "directories": {
@@ -47,6 +47,7 @@
     "jest": "^24.9.0"
   },
   "jest": {
-    "verbose": false
+    "verbose": false,
+    "testPathIgnorePatterns": ["docs-src/"]
   }
 }

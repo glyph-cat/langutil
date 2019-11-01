@@ -1,0 +1,8 @@
+.footer-container {
+  background-color: #332128;
+  color: #EEEEEE;
+  display: grid;
+  position: absolute;
+  width: 100vw;
+  z-index: 1;
+}

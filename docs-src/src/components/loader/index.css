@@ -1,0 +1,36 @@
+.loader-container {
+  align-items: center;
+  display: grid;
+  height: 90vh;
+  justify-items: center;
+  width: 100vw;
+}
+
+.loader-subcontainer {
+  display: grid;
+  gap: 1em;
+  justify-items: center;
+}
+
+.loader-text {
+  animation-name: smooth-blinking;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  color: #888888;
+  font-size: 2em;
+  font-weight: bold;
+  text-align: center;
+  margin: 0;
+}
+
+@keyframes smooth-blinking {
+  0% {
+    opacity: 0;
+  }
+  70% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}

@@ -1,0 +1,98 @@
+.navbar-container {
+  background-color: #212833;
+  display: grid;
+  position: fixed;
+  top: 0%;
+  width: 100vw;
+  z-index: 1;
+}
+
+.navbar-navlink-container {
+  display: grid;
+  grid-template-rows: 1fr auto;
+  text-decoration: none;
+  transition-duration: 0.2s;
+}
+
+.navbar-navlink-container:hover {
+  background-color: #ffffff11;
+  transition-duration: 0.1s;
+}
+
+.navbar-navlink-container:active {
+  background-color: #00000022;
+  /* background-color: #094a5e; */
+  opacity: 1;
+}
+
+.navbar-navlink-button {
+  appearance: none;
+  background-color: transparent;
+  border: none;
+  margin: 0;
+  padding: 0;
+  outline: none;
+}
+
+.navbar-navlink-button-text {
+  /* display: grid; */
+  color: #ffffff;
+  font-size: 24px;
+}
+
+.navbar-navlink-img {
+  height: 24px;
+  width: 24px;
+}
+
+.navbar-squareitem-container {
+  align-items: center;
+  cursor: pointer;
+  display: grid;
+  justify-items: center;
+}
+
+.navbar-logo-container {
+  align-items: center;
+  display: grid;
+  column-gap: 0.5em;
+  grid-template-columns: repeat(2, auto);
+  justify-items: center;
+  padding: 0 1em 0 1em;
+  -moz-column-gap: 0.5em;
+  -webkit-column-gap: 0.5em;
+}
+
+.navbar-logo-img {
+  height: 28px;
+}
+
+.navbar-logo-text {
+  color: white;
+  font-size: 1.5em;
+  margin: 0;
+  font-family: "Work Sans", sans-serif;
+}
+
+.navbar-version-num {
+  color: #ddeeff;
+  font-size: 0.75em;
+  margin: 0;
+  margin-bottom: 1em;
+  margin-inline-start: 0.5em;
+}
+
+.navbar-navlink-text {
+  align-items: center;
+  color: #ffffff;
+  display: grid;
+  font-size: 1.1em;
+  justify-items: center;
+  font-weight: 300;
+  padding: 0 1em 0 1em;
+}
+
+.navbar-navlink-indicator {
+  background-color: #aaddff;
+  transition-duration: 0.15s;
+}
