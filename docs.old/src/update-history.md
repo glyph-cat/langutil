@@ -119,4 +119,11 @@
 * Structure your dictionary by keywords or language in the shape of an object, langutil will automatically determine which method you're using
 * New `setDictionary()` function in case you want to lazy load your localizations.
 
+# 3.0.1
+* Fixed incorrect function name for AUTO_DETECT in 'native-additions'
+* Fixed issue where escaped placeholders do not level down if no param array or objects are provided (%%p -> %p and {::key} -> {::key} )
+* When applying casings, ALLCAPPED words and Names will be preserved
+* Complete removal of deprecated APIs set to be in March 2020
+* Minor code optimizations
+
 <br/>

@@ -1,1 +1,1 @@
-export const AUTO_LANGUAGE: Function;
+export const AUTO_DETECT: Function;

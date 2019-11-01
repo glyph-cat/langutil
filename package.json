@@ -1,7 +1,7 @@
 {
   "name": "langutil",
   "description": "Localization for JavaScript made simple",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "author": "chin98edwin",
   "directories": {
     "doc": "docs",
@@ -20,9 +20,7 @@
     "lint": "./node_modules/.bin/eslint lib/langutil.js native-additions/index.js react-additions/index.js dev-additions/ scripts/",
     "lint-fix": "./node_modules/.bin/eslint lib/langutil.js native-additions/index.js react-additions/index.js dev-additions/ scripts/ --fix",
     "test": "jest",
-    "deploy-patch": "jest && node scripts/increaseVersionNumber --patch && npm publish",
-    "deploy-minor": "jest && node scripts/increaseVersionNumber --minor && npm publish",
-    "deploy-major": "jest && node scripts/increaseVersionNumber --major && npm publish"
+    "deploy": "jest && node scripts/increaseVersionNumberAndPublish"
   },
   "repository": {
     "type": "git",
