@@ -5,7 +5,7 @@
   "dependencies": {
     "@material-ui/core": "^4.5.1",
     "copy-to-clipboard": "^3.2.0",
-    "langutil": "^3.0.0",
+    "langutil": "^3.0.1",
     "react": "^16.10.2",
     "react-dom": "^16.10.2",
     "react-kawaii": "^0.14.4",
