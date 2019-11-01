@@ -4,7 +4,7 @@
     const {
       setLanguage, setDictionary, localize, getCurrentLanguage, getDefinedLanguages,
       extractAB, capitalizeFirstLetter, applyParam, applyCasing, applyTransform,
-      getRandomHash, formatInv,
+      getRandomHash, createKey, convertToNewDict, // formatInv,
     } = core;
     return function () {
       function baseImplementation() {
@@ -101,6 +101,19 @@
       }
       setDictionary(byKey); baseImplementation();
       setDictionary(byLang); baseImplementation();
+
+      it('createKey & convertToNewDict', () => {
+        const legacyDict = [
+          createKey('HELLO', { 'en': 'Hello', 'ms': 'Apa khabar' }),
+          createKey('MORNING', { 'en': 'Good morning', 'ms': 'Selamat pagi' }),
+        ]
+        const output = convertToNewDict(legacyDict)
+        const expected = {
+          'HELLO': { 'en': 'Hello', 'ms': 'Apa khabar' },
+          'MORNING': { 'en': 'Good morning', 'ms': 'Selamat pagi' }
+        }
+        expect(output).toEqual(expected);
+      });
 
       it('extractAB', () => {
         const dict = { en: { HELLO: 'Hello', WORLD: 'world' } };
