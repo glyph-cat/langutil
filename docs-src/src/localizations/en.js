@@ -114,9 +114,13 @@ module.exports = {
   'DOC_EXAMPLE_NAME_1': 'John',
   'DOC_EXAMPLE_NAME_2': 'Jane',
   'DOC_EXAMPLE_PARAM_ARR_HELLO_NAME': 'Hello, %%p.',
+  'DOC_EXAMPLE_PARAM_ARR_HELLO_NAME_ACTUAL': 'Hello, %p.',
   'DOC_EXAMPLE_PARAM_ARR_HELLO_NAME_2': 'Hello, %%p and %%p.',
+  'DOC_EXAMPLE_PARAM_ARR_HELLO_NAME_2_ACTUAL': 'Hello, %p and %p.',
   'DOC_EXAMPLE_PARAM_OBJ_HELLO_NAME': 'Hello, {::name1}.',
+  'DOC_EXAMPLE_PARAM_OBJ_HELLO_NAME_ACTUAL': 'Hello, {:name1}.',
   'DOC_EXAMPLE_PARAM_OBJ_HELLO_NAME_2': 'Hello, {::name1} and {::name2}.',
+  'DOC_EXAMPLE_PARAM_OBJ_HELLO_NAME_2_ACTUAL': 'Hello, {:name1} and {:name2}.',
 
   'DOC_NEXT_PARAM': 'Next: %p ▶',
   'DOC_PREV_PARAM': '◀ Prev: %p',

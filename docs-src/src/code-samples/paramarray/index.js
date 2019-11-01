@@ -13,7 +13,7 @@ const ParamArray = () => {
       <Line>
         <Type>console</Type>.<Func>log</Func>(<Var>a</Var>)
         <Com>
-          {` // ${localize('DOC_EXAMPLE_PARAM_ARR_HELLO_NAME', [name1])}`}
+          {` // ${localize('DOC_EXAMPLE_PARAM_ARR_HELLO_NAME_ACTUAL', [name1])}`}
         </Com>
       </Line>
       <Line>
@@ -22,7 +22,7 @@ const ParamArray = () => {
       <Line>
         <Type>console</Type>.<Func>log</Func>(<Var>b</Var>)
         <Com>
-          {` // ${localize('DOC_EXAMPLE_PARAM_ARR_HELLO_NAME_2', [name1, name2])}`}
+          {` // ${localize('DOC_EXAMPLE_PARAM_ARR_HELLO_NAME_2_ACTUAL', [name1, name2])}`}
         </Com>
       </Line>
     </CodeDisplay>
