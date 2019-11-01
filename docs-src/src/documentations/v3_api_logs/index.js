@@ -19,6 +19,9 @@ export default withLang(() => {
   return (
     <>
 
+      <Body children={localize('DOC_BODY_LOGS_NOT_SHOWN_IN_PROD')} style={{ fontStyle: 'italic' }} />
+      <SectionBreak />
+
       <CodeTitle name='logs.show' />
       <Body children={localize('API_DESC_LOGS_SHOW')} />
 
@@ -31,7 +34,7 @@ export default withLang(() => {
       <Body children={localize('API_DESC_LOGS_SHOW_VERBOSE')} />
 
       <SectionBreak />
-      <CodeTitle name='logs.showVerbose' />
+      <CodeTitle name='logs.hideVerbose' />
       <Body children={localize('API_DESC_LOGS_HIDE_VERBOSE')} />
 
       <SectionBreak />
