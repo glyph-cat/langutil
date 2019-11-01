@@ -1,12 +1,20 @@
 import React from 'react'
 import { debounce } from 'lodash'
-import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
 import { localize } from 'langutil'
 import { withLang } from 'langutil/react-additions'
 import { Body } from '../../components/document'
 import { bridge } from '../../modules'
 import { VALUES } from '../../constants'
 import './index.css'
+
+// Also include:
+// NPM Link
+// GitHub Link
+// Switch languages
+// Docs: Basic, API, Advanced
+// copyright
+// changelog
 
 class Footer extends React.Component {
 
@@ -58,11 +66,11 @@ class Footer extends React.Component {
             position: reachedBottom ? 'fixed' : 'absolute',
           }}
         >
-          <Link
+          {/* <Link
             to='/docs/v2/advanced/alternative-syntax'
-            style={{ backgroundColor: '#FFFFFF', margin: '2em' }}
+            style={{ backgroundColor: '#00AAAA88', margin: '2em' }}
             children='Go to V2 (testing)'
-          />
+          /> */}
           <Body
             className=''
             style={{

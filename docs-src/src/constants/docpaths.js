@@ -28,6 +28,8 @@ const DOCPATHS = {
 
     alternative_syntax: advanced(3)('alternative-syntax'),
     localizing_jsx: advanced(3)('localizing-jsx'),
+
+    theUnavailableDocument: 'v3/unavailable/document',
   }
 }
 

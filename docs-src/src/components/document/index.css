@@ -28,9 +28,18 @@
   padding: 0.1em 0.25em 0.1em 0.25em;
 }
 
+.document-code-link {
+  cursor: pointer;
+  text-decoration-line: underline;
+  text-decoration-color: #ff2b80;
+}
+
 .document-table {
   border: solid 1px #777777;
   border-collapse: collapse;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  /* width: 100%; */
 }
 
 .document-thead {

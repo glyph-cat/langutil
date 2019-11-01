@@ -1,12 +1,13 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import './index.css'
 
-export const H1 = ({ className, ...props }) => (
-  <h1 className={['document-h1', className].join(' ')} {...props} />
+export const H1 = ({ className, children, ...props }) => (
+  <h1 className={['document-h1', className].join(' ')} children={children} {...props} />
 )
 
-export const H2 = ({ className, ...props }) => (
-  <h2 className={['document-h2', className].join(' ')} {...props} />
+export const H2 = ({ className, children, ...props }) => (
+  <h2 className={['document-h2', className].join(' ')} children={children} {...props} />
 )
 
 export const Body = ({ className, ...props }) => (
@@ -37,6 +38,12 @@ export const Td = ({ className, ...props }) => (
 
 export const Code = ({ className, ...props }) => (
   <code className={['document-code code', className].join(' ')} {...props} />
+)
+
+export const CodeLink = ({ className, to, ...props }) => (
+  <Link className='document-code-link' to={to}>
+    <code className={['document-code code', className].join(' ')} {...props} />
+  </Link>
 )
 
 export const Ol = ({ className, ...props }) => (

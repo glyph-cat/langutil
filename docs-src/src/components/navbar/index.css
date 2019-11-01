@@ -56,10 +56,11 @@
   align-items: center;
   display: grid;
   column-gap: 0.5em;
-  -webkit-column-gap: 0.5em;
-  -moz-column-gap: 0.5em;
+  grid-template-columns: repeat(2, auto);
   justify-items: center;
   padding: 0 1em 0 1em;
+  -moz-column-gap: 0.5em;
+  -webkit-column-gap: 0.5em;
 }
 
 .navbar-logo-img {

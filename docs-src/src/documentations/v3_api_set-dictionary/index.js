@@ -17,18 +17,12 @@ export default withLang(() => {
 
   return (
     <>
-
       <CodeTitle name='setDictionary' params={params} rType='void' />
-
       <Body children={localize({
         keyword: 'API_DESC_SET_DICTIONARY',
         transform: asProps({ init: <Code>init()</Code> })
       })} />
-
-      <br />
-
       <ParamList data={params} />
-
     </>
   )
 

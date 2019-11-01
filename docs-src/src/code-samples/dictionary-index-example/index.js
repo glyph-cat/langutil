@@ -1,6 +1,6 @@
 import React from 'react'
 import { localize } from 'langutil'
-import CodeDisplay, { Line, Com, Str, Type, Func } from '../../components/code-display'
+import CodeDisplay, { Func, Line, Str, Type } from '../../components/code-display'
 
 const DictionaryIndexExample = () => {
   const primaryLang = localize('DOC_EXAMPLE_PRIMARY_LANG')

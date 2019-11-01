@@ -50,4 +50,4 @@ const DocContentScreen = lazy(() => import('../screens/DocContentScreen'))
 const ChangelogScreen = lazy(() => import('../screens/ChangelogScreen'))
 // const BuilderScreen = lazy(() => import('../screens/BuilderScreen'))
 // const PlaygroundScreen = lazy(() => import('../screens/PlaygroundScreen'))
-// const PlaygroundScreen = lazy(async () => undefined) // For testing the loader
+// const HomeScreen = lazy(async () => undefined) // For testing the loader

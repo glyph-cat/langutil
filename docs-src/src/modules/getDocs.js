@@ -62,12 +62,16 @@ const getDocs = () => ({
           text: 'AUTO_DETECT'
         },
         {
-          to: DOCPATHS.v3.logs,
-          text: 'logs'
-        },
-        {
           to: DOCPATHS.v3.isAuto,
           text: 'isAuto'
+        },
+        {
+          to: DOCPATHS.v3.withLang,
+          text: 'withLang'
+        },
+        {
+          to: DOCPATHS.v3.logs,
+          text: 'logs'
         },
         {
           to: DOCPATHS.v3.createKey,
@@ -87,52 +91,48 @@ const getDocs = () => ({
         },
         {
           to: DOCPATHS.v3.localizable,
-          text: 'localizable'
+          text: 'Localizable'
         },
-        {
-          to: DOCPATHS.v3.withLang,
-          text: 'withLang'
-        }
       ]
     },
-    {
-      title: localize('ADVANCED'),
-      data: [
-        {
-          to: DOCPATHS.v3.alternative_syntax,
-          text: localizeTitle('ALTERNATIVE_SYNTAX')
-        },
-        {
-          to: DOCPATHS.v3.localizing_jsx,
-          text: localize('LOCALIZING_JSX')
-        }
-      ]
-    },
-    {
-      title: 'Debug & Testing',
-      data: [
-        {
-          to: 'unavailable-document',
-          text: 'The Unavailable Document'
-        },
-      ]
-    }
+    // {
+    //   title: localize('ADVANCED'),
+    //   data: [
+    //     {
+    //       to: DOCPATHS.v3.alternative_syntax,
+    //       text: localizeTitle('ALTERNATIVE_SYNTAX')
+    //     },
+    //     {
+    //       to: DOCPATHS.v3.localizing_jsx,
+    //       text: localize('LOCALIZING_JSX')
+    //     }
+    //   ]
+    // },
+    // {
+    //   title: 'Debug & Testing',
+    //   data: [
+    //     {
+    //       to: DOCPATHS.v3.theUnavailableDocument,
+    //       text: 'The Unavailable Document'
+    //     },
+    //   ]
+    // }
   ],
-  v2: [
-    {
-      title: localize('ADVANCED'),
-      data: [
-        {
-          to: 'v2/advanced/alternative-syntax',
-          text: localizeTitle('ALTERNATIVE_SYNTAX')
-        },
-        {
-          to: DOCPATHS.v3.localizing_jsx,
-          text: localize('LOCALIZING_JSX')
-        }
-      ]
-    }
-  ],
+  // v2: [
+  //   {
+  //     title: localize('ADVANCED'),
+  //     data: [
+  //       {
+  //         to: 'v2/advanced/alternative-syntax',
+  //         text: localizeTitle('ALTERNATIVE_SYNTAX')
+  //       },
+  //       {
+  //         to: 'v2/advanced/localizing-jsx',
+  //         text: localize('LOCALIZING_JSX')
+  //       }
+  //     ]
+  //   }
+  // ],
 })
 
 export default getDocs

@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { localize } from 'langutil'
 import CopyButton from './copy-button'
 import copy from 'copy-to-clipboard'
@@ -6,7 +7,17 @@ import { HashFactory } from '../../classes'
 
 let idTracker = new HashFactory()
 
+/**
+ * @augments{React.Component<{}>}
+ */
 class CodeDisplay extends React.Component {
+
+  static propTypes = {
+    title: PropTypes.string,
+    children: PropTypes.node,
+    startLineFrom: PropTypes.number,
+    mode: PropTypes.oneOf(['none', 'line', 'all'])
+  }
 
   constructor() {
     super()
@@ -17,8 +28,8 @@ class CodeDisplay extends React.Component {
   }
 
   modStyles = {
-    '+': { backgroundColor: '#223311', color: '#AAFFAA' },
-    '-': { backgroundColor: '#440000', color: '#FFAAAA' },
+    '+': { backgroundColor: '#44553366', color: '#AAFFAA' },
+    '-': { backgroundColor: '#44000066', color: '#FFAAAA' },
     '*': { backgroundColor: '#FFFFFF0F', color: '#00000000' },
   }
 
@@ -32,9 +43,9 @@ class CodeDisplay extends React.Component {
       let output = ''
       for (let i = 0; i < this.props.children.length; i++) {
         const id = `code-content-${this.componentId}-${i}`
-        const extracted = document.getElementById(id)
-        output += extracted.innerText
-        if (extracted.innerText !== '\n') { output += '\n' }
+        const extracted = document.getElementById(id).innerText
+        output += extracted === ' ' ? '' : extracted
+        if (extracted !== '\n') { output += '\n' }
       }
       return output
     } catch (e) {
