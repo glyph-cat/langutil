@@ -40,8 +40,10 @@ class CodeDisplay extends React.Component {
 
   extractCode = () => {
     try {
+      const { children } = this.props
+      let childrenToUse = Array.isArray(children) ? children : [children]
       let output = ''
-      for (let i = 0; i < this.props.children.length; i++) {
+      for (let i = 0; i < childrenToUse.length; i++) {
         const id = `code-content-${this.componentId}-${i}`
         const extracted = document.getElementById(id).innerText
         output += extracted === ' ' ? '' : extracted
