@@ -36,12 +36,20 @@ export const Type = ({ children }) => <span children={children} style={{ color: 
 export const Func = ({ children }) => <span children={children} style={{ color: COLORS.function }} />
 export const Ang = ({ children }) => <span children={children} style={{ color: COLORS.angular }} />
 export const Mark = ({ children }) => <span children={children} style={{ backgroundColor: '#000000', borderRadius: '0.35em', paddingInlineStart: '0.5em', paddingInlineEnd: '0.5em', paddingBlockStart: '0.15em', paddingBlockEnd: '0.15em' }} />
-export const Line = ({ children = <br />, indent = 0 }) => <>{' '.repeat(4 * indent)}{children}</>
-export const LineEmp = ({ children, indent = 0 }) => <>{' '.repeat(INDENT_WIDTH * indent)}{children}</>
+export const Line = ({ children = <br />, indent = 0 }) => (
+  <>{' '.repeat(4 * indent)}{children ? children : ' '}</>
+)
+export const LineEmp = ({ children, indent = 0 }) => (
+  <>{' '.repeat(INDENT_WIDTH * indent)}{children ? children : ' '}</>
+)
 LineEmp.mod = '*'
-export const LineAdd = ({ children, indent = 0 }) => <>{' '.repeat(INDENT_WIDTH * indent)}{children}</>
+export const LineAdd = ({ children, indent = 0 }) => (
+  <>{' '.repeat(INDENT_WIDTH * indent)}{children ? children : ' '}</>
+)
 LineAdd.mod = '+'
-export const LineRem = ({ children, indent = 0 }) => <>{' '.repeat(INDENT_WIDTH * indent)}{children}</>
+export const LineRem = ({ children, indent = 0 }) => (
+  <>{' '.repeat(INDENT_WIDTH * indent)}{children ? children : ' '}</>
+)
 LineRem.mod = '-'
 export const Err = ({ children }) => (
   <span children={children} style={{

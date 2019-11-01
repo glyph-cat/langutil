@@ -1,7 +1,8 @@
 import React from 'react'
 import { localize } from 'langutil'
 import { withLang } from 'langutil/react-additions'
-import { Body, Code } from '../../components/document'
+import { Body, Code, SectionBreak } from '../../components/document'
+import CodeSamples from '../../code-samples'
 import CodeTitle from '../../components/code-title'
 import ParamList from '../../components/param-list'
 import { asProps } from '../../modules'
@@ -36,10 +37,21 @@ export default withLang(() => {
         keyword: 'API_DESC_INIT',
         transform: asProps({ setL: <Code>setLanguage</Code>, setD: <Code>setDictionary</Code> })
       })} />
-
-      <br />
-
       <ParamList data={params} />
+
+      <CodeSamples.ApiInit />
+      <SectionBreak />
+
+      <Body children={localize({
+        keyword: 'DOC_BODY_IN_REACT_CALL_INIT_BEFORE_APP',
+        transform: asProps({
+          init: <Code>langutil.init()</Code>,
+          app: <Code>App</Code>,
+          appjs: <Code>App.js</Code>
+        })
+      })} />
+
+      <CodeSamples.ApiInitReact />
 
     </>
   )

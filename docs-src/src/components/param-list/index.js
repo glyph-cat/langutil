@@ -1,22 +1,33 @@
 import React from 'react'
-import { Code, Table, THead, Th, TBody, Tr, Td } from '../../components/document'
-import { localize } from 'langutil'
+import { Code, Table, TBody, Tr, Td } from '../../components/document'
+import HeaderRow from './header-row'
+import OneOf from './one-of'
 
 function ParamList({ data = {} }) {
   let trArray = []
   const dataIndex = Object.keys(data)
 
   for (let i = 0; i < dataIndex.length; i++) {
-    const { type, desc, optional, defaultValue } = data[dataIndex[i]]
+    const { type, oneOf, desc, optional, defaultValue } = data[dataIndex[i]]
     const isOptional = optional === true || typeof defaultValue !== 'undefined'
     trArray.push(
       <Tr key={i}>
         <Td>
           <Code>{dataIndex[i] + (isOptional ? '?' : '')}</Code>
         </Td>
-        <Td children={type} />
+        {oneOf ?
+          <Td>
+            <OneOf values={oneOf} />
+          </Td>
+          :
+          (Array.isArray(type) ?
+            <Td children={type.join(', ')} />
+            :
+            <Td children={type} />
+          )
+        }
         <Td children={desc} />
-        <Td children={defaultValue} />
+        {/* <Td children={defaultValue} /> */}
       </Tr>
     )
   }
@@ -28,16 +39,5 @@ function ParamList({ data = {} }) {
     </Table>
   )
 }
-
-const HeaderRow = () => (
-  <THead>
-    <Tr>
-      <Th children={localize('PARAMETER')} />
-      <Th children={localize('TYPE')} />
-      <Th children={localize('DESCRIPTION')} />
-      <Th children={localize('DEFAULT_VALUE')} />
-    </Tr>
-  </THead>
-)
 
 export default ParamList

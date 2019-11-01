@@ -51,7 +51,8 @@ class DocSidebar extends React.Component {
       }
       toRender.push(<p key={title} className='doc-sidebar-sectionTitle' children={title.toUpperCase()} />)
       toRender.push(...topicArray)
-      if (i < sections.length - 1) { toRender.push(<br key={`br-${title}`} />) }
+      // if (i < sections.length - 1) { toRender.push(<br key={`br-${title}`} />) }
+      toRender.push(<br key={`br-${title}`} />)
     }
 
     return (

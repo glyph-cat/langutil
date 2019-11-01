@@ -2,7 +2,7 @@ import React from 'react'
 import { withLang } from 'langutil/react-additions'
 import { H1, H2, Ul, Li, SectionBreak } from '../../components/document'
 import FadeIntoView from '../../components/fade-into-view'
-import getChangelogs from './getChangelogs'
+import getChangelogs from '../../content/get-changelogs'
 import './index.css'
 
 function ChangelogScreen() {
