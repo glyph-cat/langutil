@@ -5,7 +5,7 @@ import { Body, Code } from '../../components/document'
 import CodeTitle from '../../components/code-title'
 import DeprecationWarning from '../../components/deprecation-warning'
 import ParamList from '../../components/param-list'
-import { asProps } from '../../modules'
+import { withProps } from '../../modules'
 import { VALUES } from '../../constants'
 
 export default withLang(() => {
@@ -26,7 +26,7 @@ export default withLang(() => {
         removeDate={VALUES.v240DeprecatedRemovalDate}
         message={localize({
           keyword: 'DEPRECATED_MSG_SNOOZE_INSPECTION_UNTIL',
-          transform: asProps({ dev: <Code>'dev-additions'</Code> })
+          transform: withProps({ dev: <Code>'dev-additions'</Code> })
         })}
       />
       <Body children={localize('API_DESC_SNOOZE_INSPECTION_UNTIL')} />

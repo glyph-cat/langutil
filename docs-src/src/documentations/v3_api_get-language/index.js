@@ -5,7 +5,7 @@ import { Body, Code } from '../../components/document'
 import ReturnType from '../../components/return-type'
 import DeprecationWarning from '../../components/deprecation-warning'
 import CodeTitle from '../../components/code-title'
-import { asProps } from '../../modules'
+import { withProps } from '../../modules'
 import { VALUES } from '../../constants'
 
 export default withLang(() => (
@@ -16,7 +16,7 @@ export default withLang(() => (
       removeDate={VALUES.v240DeprecatedRemovalDate}
       message={localize({
         keyword: 'DEPRECATED_MSG_GET_LANGUAGE',
-        transform: asProps({ getCL: <Code>getCurrentLanguage()</Code> })
+        transform: withProps({ getCL: <Code>getCurrentLanguage()</Code> })
       })}
     />
     <Body children={localize('API_DESC_GET_LANG')} />

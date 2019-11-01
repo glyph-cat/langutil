@@ -5,7 +5,7 @@ import { Body, Code, SectionBreak } from '../../components/document'
 import CodeSamples from '../../code-samples'
 import CodeTitle from '../../components/code-title'
 import ParamList from '../../components/param-list'
-import { asProps } from '../../modules'
+import { withProps } from '../../modules'
 
 export default withLang(() => {
 
@@ -22,7 +22,7 @@ export default withLang(() => {
       type: 'Function',
       desc: localize({
         keyword: 'API_PARAM_DETECTOR',
-        transform: asProps({ auto: <Code>AUTO_DETECT</Code> })
+        transform: withProps({ auto: <Code>AUTO_DETECT</Code> })
       }),
       optional: true
     },
@@ -35,7 +35,7 @@ export default withLang(() => {
 
       <Body children={localize({
         keyword: 'API_DESC_INIT',
-        transform: asProps({ setL: <Code>setLanguage</Code>, setD: <Code>setDictionary</Code> })
+        transform: withProps({ setL: <Code>setLanguage</Code>, setD: <Code>setDictionary</Code> })
       })} />
       <ParamList data={params} />
 
@@ -44,7 +44,7 @@ export default withLang(() => {
 
       <Body children={localize({
         keyword: 'DOC_BODY_IN_REACT_CALL_INIT_BEFORE_APP',
-        transform: asProps({
+        transform: withProps({
           init: <Code>langutil.init()</Code>,
           app: <Code>App</Code>,
           appjs: <Code>App.js</Code>

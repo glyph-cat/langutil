@@ -4,7 +4,7 @@ import { withLang } from 'langutil/react-additions'
 // import { Body, Code } from '../../components/document'
 import CodeTitle from '../../components/code-title'
 // import ParamList from '../../components/param-list'
-// import { asProps } from '../../modules'
+// import { withProps } from '../../modules'
 
 export default withLang(() => {
 

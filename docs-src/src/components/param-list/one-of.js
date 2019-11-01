@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react'
 import { Code } from '../../components/document'
 import { localize } from 'langutil'
-import { asProps } from '../../modules'
+import { withProps } from '../../modules'
 
 const OneOf = ({ values }) => {
   let toRender = []
@@ -11,7 +11,7 @@ const OneOf = ({ values }) => {
   }
   return localize({
     keyword: 'ONE_OF_PARAMS',
-    transform: asProps({ params: toRender })
+    transform: withProps({ params: toRender })
   })
 }
 

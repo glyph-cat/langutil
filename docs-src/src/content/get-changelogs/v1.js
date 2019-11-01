@@ -1,7 +1,7 @@
 import React, { createElement, Fragment } from 'react'
 import { localize } from 'langutil'
 import { Code } from '../../components/document'
-import { asProps } from '../../modules'
+import { withProps } from '../../modules'
 
 export default () => ({
   title: 'v1',
@@ -35,7 +35,7 @@ export default () => ({
       data: [
         localize({
           keyword: 'CHANGELOG_SHOWLOG_WILL_BE_REPLACED_BY',
-          transform: asProps({
+          transform: withProps({
             showL: <Code>showLogs()</Code>,
             lHide: <Code>logs.hide()</Code>,
             lShow: <Code>logs.show()</Code>
@@ -43,7 +43,7 @@ export default () => ({
         }),
         localize({
           keyword: 'CHANGELOG_ADDED_84_NEW_LANG',
-          transform: asProps({
+          transform: withProps({
             langs: createElement(() => {
               const list = ['akan', 'avestan', 'aymara', 'bihari', 'bislama', 'breton', 'burmese', 'bulgarian_old', 'chamorro', 'chechen', 'chuvash', 'cornish', 'cree', 'divehi', 'dzongka', 'ewe', 'faroese', 'fijian', 'fula', 'gaelic_scot', 'gaelic_manx', 'frisian_western', 'greenlandic', 'guarani', 'herero', 'hirimotu', 'ido', 'interlingua', 'interlingue', 'inuktitut', 'inupiak', 'kanuri', 'kashmiri', 'kikuyu', 'kinyarwanda', 'kirundi', 'komi', 'kongo', 'kwanyama', 'limburger', 'lingala', 'lugakatanga', 'luganda', 'manx', 'marshallese', 'moldavian', 'nauru', 'navajo', 'ndonga', 'ndebele_northern', 'norwegian_bokmal', 'norwegian_nynorsk', 'nuosu', 'occitan', 'ojibwe', 'oriya', 'oromo', 'ossetian', 'pali', 'quechua', 'romansh', 'sami', 'sango', 'sanskrit', 'serbian_croatian', 'setswana', 'siswati', 'southern_ndebele', 'swati', 'tagalog', 'tahitian', 'tatar', 'tibetan', 'tigrinya', 'tonga', 'tsonga', 'turkmen', 'twi', 'uyghur', 'venda', 'volapuk', 'wallon', 'wolof', 'zhuang']
               const toRender = list.map((l, i) => {
@@ -60,7 +60,7 @@ export default () => ({
       data: [
         localize({
           keyword: 'CHANGELOG_FIXED_INCORRECT_ESCAPER_SWAP',
-          transform: asProps({
+          transform: withProps({
             q: <Code>'%q'</Code>,
             p: <Code>'%p'</Code>,
             p2: <Code>'%%p'</Code>,
@@ -69,16 +69,16 @@ export default () => ({
         localize('CHANGELOG_ADAPTED_SYNTAX_FOR_COMMONJS'),
         localize({
           keyword: 'CHANGELOG_ADDED_AUTO_SUGGESTIONS',
-          transform: asProps({ init: <Code>init()</Code>, setL: <Code>setLanguage()</Code> })
+          transform: withProps({ init: <Code>init()</Code>, setL: <Code>setLanguage()</Code> })
         }),
         localize({
           keyword: 'CHANGELOG_ADDED_CHINESE_CODE',
-          transform: asProps({ c: <Code>'chinese'</Code> })
+          transform: withProps({ c: <Code>'chinese'</Code> })
         }),
         localize('CHANGELOG_EXAMPLES_REMOVED_FROM_DOC'),
         localize({
           keyword: 'CHANGELOG_HIDELOGS_WILL_BE_DEPRECATED',
-          transform: asProps({ hL: <Code>hideLogs()</Code> })
+          transform: withProps({ hL: <Code>hideLogs()</Code> })
         })
       ]
     },
@@ -94,7 +94,7 @@ export default () => ({
       data: [
         localize({
           keyword: 'CHANGELOG_ADDED_HIDELOGS',
-          transform: asProps({ hide: <Code>hideLogs()</Code> })
+          transform: withProps({ hide: <Code>hideLogs()</Code> })
         })
       ]
     },

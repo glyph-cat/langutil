@@ -1,7 +1,7 @@
 import React from 'react'
 import { localize } from 'langutil'
 import { withLang } from 'langutil/react-additions'
-import { asProps } from '../../modules'
+import { withProps } from '../../modules'
 import { Body, Code } from '../../components/document'
 import ParamList from '../../components/param-list'
 import ReturnType from '../../components/return-type'
@@ -28,7 +28,7 @@ export default withLang(() => {
         removeDate={VALUES.v240DeprecatedRemovalDate}
         message={localize({
           keyword: 'DEPRECATED_MSG_CREATE_KEY',
-          transform: asProps({
+          transform: withProps({
             dev: <Code>dev-additions</Code>,
             convert: <Code>convert()</Code>
           })
