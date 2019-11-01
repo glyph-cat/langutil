@@ -3,7 +3,7 @@ import * as React from 'react';
 /**
  * @description A Higher-order component that allows your existing components to listen for changes in langutil and update themselves accordingly.
  */
-export function withLang(WrappedComponent: React.ReactElement<{}>): React.ReactElement<{}>;
+export function withLang(WrappedComponent: React.Component<{}>): React.ReactElement<{}>;
 
 /**
  * @description A wrapper component for rendering HTML/React elements.
