@@ -33,9 +33,7 @@ export class DocVersion extends React.Component {
 
   componentDidMount() {
     this.setVersion()
-    bridge.setItem({
-      onDocVersionChange: (version) => { this.setState({ version }) }
-    })
+    bridge.setItem({ onDocVersionChange: this.setVersion })
   }
 
   componentWillUnmount() {
@@ -44,8 +42,10 @@ export class DocVersion extends React.Component {
 
   setVersion = (newVersion) => {
     const latestVersion = Object.keys(getDocs())[0]
-    this.setState({
-      version: newVersion ? newVersion : latestVersion
+    setTimeout(() => {
+      this.setState({
+        version: newVersion ? newVersion : latestVersion
+      })
     })
   }
 
