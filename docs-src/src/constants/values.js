@@ -1,6 +1,6 @@
 const VALUES = {
   // Pixels
-  footerHeight: 300,
+  footerHeight: 200,
   docsidebarContainerPadding: 16,
   navbarHeight: 54,
   compactWidthThreshold: 800,

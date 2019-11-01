@@ -38,7 +38,7 @@ function DeprecationWarning({ sinceVersion, removeDate, message }) {
 DeprecationWarning.propTypes = {
   sinceVersion: PropTypes.string,
   removeDate: PropTypes.instanceOf(Date).isRequired,
-  message: PropTypes.string.isRequired,
+  message: PropTypes.oneOfType([PropTypes.string, PropTypes.node]).isRequired
 }
 
 export default DeprecationWarning
