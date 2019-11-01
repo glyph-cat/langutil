@@ -1,7 +1,7 @@
 import React from 'react'
 import { localize } from 'langutil'
 import CodeDisplay, { Line, Key, Var, Str, Func, Com } from '../../components/code-display'
-import { asProps } from '../../modules'
+import { withProps } from '../../modules'
 
 const ApiAutoDetect = () => (
   <CodeDisplay title={localize('HOW_TO_USE_API', ['AUTO_DETECT'])}>
@@ -15,7 +15,7 @@ const ApiAutoDetect = () => (
     <Line>
       <Com>{'// '}{localize({
         keyword: 'YOU_NEED_IMPORT_AD_IF_USING_RN',
-        transform: asProps({ dect: 'AUTO_DETECT', add: '\'native-additions\'', rn: 'React Native' })
+        transform: withProps({ dect: 'AUTO_DETECT', add: '\'native-additions\'', rn: 'React Native' })
       })}</Com>
     </Line>
     <Line>

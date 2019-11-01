@@ -1,7 +1,7 @@
 import React from 'react'
 import { localize } from 'langutil'
 import { Body } from '../../components/document'
-import { asProps } from '../../modules'
+import { withProps } from '../../modules'
 import { STRINGS } from '../../constants'
 import './index.css'
 
@@ -11,7 +11,7 @@ function ReactKawaiiPromoText() {
       className='react-kawaii-promo-text'
       children={localize({
         keyword: 'REACT_KAWAII_PROMO_TEXT',
-        transform: asProps({
+        transform: withProps({
           link: (
             <a
               href={STRINGS.reactKawaiiHomePage}

@@ -4,7 +4,7 @@ import { withLang } from 'langutil/react-additions'
 import { Body, Code } from '../../components/document'
 import CodeTitle from '../../components/code-title'
 import ParamList from '../../components/param-list'
-import { asProps } from '../../modules'
+import { withProps } from '../../modules'
 
 export default withLang(() => {
 
@@ -21,7 +21,7 @@ export default withLang(() => {
       type: 'Function',
       desc: localize({
         keyword: 'API_PARAM_DETECTOR',
-        transform: asProps({ auto: <Code>AUTO_DETECT</Code> })
+        transform: withProps({ auto: <Code>AUTO_DETECT</Code> })
       }),
       optional: true
     },
@@ -34,7 +34,7 @@ export default withLang(() => {
 
       <Body children={localize({
         keyword: 'API_DESC_INIT',
-        transform: asProps({ setL: <Code>setLanguage</Code>, setD: <Code>setDictionary</Code> })
+        transform: withProps({ setL: <Code>setLanguage</Code>, setD: <Code>setDictionary</Code> })
       })} />
 
       <br />
