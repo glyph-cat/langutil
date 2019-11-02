@@ -4,7 +4,7 @@ import CodeDisplay, { Com, Def, Func, Line, Rgx, Rgxe, Str, Var } from '../../co
 
 const ApiSetLanguage = () => {
   return (
-    <CodeDisplay title={localize('HOW_TO_USE_API', ['setLanguage()'])}>
+    <CodeDisplay title={localize('HOW_TO_USE_API', ['localize()'])}>
       <Line>
         <Com>{`// ${localize('NORMAL_SYNTAX')}`}</Com>
       </Line>

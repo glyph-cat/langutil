@@ -4,7 +4,7 @@ import CodeDisplay, { Line, Key, Com, Var, Str, Func, Type, Def, Rgx, Rgxe } fro
 
 const Transformations = () => {
   return (
-    <CodeDisplay>
+    <CodeDisplay title={localize('APPLYING_TRANSFORMATION_TO_YOUR_LOC_STR')}>
       <Line>
         <Def>let</Def> <Var>transformed</Var> = <Func>localize</Func>({'{'}
       </Line>

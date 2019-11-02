@@ -8,6 +8,8 @@ module.exports = {
   'APP_BOUNDARY_ERROR_OCCURED': 'We\'re sorry, an error occured.',
   'APPLY_CASINGS': 'Apply casings',
   'APPLY_TRANSFORMATION': 'Apply transformation',
+  'APPLYING_CASINGS_TO_YOUR_LOC_STR': 'Applying casings to your localized strings',
+  'APPLYING_TRANSFORMATION_TO_YOUR_LOC_STR': 'Applying transformation to your localized strings',
 
   'API_DESC_CREATE_KEY': 'Creates a key for your dictionary. This is used when structuring your dictionary by keywords instead of language in v2.',
   'API_DESC_GET_CURRENT_LANG': 'Get the currently set language.',
@@ -193,6 +195,7 @@ module.exports = {
   'SOME_PARAMETER': 'Some parameter',
   'SWITCH_LANGUAGE': 'Switch language',
   'SWITCHING_LANGUAGES': 'Switching languages',
+  'SWITCHING_BETWEEN_LANGUAGES': 'Switching between languages',
   'SETTING_UP': 'Setting up',
 
   // 'TRANSFORMATIONS': 'Transformations',

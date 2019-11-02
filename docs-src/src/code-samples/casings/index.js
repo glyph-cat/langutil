@@ -5,7 +5,7 @@ import CodeDisplay, { Line, Com, Var, Def, Str, Func, Type } from '../../compone
 const Casings = () => {
   let name1 = localize('DOC_EXAMPLE_NAME_1')
   return (
-    <CodeDisplay>
+    <CodeDisplay title={localize('APPLYING_CASINGS_TO_YOUR_LOC_STR')}>
       <Line>
         <Def>let</Def> <Var>c1</Var> = <Func>localize</Func>(<Str>'HELLO_NAME'</Str>, [<Str>'{name1}'</Str>], <Str>'upperCase'</Str>)
       </Line>
