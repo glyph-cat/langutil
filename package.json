@@ -20,7 +20,7 @@
     "lint": "./node_modules/.bin/eslint lib/langutil.js native-additions/index.js react-additions/index.js dev-additions/ scripts/",
     "lint-fix": "./node_modules/.bin/eslint lib/langutil.js native-additions/index.js react-additions/index.js dev-additions/ scripts/ --fix",
     "test": "jest",
-    "deploy": "jest && node scripts/increaseVersionNumberAndPublish"
+    "deploy": "node scripts/deploy"
   },
   "repository": {
     "type": "git",
