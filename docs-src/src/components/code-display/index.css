@@ -7,7 +7,7 @@
 }
 
 .code-disp-title {
-  color: #88AA88;
+  color: #88aa88;
   font-weight: bold;
   font-size: 11pt;
   margin: 0;
@@ -16,7 +16,7 @@
 .code-disp-toolbar-container {
   align-items: center;
   /* background-color: #00000044; */
-  background-color: #1D2027;
+  background-color: #1d2027;
   display: grid;
   padding: 0.25em 0.5em 0.25em 0.5em;
   grid-template-columns: 1fr auto;
@@ -38,7 +38,7 @@
 
 .code-disp-toolbar-button-div {
   align-items: center;
-  color: #1D2027;
+  color: #1d2027;
   font-weight: bold;
   display: grid;
   padding: 0.25em 0.75em 0.25em 0.75em;
