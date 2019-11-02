@@ -1,1 +1,0 @@
-{"version":3,"sources":["index.css"],"names":[],"mappings":"AAAA,yBACE,YAAa,CACb,WACF,CAEA,kBACE,0BAA0B,CAA1B,yBACF,CAEA,kBACE,2BAA2B,CAA3B,0BACF","file":"5.0ebd6c73.chunk.css","sourcesContent":[".changelog-scn-container {\n  display: grid;\n  padding: 2em;\n}\n\n.changelog-scn-h2 {\n  margin-inline-start: 1.5em;\n}\n\n.changelog-scn-li {\n  margin-inline-start: 2.25em;\n}\n"]}
