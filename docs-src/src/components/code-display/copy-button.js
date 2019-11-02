@@ -2,6 +2,11 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { localize } from 'langutil'
 
+// TODO: If isMobile: Use styles below for the button
+// height: 32pt;
+// padding-left: 1em;
+// padding-right: 1em;
+
 function CopyButton({ onClick, copied }) {
   return (
     <button

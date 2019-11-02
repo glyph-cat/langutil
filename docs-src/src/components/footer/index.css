@@ -27,7 +27,7 @@
   justify-items: flex-start;
   padding: 1em 2em 1em 2em;
   display: grid;
-  gap: 0.5em;
+  gap: 1em;
 }
 
 .footer-upper-column-title {
