@@ -17,6 +17,7 @@ module.exports = {
   'API_DESC_GET_LANG': 'Get the currently set language.',
   'API_DESC_INIT': ({ setD, setL }) => <>Initialize langutil with a dictionary and language. Shorthand for {setD} and {setL}.</>,
   'API_DESC_IS_AUTO': 'Determine if auto language detection is used.',
+  'API_DESC_LOCALIZABLE': 'A wrapper component for rendering HTML/React elements.',
   'API_DESC_LOCALIZE': 'Maps a keyword to its localized value.',
   'API_DESC_LOGS_FOCUS': 'If you have chosen to hide away langutil logs but want to log a portion of code with it, place your code inside the callback.',
   'API_DESC_LOGS_HIDE': 'Hide logs from langutil.',
@@ -39,6 +40,11 @@ module.exports = {
   'API_PARAM_CASING': 'Casing styles that will be applied to the localized value if it is a string.',
   'API_PARAM_TRANSFORM': 'Apply a transformation to the localized value.',
   'API_PARAM_WRAPPED_COMPONENT': 'The component to be wrapped in.',
+
+  'API_PARAM_KEYWORD_LOCZ': 'The keyword for localization.',
+  'API_PARAM_PARAMARRAY_LOCZ': 'An array of parameters that can be passed into.',
+  'API_PARAM_ALLOW_EMPTY': 'Ignore warnings about empty keywords.',
+  'API_PARAM_RENDER_AS_LOCZ': ({ span, renderAsVal }) => <>Specify which type of HTML/React element you would like your localizations to be rendered into. By default it is rendered as a {span}. To obtain the raw value of the localization, use {renderAsVal}.</>,
 
   'API_RTYPE_THE_LOCALIZED_VALUE': 'The localized value.',
   'API_RTYPE_ALL_LANG_FOUND_IN_DICT': 'All languages found in the dictionary.',
@@ -83,6 +89,7 @@ module.exports = {
   'DEPRECATED': 'Deprecated',
   'DEPRECATED_MSG_CREATE_KEY': ({ dev, convert }) => <>All dictionaries are now structured as objects. You will be able to use this function in conjuction with {convert} from the {dev} to re-structure the dictionary.</>,
   'DEPRECATED_MSG_GET_LANGUAGE': ({ getCL }) => <>Use {getCL} instead. Reason: The new naming gives a little more hint about what value the function is returning.</>,
+  'DEPRECATED_MSG_LOCALIZABLE': ({ renderAs, locz, loc, withL }) => <>The {renderAs} parameter that allows {locz} to render into anything complicates the code.<br />Solution: Use {loc} as you normally would inside your JSX code. Then export your component with {withL} so that your components show the correct language when the user language has changed.</>,
   'DEPRECATED_MSG_LOCALIZE_WITH': ({ loc }) => <>Use {loc} instead.</>,
   'DEPRECATED_MSG_SNOOZE_INSPECTION_UNTIL': ({ dev }) => <>Dictionary inspection consumes a lot of computation power and it happens everytime langutil is initialized. This feature is now part of the {dev} so you can use it only when you need it instead.</>,
 
