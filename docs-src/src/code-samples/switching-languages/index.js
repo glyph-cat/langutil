@@ -3,7 +3,7 @@ import { localize } from 'langutil'
 import CodeDisplay, { Line, Com, Key, Var, Str, Func, Type } from '../../components/code-display'
 
 const SwitchingLanguages = () => (
-  <CodeDisplay>
+  <CodeDisplay title={localize('SWITCHING_BETWEEN_LANGUAGES')}>
     <Line>
       <Key>import</Key> {'{'} <Var>setLanguage</Var> {'}'} <Key>from</Key> <Str>'langutil'</Str>
     </Line>
