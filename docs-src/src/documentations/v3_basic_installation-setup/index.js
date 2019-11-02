@@ -21,6 +21,7 @@ export default withLang(() => (
 
     <br />
     <Body children={localize('DOC_BODY_THEN_ADD_SOME_LOC')} />
+    <Body children={localize('DOC_BODY_NOTE_DICT_LANG_KEYS_FORMAT')} />
     <CodeSamples.DictionaryPrimaryExample />
     <CodeSamples.DictionarySecondaryExample />
 
