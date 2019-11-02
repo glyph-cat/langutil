@@ -197,5 +197,5 @@
     };
   }
   implementWith(require('../lib/langutil.js'))();
-  implementWith(require('../lib/langutil.min.js'))();
+  // implementWith(require('../lib/langutil.min.js'))();
 })();
