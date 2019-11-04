@@ -4,6 +4,9 @@
 # Statistics
 *.report.html
 
+# Builds
+build/
+
 # Logs
 logs
 *.log
