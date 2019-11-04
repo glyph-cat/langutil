@@ -48,6 +48,6 @@
   },
   "jest": {
     "verbose": false,
-    "testPathIgnorePatterns": ["docs-src/"]
+    "testPathIgnorePatterns": ["docs"]
   }
 }
