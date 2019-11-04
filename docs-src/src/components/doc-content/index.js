@@ -5,8 +5,7 @@ import DocUnavailable from '../../components/doc-unavailable'
 import { bridge } from '../../modules'
 import './index.css'
 
-function DocContent({ match: { params: { version: v, section: s, id } } }) {
-
+function DocContent({ match: { params: { version: v, section: s, id, subId } } }) {
   // Listen for change in doc version
   const onDocVersionChange = bridge.getItem('onDocVersionChange')
   if (typeof onDocVersionChange === 'function') { onDocVersionChange(v) }

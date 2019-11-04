@@ -35,7 +35,7 @@ class DocSidebar extends React.Component {
       for (let j = 0; j < data.length; j++) {
         const { to, text } = data[j]
         const _to = `${PATHS.docs}/${to}`
-        const pathMatched = _to === pathname
+        const pathMatched = pathname.includes(_to)
         topicArray.push(
           <Link key={_to} to={_to} onClick={scrollToTop}
             className='doc-sidebar-link'

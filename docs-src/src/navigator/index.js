@@ -16,11 +16,13 @@ const Navigator = () => {
 
           <Route path={PATHS.home} component={HomeScreen} />
 
+          <Route path={`${PATHS.docs}/:version/:section/:id/:subId`} component={DocContentScreen} />
           <Route path={`${PATHS.docs}/:version/:section/:id`} component={DocContentScreen} />
           <Route path={`${PATHS.docs}/:version/:section`} component={DocSectionBrowserScreen} />
           <Route path={`${PATHS.docs}/:version`} component={DocVersionBrowserScreen} />
           <Route path={PATHS.docs} component={DocRootScreen} />
 
+          <Route path={`${PATHS.changelog}/:subId`} component={ChangelogScreen} />
           <Route path={PATHS.changelog} component={ChangelogScreen} />
 
           {/* <Route path={PATHS.builder} component={BuilderScreen} /> */}

@@ -1,18 +1,22 @@
 import React from 'react'
+import { withRouter } from 'react-router-dom'
 import { withLang } from 'langutil/react-additions'
 import { H1, H2, Ul, Li, SectionBreak } from '../../components/document'
 import FadeIntoView from '../../components/fade-into-view'
+import { useScrollToSection } from '../../custom-hooks'
+import { formatDomId } from '../../modules'
 import getChangelogs from '../../content/get-changelogs'
 import './index.css'
 
-function ChangelogScreen() {
+function ChangelogScreen({ match: { params: { subId } } }) {
+  useScrollToSection(subId)
   const changelogs = getChangelogs()
   let toRender = []
   for (let i = 0; i < changelogs.length; i++) {
     const { title: version, data } = changelogs[i]
     toRender.push(
       <FadeIntoView key={`h1-${i}`} once>
-        <H1 children={version} />
+        <H1 id={formatDomId(version)} children={version} />
       </FadeIntoView>
     )
     let majorVersionArray = []
@@ -20,7 +24,7 @@ function ChangelogScreen() {
       const { title, data: logs } = data[j]
       majorVersionArray.push(
         <FadeIntoView key={`h2-${j}`} once>
-          <H2 className='changelog-scn-h2' children={title} />
+          <H2 id={formatDomId(title)} className='changelog-scn-h2' children={title} />
         </FadeIntoView>
       )
       let minorVersionArray = []
@@ -44,4 +48,4 @@ function ChangelogScreen() {
   return <div className='changelog-scn-container' children={toRender} />
 }
 
-export default withLang(ChangelogScreen)
+export default withRouter(withLang(ChangelogScreen))

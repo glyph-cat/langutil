@@ -31,7 +31,7 @@ export default withLang(() => {
   return (
     <>
 
-      <CodeTitle name='init' params={params} rType='void' />
+      <CodeTitle name='init' params={params} />
 
       <Body children={localize({
         keyword: 'API_DESC_INIT',

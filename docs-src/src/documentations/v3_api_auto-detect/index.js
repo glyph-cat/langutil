@@ -10,7 +10,7 @@ export default withLang(() => {
   return (
     <>
 
-      <CodeTitle name='AUTO_DETECT' rType='void' isNotFunction />
+      <CodeTitle name='AUTO_DETECT' isNotFunction />
 
       <Body children={localize({
         keyword: 'API_DESC_AUTO_DETECT',

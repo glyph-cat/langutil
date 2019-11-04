@@ -121,7 +121,9 @@ module.exports = {
   // 'DOC_BODY_': '',
 
   'DOC_EXAMPLE_PRIMARY_LANG': 'en',
+  'DOC_EXAMPLE_PRIMARY_LANG_NAME': 'English',
   'DOC_EXAMPLE_SECONDARY_LANG': 'zh',
+  'DOC_EXAMPLE_SECONDARY_LANG_NAME': 'Chinese',
   'DOC_EXAMPLE_NAME_1': 'John',
   'DOC_EXAMPLE_NAME_2': 'Jane',
   'DOC_EXAMPLE_PARAM_ARR_HELLO_NAME': 'Hello, %%p.',
