@@ -7,7 +7,7 @@ import ReturnType from '../../components/return-type'
 
 export default withLang(() => (
   <>
-    <CodeTitle name='getCurrentLanguage' rType='void' />
+    <CodeTitle name='getCurrentLanguage' />
     <Body children={localize('API_DESC_GET_CURRENT_LANG')} />
     <ReturnType desc={localize('API_RTYPE_STR_REP_OF_LANG')} type='string' />
   </>

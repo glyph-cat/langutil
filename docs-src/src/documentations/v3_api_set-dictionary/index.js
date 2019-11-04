@@ -17,7 +17,7 @@ export default withLang(() => {
 
   return (
     <>
-      <CodeTitle name='setDictionary' params={params} rType='void' />
+      <CodeTitle name='setDictionary' params={params} />
       <Body children={localize({
         keyword: 'API_DESC_SET_DICTIONARY',
         transform: withProps({ init: <Code>init()</Code> })

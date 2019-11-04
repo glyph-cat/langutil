@@ -8,7 +8,7 @@ import { STRINGS } from '../../constants'
 
 export default withLang(() => (
   <>
-    <CodeTitle name='isAuto' rType='void' />
+    <CodeTitle name='isAuto' />
     <Body children={localize('API_DESC_IS_AUTO')} />
     <ReturnType desc={STRINGS.notAvailableDash} type='boolean' />
   </>

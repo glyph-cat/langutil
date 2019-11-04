@@ -1,13 +1,13 @@
 import React from 'react'
 import { localize } from 'langutil'
 import { H1, Body, Code, SectionBreak } from '../../components/document'
-import { withProps } from '../../modules'
+import { withProps, formatDomId } from '../../modules'
 import CodeSamples from '../../code-samples'
 
 export default () => (
   <>
 
-    <H1 children={localize('INITIALIZING')} />
+    <H1 id={formatDomId('initializing')} children={localize('INITIALIZING')} />
 
     <Body children={localize('DOC_BODY_LANGUTIL_NEEDS_TO_BE_INIT')} />
     <Body children={localize('DOC_BODY_CODE_BELOW_SHOWS_SIMPLE_EXAMPLE_COLON')} />
@@ -19,7 +19,7 @@ export default () => (
 
     <SectionBreak />
 
-    <H1 children={localize('USAGE')} />
+    <H1 id={formatDomId('usage')} children={localize('USAGE')} />
     <Body children={
       localize({
         keyword: 'DOC_BODY_USE_LOC_TO_TRANSLATE',
@@ -30,7 +30,7 @@ export default () => (
 
     <SectionBreak />
 
-    <H1 children={localize('SWITCHING_LANGUAGES')} />
+    <H1 id={formatDomId('switchign-languages')} children={localize('SWITCHING_LANGUAGES')} />
     <Body children={localize({
       keyword: 'DOC_BODY_USE_SETLANG_TO_SWITCH_LANG',
       transform: withProps({ setL: <Code>setLanguage</Code> }),

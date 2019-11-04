@@ -10,7 +10,7 @@ import { VALUES } from '../../constants'
 
 export default withLang(() => (
   <>
-    <CodeTitle name='getLanguage' rType='void' />
+    <CodeTitle name='getLanguage' />
     <DeprecationWarning
       // sinceVersion=''
       removeDate={VALUES.v240DeprecatedRemovalDate}

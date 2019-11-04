@@ -3,6 +3,7 @@ import { localize } from 'langutil'
 import { withLang } from 'langutil/react-additions'
 import { Body, Code } from '../../components/document'
 import CodeTitle from '../../components/code-title'
+import CodeSamples from '../../code-samples'
 import ParamList from '../../components/param-list'
 import { withProps } from '../../modules'
 
@@ -25,9 +26,10 @@ export default withLang(() => {
 
   return (
     <>
-      <CodeTitle name='setLanguage' params={params} rType='void' />
+      <CodeTitle name='setLanguage' params={params} />
       <Body children={localize('API_DESC_SET_LANGUAGE')} />
       <ParamList data={params} />
+      <CodeSamples.ApiSetLanguage />
     </>
   )
 

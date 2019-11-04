@@ -1,6 +1,6 @@
 import React from 'react'
 import { localize } from 'langutil'
-import CodeDisplay, { Line, Key, Var, Str, Func, Def, Com, Type } from '../../components/code-display'
+import CodeDisplay, { Com, Def, Func, Line, Key, Str, Var } from '../../components/code-display'
 
 const ApiLogsFocus = () => (
   <CodeDisplay title={localize('HOW_TO_USE_API', ['logs.focus()'])}>
@@ -9,7 +9,7 @@ const ApiLogsFocus = () => (
     </Line>
     <Line />
     <Line>
-      <Def>let</Def> <Var>loggedCode</Var> = <Var>logs</Var>.<Func>focus</Func>(() <Def>=></Def> {'{'}
+      <Def>let</Def> <Var>loggedCodeIsSuccessful</Var> = <Var>logs</Var>.<Func>focus</Func>(() <Def>=></Def> {'{'}
     </Line>
     <Line indent={1}>
       <Com>{`// ${localize('YOUR_CODE_HERE')}`}</Com>
@@ -19,8 +19,13 @@ const ApiLogsFocus = () => (
     </Line>
     <Line />
     <Line>
-      <Type>console</Type>.<Func>log</Func>(<Var>loggedCode</Var>)
-      <Com>{' // `true` || `false`'}</Com>
+      <Key>if</Key> (!<Var>loggedCodeIsSuccessful</Var>) {'{'}
+    </Line>
+    <Line indent={1}>
+      <Func>doFallbackAction</Func>()
+    </Line>
+    <Line>
+      {'}'}
     </Line>
   </CodeDisplay>
 )
