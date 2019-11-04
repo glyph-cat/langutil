@@ -19,7 +19,7 @@
   "homepage": "https://chin98edwin.github.io/langutil/",
   "scripts": {
     "start": "react-scripts start",
-    "build": "node scripts/renewBuildHash.js && react-scripts build && gh-pages -d build",
+    "build": "react-scripts build && node scripts/renewBuildHash.js && gh-pages -d build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
