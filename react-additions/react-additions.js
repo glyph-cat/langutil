@@ -1,5 +1,7 @@
 const React = require('react');
-const langutil = require('langutil');
+const { localize, INTERNALS: {
+  getIdAndSubscribe, unsubscribeById, printWarning
+} } = require('langutil');
 let localizableDeprecatedShown = false;
 
 function withLang(WrappedComponent) {
@@ -7,14 +9,12 @@ function withLang(WrappedComponent) {
 
     constructor() {
       super();
-      langutil.addEventListener((id, hook) => {
-        this.langutilId = id;
-        hook(this.forceUpdate.bind(this));
-      });
+      this._forceUpdate = () => { this.forceUpdate(); };
+      this.langutilId = getIdAndSubscribe(this._forceUpdate);
     }
 
     componentWillUnmount() {
-      langutil.removeEventListener(this.langutilId);
+      unsubscribeById(this.langutilId);
     }
 
     render() {
@@ -43,16 +43,16 @@ function Localizable({
 }) {
   if (!localizableDeprecatedShown) {
     localizableDeprecatedShown = true;
-    langutil.printWarning('<Localizable /> has been deprecated. Reason: The `renderAs` parameter that allows <Localizable /> to render into anything complicates the code. Solution: Use `localize` as you normally would inside your JSX code. Then export your component with `withLang` so that your components show the correct language when the user language has changed.');
+    printWarning('<Localizable /> has been deprecated. Reason: The `renderAs` parameter that allows <Localizable /> to render into anything complicates the code. Solution: Use `localize` as you normally would inside your JSX code. Then export your component with `withLang` so that your components show the correct language when the user language has changed.');
   }
 
   let child = !children && keyword ? keyword : children;
   if (child && typeof child === 'string') {
-    child = langutil.localize({ keyword: child, param: paramArray, casing, transform });
+    child = localize({ keyword: child, param: paramArray, casing, transform });
   } else if (allowEmpty) {
     child = '';
   } else {
-    langutil.printWarning('Keyword should not be empty. Set `allowEmpty` to true to suppress this message.');
+    printWarning('Keyword should not be empty. Set `allowEmpty` to true to suppress this message.');
     child = `_${keyword}_`;
   }
 

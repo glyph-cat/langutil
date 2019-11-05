@@ -1,4 +1,4 @@
-const { extractAB, formatInv } = require('langutil');
+const { INTERNALS: { extractAB, formatInv } } = require('langutil');
 
 let warningShown = false;
 if (!warningShown) {
