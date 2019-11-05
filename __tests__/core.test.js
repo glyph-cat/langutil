@@ -2,9 +2,11 @@
   const { byKey, byLang } = require('./dict');
   function implementWith(core) {
     const {
-      setLanguage, setDictionary, localize, getCurrentLanguage, getDefinedLanguages,
-      extractAB, capitalizeFirstLetter, applyParam, applyCasing, applyTransform,
-      getRandomHash, createKey, convertToNewDict, // formatInv,
+      setLanguage, setDictionary, localize, getCurrentLanguage, getDefinedLanguages, createKey,
+      INTERNALS: {
+        extractAB, capitalizeFirstLetter, applyParam, applyCasing, applyTransform,
+        getRandomHash, convertToNewDict, // formatInv,
+      }
     } = core;
     return function () {
       function baseImplementation() {
