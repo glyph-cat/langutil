@@ -3,11 +3,7 @@
   function implementWith(core) {
     const {
       setLanguage, setDictionary, localize, getCurrentLanguage, getDefinedLanguages, createKey,
-<<<<<<< HEAD
       _INTERNALS: {
-=======
-      INTERNALS: {
->>>>>>> Internal modules are exported as INTERNALS; code optimization for listener functions
         extractAB, capitalizeFirstLetter, applyParam, applyCasing, applyTransform,
         getRandomHash, convertToNewDict, // formatInv,
       }
@@ -203,5 +199,5 @@
     };
   }
   implementWith(require('../lib/langutil.js'))();
-  // implementWith(require('../lib/langutil.min.js'))();
+  implementWith(require('../lib/langutil.min.js'))();
 })();
