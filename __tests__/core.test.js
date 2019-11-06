@@ -3,7 +3,7 @@
   function implementWith(core) {
     const {
       setLanguage, setDictionary, localize, getCurrentLanguage, getDefinedLanguages, createKey,
-      INTERNALS: {
+      _INTERNALS: {
         extractAB, capitalizeFirstLetter, applyParam, applyCasing, applyTransform,
         getRandomHash, convertToNewDict, // formatInv,
       }
@@ -199,5 +199,5 @@
     };
   }
   implementWith(require('../lib/langutil.js'))();
-  // implementWith(require('../lib/langutil.min.js'))();
+  implementWith(require('../lib/langutil.min.js'))();
 })();

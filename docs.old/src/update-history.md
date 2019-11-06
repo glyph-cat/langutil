@@ -126,4 +126,10 @@
 * Complete removal of deprecated APIs set to be in March 2020
 * Minor code optimizations
 
+# 3.0.2
+* Added back legacy compensation for old dictionary structure where it is arranged by keywords as an array
+* Warnings for params (object) that are not tally will now be shown
+* Fixed incorrect typing in react-additions
+* Code optimizations
+
 <br/>
