@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 const { _INTERNALS: { extractAB, formatInv } } = require('langutil');
-=======
-const { INTERNALS: { extractAB, formatInv } } = require('langutil');
->>>>>>> Internal modules are exported as INTERNALS; code optimization for listener functions
 
 let warningShown = false;
 if (!warningShown) {
