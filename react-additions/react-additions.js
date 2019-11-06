@@ -1,5 +1,5 @@
 const React = require('react');
-const { localize, INTERNALS: {
+const { localize, _INTERNALS: {
   getIdAndSubscribe, unsubscribeById, printWarning
 } } = require('langutil');
 let localizableDeprecatedShown = false;
@@ -39,7 +39,7 @@ function getDisplayName(WrappedComponent) {
 }
 
 function Localizable({
-  keyword, children, paramArray = [], casing, transform, renderAs = "span", allowEmpty, ...otherProps
+  keyword, children, paramArray = [], casing, transform, renderAs = 'span', allowEmpty, ...otherProps
 }) {
   if (!localizableDeprecatedShown) {
     localizableDeprecatedShown = true;
