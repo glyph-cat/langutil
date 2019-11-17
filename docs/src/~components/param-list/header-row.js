@@ -2,13 +2,13 @@ import React from 'react'
 import { localize } from 'langutil'
 import DocHeaderRow from '~components/doc-header-row'
 
-const HeaderRow = (() => {
+const HeaderRow = ({ overrideVarName = localize('PARAMETER') }) => {
   return <DocHeaderRow data={[
-    localize('PARAMETER'),
+    overrideVarName,
     localize('TYPE'),
     localize('DESCRIPTION'),
     // localize('DEFAULT_VALUE')
   ]} />
-})
+}
 
 export default HeaderRow
