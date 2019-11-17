@@ -1,40 +1,53 @@
-const React = require('react');
-const { localize, _INTERNALS: {
-  getIdAndSubscribe, unsubscribeById, printWarning
+const { Component, createElement, useState, useEffect } = require('react');
+const { localize, isAuto, getCurrentLanguage, _INTERNALS: {
+  addListener, removeListener, printWarning
 } } = require('langutil');
 let localizableDeprecatedShown = false;
 
-function withLang(WrappedComponent) {
-  class WithLang extends React.Component {
+const getLangState = () => ({ auto: isAuto(), lang: getCurrentLanguage() });
 
-    constructor() {
-      super();
-      this._forceUpdate = () => { this.forceUpdate(); };
-      this.langutilId = getIdAndSubscribe(this._forceUpdate);
-    }
-
-    componentWillUnmount() {
-      unsubscribeById(this.langutilId);
-    }
-
-    render() {
-      return React.createElement(WrappedComponent, this.props);
-    }
-
+function useLang() {
+  if (typeof useState !== 'function') {
+    throw Error('You must use React ≥16.8 in order to use `useLang()`');
   }
+  const [state, setState] = useState({ langRef: null });
+  const { langRef } = state;
+  useEffect(() => {
+    let newLangRef = addListener(() => { setState({ langRef }); });
+    setState({ langRef: newLangRef });
+    return () => { removeListener(newLangRef); };
+  }, [langRef === null]);
+  return getLangState();
+}
 
+function withLang(WrappedComponent) {
+  const displayName = getDisplayName(WrappedComponent);
+  class WithLang extends Component {
+    componentDidMount() { this.langRef = addListener(this.forceUpdate.bind(this)); }
+    componentWillUnmount() { removeListener(this.langRef); }
+    render() {
+      const { langState, ...otherProps } = this.props;
+      if (langState) {
+        throw Error(`Duplicate prop found in <${displayName} />: \`langState\` is meant to be a prop passed down from \`withLang()\` but another prop with the same name was passed down from its parent.\n\nSolutions:\n • For class components, rename your prop\n • For functional components, use the \`useLang()\` hook instead and unwrap it from \`withLang()\`.`);
+      }
+      return createElement(WrappedComponent, {
+        langState: langState ? langState : getLangState(),
+        ...otherProps
+      });
+    }
+  }
   let hoist;
   try { hoist = require('hoist-non-react-statics'); } catch (e) { }
   if (typeof hoist === 'function') { hoist(WithLang, WrappedComponent); }
-  WithLang.displayName = `withLang(${getDisplayName(WrappedComponent)})`;
+  WithLang.displayName = `withLang(${displayName})`;
   return WithLang;
 };
 
 function getDisplayName(WrappedComponent) {
   try {
-    return WrappedComponent.displayName || WrappedComponent.name || 'Component';
+    return WrappedComponent.displayName || WrappedComponent.name || 'UnknownComponent';
   } catch (e) {
-    return 'Component';
+    return 'UnknownComponent';
   }
 }
 
@@ -59,8 +72,8 @@ function Localizable({
   if (renderAs === 'value') {
     return child;
   } else {
-    return React.createElement(renderAs, otherProps, child);
+    return createElement(renderAs, otherProps, child);
   }
 }
 
-module.exports = { withLang, Localizable };
+module.exports = { withLang, useLang, Localizable };
