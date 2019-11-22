@@ -18,7 +18,7 @@ export default () => ({
         localize('CHANGELOG_ADDED_BACK_LEGACY_COMPENSATION'),
         localize('CHANGELOG_WARN_FOR_PARAMOBJ_WILL_BE_SHOWN'),
         localize({
-          keyword: 'CHANGELOG_FIX_INCR_TYPE_REACT_ADD',
+          keyword: 'CHANGELOG_FIXED_INCR_TYPE_REACT_ADD',
           transform: withProps({ add: <Code>react-additions</Code> })
         }),
         localize('CHANGELOG_CODE_OPTIMIZATIONS'),
