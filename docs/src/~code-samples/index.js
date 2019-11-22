@@ -1,13 +1,14 @@
 let defaultExtracted = false
 let CodeSamples = {
   // Demo: require('./demo'),
+  ApiAutoDetect: require('./api-auto-detect'),
   ApiInit: require('./api-init'),
   ApiInitReact: require('./api-init-react'),
   ApiLocalize: require('./api-localize'),
   ApiLogsFocus: require('./api-logs-focus'),
   ApiSetLanguage: require('./api-set-language'),
   ApiSetDictionary: require('./api-set-dictionary'),
-  ApiAutoDetect: require('./api-auto-detect'),
+  ApiUseLang: require('./api-use-lang'),
   ApiWithLang: require('./api-with-lang'),
   Casings: require('./casings'),
   DictionaryPrimaryExample: require('./dictionary-primary-example'),

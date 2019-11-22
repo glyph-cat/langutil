@@ -1,5 +1,5 @@
 import React from 'react'
-import { STRINGS } from '~constants'
+import { EXT_LINKS } from '~constants'
 import { Code } from '~components/document'
 
 export default () => ({
@@ -37,7 +37,7 @@ export default () => ({
       data: [
         'Internal optimization for better performance and debugging experience.',
         <>Automatic language detection for React Native is no longer included in the core to avoid conflict with webpack config in some cases. It has been splitted out as a function and can be imported from <Code>'langutil/native-additions'</Code>.</>,
-        <>The <a href={STRINGS.dictionaryTemplateLink} children='repo' target='_blank' rel='noopener noreferrer' /> now includes template dictionaries, some of the most commonly used words are readily translated. More translations will be added over time.</>,
+        <>The <a href={EXT_LINKS.dictionaryTemplateLink} children='repo' target='_blank' rel='noopener noreferrer' /> now includes template dictionaries, some of the most commonly used words are readily translated. More translations will be added over time.</>,
         <>
           Additions for React: <ul><li>New <Code>{'<Localizable />'}</Code> component that acts as a wrapper for HTML or React elements.</li></ul>
         </>,

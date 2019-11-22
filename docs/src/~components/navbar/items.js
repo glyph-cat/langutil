@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { localize } from 'langutil'
 import { bridge, getDocs, scrollToTop } from '~modules'
-import { PATHS, STRINGS, VALUES } from '~constants'
+import { EXT_LINKS, PATHS, VALUES } from '~constants'
 import langutilIcon from '~assets/langutil-icon.svg'
 import ghIcon from '~assets/github-icon.svg'
 
@@ -81,7 +81,7 @@ export function GitHubLink() {
   return (
     <a
       className='navbar-navlink-container navbar-squareitem-container'
-      href={STRINGS.githubRepo}
+      href={EXT_LINKS.githubRepo}
       target='_blank' rel='noopener noreferrer'
       style={{ width: VALUES.navbarHeight }}
       title={localize('VIEW_ON_GITHUB')}

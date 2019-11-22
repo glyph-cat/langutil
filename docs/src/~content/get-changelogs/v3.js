@@ -7,6 +7,12 @@ export default () => ({
   title: 'v3',
   data: [
     {
+      title: '3.1.0',
+      data: [
+        localize(''),
+      ]
+    },
+    {
       title: '3.0.2',
       data: [
         localize('CHANGELOG_ADDED_BACK_LEGACY_COMPENSATION'),
