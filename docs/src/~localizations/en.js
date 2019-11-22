@@ -28,7 +28,7 @@ module.exports = {
   'API_DESC_SET_DICTIONARY': ({ init }) => <>Sets the dictionary. We encourage using {init} and not changing the contents of the dictionary in halfway. The only scenario you might need to use this function is if the dictionary is splitted up into sections for lazy loading.</>,
   'API_DESC_SET_LANGUAGE': 'Sets the language.',
   'API_DESC_SNOOZE_INSPECTION_UNTIL': 'If your dictionary has not yet been completed and the warning about missing localizations bother you, you can use this to suppress the warning until a given date.',
-  'API_DESC_USE_LANG': '',
+  'API_DESC_USE_LANG': 'A hook that allows your existing components to listen for changes in langutil and update themselves accordingly.',
   'API_DESC_WITH_LANG': 'A Higher-order component that allows your existing components to listen for changes in langutil and update themselves accordingly.',
 
   'API_PARAM_DICT': 'The object containing all localizations.',
@@ -133,7 +133,7 @@ module.exports = {
   'DOC_BODY_TO_DISPLAY_P_IN_LOC': ({ p, escapedP }) => <>Note: To display {p} in your localizations, escape it with {escapedP}.</>,
   'DOC_BODY_USE_SETLANG_TO_SWITCH_LANG': ({ setL }) => <>Use {setL} to switch between languages.</>,
   'DOC_BODY_USE_LOC_TO_TRANSLATE': ({ loc }) => <>Use {loc} to translate your content.</>,
-  'DOC_BODY_WITH_LANG_ALSO_PASSES_PROPS': ({ wL, ls }) => <>When you use this function, a {ls} prop will be passed into your component as well.</>,
+  'DOC_BODY_WITH_LANG_ALSO_PASSES_PROPS': ({ wL, ls }) => <>At the same time, a {ls} prop will be passed into your component as well.</>,
   'DOC_BODY_YOU_MAY_ADD_MORE_FILES': 'You may add more files for other languages',
   'DOC_BODY_IN_REACT_CALL_INIT_BEFORE_APP': ({ init, appjs, app }) => <>In React, {init} should be called in your entry file (presumably {appjs}), before and outside of {app}.</>,
   // 'DOC_BODY_': '',
@@ -180,12 +180,12 @@ module.exports = {
   'INSTALLATION': 'Installation',
   'INSTALLATION_AND_SETUP': 'Installation & Setup',
 
+  'LANGSTATE_AUTO': 'Was auto detection being used?',
+  'LANGSTATE_LANG': 'The currently set language.',
   'LIKE_THIS_KAWAII_IMG': ({ link }) => <>Like this cute image? Check out {link} for more.</>,
   'LOADING_ELLIPSIS': 'Loading...',
   'LOC_JS_MADE_SIMPLE': 'Localization for JavaScript made simple',
   'LOCALIZING_JSX': 'Localizing JSX',
-
-
   'LOREM_IPSUM': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
 
 
