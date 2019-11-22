@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 function ReadmeBadge({ alt, src, href }) {
-  const img = <img src={src} alt={alt} />
+  const img = <img src={src} alt={alt} style={{ height: 24 }} />
   if (href) {
     return <a href={href} target='_blank' rel='noopener noreferrer' children={img} />
   } else {
