@@ -1,7 +1,7 @@
 import React from 'react'
 import { localize } from 'langutil'
 import { withLang } from 'langutil/react-additions'
-import { Body, Code, CodeLink, CodeA, SectionBreak } from '~components/document'
+import { Body, Code, CodeA, SectionBreak } from '~components/document'
 import CodeTitle from '~components/code-title'
 import ParamList from '~components/param-list'
 import CodeSamples from '~code-samples'

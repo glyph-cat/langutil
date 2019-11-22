@@ -1,6 +1,6 @@
 import React from 'react'
 import { localize} from 'langutil'
-import CodeDisplay, { Com, Def, Func, Key, Line, Mark, Var } from '~components/code-display'
+import CodeDisplay, { Com, Def, Func, Line, Mark, Var } from '~components/code-display'
 
 const ApiUseLang = () => {
   return (
@@ -12,7 +12,7 @@ const ApiUseLang = () => {
         <Def>const</Def> {'{ '}<Var>auto</Var>, <Var>lang</Var>{' }'} = <Func>useLang</Func>()
       </Line>
       <Line indent={1}>
-        <Com><Mark>/* ... */</Mark></Com>
+        <Com><Mark>{'/* ... */'}</Mark></Com>
       </Line>
       <Line>
         {'}'}
