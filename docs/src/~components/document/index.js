@@ -46,6 +46,12 @@ export const CodeLink = ({ className, to, ...props }) => (
   </Link>
 )
 
+export const CodeA = ({ className, href, ...props }) => (
+  <a className='document-code-link' href={href} target='_blank' rel='noopener noreferrer'>
+    <code className={['document-code code', className].join(' ')} {...props} />
+  </a>
+)
+
 export const Ol = ({ className, ...props }) => (
   <ol className={['document-body', className].join(' ')} {...props} />
 )

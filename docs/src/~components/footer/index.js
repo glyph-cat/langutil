@@ -5,7 +5,7 @@ import { localize } from 'langutil'
 import { withLang } from 'langutil/react-additions'
 import { Body } from '~components/document'
 import { bridge, scrollToTop } from '~modules'
-import { PATHS, VALUES, STRINGS } from '~constants'
+import { EXT_LINKS, PATHS, VALUES } from '~constants'
 import './index.css'
 
 class Footer extends React.Component {
@@ -105,12 +105,12 @@ class Footer extends React.Component {
                 />
                 <a
                   className='footer-links'
-                  href={STRINGS.githubRepo}
+                  href={EXT_LINKS.githubRepo}
                   children={localize('VIEW_ON_GITHUB')}
                 />
                 <a
                   className='footer-links'
-                  href={STRINGS.npmPage}
+                  href={EXT_LINKS.npmPage}
                   children={localize('VIEW_ON_NPM')}
                 />
               </div>

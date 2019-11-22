@@ -25,6 +25,7 @@ const DOCPATHS = {
     snoozeInspectionUntil: api(3)('snooze-inspection-until'),
     localizable: api(3)('localizable'),
     withLang: api(3)('with-lang'),
+    useLang: api(3)('use-lang'),
 
     alternative_syntax: advanced(3)('alternative-syntax'),
     localizing_jsx: advanced(3)('localizing-jsx'),
