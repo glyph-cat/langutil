@@ -12,11 +12,11 @@ export function getLangStateInfo() {
   return {
     auto: {
       type: 'boolean',
-      desc: localize(''),
+      desc: localize('LANGSTATE_AUTO'),
     },
     lang: {
       type: 'string',
-      desc: localize(''),
+      desc: localize('LANGSTATE_LANG'),
     }
   }
 }
