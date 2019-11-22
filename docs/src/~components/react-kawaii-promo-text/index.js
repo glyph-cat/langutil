@@ -2,7 +2,7 @@ import React from 'react'
 import { localize } from 'langutil'
 import { Body } from '~components/document'
 import { withProps } from '~modules'
-import { STRINGS } from '~constants'
+import { EXT_LINKS } from '~constants'
 import './index.css'
 
 function ReactKawaiiPromoText() {
@@ -14,7 +14,7 @@ function ReactKawaiiPromoText() {
         transform: withProps({
           link: (
             <a
-              href={STRINGS.reactKawaiiHomePage}
+              href={EXT_LINKS.reactKawaiiHomePage}
               target='_blank' rel='noopener noreferrer'
               children='React Kawaii'
             />
