@@ -126,7 +126,7 @@ module.exports = {
   'DOC_BODY_EQUIVALENT_OF_LOCALIZE': ({ loc }) => <>Currently the equivalent of the alternative syntax of {loc}.</>,
   'DOC_BODY_NOTE_DICT_LANG_KEYS_FORMAT': 'Note that keywords in the dictionary should always be in UPPERCASE while the language should be in lowercase (Eg: \'en\', \'en-US\', \'english\').',
   'DOC_BODY_SETTING_UP_DESC': 'Before you start, you will need to setup a dictionary first.',
-  'DOC_BODY_SETTING_UP_LINKING_NOTE': 'If you\'re setting this up in React Native (regardless of which version), there is NO NEED for linking since Langutil does not contain any native modules.',
+  'DOC_BODY_SETTING_UP_LINKING_NOTE': <>If you're setting this up in React Native (regardless of which version), there is <b>no need</b> for linking since Langutil does not contain any native modules.</>,
   'DOC_BODY_SETTING_UP_STRUCT_SUGGESTION': 'We would suggest you to structure your dictionary according to the example below.',
   'DOC_BODY_THEN_ADD_SOME_LOC': 'Then add some localization into the language files.',
   'DOC_BODY_TO_DISPLAY_KEY_IN_LOC': ({ k1, k2 }) => <>To display {k1} in your localizations, escape it with {k2}.</>,
