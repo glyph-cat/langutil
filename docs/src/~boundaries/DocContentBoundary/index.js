@@ -1,5 +1,5 @@
 import React from 'react'
-// import { localize } from 'langutil'
+import { localize } from 'langutil'
 import { withLang } from 'langutil/react-additions'
 // import './index.css'
 
