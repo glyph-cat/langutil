@@ -12,6 +12,7 @@ export default withLang(() => (
     <Body children={localize('DOC_BODY_IN_YOUR_DIRECTORY')} />
     <CodeSamples.InstallUsingNpm />
     <CodeSamples.InstallUsingYarn />
+    <Body children={localize('DOC_BODY_SETTING_UP_LINKING_NOTE')} />
 
     <SectionBreak />
 

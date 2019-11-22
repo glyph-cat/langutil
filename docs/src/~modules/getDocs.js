@@ -70,6 +70,10 @@ const getDocs = () => ({
           text: 'withLang'
         },
         {
+          to: DOCPATHS.v3.useLang,
+          text: 'useLang'
+        },
+        {
           to: DOCPATHS.v3.logs,
           text: 'logs'
         },

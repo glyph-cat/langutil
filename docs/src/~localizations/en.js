@@ -11,6 +11,7 @@ module.exports = {
   'APPLYING_CASINGS_TO_YOUR_LOC_STR': 'Applying casings to your localized strings',
   'APPLYING_TRANSFORMATION_TO_YOUR_LOC_STR': 'Applying transformation to your localized strings',
 
+  'API_DESC_AUTO_DETECT': ({ init, setL }) => <>A detector function meant to be used in conjunction with {init} or {setL}.</>,
   'API_DESC_CREATE_KEY': 'Creates a key for your dictionary. This is used when structuring your dictionary by keywords instead of language in v2.',
   'API_DESC_GET_CURRENT_LANG': 'Get the currently set language.',
   'API_DESC_GET_DEFINED_LANG': 'Get the list of language that have been defined in the dictionary.',
@@ -26,8 +27,8 @@ module.exports = {
   'API_DESC_LOGS_SHOW_VERBOSE': 'Show verbose logs from langutil. Verbose logs are hidden by default.',
   'API_DESC_SET_DICTIONARY': ({ init }) => <>Sets the dictionary. We encourage using {init} and not changing the contents of the dictionary in halfway. The only scenario you might need to use this function is if the dictionary is splitted up into sections for lazy loading.</>,
   'API_DESC_SET_LANGUAGE': 'Sets the language.',
-  'API_DESC_AUTO_DETECT': ({ init, setL }) => <>A detector function meant to be used in conjunction with {init} or {setL}.</>,
   'API_DESC_SNOOZE_INSPECTION_UNTIL': 'If your dictionary has not yet been completed and the warning about missing localizations bother you, you can use this to suppress the warning until a given date.',
+  'API_DESC_USE_LANG': '',
   'API_DESC_WITH_LANG': 'A Higher-order component that allows your existing components to listen for changes in langutil and update themselves accordingly.',
 
   'API_PARAM_DICT': 'The object containing all localizations.',
@@ -51,6 +52,7 @@ module.exports = {
   'API_RTYPE_STR_REP_OF_LANG': 'The string representation of the language.',
   'API_RTYPE_A_KEYWORD_OBJ': 'A keyword object.',
   'API_RTYPE_LOGS_FOCUS': 'True if the callback was sucessful.',
+  'API_RTYPE_USE_LANG': '',
   // '': '',
 
   'BASIC_USAGE': 'Basic usage',
@@ -113,7 +115,7 @@ module.exports = {
   'DOC_BODY_BY_PASSING_IN_ARRAY_AS_OBJECT': ({ k: key }) => <>By passing in an object as the second parameter, langutil will substitute each occurence of every key in the object it finds in the localized string. This is done in the format of {key}.</>,
   'DOC_BODY_BY_PASSING_IN_ARRAY_AS_PARAM': ({ p }) => <>By passing in an array as the second parameter, langutil will substitute each occurence of {p} sequencially.</>,
   'DOC_BODY_CODE_BELOW_SHOWS_SIMPLE_EXAMPLE_COLON': 'The code below shows a simple example of that:',
-  'DOC_BODY_TO_DISPLAY_P_IN_LOC': ({ p, escapedP }) => <>Note: To display {p} in your localizations, escape it with {escapedP}.</>,
+  'DOC_BODY_HOIST_NON_REACT_STATICS_REQUIRED': ({ h }) => <i>Note: This function requires {h} as peer dependency.</i>,
   'DOC_BODY_IF_THE_BUILT_IN_CSTYLES_X_ENOUGH': 'If the built-in casing styles aren\'t enough, you can add your own transformation to the localized value.',
   'DOC_BODY_IN_YOUR_DIRECTORY': 'In your project\'s directory, run either of the commands below:',
   'DOC_BODY_INSERT_PARAM_INTRO': 'In some cases, you might want to insert values into your localizations. While it is do-able by using string concatenation or replacing a marker in the localized string, it would be tedious to repeat this for such ocassions every time.',
@@ -124,13 +126,15 @@ module.exports = {
   'DOC_BODY_EQUIVALENT_OF_LOCALIZE': ({ loc }) => <>Currently the equivalent of the alternative syntax of {loc}.</>,
   'DOC_BODY_NOTE_DICT_LANG_KEYS_FORMAT': 'Note that keywords in the dictionary should always be in UPPERCASE while the language should be in lowercase (Eg: \'en\', \'en-US\', \'english\').',
   'DOC_BODY_SETTING_UP_DESC': 'Before you start, you will need to setup a dictionary first.',
+  'DOC_BODY_SETTING_UP_LINKING_NOTE': 'If you\'re setting this up in React Native (regardless of which version), there is NO NEED for linking since Langutil does not contain any native modules.',
   'DOC_BODY_SETTING_UP_STRUCT_SUGGESTION': 'We would suggest you to structure your dictionary according to the example below.',
   'DOC_BODY_THEN_ADD_SOME_LOC': 'Then add some localization into the language files.',
   'DOC_BODY_TO_DISPLAY_KEY_IN_LOC': ({ k1, k2 }) => <>To display {k1} in your localizations, escape it with {k2}.</>,
+  'DOC_BODY_TO_DISPLAY_P_IN_LOC': ({ p, escapedP }) => <>Note: To display {p} in your localizations, escape it with {escapedP}.</>,
   'DOC_BODY_USE_SETLANG_TO_SWITCH_LANG': ({ setL }) => <>Use {setL} to switch between languages.</>,
   'DOC_BODY_USE_LOC_TO_TRANSLATE': ({ loc }) => <>Use {loc} to translate your content.</>,
+  'DOC_BODY_WITH_LANG_ALSO_PASSES_PROPS': ({ wL, ls }) => <>When you use this function, a {ls} prop will be passed into your component as well.</>,
   'DOC_BODY_YOU_MAY_ADD_MORE_FILES': 'You may add more files for other languages',
-
   'DOC_BODY_IN_REACT_CALL_INIT_BEFORE_APP': ({ init, appjs, app }) => <>In React, {init} should be called in your entry file (presumably {appjs}), before and outside of {app}.</>,
   // 'DOC_BODY_': '',
 
@@ -225,6 +229,7 @@ module.exports = {
   // 'TRANSFORMATIONS': 'Transformations',
   'THE_QUICK_BROWN_FOX': 'The quick brown fox jumped over the fence.',
   'THIS_DOC_IS_UNAVAILABLE': 'This document is unavailable',
+  'TOTAL_DOWNLOADS': 'Total downloads',
   'TYPE': 'Type',
 
   'USAGE': 'Usage',
