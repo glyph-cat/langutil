@@ -10,12 +10,10 @@ class DocContentBoundary extends React.Component {
   static getDerivedStatefromError = () => ({ error: true })
 
   errorComponent = () => {
-    return (
-      'Documentation not found'
-      // <div className='app-boundary-container'>
-      //   <p className='app-boundary-text' children={localize('APP_BOUNDARY_ERROR_OCCURED')} />
-      // </div>
-    )
+    return localize('DOC_NOT_FOUND')
+    // <div className='app-boundary-container'>
+    //   <p className='app-boundary-text' children={localize('APP_BOUNDARY_ERROR_OCCURED')} />
+    // </div>
   }
 
   render() { return this.state.error ? <this.errorComponent /> : this.props.children }

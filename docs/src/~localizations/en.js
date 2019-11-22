@@ -154,6 +154,7 @@ module.exports = {
   'DOC_EXAMPLE_PARAM_OBJ_HELLO_NAME_2_ACTUAL': 'Hello, {:name1} and {:name2}.',
 
   'DOC_NEXT_PARAM': 'Next: %p ▶',
+  'DOC_NOT_FOUND': 'Document not found',
   'DOC_PREV_PARAM': '◀ Prev: %p',
   'DOCS': 'Docs',
   'DOCUMENTATION': 'Documentation',
