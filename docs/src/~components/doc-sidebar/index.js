@@ -3,6 +3,7 @@ import { Link, withRouter } from 'react-router-dom'
 import { scrollToTop } from '~modules'
 import { bridge } from '~modules'
 import { PATHS, VALUES } from '~constants'
+import isSidebarPathMatched from './isSidebarPathMatched'
 import './index.css'
 
 class DocSidebar extends React.Component {
@@ -35,7 +36,7 @@ class DocSidebar extends React.Component {
       for (let j = 0; j < data.length; j++) {
         const { to, text } = data[j]
         const _to = `${PATHS.docs}/${to}`
-        const pathMatched = pathname.includes(_to)
+        const pathMatched = isSidebarPathMatched(pathname, _to)
         topicArray.push(
           <Link key={_to} to={_to} onClick={scrollToTop}
             className='doc-sidebar-link'
