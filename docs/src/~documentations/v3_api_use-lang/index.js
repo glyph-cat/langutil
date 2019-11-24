@@ -13,7 +13,7 @@ export default withLang(() => {
   const rData = getLangStateInfo()
   return (
     <>
-      <CodeTitle name='useLang' rType='any' />
+      <CodeTitle name='useLang' />
       <Body children={localize('API_DESC_USE_LANG')} />
       <ParamList data={rData} />
       <CodeSamples.ApiUseLang />

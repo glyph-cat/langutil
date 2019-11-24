@@ -140,7 +140,7 @@ module.exports = {
   'DEPRECATED': 'Deprecated',
   'DEPRECATED_MSG_CREATE_KEY': ({ dev, convert }) => <>All dictionaries are now structured as objects. You will be able to use this function in conjuction with {convert} from the {dev} to re-structure the dictionary.</>,
   'DEPRECATED_MSG_GET_LANGUAGE': ({ getCL }) => <>Use {getCL} instead. Reason: The new naming gives a little more hint about what value the function is returning.</>,
-  'DEPRECATED_MSG_LOCALIZABLE': ({ renderAs, locz, loc, withL }) => <>The {renderAs} parameter that allows {locz} to render into anything complicates the code.<br />Solution: Use {loc} as you normally would inside your JSX code. Then export your component with {withL} so that your components show the correct language when the user language has changed.</>,
+  'DEPRECATED_MSG_LOCALIZABLE': ({ renderAs, locz, loc, withL, useL }) => <>The {renderAs} parameter that allows {locz} to render into anything complicates the code.<br />Solution: Use {loc} as you normally would inside your JSX code. Then export your component with {withL} or hook it with {useL} so that your components show the correct language when the user language has changed.</>,
   'DEPRECATED_MSG_LOCALIZE_WITH': ({ loc }) => <>Use {loc} instead.</>,
   'DEPRECATED_MSG_SNOOZE_INSPECTION_UNTIL': ({ dev }) => <>Dictionary inspection consumes a lot of computation power and it happens everytime langutil is initialized. This feature is now part of the {dev} so you can use it only when you need it instead.</>,
 
