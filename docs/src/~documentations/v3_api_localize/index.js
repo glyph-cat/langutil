@@ -33,7 +33,7 @@ export default withLang(() => {
 
   return (
     <>
-      <CodeTitle name='localize' params={params} rType='any' />
+      <CodeTitle name='localize' params={params} />
       <Body children={localize('API_DESC_LOCALIZE')} />
       <ParamList data={params} />
       <ReturnType

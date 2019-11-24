@@ -9,7 +9,7 @@ import ReturnType from '~components/return-type'
 
 export default withLang(() => {
 
-  const focusParams = {
+  const params = {
     fn: {
       type: 'Function',
       desc: localize('API_PARAM_FN')
@@ -38,9 +38,9 @@ export default withLang(() => {
       <Body children={localize('API_DESC_LOGS_HIDE_VERBOSE')} />
 
       <SectionBreak />
-      <CodeTitle name='logs.focus' />
+      <CodeTitle name='logs.focus' params={params} />
       <Body children={localize('API_DESC_LOGS_FOCUS')} />
-      <ParamList data={focusParams} />
+      <ParamList data={params} />
       <ReturnType desc={localize('API_RTYPE_LOGS_FOCUS')} type='boolean' />
       <CodeSamples.ApiLogsFocus />
 
