@@ -3,11 +3,11 @@ import { localize } from 'langutil'
 import { withLang } from 'langutil/react-additions'
 import { withProps } from '~modules'
 import CodeTitle from '~components/code-title'
-import { Body, Code } from '~components/document'
+import { Body, Code, CodeLink } from '~components/document'
 import ParamList from '~components/param-list'
 import ReturnType from '~components/return-type'
 import DeprecationWarning from '~components/deprecation-warning'
-import { VALUES, STRINGS } from '~constants'
+import { DOCPATHS, PATHS, STRINGS, VALUES } from '~constants'
 
 export default withLang(() => {
 
@@ -57,7 +57,7 @@ export default withLang(() => {
 
   return (
     <>
-      <CodeTitle name='Localizable' rType='any' isNotFunction />
+      <CodeTitle name='Localizable' isNotFunction />
       <DeprecationWarning
         // sinceVersion=''
         removeDate={VALUES.v240DeprecatedRemovalDate}
@@ -66,8 +66,9 @@ export default withLang(() => {
           transform: withProps({
             renderAs: <Code>renderAs</Code>,
             locz: <Code>{'<Localizable />'}</Code>,
-            loc: <Code>localize()</Code>,
-            withL: <Code>withLang()</Code>
+            loc: <CodeLink to={`${PATHS.docs}/${DOCPATHS.v3.localize}`} children='localize()' />,
+            withL: <CodeLink to={`${PATHS.docs}/${DOCPATHS.v3.withLang}`} children='withLang()' />,
+            useL: <CodeLink to={`${PATHS.docs}/${DOCPATHS.v3.useLang}`} children='useLang()' />
           })
         })}
       />
