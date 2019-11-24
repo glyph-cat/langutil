@@ -33,7 +33,7 @@ export default withLang(() => {
 
   return (
     <>
-      <CodeTitle name='withLang' params={params} rType='any' />
+      <CodeTitle name='withLang' params={params} />
       <Body children={localize('API_DESC_WITH_LANG')} />
       <Body children={localize({
         keyword: 'DOC_BODY_HOIST_NON_REACT_STATICS_REQUIRED',

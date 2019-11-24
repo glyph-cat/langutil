@@ -1,12 +1,12 @@
 import React from 'react'
 import { localize } from 'langutil'
 import { withLang } from 'langutil/react-additions'
-import { Body, Code } from '~components/document'
+import { Body, CodeLink } from '~components/document'
 import ReturnType from '~components/return-type'
 import DeprecationWarning from '~components/deprecation-warning'
 import CodeTitle from '~components/code-title'
+import { DOCPATHS, PATHS, VALUES } from '~constants'
 import { withProps } from '~modules'
-import { VALUES } from '~constants'
 
 export default withLang(() => (
   <>
@@ -16,7 +16,12 @@ export default withLang(() => (
       removeDate={VALUES.v240DeprecatedRemovalDate}
       message={localize({
         keyword: 'DEPRECATED_MSG_GET_LANGUAGE',
-        transform: withProps({ getCL: <Code>getCurrentLanguage()</Code> })
+        transform: withProps({
+          getCL: <CodeLink
+            to={`${PATHS.docs}/${DOCPATHS.v3.getCurrentLanguage}`}
+            children='getCurrentLanguage()'
+          />
+        })
       })}
     />
     <Body children={localize('API_DESC_GET_LANG')} />

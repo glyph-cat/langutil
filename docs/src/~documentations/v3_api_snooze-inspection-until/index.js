@@ -20,7 +20,7 @@ export default withLang(() => {
   return (
     <>
 
-      <CodeTitle name='snoozeInspectionUntil' rType='any' />
+      <CodeTitle name='snoozeInspectionUntil' />
       <DeprecationWarning
         // sinceVersion=''
         removeDate={VALUES.v240DeprecatedRemovalDate}

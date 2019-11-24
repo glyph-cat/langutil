@@ -16,7 +16,7 @@ export default withLang(() => {
   />
   return (
     <>
-      <CodeTitle name='localizeWith' rType='any' />
+      <CodeTitle name='localizeWith' />
       <DeprecationWarning
         // sinceVersion=''
         removeDate={VALUES.v240DeprecatedRemovalDate}
