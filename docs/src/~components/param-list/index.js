@@ -43,11 +43,13 @@ function ParamList({ data = {}, overrideVarName }) {
 
 ParamList.propTypes = {
   data: PropTypes.shape({
-    type: PropTypes.string.isRequired,
-    desc: PropTypes.string.isRequired,
-    oneOf: PropTypes.arrayOf(PropTypes.string.isRequired),
-    optional: PropTypes.bool,
-    defaultValue: PropTypes.any,
+    any: PropTypes.shape({
+      type: PropTypes.string,
+      desc: PropTypes.string.isRequired,
+      oneOf: PropTypes.arrayOf(PropTypes.string.isRequired),
+      optional: PropTypes.bool,
+      defaultValue: PropTypes.any,
+    })
   }).isRequired,
   overrideVarName: PropTypes.string,
 }
