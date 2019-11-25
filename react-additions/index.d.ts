@@ -1,9 +1,30 @@
 import * as React from 'react';
 
 /**
- * @description A Higher-order component that allows your existing components to listen for changes in langutil and update themselves accordingly.
+ * @description Hook function that allows your existing components to listen for changes in langutil and update themselves accordingly.
  */
-export function withLang(WrappedComponent: React.Component<{}>): React.ReactElement<{}>;
+export function useLang(): LangStateSpecs;
+
+/**
+ * @description A Higher-order component that allows your existing components to listen for changes in langutil and update themselves accordingly.
+ * At the same time, a `langState` prop will provided to the component.
+ */
+export function withLang(WrappedComponent: (
+  props: {
+    langState: LangStateSpecs
+  }
+) => React.Component<{}>): React.ReactElement<{}>;
+
+interface LangStateSpecs {
+  /**
+   * @description Was auto detection being used?
+   */
+  auto: boolean,
+  /**
+   * @description The currently set language.
+   */
+  lang: string
+}
 
 /**
  * @description A wrapper component for rendering HTML/React elements.
@@ -41,9 +62,9 @@ interface ReactLocalizableProps {
 }
 
 type LocalizableCasings =
-  | "lowercase"
-  | "localeLowercase"
-  | "uppercase"
-  | "localeUppercase"
-  | "titleCase"
-  | "sentenceCase"
+  | 'lowercase'
+  | 'localeLowercase'
+  | 'uppercase'
+  | 'localeUppercase'
+  | 'titleCase'
+  | 'sentenceCase'

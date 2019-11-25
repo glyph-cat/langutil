@@ -1,6 +1,6 @@
 const fs = require('fs');
 const { exec } = require('child_process');
-const { default: { red, redBright, bold, greenBright, yellow, cyanBright } } = require('chalk');
+const { red, redBright, bold, greenBright, yellow, cyanBright } = require('chalk').default;
 const formatBadParam = value => typeof value === 'string' ? `'${value}'` : typeof value;
 const DRY_RUN = process.argv[3] === '--dry-run';
 
@@ -117,7 +117,7 @@ function increaseVersionNumber() {
 	}
 
 	// Return info for final report
-	return { INCREMENT_TYPE, oldVersion, newVersion }
+	return { INCREMENT_TYPE, oldVersion, newVersion };
 
 }
 
