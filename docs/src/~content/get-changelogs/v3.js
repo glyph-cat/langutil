@@ -9,7 +9,16 @@ export default () => ({
     {
       title: '3.1.0',
       data: [
-        localize(''),
+        localize('CHANGELOG_ERR_THROWN_UPON_CRITICAL'),
+        localize({
+          keyword: 'CHANGELOG_WITHLANG_NOW_PASS_LANGSTATE',
+          transform: withProps({ wl: <Code>withLang()</Code>, ls: <Code>langState</Code> })
+        }),
+        localize({
+          keyword: 'CHANGELOG_NEW_USELANG_HOOK',
+          transform: withProps({ ul: <Code>useLang()</Code>, ls: <Code>langState</Code> })
+        }),
+        localize('CHANGELOG_CODE_OPTIMIZATIONS'),
       ]
     },
     {
