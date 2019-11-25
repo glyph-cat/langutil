@@ -17,10 +17,9 @@
     "/native-additions"
   ],
   "scripts": {
-    "lint": "./node_modules/.bin/eslint lib/langutil.js native-additions/index.js react-additions/index.js dev-additions/ scripts/",
-    "lint-fix": "./node_modules/.bin/eslint lib/langutil.js native-additions/index.js react-additions/index.js dev-additions/ scripts/ --fix",
-    "test": "jest",
-    "deploy": "node scripts/deploy"
+    "deploy": "node scripts/deploy.js",
+    "lint": "./node_modules/.bin/eslint lib/langutil.js native-additions/index.js native-additions/native-additions.js react-additions/index.js react-additions/react-additions.js dev-additions/ scripts/",
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -48,6 +47,8 @@
   },
   "jest": {
     "verbose": false,
-    "testPathIgnorePatterns": ["docs"]
+    "testPathIgnorePatterns": [
+      "docs"
+    ]
   }
 }
