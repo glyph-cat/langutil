@@ -85,6 +85,7 @@ module.exports = {
   'CHANGELOG_CREATION_OF_LANGUTIL': 'Creation of langutil with 3 core functions and the ability to auto-detect up to 128 languages.',
   'CHANGELOG_DOC_UPDATED_REDUCE_SIZE': 'Documentations have been updated to reduce package size.',
   'CHANGELOG_DICT_INSP_NOT_HAPPEN_DEFAULT': 'Dictionary inspection now do not happen by default in favor of performance.',
+  'CHANGELOG_ERR_THROWN_UPON_CRITICAL': 'Errors are thrown upon critical situations such as invalid parameter.',
   'CHANGELOG_EMERGENCY_FIX_RN_AUTO_DETECT_FAIL': 'Emergency fix for a bug where auto detect in v2.2.0 fails for React Native apps.',
   'CHANGELOG_EXAMPLES_REMOVED_FROM_DOC': 'Examples have been removed from inline documentation as more detailed ones are already available in this readme file.',
   'CHANGELOG_FIXED_ALWAYS_MINIFIED': 'Fixed the bug where langutil will always launch in minified mode by default.',
@@ -116,6 +117,7 @@ module.exports = {
   'CHANGELOG_NEW_LOC_WITH_FN': ({ lw }) => <>Added new method {lw} for more powerful localizing capabilities: Apply <b>casing styles</b> and <b>custom transformations</b> to the localized value! 🦄</>,
   'CHANGELOG_NEW_LOGS_FOCUS_FN': ({ f }) => <>New {f} function allows to you see langutil logs in a specific block of code while hiding the rest, that is, only necessary if the logs were already hidden prior to that block.</>,
   'CHANGELOG_NEW_SET_DICT_FN': ({ sd }) => <>New {sd} function in case you want to lazy load your localizations.</>,
+  'CHANGELOG_NEW_USELANG_HOOK': ({ ul, ls }) => <>New {ul} hook, contents of {ls} are also accessible from this hook.</>,
   'CHANGELOG_NEW_WITHLANG_HOC': ({ wl, locz }) => <>New {wl} higher-order component in favor of {locz}.</>,
   'CHANGELOG_PASS_CUSTOM_COMP_VIA_RENDER_AS': ({ r }) => <>You can pass in custom components via the {r} prop in React Native like how it can be done in React.</>,
   'CHANGELOG_PERF_OPT_FOR_PROD_MODE': 'Performance optimization for production mode.',
@@ -127,6 +129,7 @@ module.exports = {
   'CHANGELOG_THE_REPO_NOW_INCL_TEMPLATE_DICT': ({ repo }) => <>The {repo} now includes template dictionaries, some of the most commonly used words are readily translated. More translations will be added over time.</>,
   'CHANGELOG_WARN_FOR_PARAMOBJ_WILL_BE_SHOWN': 'Warnings for params (object) that are not tally will now be shown.',
   'CHANGELOG_WHEN_APPLY_CASING_ALLCAP_PRESERVED': 'When applying casings, ALLCAPPED words and Names will be preserved.',
+  'CHANGELOG_WITHLANG_NOW_PASS_LANGSTATE': ({ wl, ls }) => <>{wl} now passes a prop called {ls}.</>,
   'CHANGELOG_WILL_LOOK_FOR_ALT_LANG_IF_AUTO_UNAVAILABLE': <>In case the automatically detected language is not supported in the dictionary, langutil look for an alternative language from the dictionary. For example, if your dictionary contains localizations for <Code>'en'</Code>, but the automatically detected language is <Code>'en-us'</Code>, langutil will set the language to <Code>'en'</Code>.</>,
   // 'CHANGELOG_': '',
 
