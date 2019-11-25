@@ -8,7 +8,7 @@ const getLangState = () => ({ auto: isAuto(), lang: getCurrentLanguage() });
 
 function useLang() {
   if (typeof useState !== 'function') {
-    throw Error('You must use React ≥16.8 in order to use `useLang()`');
+    throw ReferenceError('You must use React ≥16.8 in order to use `useLang()`');
   }
   const [state, setState] = useState({ langRef: null });
   const { langRef } = state;
@@ -28,7 +28,7 @@ function withLang(WrappedComponent) {
     render() {
       const { langState, ...otherProps } = this.props;
       if (langState) {
-        throw Error(`Duplicate prop found in <${displayName} />: \`langState\` is meant to be a prop passed down from \`withLang()\` but another prop with the same name was passed down from its parent.\n\nSolutions:\n • For class components, rename your prop\n • For functional components, use the \`useLang()\` hook instead and unwrap it from \`withLang()\`.`);
+        throw SyntaxError(`Duplicate prop found in <${displayName} />: \`langState\` is meant to be a prop passed down from \`withLang()\` but another prop with the same name was passed down from its parent.\n\nSolutions:\n • For class components, rename your prop\n • For functional components, use the \`useLang()\` hook instead and unwrap it from \`withLang()\`.`);
       }
       return createElement(WrappedComponent, {
         langState: langState ? langState : getLangState(),
@@ -45,9 +45,9 @@ function withLang(WrappedComponent) {
 
 function getDisplayName(WrappedComponent) {
   try {
-    return WrappedComponent.displayName || WrappedComponent.name || 'UnknownComponent';
+    return WrappedComponent.displayName || WrappedComponent.name || 'Unknown';
   } catch (e) {
-    return 'UnknownComponent';
+    return 'Unknown';
   }
 }
 
