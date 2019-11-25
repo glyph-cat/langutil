@@ -96,6 +96,11 @@ function increaseVersionNumber() {
 			target: `* @version ${oldVersion}`,
 			replace: `* @version ${newVersion}`
 		},
+		{
+			path: 'lu-scripts/commands/showVersionNumber.js',
+			target: /console\.log\('\\tlangutil \d+\.\d+\.\d+'\);/,
+			replace: `console.log('\\tlangutil ${newVersion}');`,
+		}
 	];
 
 	// Append new version number
