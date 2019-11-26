@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 const { commands } = require('./commands');
 const echo = (t) => process.stdout.write(t);
 
