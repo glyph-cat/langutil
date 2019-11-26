@@ -3,6 +3,9 @@
   "description": "Localization for JavaScript made simple",
   "version": "3.1.0",
   "author": "chin98edwin",
+  "bin": {
+    "langutil": "lu-scripts/"
+  },
   "directories": {
     "doc": "docs",
     "lib": "lib"
@@ -14,11 +17,14 @@
     "index.d.ts",
     "index.js",
     "/react-additions",
-    "/native-additions"
+    "/native-additions",
+    "/lu-scripts",
+    "scripts/post-install.js"
   ],
   "scripts": {
     "deploy": "node scripts/deploy.js",
-    "lint": "./node_modules/.bin/eslint lib/langutil.js native-additions/index.js native-additions/native-additions.js react-additions/index.js react-additions/react-additions.js dev-additions/ scripts/",
+    "install": "node scripts/post-install.js",
+    "lint": "./node_modules/.bin/eslint lib/langutil.js native-additions/index.js native-additions/native-additions.js react-additions/index.js react-additions/react-additions.js dev-additions/ scripts/ lu-scripts",
     "test": "jest"
   },
   "repository": {

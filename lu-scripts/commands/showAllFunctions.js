@@ -6,6 +6,7 @@ function showAllFunctions() {
   const { FIRST_LEVEL_CHILDREN } = require('./index'); // Re-import
   searchFunctions(FIRST_LEVEL_CHILDREN);
   console.log(`\t${formatCommandsAndHelp(possibleCommands).join('\n\t')}`);
+  console.log('\n    (More utilities coming soon)\n');
 }
 
 let stack = [], possibleCommands = [];
