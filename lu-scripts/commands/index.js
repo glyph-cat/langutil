@@ -11,66 +11,66 @@ const FIRST_LEVEL_CHILDREN = {
     run: require('./showAllFunctions')
   },
 
-  inspect: {
-    children: {
-      dictionary: {
-        _desc: 'Inspect dictionary',
-        run() { console.log('inspecting dictionary...'); }
-      },
-      project: {
-        _desc: 'Inspect entire project',
-        run() { console.log('inspecting project...'); }
-      }
-    }
-  },
+  // inspect: {
+  //   children: {
+  //     dictionary: {
+  //       _desc: 'Inspect dictionary',
+  //       run() { console.log('inspecting dictionary...'); }
+  //     },
+  //     project: {
+  //       _desc: 'Inspect entire project',
+  //       run() { console.log('inspecting project...'); }
+  //     }
+  //   }
+  // },
 
-  pack: {
-    _desc: 'Integrate keywords in dictionary into typings',
-    run() { require('./packAutocomplete').default(); },
-    children: {
-      '--verbose': {
-        _desc: 'Integrate keywords in dictionary into typings with verbose logging',
-        run() { require('./packAutocomplete').verbose(); },
-      }
-    }
-  },
+  // pack: {
+  //   _desc: 'Integrate keywords in dictionary into typings',
+  //   run() { require('./packAutocomplete').default(); },
+  //   children: {
+  //     '--verbose': {
+  //       _desc: 'Integrate keywords in dictionary into typings with verbose logging',
+  //       run() { require('./packAutocomplete').verbose(); },
+  //     }
+  //   }
+  // },
 
-  restruct: {
-    children: {
-      byKey: {
-        children: {
-          csv: {
-            _desc: 'Restructure dictionary by keywords and export to CSV',
-            run: require('./restruct').byKeyToCsv
-          },
-          js: {
-            _desc: 'Restructure dictionary by keywords and export to JavaScript',
-            run: require('./restruct').byKeyToJs
-          },
-          json: {
-            _desc: 'Restructure dictionary by keywords and export to JSON',
-            run: require('./restruct').byKeyToJson
-          }
-        }
-      },
-      byLang: {
-        children: {
-          csv: {
-            _desc: 'Restructure dictionary by language and export to CSV',
-            run: require('./restruct').byLangToCsv
-          },
-          js: {
-            _desc: 'Restructure dictionary by language and export to JavaScript',
-            run: require('./restruct').byLangToJs
-          },
-          json: {
-            _desc: 'Restructure dictionary by language and export to JSON',
-            run: require('./restruct').byLangToJson
-          }
-        }
-      }
-    }
-  },
+  // restruct: {
+  //   children: {
+  //     byKey: {
+  //       children: {
+  //         csv: {
+  //           _desc: 'Restructure dictionary by keywords and export to CSV',
+  //           run: require('./restruct').byKeyToCsv
+  //         },
+  //         js: {
+  //           _desc: 'Restructure dictionary by keywords and export to JavaScript',
+  //           run: require('./restruct').byKeyToJs
+  //         },
+  //         json: {
+  //           _desc: 'Restructure dictionary by keywords and export to JSON',
+  //           run: require('./restruct').byKeyToJson
+  //         }
+  //       }
+  //     },
+  //     byLang: {
+  //       children: {
+  //         csv: {
+  //           _desc: 'Restructure dictionary by language and export to CSV',
+  //           run: require('./restruct').byLangToCsv
+  //         },
+  //         js: {
+  //           _desc: 'Restructure dictionary by language and export to JavaScript',
+  //           run: require('./restruct').byLangToJs
+  //         },
+  //         json: {
+  //           _desc: 'Restructure dictionary by language and export to JSON',
+  //           run: require('./restruct').byLangToJson
+  //         }
+  //       }
+  //     }
+  //   }
+  // },
 
   version: {
     run: require('./showVersionNumber'),
