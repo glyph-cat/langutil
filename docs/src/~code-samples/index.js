@@ -4,6 +4,7 @@ let CodeSamples = {
   ApiAutoDetect: require('./api-auto-detect'),
   ApiInit: require('./api-init'),
   ApiInitReact: require('./api-init-react'),
+  ApiLangmap: require('./api-langmap'),
   ApiLocalize: require('./api-localize'),
   ApiLogsFocus: require('./api-logs-focus'),
   ApiSetLanguage: require('./api-set-language'),
