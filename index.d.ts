@@ -2,7 +2,7 @@
  * @author chin98edwin
  * @copyright Copyright (c) 2018 - present, chin98edwin
  * @description Localization for JavaScript made simple.
- * @version 3.1.0
+ * @version 3.1.1
  **/
 
 declare namespace langutil {
