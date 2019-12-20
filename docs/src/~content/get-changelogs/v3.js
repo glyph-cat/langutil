@@ -7,6 +7,16 @@ export default () => ({
   title: 'v3',
   data: [
     {
+      title: '3.1.1',
+      data: [
+        localize({
+          keyword: 'CHANGELOG_NEW_LANGMAP_FN',
+          transform: withProps({ m: <Code>langmap</Code> })
+        }),
+        localize('CHANGELOG_REFINED_AUTO_DETECT_ALGO'),
+      ]
+    },
+    {
       title: '3.1.0',
       data: [
         localize('CHANGELOG_ERR_THROWN_UPON_CRITICAL'),

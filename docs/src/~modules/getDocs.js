@@ -50,6 +50,10 @@ const getDocs = () => ({
           text: 'localize'
         },
         {
+          to: DOCPATHS.v3.langmap,
+          text: 'langmap'
+        },
+        {
           to: DOCPATHS.v3.getCurrentLanguage,
           text: 'getCurrentLanguage'
         },
