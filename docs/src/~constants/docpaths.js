@@ -14,6 +14,7 @@ const DOCPATHS = {
     setDictionary: api(3)('set-dictionary'),
     setLanguage: api(3)('set-language'),
     localize: api(3)('localize'),
+    langmap: api(3)('langmap'),
     getCurrentLanguage: api(3)('get-current-language'),
     getDefinedLanguages: api(3)('get-defined-languages'),
     autoDetect: api(3)('auto-detect'),
