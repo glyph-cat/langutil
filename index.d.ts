@@ -25,6 +25,7 @@ declare namespace langutil {
    * @description Sets the language.
    * @param lang The language to use.
    * @param detector A langutil built-in function, pass `AUTO_DETECT` into this parameter to allow auto-language detection.
+   * @throws ReferenceError, TypeError
    */
   function setLanguage(lang: LanguageCodes | string, detector?: Function): void;
 
@@ -34,6 +35,7 @@ declare namespace langutil {
    * @param param An array or object which each of their values can be swapped into localizations.
    * @param casing Casing styles that will be applied to the localized value if it is a string.
    * @param transform Apply a transformation to the localized value.
+   * @throws SyntaxError, TypeError
    * @returns The localized value.
    */
   function localize(
@@ -43,11 +45,7 @@ declare namespace langutil {
     transform?: (localizedValue: unknown) => unknown
   ): unknown;
 
-  /**
-   * @description Maps a keyword to its localized value.
-   * @returns The localized value.
-   */
-  function localize(props: {
+  interface LocalizeProps {
     /**
      * @description A short string representing the localized value.
      */
@@ -63,8 +61,44 @@ declare namespace langutil {
     /**
      * @description Apply a transformation to the localized value.
      */
+  }
+
+  /**
+   * @description Maps a keyword to its localized value.
+   * @throws SyntaxError, TypeError
+   * @returns The localized value.
+   */
+  function localize(props: LocalizeProps): unknown;
+
+  /**
+   * @description Manually specify a language and have a keyword mapped its localized value.
+   * @param lang The language to use.
+   * @param keyword A short string representing the localized value.
+   * @param param An array or object which each of their values can be swapped into localizations.
+   * @param casing Casing styles that will be applied to the localized value if it is a string.
+   * @param transform Apply a transformation to the localized value.
+   * @throws SyntaxError, TypeError
+   * @returns The localized value.
+   */
+  function langmap(
+    lang: string,
+    keyword: string,
+    param?: Array<unknown> | object,
+    casing?: Casings,
     transform?: (localizedValue: unknown) => unknown
-  }): unknown;
+  ): unknown;
+
+  /**
+   * @description Manually specify a language and have a keyword mapped its localized value.
+   * @throws SyntaxError, TypeError
+   * @returns The localized value.
+   */
+  function langmap(props: {
+    /**
+     * @description The language to use.
+     */
+    lang: string,
+  } & LocalizeProps): unknown;
 
   /**
    * @description Get the currently set language.
@@ -108,6 +142,7 @@ declare namespace langutil {
     /**
      * @description If you have chosen to hide away langutil logs but want to log a portion of code with it, place your code inside the callback.
      * @param fn The callback which you want langutil to focus its logs on.
+     * @throws TypeError
      * @returns True if the callback was sucessful.
      */
     function focus(fn: Function): boolean;
@@ -140,24 +175,7 @@ declare namespace langutil {
    * @deprecated 2.4.0 (Will be removed by March 2020)
    * @returns The localized value.
    */
-  function localizeWith(props: {
-    /**
-     * @description A short string representing the localized value.
-     */
-    keyword: string,
-    /**
-     * @description An array or object which each of their values can be swapped into localizations.
-     */
-    paramArray?: Array<unknown>,
-    /**
-     * @description Casing styles that will be applied to the localized value if it is a string.
-     */
-    casing?: Casings,
-    /**
-     * @description Apply a transformation to the localized value.
-     */
-    transform?: (localizedValue: unknown) => unknown
-  }): unknown;
+  function localizeWith(props: LocalizeProps): unknown;
 
   /**
    * @description If your dictionary has not yet been completed and the warning about missing localizations bother you, you can use this to suppress the warning until a given date.
