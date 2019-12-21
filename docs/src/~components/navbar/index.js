@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link, withRouter } from 'react-router-dom'
 import { localize } from 'langutil'
 import { withLang } from 'langutil/react-additions'
 import { pathIsMatch, scrollToTop } from '~modules'
+import LanguageMenu from '~components/language-menu'
 import { PATHS, VALUES } from '~constants'
 import { LogoLink, DocVersion, ToggleButton, GitHubLink } from './items'
 import './index.css'
@@ -27,7 +28,7 @@ const NavLink = withRouter(({ to, exact, children }) => {
 
 
 function Navbar() {
-  // const [showLangMenu, setShowLangMenu] = useState(false)
+  const [showLangMenu, setShowLangMenu] = useState(false)
 
   // Temporary - TODO: Show language selection menu
   const toggleLangMenu = () => {
@@ -65,7 +66,7 @@ function Navbar() {
         {/* Translation */}
         <ToggleButton
           iconName='translate'
-          active={false} // {showLangMenu}
+          active={showLangMenu}
           buttonProps={{
             onClick: toggleLangMenu,
             title: localize('SWITCH_LANGUAGE')
@@ -75,6 +76,21 @@ function Navbar() {
         <GitHubLink />
 
       </nav>
+
+      {showLangMenu &&
+        <div style={{
+          position: 'absolute',
+          right: VALUES.navbarHeight,
+          top: VALUES.navbarHeight,
+          minWidth: 250,
+          maxHeight: 400,
+          overflow: 'hidden',
+          overflowY: 'scroll',
+        }}>
+          <LanguageMenu />
+        </div>
+      }
+
       <div
         className='navbar-container'
         style={{

@@ -1,44 +1,45 @@
 {
-  "name": "docs-src",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "@material-ui/core": "^4.5.1",
-    "copy-to-clipboard": "^3.2.0",
-    "gh-pages": "^2.1.1",
-    "langutil": "^3.0.1",
-    "react": "^16.10.2",
-    "react-dom": "^16.10.2",
-    "react-kawaii": "^0.14.4",
-    "react-on-screen": "^2.1.1",
-    "react-redux": "^7.1.1",
-    "react-router-dom": "^5.1.2",
-    "react-scripts": "3.2.0",
-    "redux": "^4.0.4"
-  },
-  "homepage": "https://chin98edwin.github.io/langutil/",
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build && node scripts/renewBuildHash.js && gh-pages -d build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": "react-app"
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
-  "devDependencies": {
-    "redux-devtools": "^3.5.0"
-  }
+ "name": "docs-src",
+ "version": "0.1.0",
+ "private": true,
+ "dependencies": {
+  "@material-ui/core": "^4.5.1",
+  "copy-to-clipboard": "^3.2.0",
+  "gh-pages": "^2.1.1",
+  "langutil": "^3.1.1",
+  "react": "^16.10.2",
+  "react-dom": "^16.10.2",
+  "react-kawaii": "^0.14.4",
+  "react-on-screen": "^2.1.1",
+  "react-redux": "^7.1.1",
+  "react-router-dom": "^5.1.2",
+  "react-scripts": "3.2.0",
+  "redux": "^4.0.4"
+ },
+ "homepage": "https://chin98edwin.github.io/langutil/",
+ "scripts": {
+  "start": "react-scripts start",
+  "build": "react-scripts build && node scripts/renewBuildHash.js && gh-pages -d build",
+  "test": "react-scripts test",
+  "eject": "react-scripts eject",
+  "langutil": "node node_modules/.bin/langutil"
+ },
+ "eslintConfig": {
+  "extends": "react-app"
+ },
+ "browserslist": {
+  "production": [
+   ">0.2%",
+   "not dead",
+   "not op_mini all"
+  ],
+  "development": [
+   "last 1 chrome version",
+   "last 1 firefox version",
+   "last 1 safari version"
+  ]
+ },
+ "devDependencies": {
+  "redux-devtools": "^3.5.0"
+ }
 }
