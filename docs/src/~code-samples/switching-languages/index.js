@@ -10,14 +10,14 @@ const SwitchingLanguages = () => (
     <Line />
     <Line>
       <Type>console</Type>.<Func>log</Func>(<Func>localize</Func>(<Str>'HELLO_WORLD'</Str>))
-      <Com>{` // ${localize('HELLO_WORLD')}`}</Com>
+      <Com>{` // ${localize('DOC_EXAMPLE_HELLO_WORLD_PRIMARY_VALUE')}`}</Com>
     </Line>
     <Line>
       <Func>setLanguage</Func>(<Str>'{localize('DOC_EXAMPLE_SECONDARY_LANG')}'</Str>)
     </Line>
     <Line>
       <Type>console</Type>.<Func>log</Func>(<Func>localize</Func>(<Str>'HELLO_WORLD'</Str>))
-      <Com>{` // ${localize('HELLO_WORLD_SECONDARY')}`}</Com>
+      <Com>{` // ${localize('DOC_EXAMPLE_HELLO_WORLD_SECONDARY_VALUE')}`}</Com>
     </Line>
   </CodeDisplay>
 )

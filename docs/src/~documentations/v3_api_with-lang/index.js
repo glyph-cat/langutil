@@ -7,6 +7,7 @@ import ParamList from '~components/param-list'
 import CodeSamples from '~code-samples'
 import { withProps } from '~modules'
 import { EXT_LINKS } from '~constants'
+import DocInfoBox from '~components/doc-infobox'
 
 export function getLangStateInfo() {
   return {
@@ -34,6 +35,14 @@ export default withLang(() => {
   return (
     <>
       <CodeTitle name='withLang' params={params} />
+
+      <DocInfoBox message={localize({
+        keyword: 'THIS_ITEM_IS_AVAILABLE_UNDER_PATH',
+        transform: withProps({
+          path: <Code>'langutil/react-additions'</Code>
+        })
+      })} />
+
       <Body children={localize('API_DESC_WITH_LANG')} />
       <Body children={localize({
         keyword: 'DOC_BODY_HOIST_NON_REACT_STATICS_REQUIRED',

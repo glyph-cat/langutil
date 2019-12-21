@@ -1,0 +1,21 @@
+.doc-infobox-container {
+  background-color: #ddeeff;
+  border-radius: 0.5em;
+  border: solid 1px #0088aa;
+  display: grid;
+  gap: 0.5em;
+  grid-template-columns: auto 1fr;
+  margin-bottom: 1em;
+  padding: 1em;
+}
+
+.doc-infobox-icon {
+  font-size: 18pt;
+  color: #0066cc;
+}
+
+.doc-infobox-content {
+  color: #224477;
+  font-size: 14pt;
+  margin: 0;
+}

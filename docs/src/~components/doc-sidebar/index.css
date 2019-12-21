@@ -24,6 +24,9 @@
 }
 
 .doc-sidebar-link {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.25em;
   text-decoration: none;
   margin-inline-start: 0.5em;
 }

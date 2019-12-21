@@ -1,6 +1,5 @@
 import React from 'react'
 import { H1 } from '~components/document'
-import { formatDomId } from '~modules'
 import './index.css'
 
 function CodeTitle({ name, params = {}, isNotFunction, ...otherProps }) {
@@ -13,7 +12,7 @@ function CodeTitle({ name, params = {}, isNotFunction, ...otherProps }) {
   }
   const text = isNotFunction ? name : `${name}(${paramList.join(', ')})`
   return (
-    <H1 id={formatDomIdFromName(name)}
+    <H1 id={getKebabCased(name)}
       className='code-title-h1 code'
       children={text}
       {...otherProps}
@@ -24,10 +23,10 @@ function CodeTitle({ name, params = {}, isNotFunction, ...otherProps }) {
 export default CodeTitle
 
 
-function formatDomIdFromName(name) {
+function getKebabCased(name) {
   name = splitNameFromCamelCase(name)
   name = name.toLowerCase().replace(/[^a-z]/gi, '-')
-  return formatDomId(name)
+  return name
 }
 
 function splitNameFromCamelCase(name) {

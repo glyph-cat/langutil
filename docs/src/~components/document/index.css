@@ -1,3 +1,15 @@
+.document-header-copy-button {
+  cursor: pointer;
+  color: #888888;
+  margin-inline-start: 0.25em;
+  margin-inline-end: 0.25em;
+  font-size: 18pt;
+}
+
+.document-header-copy-button:active {
+  opacity: 0.5;
+}
+
 .document-h1 {
   margin: 0;
   margin-bottom: 0.5em;

@@ -11,7 +11,7 @@ const Casings = () => {
       </Line>
       <Line>
         <Type>console</Type>.<Func>log</Func> = (<Var>c1</Var>)
-        <Com>{` // ${localize('DOC_EXAMPLE_PARAM_ARR_HELLO_NAME_ACTUAL', [name1], 'upperCase')}`}</Com>
+        <Com>{` // ${localize('DOC_EXAMPLE_PARAM_ARR_HELLO_NAME_VALUE', [name1], 'upperCase')}`}</Com>
       </Line>
       <Line />
       <Line>
@@ -25,7 +25,7 @@ const Casings = () => {
       </Line>
       <Line>
         <Type>console</Type>.<Func>log</Func> = (<Var>c2</Var>)
-        <Com>{` // ${localize({ keyword: 'HELLO_WORLD', casing: 'titleCase' })}`}</Com>
+        <Com>{` // ${localize({ keyword: 'DOC_EXAMPLE_HELLO_WORLD_PRIMARY_VALUE', casing: 'titleCase' })}`}</Com>
       </Line>
     </CodeDisplay>
   )

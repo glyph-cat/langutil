@@ -63,7 +63,8 @@ class DocPrevNext extends React.Component {
             className='doc-prev-next-link'
             to={`${PATHS.docs}/${prev.to}`}
             onClick={scrollToTop}
-            children={localize('DOC_PREV_PARAM', [prev.text])}
+            children={localize('DOC_PREV_PARAM', [maxTrim(prev.text)])}
+            title={prev.text}
           />
           :
           <div />
@@ -74,7 +75,8 @@ class DocPrevNext extends React.Component {
             className='doc-prev-next-link'
             to={`${PATHS.docs}/${next.to}`}
             onClick={scrollToTop}
-            children={localize('DOC_NEXT_PARAM', [next.text])}
+            children={localize('DOC_NEXT_PARAM', [maxTrim(next.text)])}
+            title={next.text}
           />
           :
           <div />
@@ -86,3 +88,8 @@ class DocPrevNext extends React.Component {
 }
 
 export default withRouter(DocPrevNext)
+
+function maxTrim(text) {
+  const trimmed = text.substr(0, 30)
+  return trimmed + (trimmed.length < text.length ? '...' : '')
+}
