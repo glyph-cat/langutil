@@ -2,5 +2,6 @@ module.exports = {
   en: require('./en'),
   ja: require('./ja'),
   ms: require('./ms'),
-  zh: require('./zh'),
+  'zh-Hans': require('./zh-Hans'),
+  'zh-Hant': require('./zh-Hant'),
 }

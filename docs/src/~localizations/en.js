@@ -55,7 +55,8 @@ module.exports = {
   'API_RTYPE_A_KEYWORD_OBJ': 'A keyword object.',
   'API_RTYPE_LOGS_FOCUS': 'True if the callback was sucessful.',
   'API_RTYPE_USE_LANG': '',
-  // '': '',
+
+  AUTOMATIC: 'Automatic',
 
   'BASIC_USAGE': 'Basic usage',
   'BASICS': 'Basics',
@@ -139,6 +140,7 @@ module.exports = {
   COPY: 'Copy',
   CLICK_TO_COPY_LINK: 'Click to copy link',
   COPIED: 'Copied',
+  CREATING_A_LANG_SELECT_MENU: 'Creating a Language Selection Menu',
   CURRENTLY_USING_PARAM: 'Currently using: %p',
 
   'DEFAULT_VALUE': 'Default value',
@@ -241,6 +243,12 @@ module.exports = {
   'INSTALLATION': 'Installation',
   'INSTALLATION_AND_SETUP': 'Installation & Setup',
 
+  LANG_DISP_EN: 'English',
+  LANG_DISP_JA: 'Japanese',
+  LANG_DISP_MS: 'Malay',
+  LANG_DISP_ZH_HANS: 'Chinese (Simplified)',
+  LANG_DISP_ZH_HANT: 'Chinese (Traditional)',
+
   'LANGSTATE_AUTO': 'Was auto detection being used?',
   'LANGSTATE_LANG': 'The currently set language.',
   'LIKE_THIS_KAWAII_IMG': ({ link }) => <>Like this cute image? Check out {link} for more.</>,
@@ -250,7 +258,7 @@ module.exports = {
   LOCALIZING_ON_SERVER: 'Localizing on Server',
   'LOREM_IPSUM': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
 
-  CREATING_A_LANG_SELECT_MENU: 'Creating a Language Selection Menu',
+
 
   'MONTH_0': 'January',
   'MONTH_1': 'February',
