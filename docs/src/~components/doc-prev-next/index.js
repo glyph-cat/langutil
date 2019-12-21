@@ -3,7 +3,7 @@ import { Link, withRouter } from 'react-router-dom'
 import { localize, getCurrentLanguage } from 'langutil'
 import { PATHS } from '~constants'
 import { scrollToTop } from '~modules'
-import { SectionContext } from '~context'
+import SectionContext from '~contexts/SectionContext'
 import './index.css'
 
 class DocPrevNext extends React.Component {
@@ -63,7 +63,7 @@ class DocPrevNext extends React.Component {
             className='doc-prev-next-link'
             to={`${PATHS.docs}/${prev.to}`}
             onClick={scrollToTop}
-            children={localize('DOC_PREV_PARAM', [maxTrim(prev.text)])}
+            children={localize('DOC_PREV_PARAM', [smartTrim(prev.text)])}
             title={prev.text}
           />
           :
@@ -75,7 +75,7 @@ class DocPrevNext extends React.Component {
             className='doc-prev-next-link'
             to={`${PATHS.docs}/${next.to}`}
             onClick={scrollToTop}
-            children={localize('DOC_NEXT_PARAM', [maxTrim(next.text)])}
+            children={localize('DOC_NEXT_PARAM', [smartTrim(next.text)])}
             title={next.text}
           />
           :
@@ -89,7 +89,16 @@ class DocPrevNext extends React.Component {
 
 export default withRouter(DocPrevNext)
 
-function maxTrim(text) {
-  const trimmed = text.substr(0, 30)
-  return trimmed + (trimmed.length < text.length ? '...' : '')
+/**
+ * @description Trims a string by word if it's too long.
+ * Expect 'The quick brown fox' to be 'The quick brown...' instead of 'The quick brown f...'
+ * @param {string} text
+ * @returns {string}
+ */
+function smartTrim(text) {
+  let trimmed = text.substr(0, 30)
+  if (trimmed.length < text.length) {
+    trimmed = trimmed.replace(/\s\S+$/, '') + '...'
+  }
+  return trimmed
 }

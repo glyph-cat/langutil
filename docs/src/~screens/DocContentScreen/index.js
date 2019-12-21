@@ -1,9 +1,9 @@
 import React from 'react'
 import { withLang } from 'langutil/react-additions'
 import DocDisplay from '~fragments/DocDisplay'
-import { SectionContext } from '~context'
+import SectionContext from '~contexts/SectionContext'
 import { getDocs } from '~modules'
-import { useScrollToSection } from '~custom-hooks'
+import useScrollToSection from '~hooks/useScrollToSection'
 
 function DocContentScreen({ match: { params: { version, subId } } }) {
   useScrollToSection(subId)

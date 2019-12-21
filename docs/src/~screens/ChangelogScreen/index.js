@@ -3,7 +3,7 @@ import { withRouter } from 'react-router-dom'
 import { withLang } from 'langutil/react-additions'
 import { H1, H2, Ul, Li, SectionBreak } from '~components/document'
 import FadeIntoView from '~components/fade-into-view'
-import { useScrollToSection } from '~custom-hooks'
+import useScrollToSection from '~hooks/useScrollToSection'
 import getChangelogs from '~content/get-changelogs'
 import './index.css'
 
