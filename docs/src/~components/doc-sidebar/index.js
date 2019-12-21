@@ -45,8 +45,8 @@ class DocSidebar extends React.Component {
               fontWeight: 'bold',
             } : {}}
           >
-            <span children='• ' style={{ opacity: pathMatched ? 1 : 0 }} />
-            {text}
+            <span children='•' style={{ opacity: pathMatched ? 1 : 0 }} />
+            <span children={text} />
           </Link>
         )
       }

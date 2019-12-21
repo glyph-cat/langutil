@@ -4,7 +4,6 @@ import { withLang } from 'langutil/react-additions'
 import { H1, H2, Ul, Li, SectionBreak } from '~components/document'
 import FadeIntoView from '~components/fade-into-view'
 import { useScrollToSection } from '~custom-hooks'
-import { formatDomId } from '~modules'
 import getChangelogs from '~content/get-changelogs'
 import './index.css'
 
@@ -16,7 +15,7 @@ function ChangelogScreen({ match: { params: { subId } } }) {
     const { title: version, data } = changelogs[i]
     toRender.push(
       <FadeIntoView key={`h1-${i}`} once>
-        <H1 id={formatDomId(version)} children={version} />
+        <H1 id={version} children={version} />
       </FadeIntoView>
     )
     let majorVersionArray = []
@@ -24,7 +23,7 @@ function ChangelogScreen({ match: { params: { subId } } }) {
       const { title, data: logs } = data[j]
       majorVersionArray.push(
         <FadeIntoView key={`h2-${j}`} once>
-          <H2 id={formatDomId(title)} className='changelog-scn-h2' children={title} />
+          <H2 id={title} className='changelog-scn-h2' children={title} />
         </FadeIntoView>
       )
       let minorVersionArray = []

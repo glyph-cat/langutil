@@ -4,11 +4,10 @@ import { withLang } from 'langutil/react-additions'
 import { H1, Body } from '~components/document'
 import CodeSamples from '~code-samples'
 import CasingExamples from '~components/casing-examples'
-import { formatDomId } from '~modules'
 
 export default withLang(() => (
   <>
-    <H1 id={formatDomId('apply-casings')} children={localize('APPLY_CASINGS')} />
+    <H1 id='apply-casings' children={localize('APPLY_CASINGS')} />
     <Body children={localize('DOC_BODY_LANGUTIL_ALSO_ALLOW_STYLE_LOC')} />
     <CodeSamples.Casings />
     <br />

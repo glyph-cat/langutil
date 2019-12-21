@@ -4,7 +4,7 @@ import CodeDisplay, { Com, Func, Line, Str, Var } from '~components/code-display
 
 const ApiLangmap = () => {
   const lang2 = localize('DOC_EXAMPLE_SECONDARY_LANG')
-  const keyword = localize('DOC_EXAMPLE_HELLO_KEYWORD')
+  const keyword = 'HELLO'
   const value2 = localize('DOC_EXAMPLE_HELLO_VALUE_SECONDARY')
   return (
     <CodeDisplay title={localize('HOW_TO_USE_API', ['langmap()'])}>
