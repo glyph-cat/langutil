@@ -22,9 +22,9 @@ for (let i = 0; i < targets.length; i++) {
       console.log(redBright(err));
       process.exit(1);
     } else if (i === targets.length - 1) {
-      console.log(greenBright('\nAll targets minified!\n'))
+      console.log(greenBright('\nAll targets minified!\n'));
     }
-  }
+  };
   exec(cmd, onComplete);
 }
 

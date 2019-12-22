@@ -48,7 +48,7 @@ function formatCommandsAndHelp(cmds) {
 
   let printStack = [];
   for (let i in allCmds) {
-    printStack.push(`${allCmds[i].padEnd(longestCmdLength, ' ')}\t${allDesc[i]}`)
+    printStack.push(`${allCmds[i].padEnd(longestCmdLength, ' ')}\t${allDesc[i]}`);
   }
 
   return printStack;
