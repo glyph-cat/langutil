@@ -31,7 +31,7 @@ function getPreMinified(code) {
   code = code.replace(/else\s?{(\s|\n)+}/g, ''); // Dead code ELSE
   code = code.replace(/\n+/g, '\n'); // continuous empty lines
   // code = code.replace(/\n{2}/g, 'ABCABCABCABC'); // continuous empty lines
-  return code
+  return code;
 }
 
 const preminified = getPreMinified(raw);
