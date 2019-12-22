@@ -60,6 +60,7 @@ module.exports = {
 
   'BASIC_USAGE': 'Basic usage',
   'BASICS': 'Basics',
+  BRACKET_WILL_BE_UPDATED_SOON: '(Will be updated soon)',
   'BUILDER': 'Builder',
 
   'CASING': 'Casing',
@@ -90,6 +91,7 @@ module.exports = {
   'CHANGELOG_ERR_THROWN_UPON_CRITICAL': 'Errors are thrown upon critical situations such as invalid parameter.',
   'CHANGELOG_EMERGENCY_FIX_RN_AUTO_DETECT_FAIL': 'Emergency fix for a bug where auto detect in v2.2.0 fails for React Native apps.',
   'CHANGELOG_EXAMPLES_REMOVED_FROM_DOC': 'Examples have been removed from inline documentation as more detailed ones are already available in this readme file.',
+  CHANGELOG_FIXED_ISSUE_GROUPED_WARN_LANGMAP: 'Fixed an issue with grouped warnings where missing localizations from different languages are categorized under one language.',
   'CHANGELOG_FIXED_ALWAYS_MINIFIED': 'Fixed the bug where langutil will always launch in minified mode by default.',
   'CHANGELOG_FIXED_BUG_AUTO_DETECT': 'Fixed a bug with auto detect.',
   'CHANGELOG_FIXED_BUG_KEYWORD_REC_AS_INVALID': 'Fixed a bug where certain valid keywords are recognized as invalid.',

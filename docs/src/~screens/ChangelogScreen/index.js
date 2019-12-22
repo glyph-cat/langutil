@@ -1,15 +1,50 @@
-import React from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import { withRouter } from 'react-router-dom'
-import { withLang } from 'langutil/react-additions'
+import { localize } from 'langutil'
+import { useLang } from 'langutil/react-additions'
 import { H1, H2, Ul, Li, SectionBreak } from '~components/document'
 import FadeIntoView from '~components/fade-into-view'
-import useScrollToSection from '~hooks/useScrollToSection'
+import Loader from '~components/loader'
+import { STRINGS } from '~constants'
 import getChangelogs from '~content/get-changelogs'
+import VersionCheckContext from '~contexts/VersionCheckContext'
+import useScrollToSection from '~hooks/useScrollToSection'
 import './index.css'
 
 function ChangelogScreen({ match: { params: { subId } } }) {
+  const [changelogs, setChangelogs] = useState(getChangelogs())
+  const latestVersion = useContext(VersionCheckContext)
+  const latestDocumentedVersion = getChangelogs()[0].data[0].title
+  useLang()
+  useEffect(() => {
+    if (latestVersion.match(/\d+.\d+.\d+/)) {
+      let finalChangelog = getChangelogs()
+      if (latestDocumentedVersion !== latestVersion) {
+        finalChangelog[0].data.unshift({
+          title: latestVersion,
+          data: [localize('BRACKET_WILL_BE_UPDATED_SOON')]
+        })
+      }
+      setChangelogs(finalChangelog)
+    }
+  }, [latestVersion, latestDocumentedVersion])
+
+  if (latestVersion === STRINGS.labelWaiting) {
+    return <Loader />
+  } else {
+    return (
+      <ChangelogRenderer
+        changelogs={changelogs}
+        subId={subId}
+      />
+    )
+  }
+}
+
+export default withRouter(ChangelogScreen)
+
+function ChangelogRenderer({ changelogs, subId }) {
   useScrollToSection(subId)
-  const changelogs = getChangelogs()
   let toRender = []
   for (let i = 0; i < changelogs.length; i++) {
     const { title: version, data } = changelogs[i]
@@ -46,5 +81,3 @@ function ChangelogScreen({ match: { params: { subId } } }) {
   }
   return <div className='changelog-scn-container' children={toRender} />
 }
-
-export default withRouter(withLang(ChangelogScreen))
