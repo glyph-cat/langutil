@@ -15,7 +15,18 @@ import { STRINGS } from '~constants'
 //   head.appendChild(script)
 // }
 
-langutil.init(dict, 'en', AUTO_DETECT)
+let initedFromPref = false
+try {
+  const langPref = localStorage.getItem(STRINGS.langpref)
+  if (typeof langPref === 'string') {
+    const { lang, auto } = JSON.parse(langPref)
+    langutil.init(dict, lang, auto ? AUTO_DETECT : undefined)
+    initedFromPref = true
+  }
+} catch (e) {}
+if (!initedFromPref) {
+  langutil.init(dict, 'en', AUTO_DETECT) // Default
+}
 
 function App() {
   const [latestVersion, setLatestVersion] = useState(STRINGS.labelWaiting)

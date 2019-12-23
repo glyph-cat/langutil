@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { localize } from 'langutil'
+import useMediaQuery from '@material-ui/core/useMediaQuery'
 import { bridge, getDocs, scrollToTop } from '~modules'
 import { EXT_LINKS, PATHS, VALUES } from '~constants'
 import langutilIcon from '~assets/langutil-icon.svg'
@@ -10,16 +11,20 @@ import ghIcon from '~assets/github-icon.svg'
  * @description
  */
 export function LogoLink() {
+  const isCompact = useMediaQuery('(max-height: 600px), (max-width: 800px)')
   return (
     <Link
       className='navbar-navlink-container navbar-logo-container'
       to={PATHS.home}
       onClick={scrollToTop}
+      style={{ gridTemplateColumns: `repeat(${isCompact ? 1 : 2}, auto)` }}
     >
       <img className='navbar-logo-img' src={langutilIcon} alt='Homepage' />
-      <p style={{ margin: 0, marginBottom: '0.1em' }}>
-        <span className='navbar-logo-text' children='langutil' />
-      </p>
+      <p
+        className='navbar-logo-text'
+        children='langutil'
+        style={{ display: isCompact ? 'none' : '' }}
+      />
     </Link>
   )
 }

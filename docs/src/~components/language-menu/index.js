@@ -1,6 +1,7 @@
 import React from 'react'
 import { setLanguage, AUTO_DETECT } from 'langutil'
 import { useLang } from 'langutil/react-additions'
+import { STRINGS } from '~constants'
 import getLanguages from './get-languages'
 import './index.css'
 
@@ -24,6 +25,7 @@ function LanguageMenu() {
         className='langmenu-item-container'
         onClick={() => {
           setLanguage(code, auto ? AUTO_DETECT : undefined)
+          localStorage.setItem(STRINGS.langpref, JSON.stringify({ lang: code, auto }))
         }}
       >
         <i
@@ -53,12 +55,7 @@ function LanguageMenu() {
     )
   }
   return (
-    <div
-      className='langmenu-container'
-      style={{
-        backgroundColor: '#FFFFFF',
-      }}
-    >
+    <div className='langmenu-container' >
       {toRender}
     </div>
   )

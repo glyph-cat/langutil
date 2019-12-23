@@ -23,15 +23,14 @@ function DocContent({ match: { params: { version: v, section: s, id, subId } } }
     // DocComponent = lazy(() => import(`../../documentations/${v}_${s}_${id}`))
     DocComponent = lazy(() => import(`~documentations/${v}_${s}_${id}`))
   }
-  const prevnext = <DocPrevNext />
   return (
     <Suspense fallback={<div />}>
       <div className='doc-content-container'>
-        {prevnext}
+        <DocPrevNext position='top' />
         <div className='doc-content-component-container'>
           <DocComponent />
         </div>
-        {prevnext}
+        <DocPrevNext position='bottom' />
       </div>
     </Suspense>
   )

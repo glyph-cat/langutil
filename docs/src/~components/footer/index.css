@@ -4,11 +4,9 @@
   display: grid;
   position: absolute;
   width: 100vw;
-  z-index: 1;
 }
 
 .footer-container {
-  /* background-color: cyan; */
   display: grid;
   gap: 1em;
   grid-template-rows: 1fr auto;

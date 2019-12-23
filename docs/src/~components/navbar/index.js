@@ -25,8 +25,6 @@ const NavLink = withRouter(({ to, exact, children }) => {
   )
 })
 
-
-
 function Navbar() {
   const [showLangMenu, setShowLangMenu] = useState(false)
 
@@ -34,16 +32,12 @@ function Navbar() {
   const toggleLangMenu = () => {
     window.alert('Documentation in other languages coming soon!')
     // setShowLangMenu(!showLangMenu)
-    // setLanguage(!showLangMenu ? 'zh' : 'en')
   }
-
-  // const widthIsCompact = window.innerWidth < VALUES.compactWidthThreshold
 
   return (
     <>
       <nav className='navbar-container'
         style={{
-          // gridTemplateColumns: widthIsCompact ? 'auto 1fr auto' : `repeat(${2 + 1},auto) 1fr auto auto`,
           gridTemplateColumns: `repeat(${2 + 1},auto) 1fr auto auto`,
           height: VALUES.navbarHeight,
         }}
@@ -78,17 +72,21 @@ function Navbar() {
       </nav>
 
       {showLangMenu &&
-        <div style={{
-          position: 'absolute',
-          right: VALUES.navbarHeight,
-          top: VALUES.navbarHeight,
-          minWidth: 250,
-          maxHeight: 400,
-          overflow: 'hidden',
-          overflowY: 'scroll',
-        }}>
-          <LanguageMenu />
-        </div>
+        <>
+          <div
+            className='navbar-langmenu-underlay'
+            onClick={() => { setShowLangMenu(false) }}
+          />
+          <div
+            className='navbar-langmenu-container'
+            style={{
+              right: VALUES.navbarHeight,
+              top: VALUES.navbarHeight,
+              backgroundColor: '#FFFFFF',
+            }}>
+            <LanguageMenu />
+          </div>
+        </>
       }
 
       <div
