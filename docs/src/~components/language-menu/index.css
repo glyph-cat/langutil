@@ -8,6 +8,11 @@
   grid-template-columns: auto 1fr;
   gap: 0.5em;
   padding: 1em;
+  transition-duration: 0.15s;
+}
+
+.langmenu-item-container:active {
+  opacity: 0.5;
 }
 
 .langmenu-item-container:hover {

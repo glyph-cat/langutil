@@ -99,7 +99,7 @@
 
 .navbar-langmenu-container {
   box-shadow: 0 3px 7px 0 #00000044;
-  min-width: 250;
+  min-width: 250px;
   max-height: 75vh;
   overflow: hidden;
   overflow-y: scroll;

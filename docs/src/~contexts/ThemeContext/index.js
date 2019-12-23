@@ -5,16 +5,16 @@ const ThemeContext = createContext({
   palette: {
 
     primary: {
-      dark: '#',
-      light: '#',
-      main: '#',
+      dark: '#212833',
+      light: '#ddeeff',
+      main: '#0099BB',
       contrastText: '#000000',
     },
 
     secondary: {
-      dark: '#',
-      light: '#',
-      main: '#',
+      dark: '#332128',
+      light: '#ffccee',
+      main: '#ff2b80',
       contrastText: '#000000',
     },
 

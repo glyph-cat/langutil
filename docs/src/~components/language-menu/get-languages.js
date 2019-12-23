@@ -1,9 +1,5 @@
 import { localize, langmap } from 'langutil'
 
-// If nativeName !== displayName
-// Then show, for example: [ Chinese Simplified (简体中文) ]
-// Otherwise: [ English ]
-
 const getKeyed = code => code.replace(/-/g, '_').toUpperCase()
 
 function createLangItem(code = '') {
@@ -22,7 +18,7 @@ function getLanguages(currentLang = 'en') {
       auto: true,
       code: currentLang,
       displayName: autoName,
-      nativeName: langmap(currentLang, `LANG_DISP_${getKeyed(currentLang)}`),
+      nativeName: autoName,
     },
     createLangItem('en'),
     createLangItem('ja'),
