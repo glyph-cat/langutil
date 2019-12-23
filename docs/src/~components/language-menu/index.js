@@ -2,15 +2,14 @@ import React from 'react'
 import { setLanguage, AUTO_DETECT } from 'langutil'
 import { useLang } from 'langutil/react-additions'
 import { STRINGS } from '~constants'
+import useTheme from '~hooks/useTheme'
 import getLanguages from './get-languages'
 import './index.css'
-
-// Press escape key to dismiss
-// Click anywhere outside of menu to dismiss
 
 function LanguageMenu() {
   const { lang: _lang, auto: _auto } = useLang()
   const list = getLanguages(_lang)
+  const { palette: { primary } } = useTheme()
   let toRender = []
   for (let i = 0; i < list.length; i++) {
     const { auto, code, displayName, nativeName } = list[i]
@@ -27,29 +26,27 @@ function LanguageMenu() {
           setLanguage(code, auto ? AUTO_DETECT : undefined)
           localStorage.setItem(STRINGS.langpref, JSON.stringify({ lang: code, auto }))
         }}
+        style={{
+          color: selected ? primary.main : '',
+          backgroundColor: selected ? primary.light : '',
+        }}
       >
         <i
           className='material-icons langmenu-item-tick-container'
           children='done'
-          style={{
-            opacity: selected ? 1 : 0,
-          }}
+          style={{ opacity: selected ? 1 : 0 }}
         />
         <div className='langmenu-item-text-container'>
           <span
             className='langmenu-item-displayName'
             children={displayName}
-            style={{
-              // ...
-            }}
           />
-          <span
-            className='langmenu-item-nativeName'
-            children={nativeName}
-            style={{
-              // opacity: displayName === nativeName ? 0 : 1,
-            }}
-          />
+          {displayName !== nativeName &&
+            <span
+              className='langmenu-item-nativeName'
+              children={nativeName}
+            />
+          }
         </div>
       </div>
     )

@@ -11,6 +11,7 @@ module.exports = {
   APPLY_TRANSFORMATION: 'Apply transformation',
   APPLYING_CASINGS_TO_YOUR_LOC_STR: 'Applying casings to your localized strings',
   APPLYING_TRANSFORMATION_TO_YOUR_LOC_STR: 'Applying transformation to your localized strings',
+  AUTOMATIC: 'Automatic',
 
   'API_DESC_AUTO_DETECT': ({ init, setL }) => <>A detector function meant to be used in conjunction with {init} or {setL}.</>,
   'API_DESC_CREATE_KEY': 'Creates a key for your dictionary. This is used when structuring your dictionary by keywords instead of language in v2.',
@@ -55,8 +56,6 @@ module.exports = {
   'API_RTYPE_A_KEYWORD_OBJ': 'A keyword object.',
   'API_RTYPE_LOGS_FOCUS': 'True if the callback was sucessful.',
   'API_RTYPE_USE_LANG': '',
-
-  AUTOMATIC: 'Automatic',
 
   'BASIC_USAGE': 'Basic usage',
   'BASICS': 'Basics',

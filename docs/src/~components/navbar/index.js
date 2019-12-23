@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link, withRouter } from 'react-router-dom'
 import { localize } from 'langutil'
 import { withLang } from 'langutil/react-additions'
@@ -72,21 +72,9 @@ function Navbar() {
       </nav>
 
       {showLangMenu &&
-        <>
-          <div
-            className='navbar-langmenu-underlay'
-            onClick={() => { setShowLangMenu(false) }}
-          />
-          <div
-            className='navbar-langmenu-container'
-            style={{
-              right: VALUES.navbarHeight,
-              top: VALUES.navbarHeight,
-              backgroundColor: '#FFFFFF',
-            }}>
-            <LanguageMenu />
-          </div>
-        </>
+        <LanguageMenuComponent
+          hideLangMenu={() => { setShowLangMenu(false) }}
+        />
       }
 
       <div
@@ -103,3 +91,28 @@ function Navbar() {
 }
 
 export default withLang(Navbar)
+
+function LanguageMenuComponent({ hideLangMenu }) {
+  const listenForEscKey = ({ keyCode }) => keyCode === 27 ? hideLangMenu() : {}
+  useEffect(() => {
+    window.addEventListener('keydown', listenForEscKey)
+    return () => { window.removeEventListener('keydown', listenForEscKey) }
+  })
+  return (
+    <>
+      <div
+        className='navbar-langmenu-underlay'
+        onClick={hideLangMenu}
+      />
+      <div
+        className='navbar-langmenu-container'
+        style={{
+          right: VALUES.navbarHeight,
+          top: VALUES.navbarHeight,
+          backgroundColor: '#FFFFFF',
+        }}>
+        <LanguageMenu />
+      </div>
+    </>
+  )
+}
