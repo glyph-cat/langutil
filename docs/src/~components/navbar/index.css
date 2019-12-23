@@ -56,7 +56,6 @@
   align-items: center;
   display: grid;
   column-gap: 0.5em;
-  grid-template-columns: repeat(2, auto);
   justify-items: center;
   padding: 0 1em 0 1em;
   -moz-column-gap: 0.5em;
@@ -71,6 +70,7 @@
   color: white;
   font-size: 1.5em;
   margin: 0;
+  margin-bottom: 0.1em;
   font-family: "Work Sans", sans-serif;
 }
 
@@ -95,4 +95,21 @@
 .navbar-navlink-indicator {
   background-color: #aaddff;
   transition-duration: 0.15s;
+}
+
+.navbar-langmenu-container {
+  box-shadow: 0 3px 7px 0 #00000044;
+  min-width: 250;
+  max-height: 75vh;
+  overflow: hidden;
+  overflow-y: scroll;
+  position: fixed;
+  z-index: 1;
+}
+
+.navbar-langmenu-underlay {
+  height: 100%;
+  position: fixed;
+  width: 100%;
+  z-index: 1;
 }
