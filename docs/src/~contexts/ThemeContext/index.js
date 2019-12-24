@@ -1,25 +1,6 @@
 import { createContext } from 'react'
+import { THEMES } from '~constants'
 
-const ThemeContext = createContext({
-
-  palette: {
-
-    primary: {
-      dark: '#212833',
-      light: '#ddeeff',
-      main: '#0099BB',
-      contrastText: '#000000',
-    },
-
-    secondary: {
-      dark: '#332128',
-      light: '#ffccee',
-      main: '#ff2b80',
-      contrastText: '#000000',
-    },
-
-  }
-
-})
+const ThemeContext = createContext(THEMES.lightTheme)
 
 export default ThemeContext

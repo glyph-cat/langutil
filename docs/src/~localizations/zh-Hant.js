@@ -2,6 +2,8 @@ const React = require('react')
 
 module.exports = {
 
+  APPEARANCE_LIGHT: '日光模式',
+  APPEARANCE_DARK: '黑暗模式',
   AUTOMATIC: '自動',
 
   LANG_DISP_EN: '英文',
@@ -10,6 +12,6 @@ module.exports = {
   LANG_DISP_ZH_HANS: '中文（簡體）',
   LANG_DISP_ZH_HANT: '中文（繁體）',
 
-  REACT_KAWAII_PROMO_TEXT: ({}) => <></>,
+  REACT_KAWAII_PROMO_TEXT: ({ }) => <></>,
 
 }

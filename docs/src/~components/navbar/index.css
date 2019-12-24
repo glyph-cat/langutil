@@ -1,5 +1,4 @@
 .navbar-container {
-  background-color: #212833;
   display: grid;
   position: fixed;
   top: 0%;
@@ -93,12 +92,10 @@
 }
 
 .navbar-navlink-indicator {
-  background-color: #aaddff;
   transition-duration: 0.15s;
 }
 
-.navbar-langmenu-container {
-  box-shadow: 0 3px 7px 0 #00000044;
+.navbar-menu-container {
   min-width: 250px;
   max-height: 75vh;
   overflow: hidden;
@@ -107,7 +104,7 @@
   z-index: 1;
 }
 
-.navbar-langmenu-underlay {
+.navbar-menu-underlay {
   height: 100%;
   position: fixed;
   width: 100%;

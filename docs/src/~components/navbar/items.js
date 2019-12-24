@@ -2,10 +2,11 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { localize } from 'langutil'
 import useMediaQuery from '@material-ui/core/useMediaQuery'
-import { bridge, getDocs, scrollToTop } from '~modules'
-import { EXT_LINKS, PATHS, VALUES } from '~constants'
 import langutilIcon from '~assets/langutil-icon.svg'
 import ghIcon from '~assets/github-icon.svg'
+import { EXT_LINKS, PATHS, VALUES } from '~constants'
+import useTheme from '~hooks/useTheme'
+import { bridge, getDocs, scrollToTop } from '~modules'
 
 /**
  * @description
@@ -64,10 +65,14 @@ export class DocVersion extends React.Component {
 }
 
 export function ToggleButton({ active, buttonProps, iconName, iconProps }) {
+  const { palette: { misc } } = useTheme()
   return (
     <button
       className='navbar-navlink-button navbar-navlink-container navbar-squareitem-container'
-      style={{ backgroundColor: active ? '#FFFFFF' : '', width: VALUES.navbarHeight }}
+      style={{
+        backgroundColor: active ? misc.nbToggleActiveBg : '',
+        width: VALUES.navbarHeight,
+      }}
       {...buttonProps}
     >
       <i

@@ -4,8 +4,9 @@ import { Link } from 'react-router-dom'
 import { localize } from 'langutil'
 import { withLang } from 'langutil/react-additions'
 import { Body } from '~components/document'
-import { bridge, scrollToTop } from '~modules'
 import { EXT_LINKS, PATHS, VALUES } from '~constants'
+import withTheme from '~hocs/withTheme'
+import { bridge, scrollToTop } from '~modules'
 import './index.css'
 
 class Footer extends React.Component {
@@ -42,6 +43,7 @@ class Footer extends React.Component {
 
   render() {
     const { reachedBottom } = this.state
+    const { theme: { palette: { secondary } } } = this.props
 
     return (
       <>
@@ -53,6 +55,7 @@ class Footer extends React.Component {
         <footer
           className='footer-elem'
           style={{
+            backgroundColor: secondary.dark,
             bottom: reachedBottom ? 0 : '',
             height: VALUES.footerHeight,
             position: reachedBottom ? 'fixed' : 'absolute',
@@ -131,4 +134,4 @@ class Footer extends React.Component {
 
 }
 
-export default withLang(Footer)
+export default withTheme(withLang(Footer))

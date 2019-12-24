@@ -2,6 +2,8 @@ const React = require('react')
 
 module.exports = {
 
+  APPEARANCE_LIGHT: 'Mod terang',
+  APPEARANCE_DARK: 'Mod gelap',
   AUTOMATIC: 'Automatik',
 
   LANG_DISP_EN: 'Bahasa Inggeris',

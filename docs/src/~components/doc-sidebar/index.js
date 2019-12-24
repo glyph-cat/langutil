@@ -3,6 +3,7 @@ import { Link, withRouter } from 'react-router-dom'
 import { scrollToTop } from '~modules'
 import { bridge } from '~modules'
 import { PATHS, VALUES } from '~constants'
+import withTheme from '~hocs/withTheme'
 import isSidebarPathMatched from './isSidebarPathMatched'
 import './index.css'
 
@@ -28,7 +29,10 @@ class DocSidebar extends React.Component {
 
   render() {
     const { footerHeightInView } = this.state
-    const { sections = [], location: { pathname } } = this.props
+    const {
+      sections = [], location: { pathname },
+      theme: { palette: { primary, secondary, misc } }
+    } = this.props
     let toRender = []
     for (let i = 0; i < sections.length; i++) {
       const { title, data } = sections[i]
@@ -40,17 +44,22 @@ class DocSidebar extends React.Component {
         topicArray.push(
           <Link key={_to} to={_to} onClick={scrollToTop}
             className='doc-sidebar-link'
-            style={pathMatched ? {
-              color: '#0099BB',
-              fontWeight: 'bold',
-            } : {}}
+            style={{
+              color: pathMatched ? primary.main : '',
+              fontWeight: pathMatched ? 'bold' : '',
+            }}
           >
             <span children='•' style={{ opacity: pathMatched ? 1 : 0 }} />
             <span children={text} />
           </Link>
         )
       }
-      toRender.push(<p key={title} className='doc-sidebar-sectionTitle' children={title.toUpperCase()} />)
+      toRender.push(<p
+        key={title}
+        className='doc-sidebar-sectionTitle'
+        children={title.toUpperCase()}
+        style={{ color: `${misc.docSideBarTitle}77` }}
+      />)
       toRender.push(...topicArray)
       // if (i < sections.length - 1) { toRender.push(<br key={`br-${title}`} />) }
       toRender.push(<br key={`br-${title}`} />)
@@ -65,10 +74,11 @@ class DocSidebar extends React.Component {
             position: 'relative',
             top: 0,
           }}
-        />
+          />
         <nav
           className='docsidebar-container'
           style={{
+            backgroundImage: `linear-gradient(${primary.light} 0%, ${secondary.light} 200%)`,
             padding: VALUES.docsidebarContainerPadding
           }}
         >
@@ -89,4 +99,4 @@ class DocSidebar extends React.Component {
 
 }
 
-export default withRouter(DocSidebar)
+export default withTheme(withRouter(DocSidebar))
