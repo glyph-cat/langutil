@@ -12,10 +12,11 @@ import useScrollToSection from '~hooks/useScrollToSection'
 import './index.css'
 
 function ChangelogScreen({ match: { params: { subId } } }) {
-  const [changelogs, setChangelogs] = useState(getChangelogs())
+  useLang()
+  const [changelogs, setChangelogs] = useState([])
+
   const latestVersion = useContext(VersionCheckContext)
   const latestDocumentedVersion = getChangelogs()[0].data[0].title
-  useLang()
   useEffect(() => {
     if (latestVersion.match(/\d+.\d+.\d+/)) {
       let finalChangelog = getChangelogs()
