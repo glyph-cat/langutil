@@ -1,5 +1,6 @@
 .changelog-scn-container {
   display: grid;
+  min-height: 100vh;
   padding: 2em;
 }
 
