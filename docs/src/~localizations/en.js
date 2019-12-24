@@ -7,6 +7,8 @@ module.exports = {
   ALTERNATIVE_SYNTAX: 'Alternative syntax',
   API_REFERENCES: 'API References',
   APP_BOUNDARY_ERROR_OCCURED: 'We\'re sorry, an error occured.',
+  APPEARANCE_LIGHT: 'Light mode',
+  APPEARANCE_DARK: 'Dark mode',
   APPLY_CASINGS: 'Apply casings',
   APPLY_TRANSFORMATION: 'Apply transformation',
   APPLYING_CASINGS_TO_YOUR_LOC_STR: 'Applying casings to your localized strings',

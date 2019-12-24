@@ -4,7 +4,8 @@ const STRINGS = {
   notAvailableDash: '-/-',
   labelFailed: 'failed',
   labelWaiting: 'waiting',
-  langpref: 'lang-pref',
+  userPrefLang: 'user-pref-lang',
+  userPrefAppearance: 'user-pref-appearance',
 }
 
 export default STRINGS

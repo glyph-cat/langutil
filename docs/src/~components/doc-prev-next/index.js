@@ -1,19 +1,11 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { Link, withRouter } from 'react-router-dom'
 import { localize, getCurrentLanguage } from 'langutil'
-import useMediaQuery from '@material-ui/core/useMediaQuery'
 import { PATHS } from '~constants'
 import { scrollToTop } from '~modules'
 import SectionContext from '~contexts/SectionContext'
+import MediaQuery from '~components/media-query'
 import './index.css'
-
-function MediaQuery({ onChange }) {
-  const isCompact = useMediaQuery('(max-height: 600px), (max-width: 800px)')
-  useEffect(() => {
-    onChange(isCompact)
-  }, [onChange, isCompact])
-  return null
-}
 
 class DocPrevNext extends React.Component {
 
@@ -65,7 +57,10 @@ class DocPrevNext extends React.Component {
 
     return (
       <>
-        <MediaQuery onChange={this.handleWidthChange} />
+        <MediaQuery
+          query='(max-height: 600px), (max-width: 800px)'
+          onChange={this.handleWidthChange}
+        />
         <div className='doc-prev-next-container'>
           {prev ?
             <Link

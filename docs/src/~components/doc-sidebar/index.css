@@ -1,5 +1,4 @@
 .docsidebar-container {
-  background-image: linear-gradient(#ddeeff 0%, #ffccee 200%);
   display: grid;
   height: 100vh;
   grid-template-rows: auto 1fr;
@@ -17,7 +16,6 @@
 }
 
 .doc-sidebar-sectionTitle {
-  color: #00446677;
   margin: 0;
   font-size: 0.9em;
   font-weight: bold;

@@ -1,7 +1,5 @@
 .deprecated-warning-container {
-  background-color: #eeddcc;
   border-radius: 0.5em;
-  border: solid 1px #aa8800;
   display: grid;
   gap: 0.5em;
   grid-template-rows: auto 1fr;
@@ -12,7 +10,6 @@
 
 .deprecated-warning-icon {
   font-size: 18pt;
-  color: #cc6600;
 }
 
 .deprecated-warning-title-container {
@@ -24,7 +21,6 @@
 }
 
 .deprecated-warning-title-div {
-  color: #cc6600;
   display: grid;
   font-weight: bold;
   font-size: 12pt;
@@ -39,7 +35,6 @@
 }
 
 .deprecated-warning-content {
-  color: #774422;
   font-size: 14pt;
   margin: 0;
 }

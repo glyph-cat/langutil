@@ -6,6 +6,8 @@ module.exports = {
   ALTERNATIVE_SYNTAX: '另类输入模式',
   API_REFERENCES: 'API 参考',
   APP_BOUNDARY_ERROR_OCCURED: '内有故障。我们为此深感抱歉.',
+  APPEARANCE_LIGHT: '日光模式',
+  APPEARANCE_DARK: '黑暗模式',
   APPLY_CASINGS: '附加大/小写风格',
   APPLY_TRANSFORMATION: '附加转型功能',
   APPLYING_CASINGS_TO_YOUR_LOC_STR: '为你的内容加上大/小写风格',
