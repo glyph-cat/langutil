@@ -15,7 +15,7 @@ export default withLang(() => (
     <Body children={localize('DOC_BODY_LANGUTIL_PROVIDE_TWO_MTD_OVERCOME_ISSUE')} />
     <br />
 
-    <H2 id='by-array' children={'By Array'} />
+    <H2 id='by-array' children={localize('BY_ARRAY')} />
     <Body children={localize({
       keyword: 'DOC_BODY_BY_PASSING_IN_ARRAY_AS_PARAM',
       transform: withProps({ p: <Code>'%p'</Code> })
@@ -31,7 +31,7 @@ export default withLang(() => (
 
     <br /> <br />
 
-    <H2 id='by-object' children={'By Object'} />
+    <H2 id='by-object' children={localize('BY_OBJECT')} />
     <Body children={localize({
       keyword: 'DOC_BODY_BY_PASSING_IN_ARRAY_AS_OBJECT',
       transform: withProps({ k: <Code>{`'{:key}'`}</Code> })

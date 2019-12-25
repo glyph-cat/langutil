@@ -122,7 +122,13 @@ class Footer extends React.Component {
             <div className='footer-lower-container'>
               <Body
                 className='footer-copyright-text'
-                children={localize('FOOTER_COPYRIGHT', [new Date().getFullYear()])}
+                children={localize({
+                  keyword: 'FOOTER_COPYRIGHT_YEAR_NAME',
+                  param: {
+                    name: 'chin98edwin',
+                    year: new Date().getFullYear(),
+                  }
+                })}
               />
             </div>
 

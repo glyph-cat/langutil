@@ -72,6 +72,16 @@ function Navbar() {
         {/* Spacing */}
         <div />
 
+        {/* Translation */}
+        <ToggleButton
+          iconName='translate'
+          active={showLangMenu}
+          buttonProps={{
+            onClick: toggleLangMenu,
+            title: localize('SWITCH_LANGUAGE')
+          }}
+        />
+
         {/* Appearance */}
         <ToggleButton
           iconName='brightness_4'
@@ -80,16 +90,6 @@ function Navbar() {
             onClick: toggleAppearanceMenu,
             title: ''
             // localize('TOGGLE_DARK_LIGHT_MODE')
-          }}
-        />
-
-        {/* Translation */}
-        <ToggleButton
-          iconName='translate'
-          active={showLangMenu}
-          buttonProps={{
-            onClick: toggleLangMenu,
-            title: localize('SWITCH_LANGUAGE')
           }}
         />
 
@@ -102,7 +102,7 @@ function Navbar() {
           component={AppearanceMenu}
           hideMenu={() => { setShowAppearanceMenu(false) }}
           offset={{
-            right: VALUES.navbarHeight * (isCompactWidth ? 1 : 2),
+            right: VALUES.navbarHeight * (isCompactWidth ? 0 : 1),
             top: VALUES.navbarHeight,
           }}
         />
@@ -113,7 +113,7 @@ function Navbar() {
           component={LanguageMenu}
           hideMenu={() => { setShowLangMenu(false) }}
           offset={{
-            right: VALUES.navbarHeight * (isCompactWidth ? 0 : 1),
+            right: VALUES.navbarHeight * (isCompactWidth ? 1 : 2),
             top: VALUES.navbarHeight,
           }}
         />

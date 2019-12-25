@@ -9,7 +9,7 @@ function AppearanceMenu() {
     <div className='langmenu-container'> {/* UNSAFE */}
 
       <ListButton
-        text={localize('AUTOMATIC')}
+        text={localize('SYSTEM_DEFAULT')}
         selected={userPrefAppearance === 'auto'}
         onClick={bridge.getItem('appearanceSetAuto')}
       />
