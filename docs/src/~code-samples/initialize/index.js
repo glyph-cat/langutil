@@ -10,7 +10,7 @@ const ApiInit = () => (
     <Line><Key>import</Key> <Var>dictionary</Var> <Key>from</Key> <Str>'./localizations'</Str></Line>
     <Line />
     <Line>
-      <Var>langutil</Var>.<Func>init</Func>(<Var>dictionary</Var>, <Str>'{localize('DOC_EXAMPLE_PRIMARY_LANG')}'</Str>, <Mark><Var>AUTO_DETECT</Var></Mark>)
+      <Var>langutil</Var>.<Func>init</Func>(<Var>dictionary</Var>, <Str>'{localize('DOCX_PRIMARY_LANG')}'</Str>, <Mark><Var>AUTO_DETECT</Var></Mark>)
     </Line>
   </CodeDisplay>
 )

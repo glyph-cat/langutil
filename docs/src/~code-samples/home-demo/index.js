@@ -12,7 +12,7 @@ const HomeDemo = () => (
     </Line>
     <Line>
       <Type>console</Type>.<Func>log</Func>(<Var>greet</Var>)
-      <Com>{` // ${localize('DOC_EXAMPLE_HELLO_WORLD_PRIMARY_VALUE')}`}</Com>
+      <Com>{` // ${localize('DOCX_HELLO_WORLD_PRIMARY_VALUE')}`}</Com>
     </Line>
     <Line>
       <Com>{`// ${localize('ITS_THAT_SIMPLE')}`}</Com>

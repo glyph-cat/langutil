@@ -7,8 +7,8 @@ const FolderStructure = () => (
     <Line>└─┬ src</Line>
     <Line>  └─┬ localizations</Line>
     <Line indent={1}>├── index.js</Line>
-    <Line indent={1}>├── {localize('DOC_EXAMPLE_PRIMARY_LANG')}.js</Line>
-    <Line indent={1}>├── {localize('DOC_EXAMPLE_SECONDARY_LANG')}.js</Line>
+    <Line indent={1}>├── {localize('DOCX_PRIMARY_LANG')}.js</Line>
+    <Line indent={1}>├── {localize('DOCX_SECONDARY_LANG')}.js</Line>
     <Line indent={1}>└── ... <Com># {localize('DOC_BODY_YOU_MAY_ADD_MORE_FILES')}</Com></Line>
   </CodeDisplay>
 )
