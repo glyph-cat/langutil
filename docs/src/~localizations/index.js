@@ -1,7 +1,7 @@
 export default {
-  en: require('./en'),
-  ja: require('./ja'),
-  ms: require('./ms'),
-  'zh-Hans': require('./zh-Hans'),
-  'zh-Hant': require('./zh-Hant'),
+  en: require('./en').default,
+  // ja: require('./ja').default,
+  // ms: require('./ms').default,
+  // 'zh-Hans': require('./zh-Hans').default,
+  // 'zh-Hant': require('./zh-Hant').default,
 }
