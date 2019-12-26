@@ -218,6 +218,7 @@ module.exports = {
   DOC_PREV_PARAM: '◀ Prev: %p',
   DOC_UNAVAILABLE_DESC: 'It may have been moved to another section or completely removed.',
   DOCS: 'Docs',
+  DOCS_COLON: 'Docs: %p',
   DOCUMENTATION: 'Documentation',
   'DYNAMIC_LOCALIZATIONS': 'Dynamic localizations',
 

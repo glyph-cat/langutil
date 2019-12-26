@@ -32,6 +32,7 @@ module.exports = {
   DOC_NOT_FOUND: '此文件并不存在',
   DOC_PREV_PARAM: '◀ 下一项: %p',
   DOCS: '文档',
+  DOCS_COLON: '文档：%p',
   DOCUMENTATION: '文档',
 
   DOC_BODY_ADDITIONALLY_USE_CAN_USE_AUTO_DETECT: ({ autoDetect }) => <>此外，你也可以使用 {autoDetect} 来让langutil 来帮你辨认用户电脑上的语言。</>,

@@ -2,6 +2,7 @@ import React, { useState, useContext, useEffect } from 'react'
 import { withRouter } from 'react-router-dom'
 import { localize } from 'langutil'
 import { useLang } from 'langutil/react-additions'
+import AppendMeta from '~components/append-meta'
 import { H1, H2, Ul, Li, SectionBreak } from '~components/document'
 import FadeIntoView from '~components/fade-into-view'
 import Loader from '~components/loader'
@@ -80,5 +81,10 @@ function ChangelogRenderer({ changelogs, subId }) {
     toRender.push(majorVersionArray)
     toRender.push(<SectionBreak key={`sb-${i}`} />)
   }
-  return <div className='changelog-scn-container' children={toRender} />
+  return (
+    <>
+      <AppendMeta title={localize('CHANGELOG')} />
+      <div className='changelog-scn-container' children={toRender} />
+    </>
+  )
 }

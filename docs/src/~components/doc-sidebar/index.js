@@ -1,5 +1,7 @@
 import React from 'react'
 import { Link, withRouter } from 'react-router-dom'
+import { localize } from 'langutil'
+import AppendMeta from '~components/append-meta'
 import { scrollToTop } from '~modules'
 import { bridge } from '~modules'
 import { PATHS, VALUES } from '~constants'
@@ -28,6 +30,7 @@ class DocSidebar extends React.Component {
   }
 
   render() {
+    let currentTitle = ''
     const { footerHeightInView } = this.state
     const {
       sections = [], location: { pathname },
@@ -41,6 +44,7 @@ class DocSidebar extends React.Component {
         const { to, text } = data[j]
         const _to = `${PATHS.docs}/${to}`
         const pathMatched = isSidebarPathMatched(pathname, _to)
+        if (pathMatched) { currentTitle = text }
         topicArray.push(
           <Link key={_to} to={_to} onClick={scrollToTop}
             className='doc-sidebar-link'
@@ -67,6 +71,7 @@ class DocSidebar extends React.Component {
 
     return (
       <>
+        <AppendMeta title={localize('DOCS_COLON', [currentTitle])} />
         <div
           className='docsidebar-container'
           style={{
@@ -74,7 +79,7 @@ class DocSidebar extends React.Component {
             position: 'relative',
             top: 0,
           }}
-          />
+        />
         <nav
           className='docsidebar-container'
           style={{
