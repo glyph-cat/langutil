@@ -1,7 +1,7 @@
-const React = require('react')
-const { Code } = require('~components/document')
+import React from 'react'
+import { Code } from '~components/document'
 
-module.exports = {
+export default {
 
   ADVANCED: 'Advanced',
   ALTERNATIVE_SYNTAX: 'Alternative syntax',

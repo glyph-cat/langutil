@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   en: require('./en'),
   ja: require('./ja'),
   ms: require('./ms'),

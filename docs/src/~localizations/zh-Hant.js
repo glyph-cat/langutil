@@ -1,6 +1,6 @@
-const React = require('react')
+import React from 'react'
 
-module.exports = {
+export default {
 
   ADVANCED: '高級',
   ALTERNATIVE_SYNTAX: '另類輸入模式',
