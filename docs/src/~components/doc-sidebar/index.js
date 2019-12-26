@@ -45,7 +45,7 @@ class DocSidebar extends React.Component {
           <Link key={_to} to={_to} onClick={scrollToTop}
             className='doc-sidebar-link'
             style={{
-              color: pathMatched ? primary.main : '',
+              color: pathMatched ? misc.docSidebarPathMatch : '',
               fontWeight: pathMatched ? 'bold' : '',
             }}
           >

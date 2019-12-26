@@ -88,8 +88,7 @@ function Navbar() {
           active={showAppearanceMenu}
           buttonProps={{
             onClick: toggleAppearanceMenu,
-            title: ''
-            // localize('TOGGLE_DARK_LIGHT_MODE')
+            title: localize('TOGGLE_DARK_LIGHT_MODE')
           }}
         />
 

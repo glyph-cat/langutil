@@ -22,12 +22,10 @@ export default withLang(() => (
     })} />
     <CodeSamples.ParamArrayDictionary />
     <CodeSamples.ParamArray />
-    <Body>
-      <i>{localize({
-        keyword: 'DOC_BODY_TO_DISPLAY_P_IN_LOC',
-        transform: withProps({ p: <Code>'%p'</Code>, escapedP: <Code>'%%p'</Code> })
-      })}</i>
-    </Body>
+    <Body children={localize({
+      keyword: 'DOC_BODY_TO_DISPLAY_P_IN_LOC',
+      transform: withProps({ p: <Code>'%p'</Code>, escapedP: <Code>'%%p'</Code> })
+    })} />
 
     <br /> <br />
 
