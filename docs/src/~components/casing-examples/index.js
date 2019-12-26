@@ -16,7 +16,7 @@ function CasingExamples() {
     toRender.push(
       <Tr key={i}>
         <Td><Code>'{casings[i]}'</Code></Td>
-        <Td>{localize({ keyword: 'THE_QUICK_BROWN_FOX', casing: casings[i] })}</Td>
+        <Td>{localize({ keyword: 'CASING_EXAMPLE_SENTENCE', casing: casings[i] })}</Td>
       </Tr>
     )
   }
@@ -25,13 +25,13 @@ function CasingExamples() {
       <THead>
         <Tr>
           <Th children={localize('CASING')} />
-          <Th children={localize('OUTPUT')} />
+          <Th children={localize('EXAMPLE_SENTENCE')} />
         </Tr>
       </THead>
       <TBody>
         <Tr>
           <Td children={localize('ORIGINAL_BRACKET')} />
-          <Td children={localize('THE_QUICK_BROWN_FOX')} />
+          <Td children={localize('CASING_EXAMPLE_SENTENCE')} />
         </Tr>
         {toRender}
       </TBody>

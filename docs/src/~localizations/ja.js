@@ -11,6 +11,7 @@ module.exports = {
   BY_ARRAY: 'Arrayで',
   BY_OBJECT: 'Objectで',
 
+  CASING_EXAMPLE_SENTENCE: 'torinaKukowesu yumEsamase miyoakewataRu Hinkashiwo',
   CHANGELOG: '変更履歴',
   COPY: 'コピー',
 
@@ -23,7 +24,11 @@ module.exports = {
   DOCX_SECONDARY_LANG: 'en',
   DOCX_SECONDARY_LANG_NAME: '英語',
   DOCX_NAME_1: '田中さん',
+  DOCX_NAME_1_FOR_CASING: 'Tanaka-san',
   DOCX_NAME_2: '小林さん',
+  DOCX_HELLO_NAME_FOR_CASING_RAW: 'Konnichiwa，%%p。',
+  DOCX_HELLO_NAME_FOR_CASING_VALUE: 'Konnichiwa，%p。',
+  DOCX_HELLO_WORLD_FOR_CASING_VALUE: 'Konnichiwa，sekai。',
   DOCX_HELLO_VALUE_PRIMARY: 'Hello',
   DOCX_HELLO_VALUE_SECONDARY: '哈咯',
   DOCX_PARAM_ARR_HELLO_NAME_RAW: 'こんにちは、%%p。',
@@ -41,6 +46,8 @@ module.exports = {
   DOCUMENTATION: 'ドキュメンテーション',
   DOC_NEXT_PARAM: '次: %p ▶',
   DOC_PREV_PARAM: '◀ 前: %p',
+
+  EXAMPLE_SENTENCE: '例文',
 
   FAQ: 'よくある質問',
 

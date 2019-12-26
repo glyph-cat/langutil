@@ -12,19 +12,26 @@ module.exports = {
   BY_ARRAY: 'Dengan Array',
   BY_OBJECT: 'Dengan Object',
 
+  CASING_EXAMPLE_SENTENCE: 'zAman beraliH, Musim bertuKar.',
   CHANGELOG: 'Senarai Perubahan',
   COPY: 'Menyalin',
 
   DOC_BODY_ADDITIONALLY_USE_CAN_USE_AUTO_DETECT: ({ autoDetect }) => <>Tambahan pula, anda boleh mengguna {autoDetect} untuk mengeset bahasa secara automatik berdasarkan bahasa sistem komputer pengguna.</>,
   DOC_BODY_USE_SETLANG_TO_SWITCH_LANG: ({ setL }) => <>Anda boleh mengguna {setL} untuk mengeset bahasa.</>,
   DOC_BODY_USE_LOC_TO_TRANSLATE: ({ loc }) => <>Anda boleh mengguna {loc} untuk membuat penterjemahan.</>,
+  // DOC_BODY_CASING_IF_NO_PARAM_LINE_1: 'If there are no parameters to be passed in,',
+  // DOC_BODY_CASING_IF_NO_PARAM_LINE_2: 'you can use an alternative syntax like this:',
 
   DOCX_PRIMARY_LANG: 'ms',
   DOCX_PRIMARY_LANG_NAME: 'Bahasa Melayu',
   DOCX_SECONDARY_LANG: 'en',
   DOCX_SECONDARY_LANG_NAME: 'Bahasa Inggeris',
   DOCX_NAME_1: 'Hanif',
+  DOCX_NAME_1_FOR_CASING: 'Hanif',
   DOCX_NAME_2: 'Sofia',
+  DOCX_HELLO_NAME_FOR_CASING_RAW: 'Hai, %%p.',
+  DOCX_HELLO_NAME_FOR_CASING_VALUE: 'Hai, %p.',
+  DOCX_HELLO_WORLD_FOR_CASING_VALUE: 'hai dunia',
   DOCX_HELLO_VALUE_PRIMARY: 'Hai',
   DOCX_HELLO_VALUE_SECONDARY: 'Hello',
   DOCX_PARAM_ARR_HELLO_NAME_RAW: 'Hai, %%p.',
@@ -45,6 +52,7 @@ module.exports = {
   DOCS: 'Dokumentasi',
   DOCUMENTATION: 'Dokumentasi',
 
+  EXAMPLE_SENTENCE: 'Contoh',
   EXTERNAL_LINKS: 'Pautan luaran',
 
   FAQ: 'Soalan Lazim',
@@ -85,6 +93,7 @@ module.exports = {
   MONTH_YEAR: '{:month} {:year}',
 
   OR: 'Ataupun',
+  ORIGINAL_BRACKET: '(Asli)',
 
   QUICK_LINKS: 'Pautan cepat',
 
@@ -94,6 +103,8 @@ module.exports = {
   SWITCHING_LANGUAGES: 'Penukaran bahasa',
   SWITCHING_BETWEEN_LANGUAGES: 'Penukaran bahasa',
   SISTEM_DEFAULT: 'Mengikuti OS',
+
+  TOGGLE_DARK_LIGHT_MODE: 'Tukar mod Terang/Gelap',
 
   USING_NPM: 'Melalui NPM',
   USING_YARN: 'Melalui Yarn',

@@ -21,8 +21,10 @@ module.exports = {
   BY_OBJECT: '通过 Object',
 
   CASING: '大/小写风格',
+  CASING_EXAMPLE_SENTENCE: 'shì Yě wú xiàn guǎng, cHuāng wài yǒU lán Tiān。',
   CASINGS: '大/小写风格',
   CHANGELOG: '更动历史',
+  CLICK_TO_COPY_LINK: '点击此处拷贝链接',
   COPY: '拷贝',
 
   DICTIONARY: '词典',
@@ -34,6 +36,8 @@ module.exports = {
 
   DOC_BODY_ADDITIONALLY_USE_CAN_USE_AUTO_DETECT: ({ autoDetect }) => <>此外，你也可以使用 {autoDetect} 来让langutil 来帮你辨认用户电脑上的语言。</>,
   DOC_BODY_AS_YOU_BUILD_YOUR_PROJ: '一路上，你或许会发现要翻译的内容越来越多。也因此，我们建议你把翻译内容以语言分成不同的文件，然后在 index.js 里再把它们结合起来。',
+  DOC_BODY_BY_PASSING_IN_ARRAY_AS_OBJECT: ({ k: key }) => <>Langutil 会从你提供的 Object 把翻译内容里的 {key} 替换掉。</>,
+  DOC_BODY_BY_PASSING_IN_ARRAY_AS_PARAM: ({ p }) => <>Langutil 会从你提供的 Array 按照次序把翻译内容里的 {p} 替换掉。</>,
   DOC_BODY_CODE_BELOW_SHOWS_SIMPLE_EXAMPLE_COLON: '以下是一个简单的例子：',
   DOC_BODY_IN_YOUR_DIRECTORY: '在你的程序的文件夹里, 运行一下的其中一个命令：',
   DOC_BODY_INSERT_PARAM_INTRO: '在某些情况之下，你可能会想在被翻译的内容加入一些参数。当然，单凭自己来做不是不可能的，不过这样会很费时。',
@@ -45,14 +49,22 @@ module.exports = {
   DOC_BODY_SETTING_UP_DESC: '首先，你必须先设好一个词库。',
   DOC_BODY_SETTING_UP_STRUCT_SUGGESTION: '我们建议您依据以下的例子来配置词库的构造。',
   DOC_BODY_THEN_ADD_SOME_LOC: '随后，把翻译加进每一个语言文件里。',
+  DOC_BODY_TO_DISPLAY_KEY_IN_LOC: ({ k1, k2 }) => <>注：如果想在翻译内容显示 {k1}，输入 {k2} 即可。</>,
+  DOC_BODY_TO_DISPLAY_P_IN_LOC: ({ p, escapedP }) => <>注：如果想在翻译内容显示 {p}，输入 {escapedP} 即可。</>,
   DOC_BODY_YOU_MAY_ADD_MORE_FILES: '你可以把更多其他语言的文件添加进来',
+  DOC_BODY_CASING_IF_NO_PARAM_LINE_1: '如果没有可加入的参数，',
+  DOC_BODY_CASING_IF_NO_PARAM_LINE_2: '你也可以使用这种方式：',
 
   DOCX_PRIMARY_LANG: 'zh-Hans',
   DOCX_PRIMARY_LANG_NAME: '中文（简体）',
   DOCX_SECONDARY_LANG: 'en',
   DOCX_SECONDARY_LANG_NAME: '英文',
   DOCX_NAME_1: '志梁',
+  DOCX_NAME_1_FOR_CASING: 'zhì liáng',
   DOCX_NAME_2: '文芳',
+  DOCX_HELLO_NAME_FOR_CASING_RAW: '%%p，ní hǎo。',
+  DOCX_HELLO_NAME_FOR_CASING_VALUE: '%p，ní hǎo。',
+  DOCX_HELLO_WORLD_FOR_CASING_VALUE: 'hà lō shì jiè',
   DOCX_HELLO_VALUE_PRIMARY: '哈咯',
   DOCX_HELLO_VALUE_SECONDARY: 'Hello',
   DOCX_PARAM_ARR_HELLO_NAME_RAW: '%%p，你好。',
@@ -66,6 +78,7 @@ module.exports = {
   DOCX_HELLO_WORLD_PRIMARY_VALUE: '哈咯世界',
   DOCX_HELLO_WORLD_SECONDARY_VALUE: 'Hello world',
 
+  EXAMPLE_SENTENCE: '例子',
   EXTERNAL_LINKS: '外部链接',
 
   FAQ: '常见问题',
@@ -73,6 +86,12 @@ module.exports = {
   FAQ_TITLE_002: '为什么在 React Native 里被自动辨认语言和手机语言不同？',
   FAQ_TITLE_003: '我能够用当前设定以外的语言来做翻译吗？',
   FAQ_TITLE_004: '用了 setLanguage 之后页面需要刷新吗？',
+  FAQ_CONTENT_001: <><b>不必。</b> Langutil 只依靠 JavaScript (和一点点 TypeScript)。也因为这样，langutil 才能在浏览器里和 React Native 里任由地操作。</>,
+  FAQ_CONTENT_002: ({ ad, lu, luna }) => <>你很有可能是不小心使用到　{lu} 里的 {ad}。你必须使用 {luna} 的才是。要不然，langutil 反而会自动辨认调试器里的语言。</>,
+  FAQ_CONTENT_002_B: '我们会有这样的安排是因为从浏览器里自动变人语言的方式和在 React Native 里的有所不同。此外，我们并不想把不相关的自动辨认程序编码混进来添加处理器的负担。',
+  FAQ_CONTENT_002_C: '如果是因为故障，请你向我们举报，我们将会该事项进行研究并作出适当的调整。',
+  FAQ_CONTENT_003: ({ lm }) => <><b>是的</b>，你可以。通过 {lm}，你可以使用当前设定以外的语言来进行翻译。</>,
+  FAQ_CONTENT_004: ({ wl, ul }) => <><b>不必。</b>只要你有使用 {wl} 或 {ul}，只要语言设置有被更换你的内容将会自动显示出正确的翻译内容</>,
 
   FOLDER_STRUCTURE: '文件夹构造',
   FOOTER_COPYRIGHT_YEAR_NAME: ' © {:year} {:name} 版权所有',
@@ -84,6 +103,7 @@ module.exports = {
   HOW_TO_USE_API: '如何使用 `%p`',
   HOW_TO_USE_API_REACT: '如何使用 `%p` (React)',
 
+  IN_YOUR_OWN_FILE_COLON: '在你的程序里：',
   INITIALIZING: '初步设置',
   INSTALLATION: '安装',
   INSTALLATION_AND_SETUP: '安装和配备',
@@ -114,7 +134,6 @@ module.exports = {
   MONTH_YEAR: '{:year}年 {:month}月',
 
   ONE_OF_PARAMS: ({ params }) => <>{params} 之一</>,
-  OUTPUT: '结果',
   OR: '或',
   ORIGINAL_BRACKET: '（原文）',
 
@@ -132,8 +151,8 @@ module.exports = {
   SWITCHING_BETWEEN_LANGUAGES: '切换语言',
   SYSTEM_DEFAULT: '系统默认',
 
-  THE_QUICK_BROWN_FOX: '視野無限廣，窗外有藍天',
   THIS_DOC_IS_UNAVAILABLE: '此文件已无法被打开',
+  TOGGLE_DARK_LIGHT_MODE: '切换光/暗模式',
   TOTAL_DOWNLOADS: '下载总数',
 
   USAGE: '用法',
