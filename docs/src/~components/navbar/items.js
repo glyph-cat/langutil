@@ -65,11 +65,16 @@ export class DocVersion extends React.Component {
 
 }
 
-export function ToggleButton({ active, buttonProps, iconName, iconProps }) {
+export function ToggleButton({ active, buttonProps, className = '', iconName, iconProps }) {
   const { palette: { misc } } = useTheme()
   return (
     <button
-      className='navbar-navlink-button navbar-navlink-container navbar-squareitem-container'
+      className={[
+        'navbar-navlink-button',
+        'navbar-navlink-container',
+        'navbar-squareitem-container',
+        className
+      ].join(' ')}
       style={{
         backgroundColor: active ? misc.nbToggleActiveBg : '',
         width: VALUES.navbarHeight,
