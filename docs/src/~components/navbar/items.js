@@ -19,6 +19,7 @@ export function LogoLink() {
       to={PATHS.home}
       onClick={scrollToTop}
       style={{ gridTemplateColumns: `repeat(${isCompact ? 1 : 2}, auto)` }}
+      title={localize('HOME')}
     >
       <img className='navbar-logo-img' src={langutilIcon} alt='Homepage' />
       <p

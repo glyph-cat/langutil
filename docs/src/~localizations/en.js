@@ -245,6 +245,7 @@ module.exports = {
   GET_STARTED: 'Get started',
 
   HERES_HOW_IT_WORKS_NUTSHELL: 'Here\'s how it works in a nutshell',
+  HOME: 'Home',
   HOW_TO_USE_API: 'How to use `%p`',
   HOW_TO_USE_API_REACT: 'How to use `%p` (React)',
 

@@ -65,6 +65,8 @@ module.exports = {
   FOOTER_COPYRIGHT_YEAR_NAME: 'Hakcipta terpelihara {:year} © {:name}',
 
   GET_STARTED: 'Mula sekarang',
+
+  HOME: 'Halaman Utama',
   HERES_HOW_IT_WORKS_NUTSHELL: 'Cara fungsinya secara ringkas',
 
   INSTALLATION: 'Pemasangan',

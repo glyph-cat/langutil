@@ -11,11 +11,16 @@ import useTheme from '~hooks/useTheme'
 import { LogoLink, DocVersion, ToggleButton, GitHubLink } from './items'
 import './index.css'
 
-const NavLink = withRouter(({ to, exact, children }) => {
+const NavLink = withRouter(({ to, exact, children, title }) => {
   const match = pathIsMatch(to, exact)
   const { palette: { misc } } = useTheme()
   return (
-    <Link className='navbar-navlink-container' to={to} onClick={scrollToTop}>
+    <Link
+      className='navbar-navlink-container'
+      to={to}
+      onClick={scrollToTop}
+      title={title}
+    >
       <div
         className='navbar-navlink-text'
         children={children}
@@ -60,12 +65,18 @@ function Navbar() {
         <LogoLink />
 
         {/* Docs */}
-        <NavLink to={PATHS.docs}>
+        <NavLink
+          to={PATHS.docs}
+          title={localize('DOCS')}
+        >
           <div>{localize('DOCS')}<DocVersion /></div>
         </NavLink>
 
         {/* Changelog */}
-        <NavLink to={PATHS.changelog}>
+        <NavLink
+          to={PATHS.changelog}
+          title={localize('CHANGELOG')}
+        >
           {localize('CHANGELOG')}
         </NavLink>
 
