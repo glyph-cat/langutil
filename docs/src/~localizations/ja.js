@@ -1,6 +1,6 @@
-const React = require('react')
+import React from 'react'
 
-module.exports = {
+export default {
 
   APPEARANCE_LIGHT: 'ライトモード',
   APPEARANCE_DARK: 'ダークモード',
@@ -68,7 +68,7 @@ module.exports = {
 
   LOREM_IPSUM: 'しかし私は、喜びを非難して苦痛を賞賛するという誤ったこの考えがすべてどのようにして誕生したかをあなたに説明しなければならないから、私はあなたにその体系を完璧に説明し、真実を求める偉大な探究家、人間の喜びを築く建築家の実践的な教えを詳しく説明しよう。だれも喜びそのものを、それが喜びであるという理由で拒んだり、嫌ったり、避けたりはしない。',
 
-  REACT_KAWAII_PROMO_TEXT: ({}) => <></>,
+  REACT_KAWAII_PROMO_TEXT: ({ }) => <></>,
 
   SYSTEM_DEFAULT: 'OSのデフォルト',
 

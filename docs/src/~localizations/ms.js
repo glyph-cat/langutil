@@ -1,6 +1,6 @@
-const React = require('react')
+import React from 'react'
 
-module.exports = {
+export default {
 
   APPEARANCE_LIGHT: 'Mod terang',
   APPEARANCE_DARK: 'Mod gelap',
