@@ -54,6 +54,8 @@ module.exports = {
 
   GET_STARTED: '今すぐ始めましょう',
 
+  HOME: 'ホーム',
+
   ITS_THAT_SIMPLE: 'そんな簡単だ',
 
   LANG_DISP_EN: '英語',
