@@ -50,6 +50,7 @@ module.exports = {
   DOC_PREV_PARAM: '◀ Sebelumnya: %p',
   DOC_UNAVAILABLE_DESC: 'Dokumen ini mungkin sudah dipindah ke seksyen yang lain ataupun tidak wujud lagi.',
   DOCS: 'Dokumentasi',
+  DOCS_COLON: 'Dokumentasi: %p',
   DOCUMENTATION: 'Dokumentasi',
 
   EXAMPLE_SENTENCE: 'Contoh',

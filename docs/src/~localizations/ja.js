@@ -43,6 +43,7 @@ module.exports = {
   DOCX_HELLO_WORLD_SECONDARY_VALUE: 'Hello world',
 
   DOCS: 'Docs',
+  DOCS_COLON: 'Docs: %p',
   DOCUMENTATION: 'ドキュメンテーション',
   DOC_NEXT_PARAM: '次: %p ▶',
   DOC_PREV_PARAM: '◀ 前: %p',
