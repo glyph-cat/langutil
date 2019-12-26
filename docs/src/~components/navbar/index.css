@@ -14,8 +14,12 @@
 }
 
 .navbar-navlink-container:hover {
-  background-color: #ffffff11;
+  background-color: #ddeeff22;
   transition-duration: 0.1s;
+}
+
+.navbar-navlink-container:focus {
+  background-color: #ddeeff22;
 }
 
 .navbar-navlink-container:active {
@@ -109,4 +113,22 @@
   position: fixed;
   width: 100%;
   z-index: 1;
+}
+
+.navbar-new-item {
+  animation-name: newItem;
+  animation-iteration-count: infinite;
+  animation-duration: 1s;
+}
+
+@keyframes newItem {
+  0% {
+    background-color: transparent;
+  }
+  50% {
+    background-color: #ffffff44;
+  }
+  100% {
+    background-color: transparent;
+  }
 }

@@ -6,7 +6,7 @@ import { useMediaQuery } from '@material-ui/core'
 import { pathIsMatch, scrollToTop } from '~modules'
 import AppearanceMenu from '~components/appearance-menu'
 import LanguageMenu from '~components/language-menu'
-import { PATHS, VALUES } from '~constants'
+import { PATHS, VALUES, STRINGS } from '~constants'
 import useTheme from '~hooks/useTheme'
 import { LogoLink, DocVersion, ToggleButton, GitHubLink } from './items'
 import './index.css'
@@ -44,12 +44,18 @@ function Navbar() {
   const isCompactWidth = useMediaQuery('(max-width: 800px)')
 
   // Temporary - TODO: Show language selection menu
+  // let userPrefLangNoticed = localStorage.getItem(STRINGS.userPrefLangNoticed) || false
   const toggleLangMenu = () => {
-    // window.alert('Documentation in other languages coming soon!')
-    setShowLangMenu(!showLangMenu)
+    window.alert('Documentation in other languages coming soon!')
+    // localStorage.setItem(STRINGS.userPrefLangNoticed, true)
+    // userPrefLangNoticed = true
+    // setShowLangMenu(!showLangMenu)
   }
+
+  let userPrefAppearanceNoticed = localStorage.getItem(STRINGS.userPrefAppearanceNoticed) || false
   const toggleAppearanceMenu = () => {
-    // window.alert('Coming soon!')
+    localStorage.setItem(STRINGS.userPrefAppearanceNoticed, true)
+    userPrefAppearanceNoticed = true
     setShowAppearanceMenu(!showAppearanceMenu)
   }
 
@@ -85,6 +91,7 @@ function Navbar() {
 
         {/* Translation */}
         <ToggleButton
+          // className={`${userPrefLangNoticed}` === 'true' ? '' : 'navbar-new-item'}
           iconName='translate'
           active={showLangMenu}
           buttonProps={{
@@ -95,6 +102,7 @@ function Navbar() {
 
         {/* Appearance */}
         <ToggleButton
+          className={`${userPrefAppearanceNoticed}` === 'true' ? '' : 'navbar-new-item'}
           iconName='brightness_4'
           active={showAppearanceMenu}
           buttonProps={{
