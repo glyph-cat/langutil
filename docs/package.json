@@ -21,7 +21,9 @@
  "homepage": "https://chin98edwin.github.io/langutil/",
  "scripts": {
   "start": "react-scripts start",
-  "build": "react-scripts build && node scripts/renewBuildHash.js && gh-pages -d build",
+  "build": "react-scripts build && node scripts/renewBuildHash.js",
+  "serve": "npm run build && serve build",
+  "publish": "npm run build && gh-pages -d build",
   "test": "react-scripts test",
   "eject": "react-scripts eject",
   "langutil": "node node_modules/.bin/langutil"
