@@ -19,16 +19,14 @@ function ChangelogScreen({ match: { params: { subId } } }) {
   const latestVersion = useContext(VersionCheckContext)
   const latestDocumentedVersion = getChangelogs()[0].data[0].title
   useEffect(() => {
-    if (latestVersion.match(/\d+.\d+.\d+/)) {
-      let finalChangelog = getChangelogs()
-      if (latestDocumentedVersion !== latestVersion) {
-        finalChangelog[0].data.unshift({
-          title: latestVersion,
-          data: [localize('BRACKET_WILL_BE_UPDATED_SOON')]
-        })
-      }
-      setChangelogs(finalChangelog)
+    let finalChangelog = getChangelogs()
+    if (latestVersion.match(/\d+.\d+.\d+/) && latestDocumentedVersion !== latestVersion) {
+      finalChangelog[0].data.unshift({
+        title: latestVersion,
+        data: [localize('BRACKET_WILL_BE_UPDATED_SOON')]
+      })
     }
+    setChangelogs(finalChangelog)
   }, [latestVersion, latestDocumentedVersion])
 
   if (latestVersion === STRINGS.labelWaiting) {

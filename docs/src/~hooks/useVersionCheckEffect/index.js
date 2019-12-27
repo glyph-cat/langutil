@@ -12,6 +12,9 @@ function useVersionCheckEffect(updateWithValue) {
     const url = isProduction ? '' : corsProxy + 'https://registry.npmjs.org/langutil'
     const config = {
       cancelToken: _axiosCancelToken.current.token,
+      headers: {
+        'X-Requested-With': 'XMLHttpRequest',
+      }
     }
     axios.get(url, config).then(({ data }) => {
       const { 'dist-tags': { latest } } = data
