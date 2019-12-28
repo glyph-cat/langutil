@@ -85,7 +85,7 @@ class Footer extends React.Component {
                   onClick={scrollToTop}
                 />
               </div>
-              <div
+              {/* <div
                 className='footer-upper-column-container'
                 style={{ gridTemplateRows: `repeat(${2}, auto) 1fr` }}
               >
@@ -97,7 +97,7 @@ class Footer extends React.Component {
                   className='footer-links'
                   children='English (More coming soon)'
                 />
-              </div>
+              </div> */}
               <div
                 className='footer-upper-column-container'
                 style={{ gridTemplateRows: `repeat(${2}, auto) 1fr` }}
