@@ -4,7 +4,6 @@
   grid-template-rows: auto 1fr;
   position: fixed;
   top: 54px;
-  width: 17.5em;
 }
 
 .docsidebar-subcontainer {

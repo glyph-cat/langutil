@@ -24,31 +24,39 @@ class Footer extends React.Component {
   }
 
   checkScreenReachedBottom = debounce(() => {
+    const FOOTER_HEIGHT = VALUES.DERIVED.footerHeight()
+
     // Control whether footer should stay fixed or absolute while scrolling
-    const posY = window.innerHeight + window.scrollY - VALUES.footerHeight
+    const posY = window.innerHeight + window.scrollY - FOOTER_HEIGHT
     const distanceUntilScreenBottom = document.body.offsetHeight - posY
     const reachedBottom = distanceUntilScreenBottom <= 0
     if (this.state.reachedBottom !== reachedBottom) {
       this.setState({ reachedBottom })
     }
 
-    // Control whether padding should be added to doc-sidebar
+    // Control whether padding should be added to doc-sidebar and it's FAB
     // In case footer is blocking it while reaching bottom of screen
-    const footerHeightInView = Math.max(0, VALUES.footerHeight - distanceUntilScreenBottom)
-    const onChangeFooterHeightInView = bridge.getItem('onChangeFooterHeightInView')
-    if (typeof onChangeFooterHeightInView === 'function') {
-      onChangeFooterHeightInView(footerHeightInView)
+    const RAW_footerHeightInView = FOOTER_HEIGHT - distanceUntilScreenBottom
+    const footerHeightInView = Math.min(Math.max(0, RAW_footerHeightInView), FOOTER_HEIGHT)
+    const onChangeFHIV_sidebar = bridge.getItem('onChangeFHIV_sidebar')
+    if (typeof onChangeFHIV_sidebar === 'function') {
+      onChangeFHIV_sidebar(footerHeightInView)
+    }
+    const onChangeFHIV_fab = bridge.getItem('onChangeFHIV_fab')
+    if (typeof onChangeFHIV_fab === 'function') {
+      onChangeFHIV_fab(footerHeightInView)
     }
   })
 
   render() {
     const { reachedBottom } = this.state
     const { theme: { palette: { secondary } } } = this.props
+    const FOOTER_HEIGHT = VALUES.DERIVED.footerHeight()
 
     return (
       <>
         {reachedBottom ?
-          <div className='footer-elem' style={{ height: VALUES.footerHeight, opacity: 0 }} />
+          <div className='footer-elem' style={{ height: FOOTER_HEIGHT, opacity: 0 }} />
           :
           null
         }
@@ -57,7 +65,7 @@ class Footer extends React.Component {
           style={{
             backgroundColor: secondary.dark,
             bottom: reachedBottom ? 0 : '',
-            height: VALUES.footerHeight,
+            height: FOOTER_HEIGHT,
             position: reachedBottom ? 'fixed' : 'absolute',
           }}
         >

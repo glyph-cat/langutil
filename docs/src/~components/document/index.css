@@ -1,8 +1,8 @@
 .document-header-copy-button {
   cursor: pointer;
   color: #888888;
-  margin-inline-start: 0.25em;
-  margin-inline-end: 0.25em;
+  margin-inline-start: 0.5em;
+  margin-inline-end: 0.5em;
   font-size: 18pt;
 }
 

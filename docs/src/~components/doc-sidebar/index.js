@@ -16,17 +16,20 @@ class DocSidebar extends React.Component {
   }
 
   componentDidMount() {
+    // FHIV = FooterHeightInView
     bridge.setItem({
-      onChangeFooterHeightInView: this.onChangeFooterHeightInView
+      onChangeFHIV_sidebar: this.onChangeFHIV_sidebar
     })
   }
 
   componentWillUnmount() {
-    bridge.removeItem('onChangeFooterHeightInView')
+    bridge.removeItem('onChangeFHIV_sidebar')
   }
 
-  onChangeFooterHeightInView = (height) => {
-    this.setState({ footerHeightInView: Math.min(Math.max(0, height), VALUES.footerHeight) })
+  onChangeFHIV_sidebar = (height) => {
+    this.setState({
+      footerHeightInView: height,
+    })
   }
 
   render() {
@@ -34,7 +37,10 @@ class DocSidebar extends React.Component {
     const { footerHeightInView } = this.state
     const {
       sections = [], location: { pathname },
-      theme: { palette: { primary, secondary, misc } }
+      theme: { palette: { primary, secondary, misc } },
+      width, // `width` defaults to undefined and undefined will the paddingHorizontal 0 as well
+      bottomInset = 0,
+      onNavChange,
     } = this.props
     let toRender = []
     for (let i = 0; i < sections.length; i++) {
@@ -46,7 +52,7 @@ class DocSidebar extends React.Component {
         const pathMatched = isSidebarPathMatched(pathname, _to)
         if (pathMatched) { currentTitle = text }
         topicArray.push(
-          <Link key={_to} to={_to} onClick={scrollToTop}
+          <Link key={_to} to={_to} onClick={() => { onNavChange(); scrollToTop() }}
             className='doc-sidebar-link'
             style={{
               color: pathMatched ? misc.docSidebarPathMatch : '',
@@ -69,6 +75,9 @@ class DocSidebar extends React.Component {
       toRender.push(<br key={`br-${title}`} />)
     }
 
+    const sideBarWidth = width ? width : 0
+    const paddingHorizontal = width ? VALUES.docsidebarContainerPadding : 0
+
     return (
       <>
         <AppendMeta title={localize('DOCS_COLON', [currentTitle])} />
@@ -76,25 +85,32 @@ class DocSidebar extends React.Component {
           className='docsidebar-container'
           style={{
             padding: VALUES.docsidebarContainerPadding,
+            paddingLeft: paddingHorizontal,
+            paddingRight: paddingHorizontal,
             position: 'relative',
             top: 0,
+            width: sideBarWidth,
           }}
         />
         <nav
           className='docsidebar-container'
           style={{
             backgroundImage: `linear-gradient(${primary.light} 0%, ${secondary.light} 200%)`,
-            padding: VALUES.docsidebarContainerPadding
+            padding: VALUES.docsidebarContainerPadding,
+            paddingLeft: paddingHorizontal,
+            paddingRight: paddingHorizontal,
+            width: sideBarWidth,
           }}
         >
-          <div
-            className='docsidebar-subcontainer'
-            children={toRender}
-          />
+          {/* So that FAB won't block the content */}
+          <div className='docsidebar-subcontainer'>
+            {toRender}
+            <div style={{ height: bottomInset, width: '100%' }} />
+          </div>
           <div
             style={{
+              display: 'grid',
               height: VALUES.navbarHeight + VALUES.docsidebarContainerPadding * 2 + footerHeightInView,
-              display: 'grid'
             }}
           />
         </nav>
