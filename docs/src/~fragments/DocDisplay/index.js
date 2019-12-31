@@ -7,12 +7,11 @@ import DocSidebarFab from '~components/doc-sidebar-fab'
 import { VALUES } from '~constants'
 import './index.css'
 
-function DocDisplay({ sections }) {
+function DocDisplay({ sections, version, onChangeVersion }) {
   const [showSidebar, setShowSidebar] = useState(false)
   const isCompactWidth = useMediaQuery('@media only screen and (max-width: 800px)')
 
-  // Add padding to bullet list to give space for FAB
-  // FAB will hide when scrolling down and show when scrolling up
+  // TODO: Add tabs on top of sidebar to switch between doc versions in the future
 
   return (
     <>
@@ -23,6 +22,8 @@ function DocDisplay({ sections }) {
           width={isCompactWidth ? (showSidebar ? '100vw' : null) : '17.5em'}
           bottomInset={isCompactWidth ? (VALUES.fabSize) : 0}
           onNavChange={() => { setShowSidebar(false) }}
+          version={version}
+          onChangeVersion={onChangeVersion}
         />
         <DocContentBoundary>
           <DocContent />
