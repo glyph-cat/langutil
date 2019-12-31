@@ -160,11 +160,11 @@ const getDocs = () => ({
     //   title: localize('ADVANCED'),
     //   data: [
     //     {
-    //       to: DOCPATHS.v3.alternative_syntax,
+    //       to: DOCPATHS.v3.advanced.alternative_syntax,
     //       text: localizeTitle('ALTERNATIVE_SYNTAX')
     //     },
     //     {
-    //       to: DOCPATHS.v3.localizing_jsx,
+    //       to: DOCPATHS.v3.advanced.localizing_jsx,
     //       text: localize('LOCALIZING_JSX')
     //     }
     //   ]
@@ -173,7 +173,7 @@ const getDocs = () => ({
     //   title: 'Debug & Testing',
     //   data: [
     //     {
-    //       to: DOCPATHS.v3.theUnavailableDocument,
+    //       to: DOCPATHS.v3._internal.theUnavailableDocument,
     //       text: 'The Unavailable Document'
     //     },
     //   ]

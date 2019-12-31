@@ -11,7 +11,7 @@ import DeprecationWarning from '~components/deprecation-warning'
 
 export default withLang(() => {
   let redirectComponent = <CodeLink
-    to={`${PATHS.docs}/${DOCPATHS.v3.localize}`}
+    to={`${PATHS.docs}/${DOCPATHS.v3.api.localize}`}
     children='localize()'
   />
   return (
