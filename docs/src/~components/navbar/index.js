@@ -11,6 +11,8 @@ import useTheme from '~hooks/useTheme'
 import { LogoLink, DocVersion, ToggleButton, GitHubLink } from './items'
 import './index.css'
 
+// TODO: Shrink into a [ ⋮ ] menu in compact mode
+
 const NavLink = withRouter(({ to, exact, children, title }) => {
   const match = pathIsMatch(to, exact)
   const { palette: { misc } } = useTheme()
