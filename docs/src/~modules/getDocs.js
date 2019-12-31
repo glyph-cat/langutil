@@ -4,6 +4,17 @@ import { DOCPATHS } from '~constants'
 const localizeTitle = (keyword) => localize({ keyword, casing: 'titleCase' })
 
 const getDocs = () => ({
+  // v4: [
+  //   {
+  //     title: 'Testing',
+  //     data: [
+  //       {
+  //         to: DOCPATHS.v3.basic.installation_setup,
+  //         text: localizeTitle('INSTALLATION_AND_SETUP'),
+  //       }
+  //     ]
+  //   }
+  // ],
   v3: [
     {
       title: localizeTitle('BASICS'),

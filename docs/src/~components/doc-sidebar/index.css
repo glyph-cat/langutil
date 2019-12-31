@@ -27,3 +27,9 @@
   text-decoration: none;
   margin-inline-start: 0.5em;
 }
+
+.docsidebar-mini-tabber-container {
+  display: grid;
+  justify-items: center;
+  width: 100%;
+}

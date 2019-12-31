@@ -1,18 +1,23 @@
 import React from 'react'
 import { Link, withRouter } from 'react-router-dom'
 import { localize } from 'langutil'
+// import MiniTabber from '~blocks/mini-tabber' // TODO: For when V4 arrives
 import AppendMeta from '~components/append-meta'
+import { PATHS, VALUES } from '~constants'
 import { scrollToTop } from '~modules'
 import { bridge } from '~modules'
-import { PATHS, VALUES } from '~constants'
 import withTheme from '~hocs/withTheme'
 import isSidebarPathMatched from './isSidebarPathMatched'
 import './index.css'
 
 class DocSidebar extends React.Component {
 
-  state = {
-    footerHeightInView: 0
+  constructor() {
+    super()
+    this.currentTitle = ''
+    this.state = {
+      footerHeightInView: 0
+    }
   }
 
   componentDidMount() {
@@ -33,14 +38,13 @@ class DocSidebar extends React.Component {
   }
 
   render() {
-    let currentTitle = ''
     const { footerHeightInView } = this.state
     const {
       sections = [], location: { pathname },
       theme: { palette: { primary, secondary, misc } },
       width, // `width` defaults to undefined and undefined will the paddingHorizontal 0 as well
-      bottomInset = 0,
-      onNavChange,
+      bottomInset = 0, onNavChange,
+      // version, onChangeVersion, // TODO: For when V4 arrives
     } = this.props
     let toRender = []
     for (let i = 0; i < sections.length; i++) {
@@ -50,7 +54,9 @@ class DocSidebar extends React.Component {
         const { to, text } = data[j]
         const _to = `${PATHS.docs}/${to}`
         const pathMatched = isSidebarPathMatched(pathname, _to)
-        if (pathMatched) { currentTitle = text }
+        if (pathMatched === true && text) {
+          this.currentTitle = text
+        }
         topicArray.push(
           <Link key={_to} to={_to} onClick={() => { onNavChange(); scrollToTop() }}
             className='doc-sidebar-link'
@@ -80,7 +86,7 @@ class DocSidebar extends React.Component {
 
     return (
       <>
-        <AppendMeta title={localize('DOCS_COLON', [currentTitle])} />
+        <AppendMeta title={localize('DOCS_COLON', [this.currentTitle])} />
         <div
           className='docsidebar-container'
           style={{
@@ -104,6 +110,17 @@ class DocSidebar extends React.Component {
         >
           {/* So that FAB won't block the content */}
           <div className='docsidebar-subcontainer'>
+            {/* TODO: For when V4 arrives */}
+            {/* <div className='docsidebar-mini-tabber-container'>
+              <MiniTabber
+                value={version}
+                data={[
+                  { text: 'v3', value: 'v3' },
+                  { text: 'v4', value: 'v4' },
+                ]}
+                onChange={onChangeVersion}
+              />
+            </div> */}
             {toRender}
             <div style={{ height: bottomInset, width: '100%' }} />
           </div>

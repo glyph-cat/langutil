@@ -1,0 +1,15 @@
+.mini-tabber-container {
+  border-radius: 1em;
+  display: grid;
+  grid-auto-flow: column;
+  overflow: hidden;
+}
+
+.mini-tabber-item {
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.mini-tabber-item:active {
+  opacity: 0.5;
+}
