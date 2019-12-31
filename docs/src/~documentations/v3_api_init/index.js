@@ -4,7 +4,7 @@ import { withLang } from 'langutil/react-additions'
 import { Body, Code, CodeLink, SectionBreak } from '~components/document'
 import CodeSamples from '~code-samples'
 import CodeTitle from '~components/code-title'
-import ParamList from '~components/param-list'
+import ParamList from '~fragments/param-list'
 import { withProps } from '~modules'
 import { PATHS, DOCPATHS } from '~constants'
 
