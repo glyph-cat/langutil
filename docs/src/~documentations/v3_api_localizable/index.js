@@ -66,9 +66,9 @@ export default withLang(() => {
           transform: withProps({
             renderAs: <Code>renderAs</Code>,
             locz: <Code>{'<Localizable />'}</Code>,
-            loc: <CodeLink to={`${PATHS.docs}/${DOCPATHS.v3.localize}`} children='localize()' />,
-            withL: <CodeLink to={`${PATHS.docs}/${DOCPATHS.v3.withLang}`} children='withLang()' />,
-            useL: <CodeLink to={`${PATHS.docs}/${DOCPATHS.v3.useLang}`} children='useLang()' />
+            loc: <CodeLink to={`${PATHS.docs}/${DOCPATHS.v3.api.localize}`} children='localize()' />,
+            withL: <CodeLink to={`${PATHS.docs}/${DOCPATHS.v3.api.withLang}`} children='withLang()' />,
+            useL: <CodeLink to={`${PATHS.docs}/${DOCPATHS.v3.api.useLang}`} children='useLang()' />
           })
         })}
       />

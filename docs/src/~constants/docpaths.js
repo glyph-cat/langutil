@@ -48,7 +48,10 @@ const DOCPATHS = {
       useLang: api(3)('use-lang'),
     },
 
-    theUnavailableDocument: 'v3/unavailable/document',
+    _internal: {
+      theUnavailableDocument: 'v3/unavailable/document',
+    },
+
   }
 }
 
