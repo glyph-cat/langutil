@@ -6,7 +6,7 @@ import CodeTitle from '~components/code-title'
 import { withProps } from '~modules'
 import { DOCPATHS, PATHS, VALUES } from '~constants'
 import DeprecationWarning from '~components/deprecation-warning'
-// import ParamList from '~components/param-list'
+// import ParamList from '~fragments/param-list'
 // import { withProps } from '~modules'
 
 export default withLang(() => {

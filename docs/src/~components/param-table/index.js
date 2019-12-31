@@ -1,10 +1,9 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import { Code, Table, TBody, Tr, Td } from '~components/document'
+import OneOf from '~components/one-of'
 import HeaderRow from './header-row'
-import OneOf from './one-of'
 
-function ParamList({ data = {}, overrideVarName }) {
+function ParamTable({ data = {}, overrideVarName }) {
   let trArray = []
   const dataIndex = Object.keys(data)
 
@@ -41,17 +40,4 @@ function ParamList({ data = {}, overrideVarName }) {
   )
 }
 
-ParamList.propTypes = {
-  data: PropTypes.shape({
-    any: PropTypes.shape({
-      type: PropTypes.string,
-      desc: PropTypes.string.isRequired,
-      oneOf: PropTypes.arrayOf(PropTypes.string.isRequired),
-      optional: PropTypes.bool,
-      defaultValue: PropTypes.any,
-    })
-  }).isRequired,
-  overrideVarName: PropTypes.string,
-}
-
-export default ParamList
+export default ParamTable

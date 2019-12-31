@@ -3,7 +3,7 @@ import { Code } from '~components/document'
 import { localize } from 'langutil'
 import { withProps } from '~modules'
 
-const OneOf = ({ values }) => {
+function OneOf({ values }) {
   let toRender = []
   for (let i = 0; i < values.length; i++) {
     toRender.push(<Code key={i} children={`'${values[i]}'`} />)
