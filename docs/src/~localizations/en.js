@@ -141,7 +141,7 @@ export default {
   'CHANGELOG_WHEN_APPLY_CASING_ALLCAP_PRESERVED': 'When applying casings, ALLCAPPED words and Names will be preserved.',
   'CHANGELOG_WITHLANG_NOW_PASS_LANGSTATE': ({ wl, ls }) => <>{wl} now passes a prop called {ls}.</>,
   'CHANGELOG_WILL_LOOK_FOR_ALT_LANG_IF_AUTO_UNAVAILABLE': <>In case the automatically detected language is not supported in the dictionary, langutil look for an alternative language from the dictionary. For example, if your dictionary contains localizations for <Code>'en'</Code>, but the automatically detected language is <Code>'en-us'</Code>, langutil will set the language to <Code>'en'</Code>.</>,
-  // 'CHANGELOG_': '',
+  CHANGELOG_3_1_3_STRING_1: 'Minor patch for auto-detection in React Native.',
 
   COPY: 'Copy',
   CLICK_TO_COPY_LINK: 'Click to copy link',
