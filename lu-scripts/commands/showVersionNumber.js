@@ -1,5 +1,5 @@
 function showVersionNumber() {
-  console.log('\tlangutil 3.1.2');
+  console.log('\tlangutil 3.1.3');
 }
 
 module.exports = showVersionNumber;
