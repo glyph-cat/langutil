@@ -7,6 +7,12 @@ export default () => ({
   title: 'v3',
   data: [
     {
+      title: '3.1.3',
+      data: [
+        localize('CHANGELOG_3_1_3_STRING_1')
+      ]
+    },
+    {
       title: '3.1.2',
       data: [
         localize('CHANGELOG_FIXED_ISSUE_GROUPED_WARN_LANGMAP')
