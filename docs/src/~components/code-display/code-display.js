@@ -1,23 +1,15 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { localize } from 'langutil'
-import CopyButton from './copy-button'
 import copy from 'copy-to-clipboard'
 import { HashFactory } from '~classes'
+import withTheme from '~hocs/withTheme'
+import useTheme from '~hooks/useTheme'
+import CopyButton from './copy-button'
 
 let idTracker = new HashFactory()
 
-/**
- * @augments{React.Component<{}>}
- */
-class CodeDisplay extends React.Component {
-
-  static propTypes = {
-    title: PropTypes.string,
-    children: PropTypes.node,
-    startLineFrom: PropTypes.number,
-    mode: PropTypes.oneOf(['none', 'line', 'all'])
-  }
+class CodeDisplayBase extends React.Component {
 
   constructor() {
     super()
@@ -28,9 +20,16 @@ class CodeDisplay extends React.Component {
   }
 
   modStyles = {
-    '+': { backgroundColor: '#44553366', color: '#AAFFAA' },
-    '-': { backgroundColor: '#44000066', color: '#FFAAAA' },
-    '*': { backgroundColor: '#FFFFFF0F', color: '#00000000' },
+    light: {
+      '+': { backgroundColor: '#a1cc7766', color: '#338800' },
+      '-': { backgroundColor: '#44000066', color: '#FFAAAA' },
+      '*': { backgroundColor: '#FFFFFF0F', color: '#00000000' },
+    },
+    dark: {
+      '+': { backgroundColor: '#44553366', color: '#AAFFAA' },
+      '-': { backgroundColor: '#44000066', color: '#FFAAAA' },
+      '*': { backgroundColor: '#FFFFFF0F', color: '#00000000' },
+    },
   }
 
   componentWillUnmount() {
@@ -85,7 +84,7 @@ class CodeDisplay extends React.Component {
 
       // conditional checking for line skipping
       const modType = _children[i].type.mod
-      const { backgroundColor, color } = this.modStyles[modType] || {}
+      const { backgroundColor, color } = this.modStyles[this.props.theme.type][modType] || {}
 
       if (mode === 'all') {
         modArray.push(
@@ -142,12 +141,12 @@ class CodeDisplay extends React.Component {
     const { copied } = this.state
 
     return (
-      <div className='code-disp-container'>
-        <div className='code-disp-toolbar-container'>
+      <CodeDisplayContainer>
+        <CodeDisplayToolbarContainer>
           <p className='code-disp-title' children={title} />
           <CopyButton onClick={this.handleCopy} copied={copied} />
-        </div>
-        <div className='code-disp-content-container'>
+        </CodeDisplayToolbarContainer>
+        <CodeDisplayContentContainer>
 
           {/* Modified indicator */}
           <div className='code-disp-content-mod-container'>
@@ -171,11 +170,63 @@ class CodeDisplay extends React.Component {
             <pre className='code-disp-pre' children={padArray} />
           </div>
 
-        </div>
-      </div>
+        </CodeDisplayContentContainer>
+      </CodeDisplayContainer>
     )
   }
 
 }
 
+/**
+ * @augments{React.Component<{}>}
+ */
+const CodeDisplay = withTheme(CodeDisplayBase)
+
+CodeDisplay.propTypes = {
+  title: PropTypes.string,
+  children: PropTypes.node,
+  startLineFrom: PropTypes.number,
+  mode: PropTypes.oneOf(['none', 'line', 'all'])
+}
+
 export default CodeDisplay
+
+function CodeDisplayContainer({ children }) {
+  const { palette: { misc: { code } } } = useTheme()
+  return (
+    <div
+      className='code-disp-container'
+      children={children}
+      style={{
+        backgroundColor: code.editorBg,
+      }}
+    />
+  )
+}
+
+function CodeDisplayContentContainer({ children }) {
+  const { palette: { misc: { code } } } = useTheme()
+  return (
+    <div
+      className='code-disp-content-container'
+      children={children}
+      style={{
+        color: code.editorFg,
+      }}
+    />
+  )
+}
+
+function CodeDisplayToolbarContainer({ children }) {
+  const { palette: { misc: { code } } } = useTheme()
+  return (
+    <div
+      className='code-disp-toolbar-container'
+      children={children}
+      style={{
+        backgroundColor: code.titleBarBg,
+        color: code.titleBarFg,
+      }}
+    />
+  )
+}
