@@ -154,6 +154,15 @@ declare namespace langutil {
    */
   function isAuto(): boolean;
 
+  const Casings = {
+    lowerCase: (value: string) => string,
+    upperCase: (value: string) => string,
+    localeLowerCase: (value: string) => string,
+    localeUpperCase: (value: string) => string,
+    sentenceCase: (value: string) => string,
+    titleCase: (value: string) => string,
+  };
+
   /**
    * @description Creates a key for your dictionary.
    * @param keyword A short string representing the localized value.

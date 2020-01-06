@@ -2,10 +2,10 @@
   const { byKey, byLang } = require('./dict');
   function implementWith(core) {
     const {
-      setLanguage, setDictionary, localize, getCurrentLanguage, getDefinedLanguages, createKey,
+      setLanguage, setDictionary, localize, langmap, getCurrentLanguage, getDefinedLanguages, createKey, appendDictionary,
       _INTERNALS: {
         extractAB, capitalizeFirstLetter, applyParam, applyCasing, applyTransform,
-        getRandomHash, convertToNewDict, // formatInv,
+        getRandomHash, convertToNewDict, flipDict, // formatInv,
       }
     } = core;
     return function () {
@@ -100,6 +100,21 @@
           expect(output / original).toBe(2);
         });
 
+        it('appendDictionary (byLang)', () => {
+          appendDictionary({
+            en: { APPEND_TEST_1: 'a1' },
+            zh: { APPEND_TEST_1: '啊1' }
+          });
+          expect(langmap('en', 'APPEND_TEST_1')).toBe('a1');
+        });
+
+        it('appendDictionary (byKey)', () => {
+          appendDictionary({
+            APPEND_TEST_2: { en: 'a2', zh: '啊2' },
+          });
+          expect(langmap('en', 'APPEND_TEST_2')).toBe('a2');
+        });
+
       }
       setDictionary(byKey); baseImplementation();
       setDictionary(byLang); baseImplementation();
@@ -192,6 +207,12 @@
         expect(getRandomHash(hashLength).length).toBe(hashLength);
       });
 
+      it('flipDict', () => {
+        const original = { a: { foo: 'a1', bar: 'a2' }, b: { foo: 'b1', bar: 'b2' } };
+        const flipped = { foo: { a: 'a1', b: 'b1' }, bar: { a: 'a2', b: 'b2' } };
+        expect(flipDict(original)).toStrictEqual(flipped);
+      })
+
       // it('formatInv ()', () => {
       //   // ...
       // });
@@ -199,5 +220,5 @@
     };
   }
   implementWith(require('../lib/langutil.js'))();
-  implementWith(require('../lib/langutil.min.js'))();
+  // implementWith(require('../lib/langutil.min.js'))();
 })();
