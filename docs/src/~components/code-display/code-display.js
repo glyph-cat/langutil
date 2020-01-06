@@ -74,7 +74,7 @@ class CodeDisplayBase extends React.Component {
   }
 
   render() {
-    const { title, children = [], startLineFrom = 1, mode = 'all' } = this.props
+    const { title, children = [], startLineFrom = 1, mode = 'all', theme } = this.props
     let modArray = [], lineArray = [], codeArray = [], padArray = []
 
     // Ensure children is always array
@@ -84,7 +84,7 @@ class CodeDisplayBase extends React.Component {
 
       // conditional checking for line skipping
       const modType = _children[i].type.mod
-      const { backgroundColor, color } = this.modStyles[this.props.theme.type][modType] || {}
+      const { backgroundColor, color } = this.modStyles[theme.type][modType] || {}
 
       if (mode === 'all') {
         modArray.push(
@@ -154,7 +154,12 @@ class CodeDisplayBase extends React.Component {
           </div>
 
           {/* Line number */}
-          <div className='code-disp-content-line-container'>
+          <div
+            className='code-disp-content-line-container'
+            style={{
+              color: theme.type === 'dark' ? '#ddeeff88' : '#11223388',
+            }}
+          >
             <pre className='code-disp-pre' children={lineArray} />
           </div>
 
