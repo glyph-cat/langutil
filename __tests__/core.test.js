@@ -196,6 +196,36 @@
         expect(computed).toBe(expected);
       });
 
+      it('applyCasing (camelCase)', () => {
+        const computed = applyCasing('hello world', 'camelCase');
+        const expected = 'helloWorld';
+        expect(computed).toBe(expected);
+      });
+
+      it('applyCasing (pascalCase)', () => {
+        const computed = applyCasing('hello world', 'pascalCase');
+        const expected = 'HelloWorld';
+        expect(computed).toBe(expected);
+      });
+
+      it('applyCasing (kebabCase)', () => {
+        const computed = applyCasing('hello world', 'kebabCase');
+        const expected = 'hello-world';
+        expect(computed).toBe(expected);
+      });
+
+      it('applyCasing (snakeCase)', () => {
+        const computed = applyCasing('hello world', 'snakeCase');
+        const expected = 'hello_world';
+        expect(computed).toBe(expected);
+      });
+
+      it('applyCasing (macroCase)', () => {
+        const computed = applyCasing('hello world', 'macroCase');
+        const expected = 'HELLO_WORLD';
+        expect(computed).toBe(expected);
+      });
+
       it('applyTransform', () => {
         const computed = applyTransform(100, (v) => v * 2);
         const expected = 200;
