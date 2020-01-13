@@ -61,7 +61,7 @@
 }
 
 .code-disp-content-code-container {
-  overflow-x: scroll;
+  overflow-x: auto;
   overflow-y: hidden;
   display: grid;
 }
