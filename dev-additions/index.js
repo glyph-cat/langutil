@@ -1,4 +1,4 @@
-const { _INTERNALS: { extractAB, formatInv } } = require('langutil');
+const { _INTERNALS: { extractAB, formatInv, convertToNewDict } } = require('langutil');
 
 let warningShown = false;
 if (!warningShown) {
@@ -32,6 +32,10 @@ function isInitByLang(dict) { return /[a-z]/.test(Object.keys(dict)[0]); }
 //   }
 //   return objDict;
 // }
+
+function convertDict(dict) {
+  return convertToNewDict(dict, true)
+}
 
 // function convertDict(dict, sortBy, to) {
 //   let newDict = {};
@@ -146,5 +150,5 @@ function inspectDict(dict) {
 //   return projectHasError;
 // }
 
-module.exports = { inspectDict };
+module.exports = { inspectDict, convertDict };
 // module.exports = { convertDict, inspectDict, inspectProject };
