@@ -154,14 +154,19 @@ declare namespace langutil {
    */
   function isAuto(): boolean;
 
-  const Casings = {
-    lowerCase: (value: string) => string,
-    upperCase: (value: string) => string,
-    localeLowerCase: (value: string) => string,
-    localeUpperCase: (value: string) => string,
-    sentenceCase: (value: string) => string,
-    titleCase: (value: string) => string,
-  };
+  namespace Casings {
+    function lowerCase(value: string): string
+    function upperCase(value: string): string
+    function localeLowerCase(value: string): string
+    function localeUpperCase(value: string): string
+    function sentenceCase(value: string): string
+    function titleCase(value: string): string
+    function camelCase(value: string): string
+    function pascalCase(value: string): string
+    function kebabCase(value: string): string
+    function snakeCase(value: string): string
+    function macroCase(value: string): string
+  }
 
   /**
    * @description Creates a key for your dictionary.
@@ -213,6 +218,11 @@ type Casings =
   | 'sentenceCase'
   | 'titleCase'
   | 'upperCase'
+  | 'camelCase'
+  | 'pascalCase'
+  | 'kebabCase'
+  | 'snakeCase'
+  | 'macroCase'
 
 type LanguageCodes = 'af' | 'sq' | 'ar-sa' | 'ar-iq' | 'ar-eg' | 'ar-ly' | 'ar-dz' | 'ar-ma' | 'ar-tn' | 'ar-om' | 'ar-ye' | 'ar-sy' | 'ar-jo' | 'ar-lb' | 'ar-kw' | 'ar-ae' | 'ar-bh' | 'ar-qa' | 'eu' | 'bg' | 'be' | 'ca' | 'zh-tw' | 'zh-cn' | 'zh-hk' | 'zh-sg' | 'hr' | 'cs' | 'da' | 'nl' | 'nl-be' | 'en' | 'en-us' | 'en-gb' | 'en-au' | 'en-ca' | 'en-nz' | 'en-ie' | 'en-za' | 'en-jm' | 'en' | 'en-bz' | 'en-tt' | 'et' | 'fo' | 'fa' | 'fi' | 'fr' | 'fr-be' | 'fr-ca' | 'fr-ch' | 'fr-lu' | 'gd' | 'gd-ie' | 'de' | 'de-ch' | 'de-at' | 'de-lu' | 'de-li' | 'el' | 'he' | 'hi' | 'hu' | 'is' | 'id' | 'it' | 'it-ch' | 'ja' | 'ko' | 'ko' | 'lv' | 'lt' | 'mk' | 'mt' | 'no' | 'no' | 'pl' | 'pt-br' | 'pt' | 'rm' | 'ro' | 'ro-mo' | 'ru' | 'ru-mo' | 'sz' | 'sr' | 'sr' | 'sk' | 'sl' | 'sb' | 'es' | 'es' | 'es-ar' | 'es-gt' | 'es-cr' | 'es-pa' | 'es-do' | 'es-mx' | 'es-ve' | 'es-co' | 'es-pe' | 'es-ec' | 'es-cl' | 'es-uy' | 'es-py' | 'es-bo' | 'es-sv' | 'es-hn' | 'es-ni' | 'es-pr' | 'sx' | 'sv' | 'sv-fi' | 'th' | 'ts' | 'tn' | 'tr' | 'uk' | 'ur' | 've' | 'vi' | 'xh' | 'ji' | 'zu';
 
