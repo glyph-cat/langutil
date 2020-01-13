@@ -11,7 +11,7 @@
   display: grid;
   gap: 0.5em;
   justify-items: start;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
 .doc-sidebar-sectionTitle {
