@@ -1,10 +1,18 @@
-const { Component, createElement, useState, useEffect } = require('react');
+const { Component, createElement, useEffect, useRef, useState } = require('react');
 const { localize, isAuto, getCurrentLanguage, _INTERNALS: {
   addListener, removeListener, printWarning
 } } = require('langutil');
 let localizableDeprecatedShown = false;
 
 const getLangState = () => ({ auto: isAuto(), lang: getCurrentLanguage() });
+
+function useAppend() {
+  const appended = useRef(false);
+  if (!appended.current) {
+    appendDictionary(dict);
+    appended.current = true;
+  }
+}
 
 function useLang() {
   if (typeof useState !== 'function') {
@@ -76,4 +84,4 @@ function Localizable({
   }
 }
 
-module.exports = { withLang, useLang, Localizable };
+module.exports = { withLang, useAppend, useLang, Localizable };

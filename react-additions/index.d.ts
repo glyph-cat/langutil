@@ -1,6 +1,12 @@
 import * as React from 'react';
 
 /**
+ * @description A hook for the appendDictionary method.
+ * @param dict The object containing the new localizations to merge.
+ */
+export function useAppend(dict: object): void;
+
+/**
  * @description Hook function that allows your existing components to listen for changes in langutil and update themselves accordingly.
  */
 export function useLang(): LangStateSpecs;

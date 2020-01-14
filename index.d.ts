@@ -22,6 +22,12 @@ declare namespace langutil {
   function setDictionary(dict: object): void;
 
   /**
+   * @description Merges new localizations to the existing dictionary.
+   * @param dict The object containing the new localizations to merge.
+   */
+  function appendDictionary(dict: object): void;
+
+  /**
    * @description Sets the language.
    * @param lang The language to use.
    * @param detector A langutil built-in function, pass `AUTO_DETECT` into this parameter to allow auto-language detection.
