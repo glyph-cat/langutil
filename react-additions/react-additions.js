@@ -1,12 +1,16 @@
 const { Component, createElement, useEffect, useRef, useState } = require('react');
-const { localize, isAuto, getCurrentLanguage, _INTERNALS: {
+const { localize, isAuto, getCurrentLanguage, appendDictionary, _INTERNALS: {
   addListener, removeListener, printWarning
 } } = require('langutil');
 let localizableDeprecatedShown = false;
 
 const getLangState = () => ({ auto: isAuto(), lang: getCurrentLanguage() });
+const HOOK_ERR_MSG = 'React ≥16.8 is required to use hooks.'
 
-function useAppend() {
+function useAppend(dict) {
+  if (typeof useRef !== 'function') {
+    throw ReferenceError(HOOK_ERR_MSG);
+  }
   const appended = useRef(false);
   if (!appended.current) {
     appendDictionary(dict);
@@ -16,7 +20,7 @@ function useAppend() {
 
 function useLang() {
   if (typeof useState !== 'function') {
-    throw ReferenceError('You must use React ≥16.8 in order to use `useLang()`');
+    throw ReferenceError(HOOK_ERR_MSG);
   }
   const [state, setState] = useState({ langRef: null });
   const { langRef } = state;
@@ -49,7 +53,7 @@ function withLang(WrappedComponent) {
   if (typeof hoist === 'function') { hoist(WithLang, WrappedComponent); }
   WithLang.displayName = `withLang(${displayName})`;
   return WithLang;
-};
+}
 
 function getDisplayName(WrappedComponent) {
   try {
