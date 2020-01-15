@@ -79,8 +79,6 @@ export default {
   LANG_DISP_ZH_HANS: 'Bahasa Cina (Ringkas)',
   LANG_DISP_ZH_HANT: 'Bahasa Cina (Tradisional)',
 
-  LOC_JS_MADE_SIMPLE: 'Penterjemahan dalam JavaScript menjadi senang',
-
   MONTH_0: 'Januari',
   MONTH_1: 'Februari',
   MONTH_2: 'Mac',

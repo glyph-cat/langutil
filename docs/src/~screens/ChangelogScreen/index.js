@@ -1,19 +1,20 @@
 import React, { useState, useContext, useEffect } from 'react'
 import { withRouter } from 'react-router-dom'
 import { localize } from 'langutil'
-import { useLang } from 'langutil/react-additions'
+import { useAppend, useLang } from 'langutil/react-additions'
 import AppendMeta from '~components/append-meta'
 import { H1, H2, Ul, Li, SectionBreak } from '~components/document'
 import FadeIntoView from '~components/fade-into-view'
 import Loader from '~components/loader'
 import { STRINGS } from '~constants'
-import getChangelogs from '~content/get-changelogs'
 import VersionCheckContext from '~contexts/VersionCheckContext'
 import useScrollToSection from '~hooks/useScrollToSection'
+import getChangelogs from './get-changelogs'
+import localizations from './localizations'
 import './index.css'
 
 function ChangelogScreen({ match: { params: { subId } } }) {
-  useLang()
+  useLang(); useAppend(localizations)
   const [changelogs, setChangelogs] = useState([])
 
   const latestVersion = useContext(VersionCheckContext)

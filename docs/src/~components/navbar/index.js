@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Link, withRouter } from 'react-router-dom'
 import { localize } from 'langutil'
-import { withLang } from 'langutil/react-additions'
+import { useLang } from 'langutil/react-additions'
 import { useMediaQuery } from '@material-ui/core'
 import { pathIsMatch, scrollToTop } from '~modules'
 import AppearanceMenu from '~components/appearance-menu'
@@ -14,6 +14,7 @@ import './index.css'
 // TODO: Shrink into a [ ⋮ ] menu in compact mode
 
 const NavLink = withRouter(({ to, exact, children, title }) => {
+  useLang()
   const match = pathIsMatch(to, exact)
   const { palette: { misc } } = useTheme()
   return (
@@ -152,7 +153,7 @@ function Navbar() {
   )
 }
 
-export default withLang(Navbar)
+export default Navbar
 
 function useEscKeyListener(onEsc) {
   const listenForEscKey = ({ keyCode }) => keyCode === 27 ? onEsc() : {}
