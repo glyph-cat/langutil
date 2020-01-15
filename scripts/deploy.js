@@ -12,7 +12,7 @@ exec('git status', (e1, out1) => {
 
 	// (1) Make sure there are no uncommited changes
 	if (e1) { console.log(redBright(e1)); process.exit(1); } // Early exit if there are uncommited changes
-	if (!out1.includes('nothing to commit, working tree clean')) {
+	if (!(out1.includes('nothing to commit, working tree clean') || DRY_RUN)) {
 		console.log(redBright('Cannot publish package - There are still uncomitted changes.\n'));
 		process.exit(1);
 	}
@@ -93,8 +93,8 @@ function increaseVersionNumber() {
 		},
 		{
 			path: 'lib/langutil.min.js',
-			target: `* @version ${oldVersion}`,
-			replace: `* @version ${newVersion}`
+			target: `//langutil ${oldVersion} (c) 2018 - present chin98edwin`,
+			replace: `//langutil ${newVersion} (c) 2018 - present chin98edwin`
 		},
 		{
 			path: 'lu-scripts/commands/showVersionNumber.js',
