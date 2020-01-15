@@ -1,12 +1,11 @@
 import React from 'react'
-import { withLang } from 'langutil/react-additions'
 import { localize } from 'langutil'
+import { withLang } from 'langutil/react-additions'
 import { Cat } from 'react-kawaii'
 import ReactKawaiiPromoText from '~components/react-kawaii-promo-text'
 import FadeIntoView from '~components/fade-into-view'
 import { COLORS, VALUES } from '~constants'
 import './index.css'
-
 
 class Loader extends React.Component {
 

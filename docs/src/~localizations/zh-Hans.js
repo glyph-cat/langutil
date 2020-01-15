@@ -112,7 +112,6 @@ export default {
   ITS_THAT_SIMPLE: '就这么简单！',
 
   LOADING_ELLIPSIS: '请稍等...',
-  LOC_JS_MADE_SIMPLE: 'JavaScript 里的翻译过程从此变得简单',
 
   LANG_DISP_EN: '英文',
   LANG_DISP_JA: '日文',

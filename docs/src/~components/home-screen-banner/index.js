@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { localize } from 'langutil'
+import { useAppend } from 'langutil/react-additions'
 import { PATHS } from '~constants'
 import { Body } from '~components/document'
 import useTheme from '~hooks/useTheme'
@@ -9,9 +10,11 @@ import BannerStarField from '~svg/banner-starfield'
 import BannerRocket from '~svg/banner-rocket'
 import BannerSmoke1 from '~svg/banner-smoke-1'
 import BannerSmoke2 from '~svg/banner-smoke-2'
+import localizations from './localizations'
 import './index.css'
 
 function HomeScreenBanner() {
+  useAppend(localizations)
   const { palette: { misc } } = useTheme()
   return (
     <div className='homescnbanner-container'>
