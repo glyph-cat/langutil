@@ -1,22 +1,11 @@
-const { Component, createElement, useEffect, useRef, useState } = require('react');
-const { localize, isAuto, getCurrentLanguage, appendDictionary, _INTERNALS: {
+const { Component, createElement, useEffect, useState } = require('react');
+const { localize, isAuto, getCurrentLanguage, _INTERNALS: {
   addListener, removeListener, printWarning
 } } = require('langutil');
 let localizableDeprecatedShown = false;
 
 const getLangState = () => ({ auto: isAuto(), lang: getCurrentLanguage() });
 const HOOK_ERR_MSG = 'React ≥16.8 is required to use hooks.'
-
-function useAppend(dict) {
-  if (typeof useRef !== 'function') {
-    throw ReferenceError(HOOK_ERR_MSG);
-  }
-  const appended = useRef(false);
-  if (!appended.current) {
-    appendDictionary(dict);
-    appended.current = true;
-  }
-}
 
 function useLang() {
   if (typeof useState !== 'function') {
@@ -88,4 +77,4 @@ function Localizable({
   }
 }
 
-module.exports = { withLang, useAppend, useLang, Localizable };
+module.exports = { withLang, useLang, Localizable };
