@@ -104,14 +104,14 @@
           appendDictionary({
             en: { APPEND_TEST_1: 'a1' },
             zh: { APPEND_TEST_1: '啊1' }
-          });
+          }, 'a1');
           expect(langmap('en', 'APPEND_TEST_1')).toBe('a1');
         });
 
         it('appendDictionary (byKey)', () => {
           appendDictionary({
             APPEND_TEST_2: { en: 'a2', zh: '啊2' },
-          });
+          }, 'a2');
           expect(langmap('en', 'APPEND_TEST_2')).toBe('a2');
         });
 
