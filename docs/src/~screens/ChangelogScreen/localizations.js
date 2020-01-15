@@ -146,5 +146,124 @@ export default {
     en: ({ sd }) => <>New {sd} function in case you want to lazy load your localizations.</>,
   },
 
+  // 2.4.0
+  CHANGELOG_2_4_0_S01: {
+    en: ''
+  },
+
+  // 2.3.3
+  CHANGELOG_2_3_3_S01: {
+    en: ''
+  },
+
+  // 2.3.2
+  CHANGELOG_2_3_2_S01: {
+    en: ''
+  },
+
+  // 2.3.1
+  CHANGELOG_2_3_1_S01: {
+    en: ''
+  },
+
+  // 2.3.0
+  CHANGELOG_2_3_0_S01: {
+    en: ''
+  },
+
+  // 2.2.4
+  CHANGELOG_2_2_4_S01: {
+    en: ''
+  },
+
+  // 2.2.3
+  CHANGELOG_2_2_3_S01: {
+    en: ''
+  },
+
+  // 2.2.2
+  CHANGELOG_2_2_2_S01: {
+    en: ''
+  },
+
+  // 2.2.1
+  CHANGELOG_2_2_1_S01: {
+    en: ''
+  },
+
+  // 2.2.0
+  CHANGELOG_2_2_0_S01: {
+    en: ''
+  },
+
+  // 2.1.3
+  CHANGELOG_2_1_3_S01: {
+    en: ''
+  },
+
+  // 2.1.2
+  CHANGELOG_2_1_2_S01: {
+    en: ''
+  },
+
+  // 2.1.1
+  CHANGELOG_2_1_1_S01: {
+    en: ''
+  },
+
+  // 2.1.0
+  CHANGELOG_2_1_0_S01: {
+    en: ''
+  },
+
+  // 2.0.0
+  CHANGELOG_2_0_0_S01: {
+    en: ''
+  },
+
+  // 1.1.4
+  CHANGELOG_1_1_4_S01: {
+    en: ''
+  },
+
+  // 1.1.3
+  CHANGELOG_1_1_3_S01: {
+    en: ''
+  },
+
+  // 1.1.2
+  CHANGELOG_1_1_2_S01: {
+    en: ''
+  },
+
+  // 1.1.1
+  CHANGELOG_1_1_1_S01: {
+    en: ''
+  },
+
+  // 1.1.0
+  CHANGELOG_1_1_0_S01: {
+    en: ''
+  },
+
+  // 1.0.3
+  CHANGELOG_1_0_3_S01: {
+    en: ''
+  },
+
+  // 1.0.2
+  CHANGELOG_1_0_2_S01: {
+    en: ''
+  },
+
+  // 1.0.1
+  CHANGELOG_1_0_1_S01: {
+    en: ''
+  },
+
+  // 1.0.0
+  CHANGELOG_1_0_0_S01: {
+    en: ''
+  },
 
 }
