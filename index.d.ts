@@ -24,9 +24,10 @@ declare namespace langutil {
   /**
    * @description Merges new localizations to the existing dictionary.
    * @param dict The object containing the new localizations to merge.
-   * @param key A short string representing the portion of the dictionary. This can in some cases save performance as langutil will skip re-appending content that have already appended by comparing the keys. If you leave this blank, the same content will be appended every time the same scope of function is executed.
+   * @param identifier An optional short string representing the appended content. This allows langutil to skip re-appending the same content when the same scope of code is being executed, giving a small performance boost in some cases.
+   * @throws ReferenceError, TypeError
    */
-  function appendDictionary(dict: object, key?: string): void;
+  function appendDictionary(dict: object, identifier?: string): void;
 
   /**
    * @description Sets the language.
