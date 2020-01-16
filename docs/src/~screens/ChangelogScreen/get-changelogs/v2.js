@@ -11,33 +11,33 @@ export default () => ({
       title: '2.4.0',
       data: [
         localize({
-          keyword: 'CHANGELOG_LOCZ_WILL_UPDATE_ITSELF',
+          keyword: 'CHANGELOG_2_4_0_S01',
           transform: withProps({
             locz: <Code>{'<Localizable />'}</Code>,
             setL: <Code>setLanguage()</Code>,
           })
         }),
         localize({
-          keyword: 'CHANGELOG_NEW_ALLOW_EMPTY',
+          keyword: 'CHANGELOG_2_4_0_S02',
           transform: withProps({
             aEty: <Code>allowEmpty</Code>
           })
         }),
-        localize('CHANGELOG_SNOOZE_DICT_INSP_TILL_GIVEN_DATE'),
+        localize('CHANGELOG_2_4_0_S03'),
       ]
     },
     {
       title: '2.3.3',
       data: [
-        localize('CHANGELOG_FIXED_ISSUE_ALREADY_WARNED_STILL_SHOW_UP')
+        localize('CHANGELOG_2_3_3_S01')
       ]
     },
     {
       title: '2.3.2',
       data: [
-        localize('CHANGELOG_GROUPED_WARNINGS_FOR_MISSING_LOC'),
+        localize('CHANGELOG_2_3_2_S01'),
         localize({
-          keyword: 'CHANGELOG_PASS_CUSTOM_COMP_VIA_RENDER_AS',
+          keyword: 'CHANGELOG_2_3_2_S02',
           transform: withProps({ r: <Code>renderAs</Code> })
         }),
       ]
@@ -45,25 +45,25 @@ export default () => ({
     {
       title: '2.3.1',
       data: [
-        localize('CHANGELOG_HOTFIX_FOR_TS')
+        localize('CHANGELOG_2_3_1_S01')
       ]
     },
     {
       title: '2.3.0',
       data: [
-        localize('CHANGELOG_INTERNAL_OPTIMIZATIONS_PERF_DEBUG_XP'),
+        localize('CHANGELOG_2_3_0_S01'),
         localize({
-          keyword: 'CHANGELOG_AUTO_DETECT_SPLITTED',
+          keyword: 'CHANGELOG_2_3_0_S02',
           transform: withProps({ na: <Code>'langutil/native-additions'</Code> })
         }),
         localize({
-          keyword: 'CHANGELOG_THE_REPO_NOW_INCL_TEMPLATE_DICT',
+          keyword: 'CHANGELOG_2_3_0_S03',
           transform: withProps({
             repo: <a href={EXT_LINKS.dictionaryTemplateLink} children='repo' target='_blank' rel='noopener noreferrer' />
           })
         }),
         localize({
-          keyword: 'CHANGELOG_ADDITIONS_FOR_REACT',
+          keyword: 'CHANGELOG_2_3_0_S04',
           transform: withProps({ locz: <Code>{'<Localizable />'}</Code> })
         })
       ]
@@ -71,9 +71,9 @@ export default () => ({
     {
       title: '2.2.4',
       data: [
-        localize('CHANGELOG_ADDED_DOCS_ABT_DICT'),
+        localize('CHANGELOG_2_2_4_S01'),
         localize({
-          keyword: 'CHANGELOG_CHG_RN_DEPENDENCY_TYPE',
+          keyword: 'CHANGELOG_2_2_4_S02',
           transform: withProps({ rn: <Code>'react-native'</Code> })
         })
       ]
@@ -81,32 +81,32 @@ export default () => ({
     {
       title: '2.2.3',
       data: [
-        localize('CHANGELOG_FIXED_BUG_AUTO_DETECT')
+        localize('CHANGELOG_2_2_3_S01')
       ]
     },
     {
       title: '2.2.2',
       data: [
-        localize('CHANGELOG_FIXED_FALSE_WARNINGS_PARAMS_FOR_SURE')
+        localize('CHANGELOG_2_2_2_S01')
       ]
     },
     {
       title: '2.2.1',
       data: [
-        localize('CHANGELOG_EMERGENCY_FIX_RN_AUTO_DETECT_FAIL')
+        localize('CHANGELOG_2_2_1_S01')
       ]
     },
     {
       title: '2.2.0',
       data: [
-        localize('CHANGELOG_WILL_LOOK_FOR_ALT_LANG_IF_AUTO_UNAVAILABLE'),
-        localize('CHANGELOG_FIXED_FALSE_WARNINGS_PARAMS'),
+        localize('CHANGELOG_2_2_0_S01'),
+        localize('CHANGELOG_2_2_0_S02'),
         localize({
-          keyword: 'CHANGELOG_NEW_LOGS_FOCUS_FN',
+          keyword: 'CHANGELOG_2_2_0_S03',
           transform: withProps({ f: <Code>logs.focus()</Code> })
         }),
         localize({
-          keyword: 'CHANGELOG_NEW_IS_AUTO_FN',
+          keyword: 'CHANGELOG_2_2_0_S04',
           transform: withProps({ a: <Code>isAuto()</Code> })
         }),
       ]
@@ -115,22 +115,22 @@ export default () => ({
       title: '2.1.3',
       data: [
         localize({
-          keyword: 'CHANGELOG_SILENCED_UNNECESSARY_WARN_IN_LOC_WITH',
+          keyword: 'CHANGELOG_2_1_3_S01',
           transform: withProps({
             cg: <Code>casing</Code>,
             tr: <Code>transform</Code>,
             lw: <Code>localizeWith()</Code>
           })
         }),
-        localize('CHANGELOG_AUTO_DETECT_SUPPORT_RN'),
-        localize('CHANGELOG_DOC_UPDATED_REDUCE_SIZE'),
-        localize('CHANGELOG_FIXED_ALWAYS_MINIFIED'),
+        localize('CHANGELOG_2_1_3_S02'),
+        localize('CHANGELOG_2_1_3_S03'),
+        localize('CHANGELOG_2_1_3_S04'),
       ]
     },
     {
       title: '2.1.2',
       data: [
-        localize('CHANGELOG_FIXED_ISSUE_THIS_LOCALIZE_NOT_FN')
+        localize('CHANGELOG_2_1_2_S01')
       ]
     },
     {
@@ -138,7 +138,7 @@ export default () => ({
       data: [
         localize('CHANGELOG_ADD_QUICKFIX_TO_DOC'),
         localize({
-          keyword: 'CHANGELOG_ADDED_NEW_OPTION_LOC_WITH',
+          keyword: 'CHANGELOG_2_1_1_S02',
           transform: withProps({
             sc: <Code>'sentenceCase'</Code>,
             cg: <Code>casing</Code>,
@@ -151,27 +151,27 @@ export default () => ({
       title: '2.1.0',
       data: [
         localize({
-          keyword: 'CHANGELOG_NEW_LOC_WITH_FN',
+          keyword: 'CHANGELOG_2_1_0_S01',
           transform: withProps({ lw: <Code>localizeWith()</Code> })
         }),
         localize({
-          keyword: 'CHANGELOG_NEW_GET_DEF_LANGS',
+          keyword: 'CHANGELOG_2_1_0_S02',
           transform: withProps({ gdl: <Code>getDefinedLanguages()</Code> })
         }),
-        localize('CHANGELOG_ASSIGN_ANYTHING_TO_LOC_VALUE'),
-        localize('CHANGELOG_FIXED_PROD_BUILD_FAILS_IF_LOG_SHOWN'),
+        localize('CHANGELOG_2_1_0_S03'),
+        localize('CHANGELOG_2_1_0_S04'),
       ]
     },
     {
       title: '2.0.0',
       data: [
-        localize('CHANGELOG_CAN_DEFINE_DICT_BY_KEYWORDS'),
+        localize('CHANGELOG_2_0_0_S01'),
         localize({
-          keyword: 'CHANGELOG_NEW_CREATEKEY_FN',
+          keyword: 'CHANGELOG_2_0_0_S02',
           transform: withProps({ ck: <Code>createKey()</Code> })
         }),
-        localize('CHANGELOG_LIST_FOLLOWS_ISO_CODES'),
-        localize('CHANGELOG_SUPPORT_TYPINGS'),
+        localize('CHANGELOG_2_0_0_S03'),
+        localize('CHANGELOG_2_0_0_S04'),
       ]
     }
   ]

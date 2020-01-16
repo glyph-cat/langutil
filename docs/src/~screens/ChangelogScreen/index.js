@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from 'react'
 import { withRouter } from 'react-router-dom'
-import { localize } from 'langutil'
-import { useAppend, useLang } from 'langutil/react-additions'
+import { appendDictionary, localize } from 'langutil'
+import { useLang } from 'langutil/react-additions'
 import AppendMeta from '~components/append-meta'
 import { H1, H2, Ul, Li, SectionBreak } from '~components/document'
 import FadeIntoView from '~components/fade-into-view'
@@ -14,7 +14,7 @@ import localizations from './localizations'
 import './index.css'
 
 function ChangelogScreen({ match: { params: { subId } } }) {
-  useLang(); useAppend(localizations)
+  useLang(); appendDictionary(localizations, 'chg-log-scn')
   const [changelogs, setChangelogs] = useState([])
 
   const latestVersion = useContext(VersionCheckContext)
@@ -24,7 +24,7 @@ function ChangelogScreen({ match: { params: { subId } } }) {
     if (latestVersion.match(/\d+.\d+.\d+/) && latestDocumentedVersion !== latestVersion) {
       finalChangelog[0].data.unshift({
         title: latestVersion,
-        data: [localize('BRACKET_WILL_BE_UPDATED_SOON')]
+        data: [localize('CHANGELOG_BRACKET_WILL_BE_UPDATED_SOON')]
       })
     }
     setChangelogs(finalChangelog)

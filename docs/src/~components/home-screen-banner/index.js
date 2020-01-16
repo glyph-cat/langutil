@@ -1,7 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { localize } from 'langutil'
-import { useAppend } from 'langutil/react-additions'
+import { appendDictionary, localize } from 'langutil'
 import { PATHS } from '~constants'
 import { Body } from '~components/document'
 import useTheme from '~hooks/useTheme'
@@ -14,7 +13,7 @@ import localizations from './localizations'
 import './index.css'
 
 function HomeScreenBanner() {
-  useAppend(localizations)
+  appendDictionary(localizations, 'hs-banner')
   const { palette: { misc } } = useTheme()
   return (
     <div className='homescnbanner-container'>
