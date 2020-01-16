@@ -9,19 +9,19 @@ export default () => ({
     {
       title: '1.1.4',
       data: [
-        localize('CHANGELOG_MINOR_PERF_FIXES')
+        localize('CHANGELOG_1_1_4_S01')
       ]
     },
     {
       title: '1.1.3',
       data: [
-        localize('CHANGELOG_FIXED_BUG_KEYWORD_REC_AS_INVALID')
+        localize('CHANGELOG_1_1_3_S01')
       ]
     },
     {
       title: '1.1.2',
       data: [
-        localize('CHANGELOG_PERF_OPT_FOR_PROD_MODE')
+        localize('CHANGELOG_1_1_2_S01')
       ]
     },
     {
@@ -34,7 +34,7 @@ export default () => ({
       title: '1.1.0',
       data: [
         localize({
-          keyword: 'CHANGELOG_SHOWLOG_WILL_BE_REPLACED_BY',
+          keyword: 'CHANGELOG_1_1_0_S01',
           transform: withProps({
             showL: <Code>showLogs()</Code>,
             lHide: <Code>logs.hide()</Code>,
@@ -42,7 +42,7 @@ export default () => ({
           })
         }),
         localize({
-          keyword: 'CHANGELOG_ADDED_84_NEW_LANG',
+          keyword: 'CHANGELOG_1_1_0_S02',
           transform: withProps({
             langs: createElement(() => {
               const list = ['akan', 'avestan', 'aymara', 'bihari', 'bislama', 'breton', 'burmese', 'bulgarian_old', 'chamorro', 'chechen', 'chuvash', 'cornish', 'cree', 'divehi', 'dzongka', 'ewe', 'faroese', 'fijian', 'fula', 'gaelic_scot', 'gaelic_manx', 'frisian_western', 'greenlandic', 'guarani', 'herero', 'hirimotu', 'ido', 'interlingua', 'interlingue', 'inuktitut', 'inupiak', 'kanuri', 'kashmiri', 'kikuyu', 'kinyarwanda', 'kirundi', 'komi', 'kongo', 'kwanyama', 'limburger', 'lingala', 'lugakatanga', 'luganda', 'manx', 'marshallese', 'moldavian', 'nauru', 'navajo', 'ndonga', 'ndebele_northern', 'norwegian_bokmal', 'norwegian_nynorsk', 'nuosu', 'occitan', 'ojibwe', 'oriya', 'oromo', 'ossetian', 'pali', 'quechua', 'romansh', 'sami', 'sango', 'sanskrit', 'serbian_croatian', 'setswana', 'siswati', 'southern_ndebele', 'swati', 'tagalog', 'tahitian', 'tatar', 'tibetan', 'tigrinya', 'tonga', 'tsonga', 'turkmen', 'twi', 'uyghur', 'venda', 'volapuk', 'wallon', 'wolof', 'zhuang']
@@ -59,25 +59,25 @@ export default () => ({
       title: '1.0.3',
       data: [
         localize({
-          keyword: 'CHANGELOG_FIXED_INCORRECT_ESCAPER_SWAP',
+          keyword: 'CHANGELOG_1_0_3_S01',
           transform: withProps({
             q: <Code>'%q'</Code>,
             p: <Code>'%p'</Code>,
             p2: <Code>'%%p'</Code>,
           })
         }),
-        localize('CHANGELOG_ADAPTED_SYNTAX_FOR_COMMONJS'),
+        localize('CHANGELOG_1_0_3_S02'),
         localize({
-          keyword: 'CHANGELOG_ADDED_AUTO_SUGGESTIONS',
+          keyword: 'CHANGELOG_1_0_3_S03',
           transform: withProps({ init: <Code>init()</Code>, setL: <Code>setLanguage()</Code> })
         }),
         localize({
-          keyword: 'CHANGELOG_ADDED_CHINESE_CODE',
+          keyword: 'CHANGELOG_1_0_3_S03',
           transform: withProps({ c: <Code>'chinese'</Code> })
         }),
-        localize('CHANGELOG_EXAMPLES_REMOVED_FROM_DOC'),
+        localize('CHANGELOG_1_0_3_S05'),
         localize({
-          keyword: 'CHANGELOG_HIDELOGS_WILL_BE_DEPRECATED',
+          keyword: 'CHANGELOG_1_0_3_S06',
           transform: withProps({ hL: <Code>hideLogs()</Code> })
         })
       ]
@@ -85,15 +85,15 @@ export default () => ({
     {
       title: '1.0.2',
       data: [
-        localize('CHANGELOG_ADD_UPDATE_HISTORY_TO_README'),
-        localize('CHANGELOG_LANG_TABLE_MADE_COMPACT'),
+        localize('CHANGELOG_1_0_2_S01'),
+        localize('CHANGELOG_1_0_2_S02'),
       ]
     },
     {
       title: '1.0.1',
       data: [
         localize({
-          keyword: 'CHANGELOG_ADDED_HIDELOGS',
+          keyword: 'CHANGELOG_1_0_1_S01',
           transform: withProps({ hide: <Code>hideLogs()</Code> })
         })
       ]
@@ -101,7 +101,7 @@ export default () => ({
     {
       title: '1.0.0',
       data: [
-        localize('CHANGELOG_CREATION_OF_LANGUTIL'),
+        localize('CHANGELOG_1_0_0_S01'),
       ]
     }
   ]

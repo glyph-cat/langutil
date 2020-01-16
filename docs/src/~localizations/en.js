@@ -60,7 +60,6 @@ export default {
 
   BASIC_USAGE: 'Basic usage',
   BASICS: 'Basics',
-  BRACKET_WILL_BE_UPDATED_SOON: '(Will be updated soon)',
   BUILDER: 'Builder',
   BY_ARRAY: 'By Array',
   BY_OBJECT: 'By Object',
