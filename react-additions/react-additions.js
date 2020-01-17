@@ -5,7 +5,7 @@ const { localize, isAuto, getCurrentLanguage, _INTERNALS: {
 let localizableDeprecatedShown = false;
 
 const getLangState = () => ({ auto: isAuto(), lang: getCurrentLanguage() });
-const HOOK_ERR_MSG = 'React ≥16.8 is required to use hooks.'
+const HOOK_ERR_MSG = 'React ≥16.8 is required to use hooks.';
 
 function useLang() {
   if (typeof useState !== 'function') {
