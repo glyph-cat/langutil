@@ -34,7 +34,7 @@ function isInitByLang(dict) { return /[a-z]/.test(Object.keys(dict)[0]); }
 // }
 
 function convertDict(dict) {
-  return convertToNewDict(dict, true)
+  return convertToNewDict(dict, true);
 }
 
 // function convertDict(dict, sortBy, to) {
