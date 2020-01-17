@@ -8,40 +8,49 @@ const DRY_RUN = process.argv[3] === '--dry-run';
 // npm run deploy -- --(type) (--dry-run)
 // Where `type` is one of 'patch', 'minor' or 'major'
 
-exec('git status', (e1, out1) => {
-
-	// (1) Make sure there are no uncommited changes
-	if (e1) { console.log(redBright(e1)); process.exit(1); } // Early exit if there are uncommited changes
-	if (!(out1.includes('nothing to commit, working tree clean') || DRY_RUN)) {
-		console.log(redBright('Cannot publish package - There are still uncomitted changes.\n'));
+// (0) Code linting first
+exec('npm run lint', (e0, out0) => {
+	if (e0) { console.log(redBright(e0)); process.exit(1); }
+	if (out0.includes('warning') || out0.includes('error')) {
+		console.log(redBright(out0));
 		process.exit(1);
 	}
 
-	// (2) Proceed if no uncommited changes
-	const infoForFinalReport = increaseVersionNumber();
+	exec('git status', (e1, out1) => {
 
-	// (3) JEST
-	console.log(cyanBright('\nRunning command `jest`...\n'));
-	exec('jest', (e2, out2) => {
-		console.log(out2);
-		if (e2) { console.log(redBright(e2)); process.abort.exit(1); } // Early exit
-
-		// (4) Publish to NPM if test pass
-		console.log(cyanBright('\nPublishing to NPM...\n'));
-		if (!DRY_RUN) {
-			exec('npm publish', (e3, out3) => {
-				console.log(out3);
-				if (e3) { console.log(redBright(e3)); process.exit(1); } // Early exit
-				console.log(greenBright('Successfully published to NPM!'));
-				showFinalReport(infoForFinalReport);
-			});
-		} else {
-			console.log(greenBright('Successfully published to NPM!'));
-			showFinalReport(infoForFinalReport);
+		// (1) Make sure there are no uncommited changes
+		if (e1) { console.log(redBright(e1)); process.exit(1); }
+		// Early exit if there are uncommited changes
+		if (!(out1.includes('nothing to commit, working tree clean') || DRY_RUN)) {
+			console.log(redBright('Cannot publish package - There are still uncomitted changes.\n'));
+			process.exit(1);
 		}
 
-	});
+		// (2) Proceed if no uncommited changes
+		const infoForFinalReport = increaseVersionNumber();
 
+		// (3) JEST
+		console.log(cyanBright('\nRunning command `jest`...\n'));
+		exec('jest', (e2, out2) => {
+			console.log(out2);
+			if (e2) { console.log(redBright(e2)); process.abort.exit(1); } // Early exit
+
+			// (4) Publish to NPM if test pass
+			console.log(cyanBright('\nPublishing to NPM...\n'));
+			if (!DRY_RUN) {
+				exec('npm publish', (e3, out3) => {
+					console.log(out3);
+					if (e3) { console.log(redBright(e3)); process.exit(1); } // Early exit
+					console.log(greenBright('Successfully published to NPM!'));
+					showFinalReport(infoForFinalReport);
+				});
+			} else {
+				console.log(greenBright('Successfully published to NPM!'));
+				showFinalReport(infoForFinalReport);
+			}
+
+		});
+	});
 });
 
 function increaseVersionNumber() {
