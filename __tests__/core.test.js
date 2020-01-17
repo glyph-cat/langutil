@@ -2,7 +2,7 @@
   const { byKey, byLang } = require('./dict');
   function implementWith(core) {
     const {
-      setLanguage, setDictionary, localize, langmap, getCurrentLanguage, getDefinedLanguages, createKey, appendDictionary,
+      setLanguage, setDictionary, localize, langmap, getGuidedLanguage, getCurrentLanguage, getDefinedLanguages, createKey, appendDictionary,
       _INTERNALS: {
         extractAB, capitalizeFirstLetter, applyParam, applyCasing, applyTransform,
         getRandomHash, convertToNewDict, flipDict, // formatInv,
@@ -15,7 +15,7 @@
 
         it('getDefinedLanguages', () => {
           expect(getDefinedLanguages()).toEqual(['en', 'zh']);
-        })
+        });
 
         it(`setLanguage (${lang_zh})`, () => {
           setLanguage(lang_zh);
@@ -25,6 +25,21 @@
         it(`setLanguage (${lang_en})`, () => {
           setLanguage(lang_en);
           expect(getCurrentLanguage()).toBe(lang_en);
+        });
+
+        it('getGuidedLanguage (In dictionary)', () => {
+          const output = getGuidedLanguage(() => 'en');
+          expect(output).toBe('en')
+        });
+
+        it('getGuidedLanguage (Close)', () => {
+          const output = getGuidedLanguage(() => 'zh-Hans');
+          expect(output).toBe('zh')
+        });
+
+        it('getGuidedLanguage (Not in dictionary)', () => {
+          const output = getGuidedLanguage(() => 'xyz');
+          expect(output).toBe('en')
         });
 
         it('localize(keyword)', () => {

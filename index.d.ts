@@ -109,6 +109,14 @@ declare namespace langutil {
   } & LocalizeProps): unknown;
 
   /**
+   * @description Get the auto-detected language. If no matching language exists in the dictionary, the closest possible language will be used instead.
+   * @param detector A langutil built-in function, pass `AUTO_DETECT` into this parameter to allow auto-language detection.
+   * @throws ReferenceError, TypeError
+   * @returns The string representation of the language.
+   */
+  function getGuidedLanguage(detector: Function): string;
+
+  /**
    * @description Get the currently set language.
    * @returns The string representation of the language.
    */
