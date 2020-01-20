@@ -13,11 +13,12 @@ function useLang() {
   }
   const [state, setState] = useState({ langRef: null });
   const { langRef } = state;
+  const langRefIsNull = langRef === null;
   useEffect(() => {
     let newLangRef = addListener(() => { setState({ langRef }); });
     setState({ langRef: newLangRef });
     return () => { removeListener(newLangRef); };
-  }, [langRef === null]);
+  }, [langRefIsNull]);
   return getLangState();
 }
 
