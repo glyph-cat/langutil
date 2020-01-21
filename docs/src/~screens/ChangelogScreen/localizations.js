@@ -16,7 +16,7 @@ export default {
 
   // 3.2.0
   CHANGELOG_3_2_0_S01: {
-    en: (ia) => <>Fixed issue where langutil will return {ia} as false when there is no directly matching language in dictionary, even though a detector is provided.</>,
+    en: ({ ia }) => <>Fixed issue where langutil will return {ia} as false when there is no directly matching language in dictionary, even though a detector is provided.</>,
   },
   CHANGELOG_3_2_0_S02: {
     en: ({ ad }) => <>New {ad} method that allows you to lazy load your dictionary efficiently.</>,
@@ -29,6 +29,9 @@ export default {
   },
   CHANGELOG_3_2_0_S05: {
     en: ({ cd, luda, ck }) => <>New {cd} method in {luda}, this can be used to convert dictionary from v2 (declared as array using {ck}) to the newer structure (declared as plain JS object).</>,
+  },
+  CHANGELOG_3_2_0_S06: {
+    en: ({ wl, ir }) => <>Components wrapped in {wl} can now access the wrapped component's properties andmethods through the {ir} prop.</>,
   },
 
   // 3.1.3
