@@ -1,13 +1,13 @@
-import React, { useState, useContext, useEffect } from 'react'
+import React /* , { useState, useContext, useEffect } */ from 'react'
 import { withRouter } from 'react-router-dom'
 import { appendDictionary, localize } from 'langutil'
 import { useLang } from 'langutil/react-additions'
 import AppendMeta from '~components/append-meta'
 import { H1, H2, Ul, Li, SectionBreak } from '~components/document'
 import FadeIntoView from '~components/fade-into-view'
-import Loader from '~components/loader'
-import { STRINGS } from '~constants'
-import VersionCheckContext from '~contexts/VersionCheckContext'
+// import Loader from '~components/loader'
+// import { STRINGS } from '~constants'
+// import VersionCheckContext from '~contexts/VersionCheckContext'
 import useScrollToSection from '~hooks/useScrollToSection'
 import getChangelogs from './get-changelogs'
 import localizations from './localizations'
@@ -15,31 +15,38 @@ import './index.css'
 
 function ChangelogScreen({ match: { params: { subId } } }) {
   useLang(); appendDictionary(localizations, 'chg-log-scn')
-  const [changelogs, setChangelogs] = useState([])
+  // const [changelogs, setChangelogs] = useState([])
 
-  const latestVersion = useContext(VersionCheckContext)
-  const latestDocumentedVersion = getChangelogs()[0].data[0].title
-  useEffect(() => {
-    let finalChangelog = getChangelogs()
-    if (latestVersion.match(/\d+.\d+.\d+/) && latestDocumentedVersion !== latestVersion) {
-      finalChangelog[0].data.unshift({
-        title: latestVersion,
-        data: [localize('CHANGELOG_BRACKET_WILL_BE_UPDATED_SOON')]
-      })
-    }
-    setChangelogs(finalChangelog)
-  }, [latestVersion, latestDocumentedVersion])
+  // const latestVersion = useContext(VersionCheckContext)
+  // const latestDocumentedVersion = getChangelogs()[0].data[0].title
+  // useEffect(() => {
+  //   let finalChangelog = getChangelogs()
+  //   if (latestVersion.match(/\d+.\d+.\d+/) && latestDocumentedVersion !== latestVersion) {
+  //     finalChangelog[0].data.unshift({
+  //       title: latestVersion,
+  //       data: [localize('CHANGELOG_BRACKET_WILL_BE_UPDATED_SOON')]
+  //     })
+  //   }
+  //   setChangelogs(finalChangelog)
+  // }, [latestVersion, latestDocumentedVersion])
 
-  if (latestVersion === STRINGS.labelWaiting) {
-    return <Loader />
-  } else {
-    return (
-      <ChangelogRenderer
-        changelogs={changelogs}
-        subId={subId}
-      />
-    )
-  }
+  return (
+    <ChangelogRenderer
+      // changelogs={changelogs}
+      changelogs={getChangelogs()}
+      subId={subId}
+    />
+  )
+  // if (latestVersion === STRINGS.labelWaiting) {
+  //   return <Loader />
+  // } else {
+  //   return (
+  //     <ChangelogRenderer
+  //       changelogs={changelogs}
+  //       subId={subId}
+  //     />
+  //   )
+  // }
 }
 
 export default withRouter(ChangelogScreen)

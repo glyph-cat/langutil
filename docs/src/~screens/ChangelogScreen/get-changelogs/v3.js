@@ -1,7 +1,7 @@
 import React from 'react'
 import { localize } from 'langutil'
 import { Code, CodeLink } from '~components/document'
-import { DOCPATHS } from '~constants'
+import { DOCPATHS, PATHS } from '~constants'
 import { withProps } from '~modules'
 // Use <Code> for deprecated APIS and <CodeLink> for the rest
 
@@ -14,19 +14,28 @@ export default () => ({
         localize({
           keyword: 'CHANGELOG_3_2_0_S01',
           transform: withProps({
-            is: <CodeLink to={DOCPATHS.v3.api.isAuto}>isAuto()</CodeLink>
+            ia: <CodeLink
+              to={`${PATHS.docs}/${DOCPATHS.v3.api.isAuto}`}
+              children='isAuto()'
+            />
           })
         }),
         localize({
           keyword: 'CHANGELOG_3_2_0_S02',
           transform: withProps({
-            ad: <CodeLink to={DOCPATHS.v3.api.appendDictionary}>appendDictionary()</CodeLink>
+            ad: <CodeLink
+              to={`${PATHS.docs}/${DOCPATHS.v3.api.appendDictionary}`}
+              children='appendDictionary()'
+            />
           })
         }),
         localize({
           keyword: 'CHANGELOG_3_2_0_S03',
           transform: withProps({
-            ggl: <CodeLink to={DOCPATHS.v3.api.getGuidedLanguage}>getGuidedLanguage()</CodeLink>
+            ggl: <CodeLink
+              to={`${PATHS.docs}/${DOCPATHS.v3.api.getGuidedLanguage}`}
+              children='getGuidedLanguage()'
+            />
           })
         }),
         localize({
@@ -42,9 +51,22 @@ export default () => ({
         localize({
           keyword: 'CHANGELOG_3_2_0_S05',
           transform: withProps({
-            cd: <CodeLink to={DOCPATHS.v3.api.convertDictionary}>convertDictionary</CodeLink>,
+            cd: <CodeLink
+              to={`${PATHS.docs}/${DOCPATHS.v3.api.convertDictionary}`}
+              children='convertDictionary()'
+            />,
             luda: <Code>'langutil/dev-additions'</Code>,
             ck: <Code>createKey()</Code>
+          })
+        }),
+        localize({
+          keyword: 'CHANGELOG_3_2_0_S06',
+          transform: withProps({
+            wl: <CodeLink
+              to={`${PATHS.docs}/${DOCPATHS.v3.api.withLang}`}
+              children='withLang()'
+            />,
+            ir: <Code>innerRef</Code>
           })
         }),
         localize('CHANGELOG_CODE_OPTIMIZATIONS'),
