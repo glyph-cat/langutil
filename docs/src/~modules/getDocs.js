@@ -95,6 +95,10 @@ const getDocs = () => ({
           text: 'setDictionary'
         },
         {
+          to: DOCPATHS.v3.api.appendDictionary,
+          text: 'appendDictionary'
+        },
+        {
           to: DOCPATHS.v3.api.setLanguage,
           text: 'setLanguage'
         },
@@ -105,6 +109,10 @@ const getDocs = () => ({
         {
           to: DOCPATHS.v3.api.langmap,
           text: 'langmap'
+        },
+        {
+          to: DOCPATHS.v3.api.getGuidedLanguage,
+          text: 'getGuidedLanguage'
         },
         {
           to: DOCPATHS.v3.api.getCurrentLanguage,
@@ -129,6 +137,10 @@ const getDocs = () => ({
         {
           to: DOCPATHS.v3.api.useLang,
           text: 'useLang'
+        },
+        {
+          to: DOCPATHS.v3.api.convertDictionary,
+          text: 'convertDictionary'
         },
         {
           to: DOCPATHS.v3.api.logs,

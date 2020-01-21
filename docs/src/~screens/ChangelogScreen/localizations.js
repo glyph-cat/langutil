@@ -15,15 +15,21 @@ export default {
   },
 
   // 3.2.0
-  // CHANGELOG_3_2_0_S01: {
-  //   en: '',
-  // },
-  // CHANGELOG_3_2_0_S02: {
-  //   en: '',
-  // },
-  // CHANGELOG_3_2_0_S03: {
-  //   en: '',
-  // },
+  CHANGELOG_3_2_0_S01: {
+    en: (ia) => <>Fixed issue where langutil will return {ia} as false when there is no directly matching language in dictionary, even though a detector is provided.</>,
+  },
+  CHANGELOG_3_2_0_S02: {
+    en: ({ ad }) => <>New {ad} method that allows you to lazy load your dictionary efficiently.</>,
+  },
+  CHANGELOG_3_2_0_S03: {
+    en: ({ ggl }) => <>New {ggl} function that allows you to get the auto-detected language without actually switching the language.</>,
+  },
+  CHANGELOG_3_2_0_S04: {
+    en: ({ cc, pc, kc, sc, mc }) => <>Added more casing styles: {cc}, {pc}, {kc}, {sc}, {mc}</>,
+  },
+  CHANGELOG_3_2_0_S05: {
+    en: ({ cd, luda, ck }) => <>New {cd} method in {luda}, this can be used to convert dictionary from v2 (declared as array using {ck}) to the newer structure (declared as plain JS object).</>,
+  },
 
   // 3.1.3
   CHANGELOG_3_1_3_S01: {
