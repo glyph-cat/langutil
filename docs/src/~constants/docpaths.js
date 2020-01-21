@@ -31,9 +31,11 @@ const DOCPATHS = {
     api: {
       init: api(3)('init'),
       setDictionary: api(3)('set-dictionary'),
+      appendDictionary: api(3)('append-dictionary'),
       setLanguage: api(3)('set-language'),
       localize: api(3)('localize'),
       langmap: api(3)('langmap'),
+      getGuidedLanguage: api(3)('get-guided-language'),
       getCurrentLanguage: api(3)('get-current-language'),
       getDefinedLanguages: api(3)('get-defined-languages'),
       autoDetect: api(3)('auto-detect'),
@@ -46,6 +48,7 @@ const DOCPATHS = {
       localizable: api(3)('localizable'),
       withLang: api(3)('with-lang'),
       useLang: api(3)('use-lang'),
+      convertDictionary: api(3)('convert-dictionary'),
     },
 
     _internal: {

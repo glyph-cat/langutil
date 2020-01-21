@@ -1,11 +1,55 @@
 import React from 'react'
 import { localize } from 'langutil'
-import { Code } from '~components/document'
+import { Code, CodeLink } from '~components/document'
+import { DOCPATHS } from '~constants'
 import { withProps } from '~modules'
+// Use <Code> for deprecated APIS and <CodeLink> for the rest
 
 export default () => ({
   title: 'v3',
   data: [
+    {
+      title: '3.2.0',
+      data: [
+        localize({
+          keyword: 'CHANGELOG_3_2_0_S01',
+          transform: withProps({
+            is: <CodeLink to={DOCPATHS.v3.api.isAuto}>isAuto()</CodeLink>
+          })
+        }),
+        localize({
+          keyword: 'CHANGELOG_3_2_0_S02',
+          transform: withProps({
+            ad: <CodeLink to={DOCPATHS.v3.api.appendDictionary}>appendDictionary()</CodeLink>
+          })
+        }),
+        localize({
+          keyword: 'CHANGELOG_3_2_0_S03',
+          transform: withProps({
+            ggl: <CodeLink to={DOCPATHS.v3.api.getGuidedLanguage}>getGuidedLanguage()</CodeLink>
+          })
+        }),
+        localize({
+          keyword: 'CHANGELOG_3_2_0_S04',
+          transform: withProps({
+            cc: <Code>'camelCase'</Code>,
+            pc: <Code>'PascalCase'</Code>,
+            kc: <Code>'kebab-case'</Code>,
+            sc: <Code>'snake_case'</Code>,
+            mc: <Code>'MACRO_CASE'</Code>
+          })
+        }),
+        localize({
+          keyword: 'CHANGELOG_3_2_0_S05',
+          transform: withProps({
+            cd: <CodeLink to={DOCPATHS.v3.api.convertDictionary}>convertDictionary</CodeLink>,
+            luda: <Code>'langutil/dev-additions'</Code>,
+            ck: <Code>createKey()</Code>
+          })
+        }),
+        localize('CHANGELOG_CODE_OPTIMIZATIONS'),
+      ]
+    },
     {
       title: '3.1.3',
       data: [
