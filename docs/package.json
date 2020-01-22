@@ -10,7 +10,6 @@
   "langutil": "file:langutil-3.2.0-preview-05.tgz",
   "react": "^16.10.2",
   "react-dom": "^16.10.2",
-  "react-helmet": "^5.2.1",
   "react-kawaii": "^0.14.4",
   "react-on-screen": "^2.1.1",
   "react-redux": "^7.1.1",

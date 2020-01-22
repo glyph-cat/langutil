@@ -1,23 +1,14 @@
 import React, { useState, useEffect, useRef } from 'react'
-// import Helmet from 'react-helmet'
 import langutil, { AUTO_DETECT } from 'langutil'
 import { useMediaQuery } from '@material-ui/core'
 import AppBoundary from '~boundaries/AppBoundary'
 import { STRINGS, THEMES } from '~constants'
 import ThemeContext from '~contexts/ThemeContext'
-import VersionCheckContext from '~contexts/VersionCheckContext'
-import useVersionCheckEffect from '~hooks/useVersionCheckEffect'
+// import VersionCheckContext from '~contexts/VersionCheckContext'
+// import useVersionCheckEffect from '~hooks/useVersionCheckEffect'
 import dict from '~localizations'
 import Navigator from '~navigator'
 import { bridge } from '~modules'
-
-// if (process.env.NODE_ENV !== 'production') {
-//   let head = document.getElementsByTagName('head')[0]
-//   let script = document.createElement('script')
-//   script.type = 'text/javascript'
-//   script.src = 'http://localhost:8097'
-//   head.appendChild(script)
-// }
 
 let initedFromPref = false
 try {
@@ -35,8 +26,8 @@ if (!initedFromPref) {
 function App() {
 
   // Package version check
-  const [latestVersion, setLatestVersion] = useState(STRINGS.labelWaiting)
-  useVersionCheckEffect((latestVersion) => { setLatestVersion(latestVersion) })
+  // const [latestVersion, setLatestVersion] = useState(STRINGS.labelWaiting)
+  // useVersionCheckEffect((latestVersion) => { setLatestVersion(latestVersion) })
 
   // Light/Dark appearance
   const localStorageAppearance = useRef(localStorage.getItem(STRINGS.userPrefAppearance) || null)
@@ -73,11 +64,11 @@ function App() {
     <>
       <Styles theme={themeToUse} />
       <AppBoundary>
-        <VersionCheckContext.Provider value={latestVersion}>
+        {/* <VersionCheckContext.Provider value={latestVersion}> */}
           <ThemeContext.Provider value={themeToUse}>
             <Navigator />
           </ThemeContext.Provider>
-        </VersionCheckContext.Provider>
+        {/* </VersionCheckContext.Provider> */}
       </AppBoundary>
     </>
   )
