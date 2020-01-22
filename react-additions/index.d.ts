@@ -1,20 +1,5 @@
 import * as React from 'react';
 
-/**
- * @description Hook function that allows your existing components to listen for changes in langutil and update themselves accordingly.
- */
-export function useLang(): LangStateSpecs;
-
-/**
- * @description A Higher-order component that allows your existing components to listen for changes in langutil and update themselves accordingly.
- * At the same time, a `langState` prop will provided to the component.
- */
-export function withLang(WrappedComponent: (
-  props: {
-    langState: LangStateSpecs
-  }
-) => React.Component<{}>): React.ReactElement<{}>;
-
 interface LangStateSpecs {
   /**
    * @description Was auto detection being used?
@@ -25,6 +10,39 @@ interface LangStateSpecs {
    */
   lang: string
 }
+
+interface WithLangOptions {
+  /**
+   * @description Customize your debugging experience by giving your component a custom name.
+   */
+  displayName?: string,
+  /**
+   * @description Set this to true to allow ref forwarding.
+   */
+  forwardRef?: boolean,
+}
+
+type LocalizableCasings =
+  | 'lowercase'
+  | 'localeLowercase'
+  | 'uppercase'
+  | 'localeUppercase'
+  | 'titleCase'
+  | 'sentenceCase'
+
+/**
+ * @description Hook function that allows your existing components to listen for changes in langutil and update themselves accordingly.
+ */
+export function useLang(): LangStateSpecs;
+
+/**
+ * @description A Higher-order component that allows your existing components to listen for changes in langutil and update themselves accordingly.
+ * At the same time, a `langState` prop will provided to the component.
+ */
+export function withLang(
+  WrappedComponent: (props: { langState: LangStateSpecs }) => React.Component<{}>,
+  options?: WithLangOptions
+): React.ReactElement<{}>;
 
 /**
  * @description A wrapper component for rendering HTML/React elements.
@@ -60,11 +78,3 @@ interface ReactLocalizableProps {
    */
   allowEmpty?: boolean;
 }
-
-type LocalizableCasings =
-  | 'lowercase'
-  | 'localeLowercase'
-  | 'uppercase'
-  | 'localeUppercase'
-  | 'titleCase'
-  | 'sentenceCase'

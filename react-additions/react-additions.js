@@ -21,8 +21,8 @@ function useLang() {
   return getLangState();
 }
 
-function withLang(WrappedComponent) {
-  const displayName = getDisplayName(WrappedComponent);
+function withLang(WrappedComponent, options) {
+  const displayName = options.displayName || getDisplayName(WrappedComponent);
   class WithLang extends Component {
     componentDidMount() { this.langRef = addListener(this.forceUpdate.bind(this)); }
     componentWillUnmount() { removeListener(this.langRef); }
@@ -42,7 +42,11 @@ function withLang(WrappedComponent) {
   try { hoist = require('hoist-non-react-statics'); } catch (e) { }
   if (typeof hoist === 'function') { hoist(WithLang, WrappedComponent); }
   WithLang.displayName = `withLang(${displayName})`;
-  return forwardRef((props, ref) => r(WithLang, { ...props, innerRef: ref }));
+  if (options.forwardRef) {
+    return forwardRef((props, ref) => r(WithLang, { ...props, innerRef: ref }));
+  } else {
+    return WithLang;
+  }
 }
 
 function getDisplayName(WrappedComponent) {
