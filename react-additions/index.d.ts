@@ -29,6 +29,11 @@ type LocalizableCasings =
   | 'localeUppercase'
   | 'titleCase'
   | 'sentenceCase'
+  | 'camelCase'
+  | 'pascalCase'
+  | 'kebabCase'
+  | 'snakeCase'
+  | 'macroCase'
 
 /**
  * @description Hook function that allows your existing components to listen for changes in langutil and update themselves accordingly.
