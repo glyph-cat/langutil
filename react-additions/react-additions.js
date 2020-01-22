@@ -1,4 +1,4 @@
-const { Component, createElement: r, forwardRef, useEffect, useState } = require('react');
+const { Component, createElement: r, forwardRef: f, useEffect, useState } = require('react');
 const { localize, isAuto, getCurrentLanguage, _INTERNALS: {
   addListener, removeListener, printWarning
 } } = require('langutil');
@@ -21,15 +21,15 @@ function useLang() {
   return getLangState();
 }
 
-function withLang(WrappedComponent, options) {
-  const displayName = options.displayName || getDisplayName(WrappedComponent);
+function withLang(WrappedComponent, { displayName, forwardRef }) {
+  const _displayName = displayName || getDisplayName(WrappedComponent);
   class WithLang extends Component {
     componentDidMount() { this.langRef = addListener(this.forceUpdate.bind(this)); }
     componentWillUnmount() { removeListener(this.langRef); }
     render() {
       const { langState, innerRef, ...otherProps } = this.props;
       if (langState) {
-        throw SyntaxError(`Duplicate prop found in <${displayName} />: \`langState\` is meant to be a prop passed down from \`withLang()\` but another prop with the same name was passed down from its parent.\n\nSolutions:\n • For class components, rename your prop\n • For functional components, use the \`useLang()\` hook instead and unwrap it from \`withLang()\`.`);
+        throw SyntaxError(`Duplicate prop found in <${_displayName} />: \`langState\` is meant to be a prop passed down from \`withLang()\` but another prop with the same name was passed down from its parent.\n\nSolutions:\n • For class components, rename your prop\n • For functional components, use the \`useLang()\` hook instead and unwrap it from \`withLang()\`.`);
       }
       return r(WrappedComponent, {
         langState: getLangState(),
@@ -41,9 +41,9 @@ function withLang(WrappedComponent, options) {
   let hoist;
   try { hoist = require('hoist-non-react-statics'); } catch (e) { }
   if (typeof hoist === 'function') { hoist(WithLang, WrappedComponent); }
-  WithLang.displayName = `withLang(${displayName})`;
-  if (options.forwardRef) {
-    return forwardRef((props, ref) => r(WithLang, { ...props, innerRef: ref }));
+  WithLang.displayName = `withLang(${_displayName})`;
+  if (forwardRef) {
+    return f((props, ref) => r(WithLang, { ...props, innerRef: ref }));
   } else {
     return WithLang;
   }
