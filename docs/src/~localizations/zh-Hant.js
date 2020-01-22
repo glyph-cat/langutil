@@ -83,18 +83,6 @@ export default {
   EXTERNAL_LINKS: '外部鏈接',
 
   FAQ: '常見問題',
-  FAQ_TITLE_001: '在 React Native 里需要 linking 嗎？',
-  FAQ_TITLE_002: '為什麼在 React Native 里被自動辨認語言和手機語言不同？',
-  FAQ_TITLE_003: '我能夠用當前設定以外的語言來做翻譯嗎？',
-  FAQ_TITLE_004: '用了 setLanguage 之後頁面需要刷新嗎？',
-  FAQ_CONTENT_001: <><b>不必。</b> Langutil 只依靠 JavaScript (和一點點 TypeScript)。也因為這樣，langutil 才能在瀏覽器里和 React Native 里任由地操作。</>,
-  FAQ_CONTENT_002: ({ ad, lu, luna }) => <>你很有可能是不小心使用到　{lu} 里的 {ad}。你必須使用 {luna} 的才是。要不然，langutil 反而會自動辨認調試器里的語言。</>,
-  FAQ_CONTENT_002_B: '我們會有這樣的安排是因為從瀏覽器里自動變人語言的方式和在 React Native 里的有所不同。此外，我們並不想把不相關的自動辨認程序編碼混進來添加處理器的負擔。',
-  FAQ_CONTENT_002_C: '如果是因為故障，請你向我們舉報，我們將會該事項進行研究並作出適當的調整。',
-  FAQ_CONTENT_003: ({ lm }) => <><b>是的</b>，你可以。通過 {lm}，你可以使用當前設定以外的語言來進行翻譯。</>,
-  FAQ_CONTENT_004: ({ wl, ul }) => <><b>不必。</b>只要你有使用 {wl} 或 {ul}，只要語言設置有被更換你的內容將會自動顯示出正確的翻譯內容</>,
-
-
   FOLDER_STRUCTURE: '文件夾構造',
   FOOTER_COPYRIGHT_YEAR_NAME: ' © {:year} {:name} 版權所有',
 
