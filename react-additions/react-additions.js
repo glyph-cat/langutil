@@ -32,7 +32,7 @@ function withLang(WrappedComponent, options) {
         throw SyntaxError(`Duplicate prop found in <${displayName} />: \`langState\` is meant to be a prop passed down from \`withLang()\` but another prop with the same name was passed down from its parent.\n\nSolutions:\n • For class components, rename your prop\n • For functional components, use the \`useLang()\` hook instead and unwrap it from \`withLang()\`.`);
       }
       return r(WrappedComponent, {
-        langState: langState ? langState : getLangState(),
+        langState: getLangState(),
         ref: innerRef,
         ...otherProps
       });
