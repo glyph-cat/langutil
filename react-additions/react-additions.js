@@ -21,7 +21,7 @@ function useLang() {
   return getLangState();
 }
 
-function withLang(WrappedComponent, options) {
+function withLang(WrappedComponent, options = {}) {
   const { displayName, forwardRef } = options;
   const _displayName = displayName || getDisplayName(WrappedComponent);
   class WithLang extends Component {
