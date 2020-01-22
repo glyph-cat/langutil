@@ -22,7 +22,7 @@ function useLang() {
 }
 
 function withLang(WrappedComponent, options = {}) {
-  const { displayName, forwardRef } = options;
+  const { displayName, forwardRef = true } = options;
   const _displayName = displayName || getDisplayName(WrappedComponent);
   class WithLang extends Component {
     componentDidMount() { this.langRef = addListener(this.forceUpdate.bind(this)); }
