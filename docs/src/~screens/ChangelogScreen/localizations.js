@@ -31,7 +31,7 @@ export default {
     en: ({ cd, luda, ck }) => <>New {cd} method in {luda}, this can be used to convert dictionary from v2 (declared as array using {ck}) to the newer structure (declared as plain JS object).</>,
   },
   CHANGELOG_3_2_0_S06: {
-    en: ({ wl, ir }) => <>Components wrapped in {wl} can now access the wrapped component's properties andmethods through the {ir} prop.</>,
+    en: ({ wl, op, fr, dn }) => <>{wl} now accepts a second {op} parameter with {fr} and {dn} as available configurations</>,
   },
 
   // 3.1.3

@@ -66,7 +66,9 @@ export default () => ({
               to={`${PATHS.docs}/${DOCPATHS.v3.api.withLang}`}
               children='withLang()'
             />,
-            ir: <Code>innerRef</Code>
+            op: <Code>options</Code>,
+            fr: <Code>forwardRef</Code>,
+            dn: <Code>displayName</Code>,
           })
         }),
         localize('CHANGELOG_CODE_OPTIMIZATIONS'),
