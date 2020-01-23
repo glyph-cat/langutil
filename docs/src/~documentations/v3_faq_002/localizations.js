@@ -1,10 +1,6 @@
+import React from 'react'
+
 export default {
-  FAQ_TITLE_002: {
-    en: 'Why is auto detection detecting the wrong language in React Native?',
-    ms: 'Mengapa \'auto detect\' memulangkan bahasa yang salah dalam React Native?',
-    'zh-Hans': '为什么在 React Native 里被自动辨认语言和手机语言不同？',
-    'zh-Hant': '為什麼在 React Native 里被自動辨認語言和手機語言不同？',
-  },
   FAQ_CONTENT_002: {
     en: ({ ad, lu, luna }) => <>You might have accidentally imported {ad} from {lu} instead of {luna}. By importing directly from {lu}, the language of your debugger is 'detected' instead.</>,
     'zh-Hans': ({ ad, lu, luna }) => <>你很有可能是不小心使用到　{lu} 里的 {ad}。你必须使用 {luna} 的才是。要不然，langutil 反而会自动辨认调试器里的语言。</>,

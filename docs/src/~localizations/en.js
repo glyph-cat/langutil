@@ -157,6 +157,11 @@ export default {
   FOLDER_STRUCTURE: 'Folder structure',
   FOOTER_COPYRIGHT_YEAR_NAME: 'Copyright © {:year} {:name}',
 
+  FAQ_TITLE_001: 'Is linking needed in React Native?',
+  FAQ_TITLE_002: 'Why is auto detection detecting the wrong language in React Native?',
+  FAQ_TITLE_003: 'Can I explicitly localize something in another language?',
+  FAQ_TITLE_004: 'Do I need to refresh my page/app after setLanguage?',
+
   GET_STARTED: 'Get started',
 
   HERES_HOW_IT_WORKS_NUTSHELL: 'Here\'s how it works in a nutshell',

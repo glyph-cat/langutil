@@ -59,6 +59,11 @@ export default {
   FAQ: 'Soalan Lazim',
   FOOTER_COPYRIGHT_YEAR_NAME: 'Hakcipta terpelihara {:year} © {:name}',
 
+  FAQ_TITLE_001: 'Adakah linking diperlukan dalam React Native?',
+  FAQ_TITLE_002: 'Mengapa \'auto detect\' memulangkan bahasa yang salah dalam React Native?',
+  FAQ_TITLE_003: 'Bolehkah saya membuat penterjemahan bahasa lain daripada bahasa yang sedang digunakan?',
+  FAQ_TITLE_004: 'Perlukah saya menyegarkan halaman/app saya selepas setLanguage?',
+
   GET_STARTED: 'Mula sekarang',
 
   HOME: 'Halaman Utama',
