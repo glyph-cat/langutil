@@ -86,6 +86,11 @@ export default {
   FOLDER_STRUCTURE: '文件夾構造',
   FOOTER_COPYRIGHT_YEAR_NAME: ' © {:year} {:name} 版權所有',
 
+  FAQ_TITLE_001: '在 React Native 里需要 linking 嗎？',
+  FAQ_TITLE_002: '為什麼在 React Native 里被自動辨認語言和手機語言不同？',
+  FAQ_TITLE_003: '我能夠用當前設定以外的語言來做翻譯嗎？',
+  FAQ_TITLE_004: '用了 setLanguage 之後頁面需要刷新嗎？',
+
   GET_STARTED: '立即開始',
 
   HERES_HOW_IT_WORKS_NUTSHELL: '主要操作方式如下',

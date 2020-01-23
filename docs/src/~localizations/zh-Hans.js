@@ -86,6 +86,11 @@ export default {
   FOLDER_STRUCTURE: '文件夹构造',
   FOOTER_COPYRIGHT_YEAR_NAME: ' © {:year} {:name} 版权所有',
 
+  FAQ_TITLE_001: '在 React Native 里需要 linking 吗？',
+  FAQ_TITLE_002: '为什么在 React Native 里被自动辨认语言和手机语言不同？',
+  FAQ_TITLE_003: '我能够用当前设定以外的语言来做翻译吗？',
+  FAQ_TITLE_004: '用了 setLanguage 之后页面需要刷新吗？',
+
   GET_STARTED: '立即开始',
 
   HERES_HOW_IT_WORKS_NUTSHELL: '主要操作方式如下',
