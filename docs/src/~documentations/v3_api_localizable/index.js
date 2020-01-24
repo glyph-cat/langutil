@@ -4,7 +4,7 @@ import { withLang } from 'langutil/react-additions'
 import { withProps } from '~modules'
 import CodeTitle from '~components/code-title'
 import { Body, Code, CodeLink } from '~components/document'
-import ParamList from '~components/param-list'
+import ParamList from '~fragments/param-list'
 import ReturnType from '~components/return-type'
 import DeprecationWarning from '~components/deprecation-warning'
 import { DOCPATHS, PATHS, STRINGS, VALUES } from '~constants'
@@ -66,9 +66,9 @@ export default withLang(() => {
           transform: withProps({
             renderAs: <Code>renderAs</Code>,
             locz: <Code>{'<Localizable />'}</Code>,
-            loc: <CodeLink to={`${PATHS.docs}/${DOCPATHS.v3.localize}`} children='localize()' />,
-            withL: <CodeLink to={`${PATHS.docs}/${DOCPATHS.v3.withLang}`} children='withLang()' />,
-            useL: <CodeLink to={`${PATHS.docs}/${DOCPATHS.v3.useLang}`} children='useLang()' />
+            loc: <CodeLink to={`${PATHS.docs}/${DOCPATHS.v3.api.localize}`} children='localize()' />,
+            withL: <CodeLink to={`${PATHS.docs}/${DOCPATHS.v3.api.withLang}`} children='withLang()' />,
+            useL: <CodeLink to={`${PATHS.docs}/${DOCPATHS.v3.api.useLang}`} children='useLang()' />
           })
         })}
       />

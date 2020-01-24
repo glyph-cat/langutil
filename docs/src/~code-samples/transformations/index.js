@@ -26,7 +26,7 @@ const Transformations = () => {
       <Line />
       <Line>
         <Type>console</Type>.<Func>log</Func>(<Var>transformed</Var>)
-        <Com>{` // ${localize({ keyword: 'HELLO_WORLD', transform: val => val.replace(/[aeiou]/gi, '*') })}`}</Com>
+        <Com>{` // ${localize({ keyword: 'DOCX_HELLO_WORLD_PRIMARY_VALUE', transform: val => val.replace(/[aeiou]/gi, '*') })}`}</Com>
       </Line>
     </CodeDisplay>
   )

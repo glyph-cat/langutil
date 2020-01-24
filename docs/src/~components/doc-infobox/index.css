@@ -1,0 +1,17 @@
+.doc-infobox-container {
+  border-radius: 0.5em;
+  display: grid;
+  gap: 0.5em;
+  grid-template-columns: auto 1fr;
+  margin-bottom: 1em;
+  padding: 1em;
+}
+
+.doc-infobox-icon {
+  font-size: 18pt;
+}
+
+.doc-infobox-content {
+  font-size: 14pt;
+  margin: 0;
+}

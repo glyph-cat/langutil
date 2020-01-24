@@ -1,22 +1,64 @@
-import React from 'react'
+import React /* , { useState, useContext, useEffect } */ from 'react'
 import { withRouter } from 'react-router-dom'
-import { withLang } from 'langutil/react-additions'
+import { appendDictionary, localize } from 'langutil'
+import { useLang } from 'langutil/react-additions'
+import AppendMeta from '~components/append-meta'
 import { H1, H2, Ul, Li, SectionBreak } from '~components/document'
 import FadeIntoView from '~components/fade-into-view'
-import { useScrollToSection } from '~custom-hooks'
-import { formatDomId } from '~modules'
-import getChangelogs from '~content/get-changelogs'
+// import Loader from '~components/loader'
+// import { STRINGS } from '~constants'
+// import VersionCheckContext from '~contexts/VersionCheckContext'
+import useScrollToSection from '~hooks/useScrollToSection'
+import getChangelogs from './get-changelogs'
+import localizations from './localizations'
 import './index.css'
 
 function ChangelogScreen({ match: { params: { subId } } }) {
+  useLang(); appendDictionary(localizations, 'chg-log-scn')
+  // const [changelogs, setChangelogs] = useState([])
+
+  // const latestVersion = useContext(VersionCheckContext)
+  // const latestDocumentedVersion = getChangelogs()[0].data[0].title
+  // useEffect(() => {
+  //   let finalChangelog = getChangelogs()
+  //   if (latestVersion.match(/\d+.\d+.\d+/) && latestDocumentedVersion !== latestVersion) {
+  //     finalChangelog[0].data.unshift({
+  //       title: latestVersion,
+  //       data: [localize('CHANGELOG_BRACKET_WILL_BE_UPDATED_SOON')]
+  //     })
+  //   }
+  //   setChangelogs(finalChangelog)
+  // }, [latestVersion, latestDocumentedVersion])
+
+  return (
+    <ChangelogRenderer
+      // changelogs={changelogs}
+      changelogs={getChangelogs()}
+      subId={subId}
+    />
+  )
+  // if (latestVersion === STRINGS.labelWaiting) {
+  //   return <Loader />
+  // } else {
+  //   return (
+  //     <ChangelogRenderer
+  //       changelogs={changelogs}
+  //       subId={subId}
+  //     />
+  //   )
+  // }
+}
+
+export default withRouter(ChangelogScreen)
+
+function ChangelogRenderer({ changelogs, subId }) {
   useScrollToSection(subId)
-  const changelogs = getChangelogs()
   let toRender = []
   for (let i = 0; i < changelogs.length; i++) {
     const { title: version, data } = changelogs[i]
     toRender.push(
       <FadeIntoView key={`h1-${i}`} once>
-        <H1 id={formatDomId(version)} children={version} />
+        <H1 id={version} children={version} />
       </FadeIntoView>
     )
     let majorVersionArray = []
@@ -24,7 +66,7 @@ function ChangelogScreen({ match: { params: { subId } } }) {
       const { title, data: logs } = data[j]
       majorVersionArray.push(
         <FadeIntoView key={`h2-${j}`} once>
-          <H2 id={formatDomId(title)} className='changelog-scn-h2' children={title} />
+          <H2 id={title} className='changelog-scn-h2' children={title} />
         </FadeIntoView>
       )
       let minorVersionArray = []
@@ -45,7 +87,10 @@ function ChangelogScreen({ match: { params: { subId } } }) {
     toRender.push(majorVersionArray)
     toRender.push(<SectionBreak key={`sb-${i}`} />)
   }
-  return <div className='changelog-scn-container' children={toRender} />
+  return (
+    <>
+      <AppendMeta title={localize('CHANGELOG')} />
+      <div className='changelog-scn-container' children={toRender} />
+    </>
+  )
 }
-
-export default withRouter(withLang(ChangelogScreen))

@@ -1,0 +1,14 @@
+.glossary-desc-container {
+  display: grid;
+  padding: 1em;
+  border-radius: 0.25em;
+}
+
+.glossary-desc-text {
+  font-size: 1em;
+}
+
+.glossary-text {
+  font-size: inherit;
+  text-decoration: underline dashed 1px;
+}

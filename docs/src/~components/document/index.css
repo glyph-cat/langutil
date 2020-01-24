@@ -1,19 +1,31 @@
+.document-header-copy-button {
+  cursor: pointer;
+  color: #888888;
+  margin-inline-start: 0.5em;
+  margin-inline-end: 0.5em;
+  font-size: 18pt;
+}
+
+.document-header-copy-button:active {
+  opacity: 0.5;
+}
+
 .document-h1 {
   margin: 0;
   margin-bottom: 0.5em;
-  font-size: 26pt;
+  font-size: 2.15em;
   font-weight: bold;
 }
 
 .document-h2 {
   margin: 0;
   margin: 0.5em 0;
-  font-size: 22pt;
+  font-size: 1.825em;
   font-weight: bold;
 }
 
 .document-body {
-  font-size: 16pt;
+  font-size: 1.325em;
   line-height: 150%;
   margin: 0;
   margin-bottom: 0.25em;
@@ -23,7 +35,7 @@
   background-color: #ff2b8011;
   border-radius: 0.25em;
   color: #ff2b80;
-  font-size: 14pt;
+  font-size: 0.78em;
   font-style: normal;
   padding: 0.1em 0.25em 0.1em 0.25em;
 }
@@ -43,7 +55,7 @@
 }
 
 .document-thead {
-  background-color: #dddddd;
+  /* background-color: #dddddd; */
 }
 
 .document-td {

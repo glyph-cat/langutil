@@ -5,7 +5,7 @@ import Navbar from '~components/navbar'
 import Footer from '~components/footer'
 import { PATHS } from '~constants'
 
-const Navigator = () => {
+function Navigator() {
   return (
     <Router>
       <Navbar />

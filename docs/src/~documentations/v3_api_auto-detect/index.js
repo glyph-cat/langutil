@@ -1,10 +1,11 @@
 import React from 'react'
 import { localize } from 'langutil'
 import { withLang } from 'langutil/react-additions'
-import { Body, Code } from '~components/document'
+import { Body, CodeLink } from '~components/document'
 import CodeTitle from '~components/code-title'
 import CodeSamples from '~code-samples'
 import { withProps } from '~modules'
+import { PATHS, DOCPATHS } from '~constants'
 
 export default withLang(() => {
   return (
@@ -14,7 +15,16 @@ export default withLang(() => {
 
       <Body children={localize({
         keyword: 'API_DESC_AUTO_DETECT',
-        transform: withProps({ init: <Code>init()</Code>, setL: <Code>setLanguage()</Code> })
+        transform: withProps({
+          init: <CodeLink
+            to={`${PATHS.docs}/${DOCPATHS.v3.api.init}`}
+            children='init()'
+          />,
+          setL: <CodeLink
+            to={`${PATHS.docs}/${DOCPATHS.v3.api.setLanguage}`}
+            children='setLanguage()'
+          />,
+        })
       })} />
 
       <CodeSamples.ApiAutoDetect />

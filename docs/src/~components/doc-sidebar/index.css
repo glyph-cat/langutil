@@ -1,11 +1,9 @@
 .docsidebar-container {
-  background-image: linear-gradient(#ddeeff 0%, #ffccee 200%);
   display: grid;
   height: 100vh;
   grid-template-rows: auto 1fr;
   position: fixed;
   top: 54px;
-  width: 17.5em;
 }
 
 .docsidebar-subcontainer {
@@ -13,17 +11,25 @@
   display: grid;
   gap: 0.5em;
   justify-items: start;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
 .doc-sidebar-sectionTitle {
-  color: #00446677;
   margin: 0;
   font-size: 0.9em;
   font-weight: bold;
 }
 
 .doc-sidebar-link {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.25em;
   text-decoration: none;
   margin-inline-start: 0.5em;
+}
+
+.docsidebar-mini-tabber-container {
+  display: grid;
+  justify-items: center;
+  width: 100%;
 }

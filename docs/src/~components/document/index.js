@@ -1,14 +1,43 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
+import copy from 'copy-to-clipboard'
+import { localize } from 'langutil'
+import { formatDomId } from '~modules'
 import './index.css'
 
-export const H1 = ({ className, children, ...props }) => (
-  <h1 className={['document-h1', className].join(' ')} children={children} {...props} />
-)
+const HeaderCopyButton = ({ text, show }) => {
+  return (
+    <i
+      className='material-icons document-header-copy-button'
+      children='file_copy'
+      onClick={() => {
+        const lastItemInLink = window.location.href.split('/').pop()
+        let link = window.location.href
+        if (lastItemInLink !== text) { link += `/${text}` }
+        // So that unnecessary parameters can be avoided
+        // http://localhost:3000/#/docs/v3/basic/apply-casings/apply-casings // BAD
+        // http://localhost:3000/#/docs/v3/basic/apply-casings // GOOD
+        copy(link)
+      }}
+      style={{ color: show ? '' : 'transparent' }}
+      title={localize('CLICK_TO_COPY_LINK')}
+    />
+  )
+}
 
-export const H2 = ({ className, children, ...props }) => (
-  <h2 className={['document-h2', className].join(' ')} children={children} {...props} />
-)
+const HeaderBase = ({ type = 'h1', className, children, id, ...props }) => {
+  const [hover, setHover] = useState(false)
+  return React.createElement(type, {
+    className: [`document-${type}`, className].join(' '),
+    ...props,
+    id: formatDomId(id),
+    onMouseEnter: () => { setHover(true) },
+    onMouseLeave: () => { setHover(false) },
+  }, <>{children}<HeaderCopyButton text={id} show={hover} /></>)
+}
+
+export const H1 = (props) => <HeaderBase {...props} type='h1' />
+export const H2 = (props) => <HeaderBase {...props} type='h2' />
 
 export const Body = ({ className, ...props }) => (
   <p className={['document-body', className].join(' ')} {...props} />
@@ -40,11 +69,29 @@ export const Code = ({ className, ...props }) => (
   <code className={['document-code code', className].join(' ')} {...props} />
 )
 
-export const CodeLink = ({ className, to, ...props }) => (
-  <Link className='document-code-link' to={to}>
-    <code className={['document-code code', className].join(' ')} {...props} />
-  </Link>
-)
+export const CodeLink = ({ className, to, href, ...props }) => {
+  const child = <code className={['document-code code', className].join(' ')} {...props} />
+  if (href) {
+    return (
+      <a
+        {...props}
+        className='document-code-link'
+        children={child}
+        href={href}
+        target='_blank'
+        rel='noopener noreferrer'
+      />
+    )
+  } else {
+    return (
+      <Link
+        className='document-code-link'
+        children={child}
+        to={to}
+      />
+    )
+  }
+}
 
 export const CodeA = ({ className, href, ...props }) => (
   <a className='document-code-link' href={href} target='_blank' rel='noopener noreferrer'>

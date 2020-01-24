@@ -4,8 +4,9 @@ import { withLang } from 'langutil/react-additions'
 import { Body } from '~components/document'
 import CodeSamples from '~code-samples'
 import CodeTitle from '~components/code-title'
-import ParamList from '~components/param-list'
+import ParamList from '~fragments/param-list'
 import ReturnType from '~components/return-type'
+import { CASING_PRESETS } from '~documentations/v3_api_casings'
 
 export default withLang(() => {
 
@@ -24,7 +25,7 @@ export default withLang(() => {
       optional: true
     },
     casing: {
-      oneOf: ['lowerCase', 'localeLowerCase', 'localeUpperCase', 'sentenceCase', 'titleCase', 'upperCase'],
+      oneOf: CASING_PRESETS,
       desc: localize('API_PARAM_CASING'),
       optional: true
     },

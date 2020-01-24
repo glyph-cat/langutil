@@ -1,9 +1,10 @@
 .navbar-container {
-  background-color: #212833;
   display: grid;
   position: fixed;
   top: 0%;
   width: 100vw;
+  overflow-x: auto;
+  overflow-y: hidden;
   z-index: 1;
 }
 
@@ -15,8 +16,12 @@
 }
 
 .navbar-navlink-container:hover {
-  background-color: #ffffff11;
+  background-color: #ddeeff22;
   transition-duration: 0.1s;
+}
+
+.navbar-navlink-container:focus {
+  background-color: #ddeeff22;
 }
 
 .navbar-navlink-container:active {
@@ -56,7 +61,6 @@
   align-items: center;
   display: grid;
   column-gap: 0.5em;
-  grid-template-columns: repeat(2, auto);
   justify-items: center;
   padding: 0 1em 0 1em;
   -moz-column-gap: 0.5em;
@@ -71,6 +75,7 @@
   color: white;
   font-size: 1.5em;
   margin: 0;
+  margin-bottom: 0.1em;
   font-family: "Work Sans", sans-serif;
 }
 
@@ -93,6 +98,39 @@
 }
 
 .navbar-navlink-indicator {
-  background-color: #aaddff;
   transition-duration: 0.15s;
+}
+
+.navbar-menu-container {
+  min-width: 250px;
+  max-height: 75vh;
+  overflow: hidden;
+  overflow-y: auto;
+  position: fixed;
+  z-index: 1;
+}
+
+.navbar-menu-underlay {
+  height: 100%;
+  position: fixed;
+  width: 100%;
+  z-index: 1;
+}
+
+.navbar-new-item {
+  animation-name: newItem;
+  animation-iteration-count: infinite;
+  animation-duration: 1s;
+}
+
+@keyframes newItem {
+  0% {
+    background-color: transparent;
+  }
+  50% {
+    background-color: #ffffff44;
+  }
+  100% {
+    background-color: transparent;
+  }
 }

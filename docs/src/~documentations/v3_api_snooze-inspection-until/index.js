@@ -4,7 +4,7 @@ import { withLang } from 'langutil/react-additions'
 import { Body, Code } from '~components/document'
 import CodeTitle from '~components/code-title'
 import DeprecationWarning from '~components/deprecation-warning'
-import ParamList from '~components/param-list'
+import ParamList from '~fragments/param-list'
 import { withProps } from '~modules'
 import { VALUES } from '~constants'
 
