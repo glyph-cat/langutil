@@ -68,7 +68,6 @@ export default {
   BY_OBJECT: 'By Object',
 
   CASING: 'Casing',
-  CASING_EXAMPLE_SENTENCE: 'the quiCk brown foX jUmped over The fence.',
   CASINGS: 'Casings',
   CHANGELOG: 'Changelog',
 
@@ -246,6 +245,7 @@ export default {
   VIEW_ON_GITHUB: 'View on GitHub',
 
   WEB: 'Web',
+  WHERE_X_IS_ONE_OF_BELOW_COLON: 'Where x is one of the items below:',
 
   YOU_NEED_IMPORT_AD_IF_USING_RN: ({ dect, add, rn }) => <>You need to import {dect} from {add} in {rn}</>,
 

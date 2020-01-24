@@ -1,6 +1,6 @@
 import React from 'react'
 import { localize } from 'langutil'
-import CodeDisplay, { Def, Func, Key, Line, Str, Var, Com, Mark } from '~components/code-display'
+import CodeDisplay, { Def, Func, Key, Line, Str, Var } from '~components/code-display'
 
 function ApiConvertDictionary() {
   return (

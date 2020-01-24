@@ -1,22 +1,16 @@
 import React from 'react'
-import { localize } from 'langutil'
+import { Casings, localize } from 'langutil'
 import { Code, Table, THead, Th, TBody, Tr, Td } from '~components/document'
+import { CASING_PRESETS } from '~documentations/v3_api_casings'
 
 function CasingExamples() {
-  const casings = [
-    'localeLowerCase',
-    'lowerCase',
-    'localeUpperCase',
-    'upperCase',
-    'sentenceCase',
-    'titleCase',
-  ]
+  const sample = 'hello world'
   let toRender = []
-  for (let i = 0; i < casings.length; i++) {
+  for (let i = 0; i < CASING_PRESETS.length; i++) {
     toRender.push(
       <Tr key={i}>
-        <Td><Code>'{casings[i]}'</Code></Td>
-        <Td>{localize({ keyword: 'CASING_EXAMPLE_SENTENCE', casing: casings[i] })}</Td>
+        <Td><Code>'{CASING_PRESETS[i]}'</Code></Td>
+        <Td>{Casings[CASING_PRESETS[i]](sample)}</Td>
       </Tr>
     )
   }
@@ -31,7 +25,7 @@ function CasingExamples() {
       <TBody>
         <Tr>
           <Td children={localize('ORIGINAL_BRACKET')} />
-          <Td children={localize('CASING_EXAMPLE_SENTENCE')} />
+          <Td children={sample} />
         </Tr>
         {toRender}
       </TBody>

@@ -1,5 +1,7 @@
+import React from 'react'
+
 export default {
   API_DESC_CASINGS: {
-    en: 'Casing styles that will be applied to if the localized value is a string.',
+    en: ({ l }) => <>Apply casing styles that are used by {l} but without calling it.</>,
   },
 }
