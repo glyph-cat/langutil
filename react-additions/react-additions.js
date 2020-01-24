@@ -1,4 +1,4 @@
-const { Component, createElement, useState, useEffect } = require('react');
+const { Component, createElement: r, forwardRef: f, useEffect, useState } = require('react');
 const { localize, isAuto, getCurrentLanguage, _INTERNALS: {
   addListener, removeListener, printWarning
 } } = require('langutil');
@@ -8,30 +8,33 @@ const getLangState = () => ({ auto: isAuto(), lang: getCurrentLanguage() });
 
 function useLang() {
   if (typeof useState !== 'function') {
-    throw ReferenceError('You must use React ≥16.8 in order to use `useLang()`');
+    throw ReferenceError('React ≥16.8 is required to use hooks.');
   }
   const [state, setState] = useState({ langRef: null });
   const { langRef } = state;
+  const langRefIsNull = langRef === null;
   useEffect(() => {
     let newLangRef = addListener(() => { setState({ langRef }); });
     setState({ langRef: newLangRef });
     return () => { removeListener(newLangRef); };
-  }, [langRef === null]);
+  }, [langRefIsNull]);
   return getLangState();
 }
 
-function withLang(WrappedComponent) {
-  const displayName = getDisplayName(WrappedComponent);
+function withLang(WrappedComponent, options = {}) {
+  const { displayName, forwardRef = true } = options;
+  const _displayName = displayName || getDisplayName(WrappedComponent);
   class WithLang extends Component {
     componentDidMount() { this.langRef = addListener(this.forceUpdate.bind(this)); }
     componentWillUnmount() { removeListener(this.langRef); }
     render() {
-      const { langState, ...otherProps } = this.props;
+      const { langState, innerRef, ...otherProps } = this.props;
       if (langState) {
-        throw SyntaxError(`Duplicate prop found in <${displayName} />: \`langState\` is meant to be a prop passed down from \`withLang()\` but another prop with the same name was passed down from its parent.\n\nSolutions:\n • For class components, rename your prop\n • For functional components, use the \`useLang()\` hook instead and unwrap it from \`withLang()\`.`);
+        throw SyntaxError(`Duplicate prop found in <${_displayName} />: \`langState\` is meant to be a prop passed down from \`withLang()\` but another prop with the same name was passed down from its parent.\n\nSolutions:\n • For class components, rename your prop\n • For functional components, use the \`useLang()\` hook instead and unwrap it from \`withLang()\`.`);
       }
-      return createElement(WrappedComponent, {
-        langState: langState ? langState : getLangState(),
+      return r(WrappedComponent, {
+        langState: getLangState(),
+        ref: innerRef,
         ...otherProps
       });
     }
@@ -39,9 +42,13 @@ function withLang(WrappedComponent) {
   let hoist;
   try { hoist = require('hoist-non-react-statics'); } catch (e) { }
   if (typeof hoist === 'function') { hoist(WithLang, WrappedComponent); }
-  WithLang.displayName = `withLang(${displayName})`;
-  return WithLang;
-};
+  WithLang.displayName = `withLang(${_displayName})`;
+  if (forwardRef) {
+    return f((props, ref) => r(WithLang, { ...props, innerRef: ref }));
+  } else {
+    return WithLang;
+  }
+}
 
 function getDisplayName(WrappedComponent) {
   try {
@@ -72,7 +79,7 @@ function Localizable({
   if (renderAs === 'value') {
     return child;
   } else {
-    return createElement(renderAs, otherProps, child);
+    return r(renderAs, otherProps, child);
   }
 }
 

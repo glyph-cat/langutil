@@ -2,7 +2,7 @@
  * @author chin98edwin
  * @copyright Copyright (c) 2018 - present, chin98edwin
  * @description Localization for JavaScript made simple.
- * @version 3.1.2
+ * @version 3.2.0
  **/
 
 declare namespace langutil {
@@ -20,6 +20,14 @@ declare namespace langutil {
    * @param dict The object containing all localizations.
    */
   function setDictionary(dict: object): void;
+
+  /**
+   * @description Merges new localizations to the existing dictionary.
+   * @param dict The object containing the new localizations to merge.
+   * @param identifier An optional short string representing the appended content. This allows langutil to skip re-appending the same content when the same scope of code is being executed, giving a small performance boost in some cases.
+   * @throws ReferenceError, TypeError
+   */
+  function appendDictionary(dict: object, identifier?: string): void;
 
   /**
    * @description Sets the language.
@@ -61,6 +69,7 @@ declare namespace langutil {
     /**
      * @description Apply a transformation to the localized value.
      */
+    transform?: (localizedValue: unknown) => unknown
   }
 
   /**
@@ -99,6 +108,14 @@ declare namespace langutil {
      */
     lang: string,
   } & LocalizeProps): unknown;
+
+  /**
+   * @description Get the auto-detected language. If no matching language exists in the dictionary, the closest possible language will be used instead.
+   * @param detector A langutil built-in function, pass `AUTO_DETECT` into this parameter to allow auto-language detection.
+   * @throws ReferenceError, TypeError
+   * @returns The string representation of the language.
+   */
+  function getGuidedLanguage(detector: Function): string;
 
   /**
    * @description Get the currently set language.
@@ -155,6 +172,56 @@ declare namespace langutil {
   function isAuto(): boolean;
 
   /**
+   * @description Apply casing styles that are used by `localize()` but without calling it.
+   */
+  namespace Casings {
+    /**
+     * @example hello world
+     */
+    function lowerCase(value: string): string
+    /**
+     * @example HELLO WORLD
+     */
+    function upperCase(value: string): string
+    /**
+     * @example hello world
+     */
+    function localeLowerCase(value: string): string
+    /**
+     * @example HELLO WORLD
+     */
+    function localeUpperCase(value: string): string
+    /**
+     * @example Hello world
+     */
+    function sentenceCase(value: string): string
+    /**
+     * @example Hello World
+     */
+    function titleCase(value: string): string
+    /**
+     * @example helloWorld
+     */
+    function camelCase(value: string): string
+    /**
+     * @example HelloWorld
+     */
+    function pascalCase(value: string): string
+    /**
+     * @example hello-world
+     */
+    function kebabCase(value: string): string
+    /**
+     * @example hello_world
+     */
+    function snakeCase(value: string): string
+    /**
+     * @example HELLO_WORLD
+     */
+    function macroCase(value: string): string
+  }
+
+  /**
    * @description Creates a key for your dictionary.
    * @param keyword A short string representing the localized value.
    * @param localizations The translation.
@@ -204,6 +271,11 @@ type Casings =
   | 'sentenceCase'
   | 'titleCase'
   | 'upperCase'
+  | 'camelCase'
+  | 'pascalCase'
+  | 'kebabCase'
+  | 'snakeCase'
+  | 'macroCase'
 
 type LanguageCodes = 'af' | 'sq' | 'ar-sa' | 'ar-iq' | 'ar-eg' | 'ar-ly' | 'ar-dz' | 'ar-ma' | 'ar-tn' | 'ar-om' | 'ar-ye' | 'ar-sy' | 'ar-jo' | 'ar-lb' | 'ar-kw' | 'ar-ae' | 'ar-bh' | 'ar-qa' | 'eu' | 'bg' | 'be' | 'ca' | 'zh-tw' | 'zh-cn' | 'zh-hk' | 'zh-sg' | 'hr' | 'cs' | 'da' | 'nl' | 'nl-be' | 'en' | 'en-us' | 'en-gb' | 'en-au' | 'en-ca' | 'en-nz' | 'en-ie' | 'en-za' | 'en-jm' | 'en' | 'en-bz' | 'en-tt' | 'et' | 'fo' | 'fa' | 'fi' | 'fr' | 'fr-be' | 'fr-ca' | 'fr-ch' | 'fr-lu' | 'gd' | 'gd-ie' | 'de' | 'de-ch' | 'de-at' | 'de-lu' | 'de-li' | 'el' | 'he' | 'hi' | 'hu' | 'is' | 'id' | 'it' | 'it-ch' | 'ja' | 'ko' | 'ko' | 'lv' | 'lt' | 'mk' | 'mt' | 'no' | 'no' | 'pl' | 'pt-br' | 'pt' | 'rm' | 'ro' | 'ro-mo' | 'ru' | 'ru-mo' | 'sz' | 'sr' | 'sr' | 'sk' | 'sl' | 'sb' | 'es' | 'es' | 'es-ar' | 'es-gt' | 'es-cr' | 'es-pa' | 'es-do' | 'es-mx' | 'es-ve' | 'es-co' | 'es-pe' | 'es-ec' | 'es-cl' | 'es-uy' | 'es-py' | 'es-bo' | 'es-sv' | 'es-hn' | 'es-ni' | 'es-pr' | 'sx' | 'sv' | 'sv-fi' | 'th' | 'ts' | 'tn' | 'tr' | 'uk' | 'ur' | 've' | 'vi' | 'xh' | 'ji' | 'zu';
 

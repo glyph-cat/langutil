@@ -14,6 +14,13 @@
  */
 export function inspectDict(dict: object): boolean;
 
+/**
+ * @description Helps convert legacy structured dictionaries into newer ones.
+ * You should use JSON.stringify on the returned value of this function and save it as your actual dictionary.
+ * @returns The dictionary in new format, structured by keywords.
+ */
+export function convertDict(dict: Array<object>): object;
+
 // /**
 //  * @description
 //  * @returns Does the project contain any error
