@@ -69,6 +69,7 @@ declare namespace langutil {
     /**
      * @description Apply a transformation to the localized value.
      */
+    transform?: (localizedValue: unknown) => unknown
   }
 
   /**
