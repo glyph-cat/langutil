@@ -26,10 +26,10 @@ const ApiAutoDetect = () => (
       <Com>{`// ${localize('USAGE_OF_OTHER_API_UNCHANGED')}`}</Com>
     </Line>
     <Line>
-      <Func>init</Func>(<Var>dictionary</Var>, <Str>'{localize('DOC_EXAMPLE_PRIMARY_LANG')}'</Str>, <Var>AUTO_DETECT</Var>)
+      <Func>init</Func>(<Var>dictionary</Var>, <Str>'{localize('DOCX_PRIMARY_LANG')}'</Str>, <Var>AUTO_DETECT</Var>)
     </Line>
     <Line>
-      <Func>setLanguage</Func>(<Str>'{localize('DOC_EXAMPLE_PRIMARY_LANG')}'</Str>, <Var>AUTO_DETECT</Var>)
+      <Func>setLanguage</Func>(<Str>'{localize('DOCX_PRIMARY_LANG')}'</Str>, <Var>AUTO_DETECT</Var>)
     </Line>
   </CodeDisplay>
 )

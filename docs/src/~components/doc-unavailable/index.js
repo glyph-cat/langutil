@@ -2,7 +2,7 @@ import React from 'react'
 import { File } from 'react-kawaii'
 import { localize } from 'langutil'
 import { VALUES } from '~constants'
-import { H1 } from '~components/document'
+import { H1, Body } from '~components/document'
 import ReactKawaiiPromoText from '~components/react-kawaii-promo-text'
 import './index.css'
 
@@ -15,6 +15,7 @@ function DocUnavailable() {
           className='doc-unavailable-text'
           children={localize('THIS_DOC_IS_UNAVAILABLE')}
         />
+        <Body children={localize('DOC_UNAVAILABLE_DESC')} />
         <ReactKawaiiPromoText />
       </div>
     </div>

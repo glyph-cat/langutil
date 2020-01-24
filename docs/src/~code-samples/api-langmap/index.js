@@ -3,17 +3,17 @@ import { localize } from 'langutil'
 import CodeDisplay, { Com, Func, Line, Str, Var } from '~components/code-display'
 
 const ApiLangmap = () => {
-  const lang2 = localize('DOC_EXAMPLE_SECONDARY_LANG')
-  const keyword = localize('DOC_EXAMPLE_HELLO_KEYWORD')
-  const value2 = localize('DOC_EXAMPLE_HELLO_VALUE_SECONDARY')
+  const lang2 = localize('DOCX_SECONDARY_LANG')
+  const keyword = 'HELLO'
+  const value2 = localize('DOCX_HELLO_VALUE_SECONDARY')
   return (
     <CodeDisplay title={localize('HOW_TO_USE_API', ['langmap()'])}>
       <Line>
-        <Func>setLanguage</Func>(<Str>'{localize('DOC_EXAMPLE_PRIMARY_LANG')}'</Str>)
+        <Func>setLanguage</Func>(<Str>'{localize('DOCX_PRIMARY_LANG')}'</Str>)
       </Line>
       <Line>
         <Func>localize</Func>(<Str>'{keyword}'</Str>)
-        <Com>{' // '}{localize('DOC_EXAMPLE_HELLO_VALUE_PRIMARY')}</Com>
+        <Com>{' // '}{localize('DOCX_HELLO_VALUE_PRIMARY')}</Com>
       </Line>
       <Line>
         <Func>langmap</Func>(<Str>'{lang2}'</Str>, <Str>'{keyword}'</Str>)

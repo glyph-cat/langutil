@@ -12,10 +12,10 @@ const ApiSetLanguage = () => {
         <Ang>{'<'}</Ang>
         <Def>option</Def> <Var>onClick</Var>={'{() '}<Def>=></Def>{' { '}
         <Func>setLanguage</Func>
-        (<Str>'{localize('DOC_EXAMPLE_PRIMARY_LANG')}'</Str>)
+        (<Str>'{localize('DOCX_PRIMARY_LANG')}'</Str>)
         {' }}'}<Ang>{'>'}</Ang>
       </Line>
-      <Line indent={2}>{localize('DOC_EXAMPLE_PRIMARY_LANG_NAME')}</Line>
+      <Line indent={2}>{localize('DOCX_PRIMARY_LANG_NAME')}</Line>
       <Line indent={1}>
         <Ang>{'</'}</Ang><Def>option</Def><Ang>{'>'}</Ang>
       </Line>
@@ -23,10 +23,10 @@ const ApiSetLanguage = () => {
         <Ang>{'<'}</Ang>
         <Def>option</Def> <Var>onClick</Var>={'{() '}<Def>=></Def>{' { '}
         <Func>setLanguage</Func>
-        (<Str>'{localize('DOC_EXAMPLE_SECONDARY_LANG')}'</Str>)
+        (<Str>'{localize('DOCX_SECONDARY_LANG')}'</Str>)
         {' }}'}<Ang>{'>'}</Ang>
       </Line>
-      <Line indent={2}>{localize('DOC_EXAMPLE_SECONDARY_LANG_NAME')}</Line>
+      <Line indent={2}>{localize('DOCX_SECONDARY_LANG_NAME')}</Line>
       <Line indent={1}>
         <Ang>{'</'}</Ang><Def>option</Def><Ang>{'>'}</Ang>
       </Line>

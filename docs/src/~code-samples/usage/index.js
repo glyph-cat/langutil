@@ -9,7 +9,7 @@ const Usage = () => (
     </Line>
     <Line>
       <Type>console</Type>.<Func>log</Func>(<Var>greet</Var>)
-      <Com>{` // ${localize('OUTPUT_HELLO_WORLD')}`}</Com>
+      <Com>{` // ${localize('DOCX_HELLO_WORLD_PRIMARY_VALUE')}`}</Com>
     </Line>
   </CodeDisplay>
 )

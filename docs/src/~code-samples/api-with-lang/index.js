@@ -15,7 +15,7 @@ const ApiWithLang = () => {
         <Var>langState</Var>: {'{ '}<Var>auto</Var>, <Var>lang</Var>{' }'}
       </Line>
       <Line>
-        })
+        {'}) {'}
       </Line>
       <Line indent={1}>
         <Com><Mark>{'/* ... */'}</Mark></Com>

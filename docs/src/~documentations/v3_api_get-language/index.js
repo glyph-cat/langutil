@@ -18,7 +18,7 @@ export default withLang(() => (
         keyword: 'DEPRECATED_MSG_GET_LANGUAGE',
         transform: withProps({
           getCL: <CodeLink
-            to={`${PATHS.docs}/${DOCPATHS.v3.getCurrentLanguage}`}
+            to={`${PATHS.docs}/${DOCPATHS.v3.api.getCurrentLanguage}`}
             children='getCurrentLanguage()'
           />
         })

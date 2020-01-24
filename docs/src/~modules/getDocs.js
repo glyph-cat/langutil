@@ -4,101 +4,170 @@ import { DOCPATHS } from '~constants'
 const localizeTitle = (keyword) => localize({ keyword, casing: 'titleCase' })
 
 const getDocs = () => ({
+  // v4: [
+  //   {
+  //     title: 'Testing',
+  //     data: [
+  //       {
+  //         to: DOCPATHS.v3.basic.installation_setup,
+  //         text: localizeTitle('INSTALLATION_AND_SETUP'),
+  //       }
+  //     ]
+  //   }
+  // ],
   v3: [
     {
       title: localizeTitle('BASICS'),
       data: [
         {
-          to: DOCPATHS.v3.installation_setup,
+          to: DOCPATHS.v3.basic.installation_setup,
           text: localizeTitle('INSTALLATION_AND_SETUP')
         },
         {
-          to: DOCPATHS.v3.basic_usage,
+          to: DOCPATHS.v3.basic.basic_usage,
           text: localizeTitle('BASIC_USAGE')
         },
         {
-          to: DOCPATHS.v3.insert_parameters,
+          to: DOCPATHS.v3.basic.insert_parameters,
           text: localizeTitle('INSERT_PARAMETERS')
         },
         {
-          to: DOCPATHS.v3.apply_casings,
+          to: DOCPATHS.v3.basic.apply_casings,
           text: localizeTitle('APPLY_CASINGS')
         },
         {
-          to: DOCPATHS.v3.apply_transformation,
+          to: DOCPATHS.v3.basic.apply_transformation,
           text: localizeTitle('APPLY_TRANSFORMATION')
         },
       ]
     },
+    // {
+    //   title: localize('ADVANCED'),
+    //   data: [
+    //     {
+    //       to: DOCPATHS.v3.advanced.create_lang_menu,
+    //       text: localize('CREATING_A_LANG_SELECT_MENU'),
+    //     },
+    //     {
+    //       to: DOCPATHS.v3.advanced.nested_localizing,
+    //       text: localize('NESTED_LOCALIZING'),
+    //     },
+    //     {
+    //       to: DOCPATHS.v3.advanced.localizing_jsx,
+    //       text: localize('LOCALIZING_JSX'),
+    //     },
+    //     {
+    //       to: DOCPATHS.v3.advanced.localizing_on_server,
+    //       text: localize('LOCALIZING_ON_SERVER'),
+    //     }
+    //   ]
+    // },
     {
-      title: localize('API'),
+      title: localize('FAQ'),
       data: [
         {
-          to: DOCPATHS.v3.init,
+          to: DOCPATHS.v3.faq['001'],
+          text: localize('FAQ_TITLE_001')
+        },
+        {
+          to: DOCPATHS.v3.faq['002'],
+          text: localize('FAQ_TITLE_002')
+        },
+        {
+          to: DOCPATHS.v3.faq['003'],
+          text: localize('FAQ_TITLE_003')
+        },
+        {
+          to: DOCPATHS.v3.faq['004'],
+          text: localize('FAQ_TITLE_004')
+        },
+      ]
+    },
+    {
+      title: localize('API_REFERENCES'),
+      data: [
+        {
+          to: DOCPATHS.v3.api.init,
           text: 'init'
         },
         {
-          to: DOCPATHS.v3.setDictionary,
+          to: DOCPATHS.v3.api.setDictionary,
           text: 'setDictionary'
         },
         {
-          to: DOCPATHS.v3.setLanguage,
+          to: DOCPATHS.v3.api.appendDictionary,
+          text: 'appendDictionary'
+        },
+        {
+          to: DOCPATHS.v3.api.setLanguage,
           text: 'setLanguage'
         },
         {
-          to: DOCPATHS.v3.localize,
+          to: DOCPATHS.v3.api.localize,
           text: 'localize'
         },
         {
-          to: DOCPATHS.v3.langmap,
+          to: DOCPATHS.v3.api.langmap,
           text: 'langmap'
         },
         {
-          to: DOCPATHS.v3.getCurrentLanguage,
+          to: DOCPATHS.v3.api.getGuidedLanguage,
+          text: 'getGuidedLanguage'
+        },
+        {
+          to: DOCPATHS.v3.api.getCurrentLanguage,
           text: 'getCurrentLanguage'
         },
         {
-          to: DOCPATHS.v3.getDefinedLanguages,
+          to: DOCPATHS.v3.api.getDefinedLanguages,
           text: 'getDefinedLanguages'
         },
         {
-          to: DOCPATHS.v3.autoDetect,
+          to: DOCPATHS.v3.api.casings,
+          text: 'Casings'
+        },
+        {
+          to: DOCPATHS.v3.api.autoDetect,
           text: 'AUTO_DETECT'
         },
         {
-          to: DOCPATHS.v3.isAuto,
+          to: DOCPATHS.v3.api.isAuto,
           text: 'isAuto'
         },
         {
-          to: DOCPATHS.v3.withLang,
+          to: DOCPATHS.v3.api.withLang,
           text: 'withLang'
         },
         {
-          to: DOCPATHS.v3.useLang,
+          to: DOCPATHS.v3.api.useLang,
           text: 'useLang'
         },
         {
-          to: DOCPATHS.v3.logs,
+          to: DOCPATHS.v3.api.convertDictionary,
+          text: 'convertDictionary'
+        },
+        {
+          to: DOCPATHS.v3.api.logs,
           text: 'logs'
         },
         {
-          to: DOCPATHS.v3.createKey,
+          to: DOCPATHS.v3.api.createKey,
           text: 'createKey'
         },
         {
-          to: DOCPATHS.v3.getLanguage,
+          to: DOCPATHS.v3.api.getLanguage,
           text: 'getLanguage'
         },
         {
-          to: DOCPATHS.v3.localizeWith,
+          to: DOCPATHS.v3.api.localizeWith,
           text: 'localizeWith'
         },
         {
-          to: DOCPATHS.v3.snoozeInspectionUntil,
+          to: DOCPATHS.v3.api.snoozeInspectionUntil,
           text: 'snoozeInspectionUntil'
         },
         {
-          to: DOCPATHS.v3.localizable,
+          to: DOCPATHS.v3.api.localizable,
           text: 'Localizable'
         },
       ]
@@ -107,11 +176,11 @@ const getDocs = () => ({
     //   title: localize('ADVANCED'),
     //   data: [
     //     {
-    //       to: DOCPATHS.v3.alternative_syntax,
+    //       to: DOCPATHS.v3.advanced.alternative_syntax,
     //       text: localizeTitle('ALTERNATIVE_SYNTAX')
     //     },
     //     {
-    //       to: DOCPATHS.v3.localizing_jsx,
+    //       to: DOCPATHS.v3.advanced.localizing_jsx,
     //       text: localize('LOCALIZING_JSX')
     //     }
     //   ]
@@ -120,7 +189,7 @@ const getDocs = () => ({
     //   title: 'Debug & Testing',
     //   data: [
     //     {
-    //       to: DOCPATHS.v3.theUnavailableDocument,
+    //       to: DOCPATHS.v3._internal.theUnavailableDocument,
     //       text: 'The Unavailable Document'
     //     },
     //   ]

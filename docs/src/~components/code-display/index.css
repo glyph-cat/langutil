@@ -1,5 +1,4 @@
 .code-disp-container {
-  background-color: #282c34;
   border-radius: 0.5em;
   display: grid;
   overflow: hidden;
@@ -7,7 +6,6 @@
 }
 
 .code-disp-title {
-  color: #88aa88;
   font-weight: bold;
   font-size: 11pt;
   margin: 0;
@@ -15,21 +13,17 @@
 
 .code-disp-toolbar-container {
   align-items: center;
-  /* background-color: #00000044; */
-  background-color: #1d2027;
   display: grid;
   padding: 0.25em 0.5em 0.25em 0.5em;
   grid-template-columns: 1fr auto;
 }
 
 .code-disp-toolbar-button {
-  background-color: #aaccff;
   color: #4a4a4a;
   cursor: pointer;
   border: none;
   border-radius: 0.5em;
   margin: 0;
-  padding: 0;
 }
 
 .code-disp-toolbar-button:active {
@@ -38,7 +32,6 @@
 
 .code-disp-toolbar-button-div {
   align-items: center;
-  color: #1d2027;
   font-weight: bold;
   display: grid;
   padding: 0.25em 0.75em 0.25em 0.75em;
@@ -52,7 +45,6 @@
 }
 
 .code-disp-content-container {
-  color: #eeeeee;
   display: grid;
   grid-template-columns: auto minmax(54px, auto) 1fr 24px;
   padding-top: 0.5em;
@@ -64,13 +56,12 @@
 }
 
 .code-disp-content-line-container {
-  color: #ddeeff88;
   display: grid;
   text-align: end;
 }
 
 .code-disp-content-code-container {
-  overflow-x: scroll;
+  overflow-x: auto;
   overflow-y: hidden;
   display: grid;
 }

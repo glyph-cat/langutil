@@ -6,12 +6,12 @@ import CodeTitle from '~components/code-title'
 import { withProps } from '~modules'
 import { DOCPATHS, PATHS, VALUES } from '~constants'
 import DeprecationWarning from '~components/deprecation-warning'
-// import ParamList from '~components/param-list'
+// import ParamList from '~fragments/param-list'
 // import { withProps } from '~modules'
 
 export default withLang(() => {
   let redirectComponent = <CodeLink
-    to={`${PATHS.docs}/${DOCPATHS.v3.localize}`}
+    to={`${PATHS.docs}/${DOCPATHS.v3.api.localize}`}
     children='localize()'
   />
   return (
