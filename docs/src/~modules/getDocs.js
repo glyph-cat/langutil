@@ -123,6 +123,10 @@ const getDocs = () => ({
           text: 'getDefinedLanguages'
         },
         {
+          to: DOCPATHS.v3.api.casings,
+          text: 'Casings'
+        },
+        {
           to: DOCPATHS.v3.api.autoDetect,
           text: 'AUTO_DETECT'
         },
