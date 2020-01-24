@@ -19,7 +19,7 @@ export function inspectDict(dict: object): boolean;
  * You should use JSON.stringify on the returned value of this function and save it as your actual dictionary.
  * @returns The dictionary in new format, structured by keywords.
  */
-export function convertDict(dict: Array): object;
+export function convertDict(dict: Array<object>): object;
 
 // /**
 //  * @description
