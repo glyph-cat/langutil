@@ -4,7 +4,7 @@ import CodeDisplay, { Func, Key, Line, Str, Type, Var, Com } from '~components/c
 
 function ApiGetGuidedLanguage() {
   return (
-    <CodeDisplay title={localize('HOW_TO_USE_API', ['appendDictionary()'])}>
+    <CodeDisplay title={localize('HOW_TO_USE_API', ['getGuidedLanguage()'])}>
       <Line>
         <Key>import</Key> {'{'} <Var>getGuidedLanguage</Var>, <Var>AUTO_DETECT</Var> } <Key>from</Key> <Str>'langutil'</Str>
       </Line>

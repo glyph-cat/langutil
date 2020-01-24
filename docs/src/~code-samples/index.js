@@ -3,6 +3,7 @@ let CodeSamples = {
   // Demo: require('./demo'),
   ApiAppendDictionary: require('./api-append-dictionary'),
   ApiAutoDetect: require('./api-auto-detect'),
+  ApiCasings: require('./api-casings'),
   ApiConvertDictionary: require('./api-convert-dictionary'),
   ApiInit: require('./api-init'),
   ApiInitReact: require('./api-init-react'),

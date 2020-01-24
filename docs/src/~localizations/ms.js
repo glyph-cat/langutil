@@ -12,7 +12,6 @@ export default {
   BY_ARRAY: 'Dengan Array',
   BY_OBJECT: 'Dengan Object',
 
-  CASING_EXAMPLE_SENTENCE: 'zAman beraliH, Musim bertuKar.',
   CHANGELOG: 'Senarai Perubahan',
   COPY: 'Menyalin',
 

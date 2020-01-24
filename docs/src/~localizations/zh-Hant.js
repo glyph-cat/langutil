@@ -21,7 +21,6 @@ export default {
   BY_OBJECT: '通過 Object',
 
   CASING: '大/小寫風格',
-  CASING_EXAMPLE_SENTENCE: 'shì Yě wú xiàn guǎng, cHuāng wài yǒU lán Tiān。',
   CASINGS: '大/小寫風格',
   CHANGELOG: '更動歷史',
   CLICK_TO_COPY_LINK: '點擊此處拷貝鏈接',

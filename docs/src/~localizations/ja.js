@@ -11,7 +11,6 @@ export default {
   BY_ARRAY: 'Arrayで',
   BY_OBJECT: 'Objectで',
 
-  CASING_EXAMPLE_SENTENCE: 'torinaKukowesu yumEsamase miyoakewataRu Hinkashiwo',
   CHANGELOG: '変更履歴',
   COPY: 'コピー',
 

@@ -79,7 +79,7 @@ export const CodeLink = ({ className, to, href, ...props }) => {
         children={child}
         href={href}
         target='_blank'
-        rel='no-opener'
+        rel='noopener noreferrer'
       />
     )
   } else {
