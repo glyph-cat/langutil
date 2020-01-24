@@ -4,9 +4,7 @@ import { withLang } from 'langutil/react-additions'
 import { Body } from '~components/document'
 import CodeTitle from '~components/code-title'
 import ParamList from '~fragments/param-list'
-// import CodeSamples from '~code-samples'
-// import { withProps } from '~modules'
-// import { PATHS, DOCPATHS } from '~constants'
+import CodeSamples from '~code-samples'
 import localizations from './localizations'
 
 export default withLang(() => {
@@ -21,6 +19,7 @@ export default withLang(() => {
     identifier: {
       type: 'string',
       desc: localize('API_PARAM_IDENTIFIER'),
+      optional: true,
     },
   }
 
@@ -29,7 +28,7 @@ export default withLang(() => {
       <CodeTitle name='appendDictionary' />
       <Body children={localize('API_DESC_APPEND_DICTIONARY')} />
       <ParamList data={params} />
-      {/* <CodeSamples.ApiAppendDictionary /> */}
+      <CodeSamples.ApiAppendDictionary />
     </>
   )
 })
