@@ -38,6 +38,7 @@ const DOCPATHS = {
       getGuidedLanguage: api(3)('get-guided-language'),
       getCurrentLanguage: api(3)('get-current-language'),
       getDefinedLanguages: api(3)('get-defined-languages'),
+      casings: api(3)('casings'),
       autoDetect: api(3)('auto-detect'),
       logs: api(3)('logs'),
       isAuto: api(3)('is-auto'),
