@@ -69,11 +69,29 @@ export const Code = ({ className, ...props }) => (
   <code className={['document-code code', className].join(' ')} {...props} />
 )
 
-export const CodeLink = ({ className, to, ...props }) => (
-  <Link className='document-code-link' to={to}>
-    <code className={['document-code code', className].join(' ')} {...props} />
-  </Link>
-)
+export const CodeLink = ({ className, to, href, ...props }) => {
+  const child = <code className={['document-code code', className].join(' ')} {...props} />
+  if (href) {
+    return (
+      <a
+        {...props}
+        className='document-code-link'
+        children={child}
+        href={href}
+        target='_blank'
+        rel='no-opener'
+      />
+    )
+  } else {
+    return (
+      <Link
+        className='document-code-link'
+        children={child}
+        to={to}
+      />
+    )
+  }
+}
 
 export const CodeA = ({ className, href, ...props }) => (
   <a className='document-code-link' href={href} target='_blank' rel='noopener noreferrer'>

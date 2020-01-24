@@ -2,7 +2,7 @@ import React from 'react'
 import { localize } from 'langutil'
 import CodeDisplay, { Def, Func, Key, Line, Str, Var, Com, Mark } from '~components/code-display'
 
-const ApiSetDictionary = () => {
+function ApiSetDictionary() {
   return (
     <CodeDisplay title={localize('HOW_TO_USE_API', ['appendDictionary()'])}>
       <Line>
