@@ -45,6 +45,7 @@ export default {
   'API_PARAM_CASING': 'Casing styles that will be applied to the localized value if it is a string.',
   'API_PARAM_TRANSFORM': 'Apply a transformation to the localized value.',
   'API_PARAM_WRAPPED_COMPONENT': 'The component to be wrapped in.',
+  API_PARAM_WL_OPTIONS: 'Additional options. (See below)',
 
   'API_PARAM_KEYWORD_LOCZ': 'The keyword for localization.',
   'API_PARAM_PARAMARRAY_LOCZ': 'An array of parameters that can be passed into.',
@@ -57,6 +58,8 @@ export default {
   'API_RTYPE_A_KEYWORD_OBJ': 'A keyword object.',
   'API_RTYPE_LOGS_FOCUS': 'True if the callback was sucessful.',
   'API_RTYPE_USE_LANG': '',
+
+  AVAILABLE_OPTIONS: 'Available options',
 
   BASIC_USAGE: 'Basic usage',
   BASICS: 'Basics',
