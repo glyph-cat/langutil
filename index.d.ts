@@ -171,17 +171,53 @@ declare namespace langutil {
    */
   function isAuto(): boolean;
 
+  /**
+   * @description Apply casing styles that are used by `localize()` but without calling it.
+   */
   namespace Casings {
+    /**
+     * @example hello world
+     */
     function lowerCase(value: string): string
+    /**
+     * @example HELLO WORLD
+     */
     function upperCase(value: string): string
+    /**
+     * @example hello world
+     */
     function localeLowerCase(value: string): string
+    /**
+     * @example HELLO WORLD
+     */
     function localeUpperCase(value: string): string
+    /**
+     * @example Hello world
+     */
     function sentenceCase(value: string): string
+    /**
+     * @example Hello World
+     */
     function titleCase(value: string): string
+    /**
+     * @example helloWorld
+     */
     function camelCase(value: string): string
+    /**
+     * @example HelloWorld
+     */
     function pascalCase(value: string): string
+    /**
+     * @example hello-world
+     */
     function kebabCase(value: string): string
+    /**
+     * @example hello_world
+     */
     function snakeCase(value: string): string
+    /**
+     * @example HELLO_WORLD
+     */
     function macroCase(value: string): string
   }
 
