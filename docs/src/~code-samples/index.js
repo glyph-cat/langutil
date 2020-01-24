@@ -1,7 +1,9 @@
 let defaultExtracted = false
 let CodeSamples = {
   // Demo: require('./demo'),
+  ApiAppendDictionary: require('./api-append-dictionary'),
   ApiAutoDetect: require('./api-auto-detect'),
+  ApiConvertDictionary: require('./api-convert-dictionary'),
   ApiInit: require('./api-init'),
   ApiInitReact: require('./api-init-react'),
   ApiLangmap: require('./api-langmap'),
@@ -11,7 +13,6 @@ let CodeSamples = {
   ApiSetDictionary: require('./api-set-dictionary'),
   ApiUseLang: require('./api-use-lang'),
   ApiWithLang: require('./api-with-lang'),
-  ApiAppendDictionary: require('./api-append-dictionary'),
   Casings: require('./casings'),
   DictionaryPrimaryExample: require('./dictionary-primary-example'),
   DictionarySecondaryExample: require('./dictionary-secondary-example'),
