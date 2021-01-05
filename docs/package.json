@@ -4,7 +4,7 @@
  "private": true,
  "dependencies": {
   "@material-ui/core": "^4.5.1",
-  "axios": "^0.19.0",
+  "axios": "^0.21.1",
   "copy-to-clipboard": "^3.2.0",
   "gh-pages": "^2.1.1",
   "langutil": "^3.2.0",
