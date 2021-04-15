@@ -1,8 +1,0 @@
-.doc-prev-next-container {
-  display: grid;
-  grid-template-columns: auto 1fr auto;
-}
-
-.doc-prev-next-link {
-  font-size: 1.25em;
-}

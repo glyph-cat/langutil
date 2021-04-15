@@ -1,0 +1,4 @@
+dist
+react/dist
+node_modules
+*draft.*

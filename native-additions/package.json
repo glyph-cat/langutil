@@ -1,5 +1,0 @@
-{
-    "name": "native-additions",
-    "main": "index.js",
-    "types": "index.d.ts"
-}
