@@ -16,6 +16,12 @@ import { baseLocalizer } from './localizer'
 import { getResolvedLanguageFromList } from './resolve-language'
 import { createDebouncedWarning } from './warning-debouncer'
 
+const __checkOptions__ = (options) => {
+  if (options && typeof options !== 'object') {
+    throw new TypeError(ERROR_SET_LANGUAGE_OPTIONS_INVALID_TYPE(options))
+  }
+}
+
 export function createLangutilCore(...initArgs) {
   const self = {
     M$dictionary: {},
@@ -44,9 +50,7 @@ export function createLangutilCore(...initArgs) {
    * @param {import('../').LangutilLanguageOptions} options
    */
   const __setLanguageBase = (language, options = {}) => {
-    if (options && typeof options !== 'object') {
-      throw new TypeError(ERROR_SET_LANGUAGE_OPTIONS_INVALID_TYPE(options))
-    }
+    __checkOptions__(options)
     const oldLangState = { ...getLangState() }
 
     // Immediately assign new values, if is not auto or auto detect fails
@@ -108,14 +112,17 @@ export function createLangutilCore(...initArgs) {
 
   // === Setters ===
 
-  const setLanguage = (...args) => {
-    const event = __setLanguageBase(...args)
+  const setLanguage = (language, options) => {
+    __checkOptions__(options)
+    // `shouldRefresh` defaults to true
+    options = { shouldRefresh: true, ...options }
+    const { shouldRefresh, ...remainingOptions } = options
+    const event = __setLanguageBase(language, remainingOptions)
     const autoConfigsChanged =
       event.oldLangState.isAuto !== event.newLangState.isAuto
     const languagesChanged =
       event.oldLangState.language !== event.newLangState.language
-    // If changed, only trigger a refresh
-    if (autoConfigsChanged || languagesChanged) {
+    if (shouldRefresh && (autoConfigsChanged || languagesChanged)) {
       self.M$listener.M$refresh(EVENT_TYPE_LANGUAGE, event)
     }
   }
