@@ -11,10 +11,12 @@ export default function ({ Langutil }) {
     jest.useFakeTimers()
 
     let receivedEventData = null
+    let receivedCalledCount = 0
 
     const LUcore = createLangutilCore({}, 'en')
     const listenerId = LUcore.addListener((event) => {
       receivedEventData = event
+      receivedCalledCount += 1
     })
 
     LUcore.setDictionary(localizations)
@@ -37,12 +39,26 @@ export default function ({ Langutil }) {
       },
     })
 
+    // shouldRefresh = false
+    LUcore.setLanguage('zh', { shouldRefresh: false })
+    jest.advanceTimersByTime()
+    expect(receivedCalledCount).toBe(2)
+    expect(LUcore.getLanguage()).toBe('zh')
+    expect(receivedEventData).toStrictEqual({
+      // Should still remain the same as above
+      type: EVENT_TYPE_DICTIONARY,
+      data: {
+        oldLangState: { language: 'en', isAuto: false },
+        newLangState: { language: 'en', isAuto: false },
+      },
+    })
+
     LUcore.setLanguage('ms')
     jest.advanceTimersByTime()
     expect(receivedEventData).toStrictEqual({
       type: EVENT_TYPE_LANGUAGE,
       data: {
-        oldLangState: { language: 'en', isAuto: false },
+        oldLangState: { language: 'zh', isAuto: false },
         newLangState: { language: 'ms', isAuto: false },
       },
     })

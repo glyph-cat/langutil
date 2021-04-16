@@ -9,8 +9,13 @@ export interface LangState<D> {
   isAuto: boolean
 }
 
-export type LangutilLanguageOptions = {
+export interface LangutilInitOptions {
   auto?: boolean
+}
+
+export interface LangutilLanguageOptions {
+  auto?: boolean
+  shouldRefresh?: boolean
 }
 
 export const EVENT_TYPE_DICTIONARY: string
@@ -152,7 +157,7 @@ export interface LangutilCore<D> {
 export function createLangutilCore<D>(
   dictionary: D,
   language: keyof D,
-  options?: LangutilLanguageOptions
+  options?: LangutilInitOptions
 ): LangutilCore<D>
 
 /**
