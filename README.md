@@ -1,3 +1,5 @@
+[![NPM](https://img.shields.io/npm/v/langutil.svg)](https://www.npmjs.com/package/langutil)
+
 Langutil — A localization utility for JavaScript that comes with support for React and React Native.
 
 <br/>
@@ -42,11 +44,13 @@ import { createLangutilCore } from 'langutil'
 const dictionary = {
   en: {
     HELLO: 'Hello',
-    HELLO_WORLD: 'Hello world',
+    HELLO_PARAM_AND_PARAM: 'Hello, %p and %p',
+    HELLO_NAME_AND_NAME: 'Hello, {:name1} and {:name2}',
   },
   'zh-Hans': {
     HELLO: '哈咯',
-    HELLO_WORLD: '哈咯世界',
+    HELLO_PARAM_AND_PARAM: '%p、%p，你们好',
+    HELLO_NAME_AND_NAME: '{:name1}、{:name2}，你们好',
   },
 }
 const AppLocalizationCore = createLangutilCore(dictionary, 'en', { auto: true })
@@ -60,11 +64,30 @@ const language = AppLocalizationCore.getLanguage()
 console.log(language) // en
 
 // ## Get localized content
-const localizedText = AppLocalizationCore.localize('HELLO')
-console.log(localizedText) // Hello
+const a = AppLocalizationCore.localize('HELLO')
+console.log(a) // Hello
+
+// ## Get localized content with dynamic values (array)
+const b = AppLocalizationCore.localize('HELLO_PARAM_AND_PARAM', ['John', 'Jane'])
+console.log(b) // Hello, John and Jane
+
+// ## Get localized content with dynamic values (object)
+const c = AppLocalizationCore.localize('HELLO_PARAM_AND_PARAM', {
+  name1: 'Jack',
+  name2: 'Jill',
+})
+console.log(c) // Hello, Jack and Jill
+
+// ## Get localized content (alternative syntax)
+const d = AppLocalizationCore.localize({
+  keyword: 'HELLO_PARAM_AND_PARAM',
+  param: { name1: 'Foo', name2: 'Bar' },
+})
+console.log(d) // Hello, Foo and Bar
+
 ```
 
-Langutil is packed with many more methods such as `localizeExplicitly`,`localizeFromScratch`, `setLanguage`, `setDictionary`, `appendDictionary`, `resolveLanguage`, and `getAllLanguages`. You can inspect the TypeScript Definitions in `index.d.ts` of the package's folder.
+Langutil is packed with many more methods such as `localizeExplicitly`,`localizeFromScratch`, `setLanguage`, `setDictionary`, `appendDictionary`, `resolveLanguage`, and `getAllLanguages`. You can inspect the TypeScript Definitions in `index.d.ts` of the package's folder to find out more.
 
 <br/>
 
@@ -94,15 +117,15 @@ class UsingHigherOrderComponent extends React.Component {
 You can check if your dictionary contains missing localizations with the code snippet below. The code below uses [Jest](https://jestjs.io).
 
 ```js
-describe('Localizations are tally', () => {
-  import dictionary from './path-to-your-dictionary'
+import dictionary from './path-to-your-dictionary'
 
+describe('Localizations are tally', () => {
   const languageStack = Object.keys(dictionary)
   const firstLanguage = languageStack[0]
   const firstKeywordStack = Object.keys(dictionary[firstLanguage]).sort()
   for (let i = 1; i < languageStack.length; i++) {
+    const language = languageStack[i]
     it(`Comparing ${firstLanguage} - ${language}`, () => {
-      const language = languageStack[i]
       const keywordStack = Object.keys(dictionary[language]).sort()
       expect(firstKeywordStack).toStrictEqual(keywordStack)
     })
@@ -115,17 +138,17 @@ describe('Localizations are tally', () => {
 # Error Codes
 In production builds, these error codes are thrown instead of the usual messages.
 
-* **`LangutilErr-1,{value}`**<br/>
-Expected 'param' to be an array or object but got `{value}`
+* **`LangutilErr-1,x`**<br/>
+Expected 'param' to be an array or object but got `x`
 
-* **`LangutilErr-2,{value}`**<br/>
-Expected 'options' to be an object but got `{value}`
+* **`LangutilErr-2,x`**<br/>
+Expected 'options' to be an object but got `x`
 
-* **`LangutilErr-3,{value}`**<br/>
-Expected dictionary to be an object but got `{value}`
+* **`LangutilErr-3,x`**<br/>
+Expected dictionary to be an object but got `x`
 
-* **`LangutilErr-4,{value}`**<br/>
-Prop conflict for 'langState' in `{value}`
+* **`LangutilErr-4,x`**<br/>
+Prop conflict for 'langState' in `x`
 
 <br/>
 

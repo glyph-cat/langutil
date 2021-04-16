@@ -13,8 +13,8 @@ import {
 } from '../'
 
 export interface ReactLangState<D> extends LangState<D> {
-  setLanguage: LUsetLanguageInterface<keyof D>
-  getAllLanguages: LUgetAllLanguagesInterface<keyof D>
+  setLanguage: LUsetLanguageInterface<D>
+  getAllLanguages: LUgetAllLanguagesInterface<D>
   setDictionary: LUsetDictionaryInterface
   appendDictionary: LUappendDictionaryInterface
   localize: LangutilLocalizeInterface<D>
@@ -41,11 +41,9 @@ export interface withLangOptions {
   shouldForwardRef?: boolean
 }
 
-export interface WithLangProps<D> extends React.ComponentProps {
+export interface WithLangProps<D> extends React.ComponentProps<any> {
   langState: ReactLangState<D>
 }
-
-export function withRouter<P extends RouteComponentProps<any>, C extends React.ComponentType<P>>(component: C & React.ComponentType<P>): React.ComponentClass<Omit<P, keyof RouteComponentProps<any>> & WithRouterProps<C>> & WithRouterStatics<C>;
 
 export function withLang<D, P extends WithLangProps<D>>(
   WrappedComponent: React.ComponentType<P>,
