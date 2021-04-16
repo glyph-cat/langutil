@@ -1,8 +1,9 @@
 import {
-  substituteWithUniqueSwapper,
   getItemByPath,
   stringMapArray,
   stringMapObject,
+  substituteWithUniqueSwapper,
+  warnIfPlaceholdersArePresent,
 } from './'
 
 it('substituteWithUniqueSwapper', () => {
@@ -39,6 +40,12 @@ describe('stringMapArray', () => {
       const param = ['foo', 'bar']
       const output = stringMapArray(str, param)
       expect(output).toBe('Hello foo and bar')
+    })
+
+    it('Empty array param', () => {
+      const param = []
+      const output = stringMapArray(str, param)
+      expect(output).toBe('Hello %p and %p')
     })
 
     it('Too little params', () => {
@@ -96,5 +103,19 @@ describe('stringMapObject', () => {
     const param = { person: { name: 'foo' } }
     const output = stringMapObject(str, param)
     expect(output).toBe('Hello foo')
+  })
+})
+
+describe('warnIfPlaceholdersArePresent', () => {
+  it('Leftover placeholders are present', () => {
+    const str = 'Hello %p and {:name}'
+    const output = warnIfPlaceholdersArePresent(str)
+    expect(output).toBe(true)
+  })
+
+  it('No leftover placeholders', () => {
+    const str = 'Hello foo and bar'
+    const output = warnIfPlaceholdersArePresent(str)
+    expect(output).toBe(false)
   })
 })

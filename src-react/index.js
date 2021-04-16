@@ -1,13 +1,9 @@
 import hoist from 'hoist-non-react-statics'
-import {
-  Component,
-  createElement,
-  forwardRef,
-  useLayoutEffect,
-  useMemo,
-  useState,
-} from 'react'
+import { Component, createElement, forwardRef, useMemo, useState } from 'react'
 import { ERROR_CLASHING_LANGSTATE_PROP } from '../src/errors'
+
+// So that eslint sees it as the original useEffect
+import useEffect from './use-isomorphic-layout-effect'
 
 export function extractCoreMethodsForHook(core) {
   const properties = [
@@ -29,7 +25,7 @@ export function extractCoreMethodsForHook(core) {
 
 export function useLang(core) {
   const [langState, setLangState] = useState(() => core.getLangState())
-  useLayoutEffect(() => {
+  useEffect(() => {
     const listenerId = core.addListener((event) => {
       setLangState(event.data.newLangState)
     })

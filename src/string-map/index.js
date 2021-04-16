@@ -1,5 +1,10 @@
+import { IS_DEBUG_ENV } from '../constants'
+import { devPrint } from '../dev-log'
 import { ERROR_STRINGMAP_INVALID_PARAM_TYPE } from '../errors'
 import getRandomHash from '../get-random-hash'
+
+const globalArrayPlaceholderPattern = /(%p)/g
+const globalObjectPlaceholderPattern = /{:[a-z][a-z0-9.]*}/gi
 
 /**
  * @description Substitutes all occurence of a key in the string with a random hash,
@@ -55,10 +60,18 @@ export function stringMapArray(str, arr) {
   const swapper = swapperSpecs[1]
 
   // Detect real placeholders and substitute them with parameters
-  const placeholderCount = newStr.match(/(%p)/g)?.length || 0
+  const placeholderCount =
+    newStr.match(globalArrayPlaceholderPattern)?.length || 0
+
+  if (arr.length < placeholderCount) {
+    devPrint(
+      'warn',
+      `Found ${placeholderCount} placeholders but ${arr.length} value(s) are supplied in '${str}'`
+    )
+  }
 
   // Avoid getting undefined values in case `placeholderCount !== arr.length`
-  let maximumLoopCount = Math.min(placeholderCount + 1, arr.length)
+  let maximumLoopCount = Math.min(placeholderCount, arr.length)
   for (let i = 0; i < maximumLoopCount; i++) {
     newStr = newStr.replace(/(%p)/, arr[i])
   }
@@ -80,7 +93,7 @@ export function stringMapArray(str, arr) {
 export function stringMapObject(str, obj) {
   let newString = `${str}`
   // 1. Get array of placeholders
-  const rawPlaceholders = newString.match(/{:[a-z][a-z0-9.]*}/gi)
+  const rawPlaceholders = newString.match(globalObjectPlaceholderPattern)
   // 2. Remove duplicates
   const placeholders = Array.from(new Set(rawPlaceholders))
   // 3. For each placeholder, replace them with _data
@@ -110,10 +123,34 @@ export default function stringMap(str, param) {
   // will be level-downed. This means {::key} will not be level-downed if
   // the provided param type is an array.
   if (Array.isArray(param)) {
-    return stringMapArray(str, param)
+    const mappedString = stringMapArray(str, param)
+    warnIfPlaceholdersArePresent(mappedString)
+    return mappedString
   } else if (typeof param === 'object') {
-    return stringMapObject(str, param)
+    const mappedString = stringMapObject(str, param)
+    warnIfPlaceholdersArePresent(mappedString)
+    return mappedString
   } else {
     throw new TypeError(ERROR_STRINGMAP_INVALID_PARAM_TYPE(param))
+  }
+}
+
+/**
+ * @param {string} str
+ * @returns {boolean|undefined}
+ */
+export function warnIfPlaceholdersArePresent(str) {
+  if (IS_DEBUG_ENV) {
+    let shouldWarn = false
+    if (
+      str.match(globalArrayPlaceholderPattern) ||
+      str.match(globalObjectPlaceholderPattern)
+    ) {
+      shouldWarn = true
+    }
+    if (shouldWarn) {
+      devPrint('warn', `Leftover placeholders found in '${str}'`)
+    }
+    return shouldWarn
   }
 }
