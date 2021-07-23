@@ -31,7 +31,7 @@
   ],
   "author": "chin98edwin",
   "readme": "README.md",
-  "license": "ISC",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/chin98edwin/langutil.git"

@@ -1,7 +1,7 @@
 import { IS_DEBUG_ENV } from '../constants'
 
 export function formatErrorCode(code, ...args) {
-  return `LangutilErr${code}-${args.join(',')}`
+  return `LangutilE${code}-${args.join(',')}`
 }
 
 export function ERROR_STRINGMAP_INVALID_PARAM_TYPE(param) {
