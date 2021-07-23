@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "declaration": true,
+    "declarationDir": "./temp/tsc/types",
+    "experimentalDecorators": true,
+    "outDir": "./temp/tsc/js",
+    "module": "ESNext",
+    "esModuleInterop": true,
+    "importHelpers": false,
+    "moduleResolution": "Node",
+    "stripInternal": true,
+    "resolveJsonModule": true,
+    "target": "es2016"
+  },
+  "exclude": [
+    "node_modules"
+  ],
+  "include": [
+    "src/index.ts",
+    "src-react/index.ts"
+  ]
+}
