@@ -1,4 +1,4 @@
 dist
-react/dist
+react/
 node_modules
 *draft.*
