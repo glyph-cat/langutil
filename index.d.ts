@@ -166,3 +166,9 @@ export function createLangutilCore<D>(
  * localized values.
  */
 export function stringMap(str: string, param: StringMapParamType): string
+
+/**
+ * @description Gets the current device's language.
+ * Returns null if unable to detect.
+ */
+export function getClientLanguage(): string | null

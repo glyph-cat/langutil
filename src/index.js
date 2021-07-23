@@ -1,4 +1,4 @@
-import AutoDetect from './auto-detect'
+import getClientLanguage from './get-client-language'
 import {
   EVENT_TYPE_DICTIONARY,
   EVENT_TYPE_LANGUAGE,
@@ -59,7 +59,7 @@ export function createLangutilCore(...initArgs) {
     let newAuto = options.auto === true
 
     if (newAuto) {
-      const rawDetectedLanguage = AutoDetect()
+      const rawDetectedLanguage = getClientLanguage()
       const resolvedLanguage = getResolvedLanguageFromList(
         rawDetectedLanguage,
         getAllLanguages()
@@ -223,3 +223,4 @@ export {
   INTERNALS_SYMBOL,
 } from './constants'
 export { default as stringMap } from './string-map'
+export { default as getClientLanguage } from './get-client-language'

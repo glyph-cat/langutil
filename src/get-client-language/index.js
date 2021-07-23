@@ -1,4 +1,4 @@
-export default function AutoDetect() {
+export default function getClientLanguage() {
   if (typeof navigator !== 'undefined') {
     if (navigator.language) {
       return navigator.language

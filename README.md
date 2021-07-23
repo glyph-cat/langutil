@@ -138,16 +138,16 @@ describe('Localizations are tally', () => {
 # Error Codes
 In production builds, these error codes are thrown instead of the usual messages.
 
-* **`LangutilErr-1,x`**<br/>
+* **`LangutilE1,x`**<br/>
 Expected 'param' to be an array or object but got `x`
 
-* **`LangutilErr-2,x`**<br/>
+* **`LangutilE2,x`**<br/>
 Expected 'options' to be an object but got `x`
 
-* **`LangutilErr-3,x`**<br/>
+* **`LangutilE3,x`**<br/>
 Expected dictionary to be an object but got `x`
 
-* **`LangutilErr-4,x`**<br/>
+* **`LangutilE4,x`**<br/>
 Prop conflict for 'langState' in `x`
 
 <br/>
@@ -156,7 +156,12 @@ Prop conflict for 'langState' in `x`
 
 Sad enough to say, I am no longer able to maintain this library with a pretty docs site. This includes a proper migration guide as well.
 
-But this README file should be more than enough to grasp the concept of the new version. It still has familiar method names such as `localize`, `setLanguage` and `setDictionary`, except this time, there is no Langutil instance out of the box, you need to create a `LangutilCore` before you can start using one.
+But this README file should be more than enough to grasp the concept of the new version. It still has familiar method names such as `localize`, `setLanguage` and `setDictionary`, except for a few key changes highlighted below:
+
+Here are some of the key changes summarized:
+* You need to create a `LangutilCore` before you can start localizing content;
+* Dictionaries must now be structured by language first; 
+* Case formatting features have been removed, there are other libraries out there that handles casings waaay better than Langutil.
 
 Although this is one step extra, it actually brings a few benefits. There may be cases where your website needs to display different languages in different containers or canvases and this can be useful. For example, a novel reading website, where novels might only be written in limited languages but the website itself supports 20+ languages.
 
