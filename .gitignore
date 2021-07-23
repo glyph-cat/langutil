@@ -1,30 +1,30 @@
 # Logs
 logs
 *.log
-npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-lerna-debug.log*
 
 # Diagnostic reports (https://nodejs.org/api/report.html)
 report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
 
 # Builds
-react/dist
 dist
 *.tgz
-react/cjs
-react/es
-react/native
-react/umd
+react/dist
+react/index.d.ts
 
 # Dependency directories
-node_modules/
+node_modules
 
-# Optional npm cache directory
-.npm
+# Yarn
+.yarn-integrity
+.yarn/cache
+.yarn/unplugged
+.yarn/build-state.yml
+.yarn/install-state.gz
+.pnp.*
 
-# Optional eslint cache
+# ESLint cache
 .eslintcache
 
 # Drafts

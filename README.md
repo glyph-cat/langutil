@@ -20,11 +20,13 @@ Langutil — A localization utility for JavaScript that comes with support for R
 
 # Installation
 
+With NPM:
 ```sh
-# NPM
 npm i langutil
+```
 
-# Yarn
+With Yarn:
+```sh
 yarn add langutil
 ```
 
