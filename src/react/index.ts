@@ -13,8 +13,14 @@ import getDisplayName from './get-display-name'
 import useLayoutEffect from './isomorphic-layout-effect'
 import unstable_batchedUpdates from './react-batch'
 
+/**
+ * @public
+ */
 export type LangutilReactState<D> = LangutilState<D> & LangutilCore<D>
 
+/**
+ * @public
+ */
 export function useLangutil<D>(core: LangutilCore<D>): LangutilReactState<D> {
   const [state, setState] = useState<LangutilReactState<D>>(
     () => ({ ...core, ...core.getLangutilState() }) // Initial state
@@ -35,15 +41,24 @@ export function useLangutil<D>(core: LangutilCore<D>): LangutilReactState<D> {
   return state
 }
 
+/**
+ * @public
+ */
 export interface withLangutilOptions {
   displayName?: string
   shouldForwardRef?: boolean
 }
 
+/**
+ * @public
+ */
 export interface WithLangutilProps<D> extends React.ComponentProps<any> {
   langutilState: LangutilReactState<D>
 }
 
+/**
+ * @public
+ */
 export function withLangutil<D, P extends WithLangutilProps<D>>(
   WrappedComponent: React.ComponentType<P>,
   core: LangutilCore<D>,

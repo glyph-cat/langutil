@@ -16,12 +16,14 @@ import {
   LangutilLanguageIsolated,
   LangutilSetLanguageOptions,
   LangutilLocalizedValue,
-  LangutilMethodArgsLocalize,
-  LangutilMethodArgsLocalizeExplicitly,
+  // LangutilMethodArgsLocalize,
+  // LangutilMethodArgsLocalizeExplicitly,
   LangutilMethodObjArgsLocalize,
   LangutilMethodObjArgsLocalizeExplicitly,
-  LangutilMethodArgsLocalizeFromScratch,
+  // LangutilMethodArgsLocalizeFromScratch,
   LangutilMethodObjArgsLocalizeFromScratch,
+  LangutilKeyword,
+  LangutilStringMapParam,
 } from '../../schema'
 import { devPrint, displayStringArray } from '../dev'
 import getClientLanguage from '../get-client-language'
@@ -43,6 +45,11 @@ interface LangutilCoreInternalInstance<D> {
 
 const pushWarning = IS_DEBUG_ENV ? createWarningDebouncer() : undefined
 
+// TODO: Lifecycle???
+
+/**
+ * @public
+ */
 export function createLangutilCore<D extends LangutilDictionaryIsolated>(
   ...initArgs: [D, LangutilLanguage<D>, LangutilInitOptions?]
 ): LangutilCore<D> {
@@ -178,9 +185,9 @@ export function createLangutilCore<D extends LangutilDictionaryIsolated>(
   // === Other Exposed Methods ===
 
   const localize = (
-    ...args: LangutilMethodArgsLocalize<D>
+    a: LangutilKeyword<D> | LangutilMethodObjArgsLocalize<D>,
+    b?: LangutilStringMapParam
   ): LangutilLocalizedValue<D> => {
-    const [a, b] = args
     if (typeof a !== 'object') {
       return baseLocalizer(
         self.M$dictionary,
@@ -193,25 +200,26 @@ export function createLangutilCore<D extends LangutilDictionaryIsolated>(
       return baseLocalizer(
         self.M$dictionary,
         self.M$language,
-        (a as LangutilMethodObjArgsLocalize<D>).keyword,
-        (a as LangutilMethodObjArgsLocalize<D>).param,
+        a.keyword,
+        a.param,
         pushWarning
       )
     }
   }
 
   const localizeExplicitly = (
-    ...args: LangutilMethodArgsLocalizeExplicitly<D>
+    a: LangutilLanguage<D> | LangutilMethodObjArgsLocalizeExplicitly<D>,
+    b: LangutilKeyword<D>,
+    c?: LangutilStringMapParam
   ): LangutilLocalizedValue<D> => {
-    const [a, b, c] = args
     if (typeof a !== 'object') {
       return baseLocalizer(self.M$dictionary, a, b, c, pushWarning)
     } else {
       return baseLocalizer(
         self.M$dictionary,
-        (a as LangutilMethodObjArgsLocalizeExplicitly<D>).language,
-        (a as LangutilMethodObjArgsLocalizeExplicitly<D>).keyword,
-        (a as LangutilMethodObjArgsLocalizeExplicitly<D>).param,
+        a.language,
+        a.keyword,
+        a.param,
         pushWarning
       )
     }
@@ -254,10 +262,35 @@ export function createLangutilCore<D extends LangutilDictionaryIsolated>(
   return coreInstance
 }
 
+/**
+ * @public
+ */
 export function localizeFromScratch<Dn>(
-  ...args: LangutilMethodArgsLocalizeFromScratch<Dn>
+  dictionary: Dn,
+  language: LangutilLanguage<Dn>,
+  keyword?: LangutilKeyword<Dn>,
+  param?: LangutilStringMapParam
+): LangutilLocalizedValue<Dn>
+
+/**
+ * @public
+ */
+export function localizeFromScratch<Dn>(...args: [
+  Dn,
+  LangutilMethodObjArgsLocalizeFromScratch<Dn>,
+  never?,
+  never?,
+]): LangutilLocalizedValue<Dn>
+
+/**
+ * @public
+ */
+export function localizeFromScratch<Dn>(
+  dictionary: Dn,
+  a: LangutilLanguage<Dn> | LangutilMethodObjArgsLocalizeFromScratch<Dn>,
+  b?: LangutilKeyword<Dn>,
+  c?: LangutilStringMapParam
 ): LangutilLocalizedValue<Dn> {
-  const [dictionary, a, b, c] = args
   // NOTE: `dictionary` cannot be part of the a,b,c because the dictionary
   // itself is an object, which means `isByObj` will always evaluate to true
   if (typeof a !== 'object') {
@@ -273,6 +306,9 @@ export function localizeFromScratch<Dn>(
   }
 }
 
+/**
+ * @public
+ */
 export function isLangutilCore(value: unknown): boolean {
   return typeof value[INTERNALS_SYMBOL] !== 'undefined'
 }

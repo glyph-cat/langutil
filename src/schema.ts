@@ -1,48 +1,79 @@
 import { INTERNALS_SYMBOL } from './constants'
 import { Watcher } from './main/watcher'
 
-// === Dynamic types ===
-// * Dictionary as `D`
-// * Language as `keyof D`
-// * Keyword as `keyof D[keyof D]`
-// * Localized as `D[keyof D][keyof D[keyof D]]`
-
+/**
+ * @public
+ */
 export type LangutilLanguage<D> = keyof D
+
+/**
+ * @public
+ */
 export type LangutilKeyword<D> = keyof D[keyof D]
+
+/**
+ * @public
+ */
 export type LangutilLocalizedValue<D> = D[keyof D][keyof D[keyof D]] | string
 // KIV: `| string`
 
+/**
+ * @public
+ */
 export type LangutilDictionaryIsolated = Record<string, Record<string, unknown>>
+
+/**
+ * @public
+ */
 export type LangutilLanguageIsolated = string
+
+/**
+ * @public
+ */
 export type LangutilKeywordIsolated = string
+
+/**
+ * @public
+ */
 export type LangutilAutoDetectFlag = boolean
 
+/**
+ * @public
+ */
 export interface LangutilState<D> {
   language: keyof D
   isAuto: boolean
 }
 
-export interface LangutilHydrationCommitter<S> {
-  commit: (state: S) => void
-}
-
+/**
+ * @public
+ */
 export interface LangutilInitOptions {
   auto?: boolean
   lifecycle?: {
-    init(
-      config: LangutilHydrationCommitter<LangutilState<LangutilDictionaryIsolated>>
-    ): void
+    init(arg: {
+      commit(state: LangutilState<LangutilDictionaryIsolated>): void
+    }): void
     didSet?(details: { state: LangutilState<LangutilDictionaryIsolated> }): void
     didReset?(): void
   }
 }
 
+/**
+ * @public
+ */
 export interface LangutilSetLanguageOptions extends Pick<LangutilInitOptions, 'auto'> {
   shouldRefresh?: boolean
 }
 
+/**
+ * @public
+ */
 export type LangutilEventType = number
 
+/**
+ * @public
+ */
 export interface LangutilEvent<D> {
   type: LangutilEventType
   data: {
@@ -51,52 +82,58 @@ export interface LangutilEvent<D> {
   }
 }
 
+/**
+ * @public
+ */
 export type LangutilStringMapParamArray = Array<unknown>
+
+/**
+ * @public
+ */
 export type LangutilStringMapParamObject = Record<string, unknown>
+
+/**
+ * @public
+ */
 export type LangutilStringMapParam =
   | LangutilStringMapParamArray
   | LangutilStringMapParamObject
 
-// === Localization methods: `localize` ===
-
+/**
+ * @public
+ */
 export interface LangutilMethodObjArgsLocalize<D> {
   keyword: LangutilKeyword<D>,
   param?: LangutilStringMapParam
 }
 
-export type LangutilMethodArgsLocalize<D> =
-  | [LangutilKeyword<D>, LangutilStringMapParam]
-  | [LangutilMethodObjArgsLocalize<D>]
-
-// === Localization methods: `localizeExplicitly` ===
-
+/**
+ * @public
+ */
 export interface LangutilMethodObjArgsLocalizeExplicitly<D> extends LangutilMethodObjArgsLocalize<D> {
   language: LangutilLanguage<D>
 }
 
-export type LangutilMethodArgsLocalizeExplicitly<D> =
-  | [LangutilLanguage<D>, LangutilKeyword<D>, LangutilStringMapParam]
-  | [LangutilMethodObjArgsLocalizeExplicitly<D>]
-
-
-
-
-// === Localization methods: `localizeFromScratch` ===
-
+/**
+ * @public
+ */
 export interface LangutilMethodObjArgsLocalizeFromScratch<Dn> extends LangutilMethodObjArgsLocalizeExplicitly<Dn> {
   dictionary: Dn
 }
 
-export type LangutilMethodArgsLocalizeFromScratch<Dn> =
-  | [Dn, LangutilLanguage<Dn>, LangutilKeyword<Dn>, LangutilStringMapParam]
-  | [Dn, LangutilMethodObjArgsLocalizeFromScratch<Dn>]
-
+/**
+ * @public
+ */
 export interface LangutilCore<D> {
+  /**
+   * @internal
+   */
   [INTERNALS_SYMBOL]: {
     M$getDictionary?(): D
   }
   /**
    * Sets the language.
+   * @public
    */
   setLanguage(
     language: LangutilLanguage<D>,
@@ -104,42 +141,65 @@ export interface LangutilCore<D> {
   ): void,
   /**
    * Gets the current language.
+   * @public
    */
   getLanguage(): LangutilLanguage<D>,
   /**
    * Lets you know the current language and whether automatic language detection
    * is available.
+   * @public
    */
   getLangutilState(): LangutilState<D>,
   /**
    * Get all languages in the dictionary.
+   * @public
    */
   getAllLanguages(): Array<LangutilLanguage<D>>
   /**
    * Replaces the current dictionary.
+   * @public
    */
   setDictionary(dictionary: LangutilDictionaryIsolated): void
   /**
    * Merges a new dictionay with the current one.
+   * @public
    */
   appendDictionary(dictionary: LangutilDictionaryIsolated): void
   /**
    * Maps a keyword to the current localization.
+   * @public
    */
-  localize(...args: LangutilMethodArgsLocalize<D>): LangutilLocalizedValue<D>
+  localize(
+    keyword: LangutilKeyword<D>,
+    param?: LangutilStringMapParam
+  ): LangutilLocalizedValue<D>
+  localize(...args: [
+    LangutilMethodObjArgsLocalize<D>,
+    never?
+  ]): LangutilLocalizedValue<D>
   /**
    * Maps a keyword to a custom localization.
+   * @public
    */
   localizeExplicitly(
-    ...args: LangutilMethodArgsLocalizeExplicitly<D>
+    language: LangutilLanguage<D>,
+    keyword: LangutilKeyword<D>,
+    param?: LangutilStringMapParam
   ): LangutilLocalizedValue<D>
+  localizeExplicitly(...args: [
+    LangutilMethodObjArgsLocalizeExplicitly<D>,
+    never?,
+    never?,
+  ]): LangutilLocalizedValue<D>
   /**
    * Given a language, get a closest match based on the available languages in
    * the current dictionary.
+   * @public
    */
   resolveLanguage(language: LangutilLanguageIsolated): LangutilLanguage<D>
   /**
    * Watch for changes when language is set or dictionary is set or appendded.
+   * @public
    */
   watch: Watcher<LangutilEvent<D>>['M$watch']
 }

@@ -123,6 +123,7 @@ export function stringMapObject(
 
 /**
  * A convenience wrapper around `stringMapArray` and `stringMapObject`.
+ * @public
  */
 export default function stringMap(
   str: string,
