@@ -3,5 +3,5 @@
   "module": "dist/es/index.js",
   "react-native": "dist/native/index.js",
   "unpkg": "dist/umd/index.js",
-  "types": "index.d.ts"
+  "types": "dist/types/index.d.ts"
 }
