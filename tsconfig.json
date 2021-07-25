@@ -1,19 +1,16 @@
 {
   "compilerOptions": {
     "allowJs": true,
-    "allowSyntheticDefaultImports": true,
     "declaration": true,
     "declarationDir": "./temp/tsc/types",
     "esModuleInterop": true,
     "experimentalDecorators": true,
     "importHelpers": false,
-    "isolatedModules": false,
     "jsx": "preserve",
     "module": "ESNext",
     "moduleResolution": "Node",
     "outDir": "./temp/tsc/js",
     "resolveJsonModule": true,
-    "skipLibCheck": true,
     "stripInternal": true,
     "target": "es2016"
   },
