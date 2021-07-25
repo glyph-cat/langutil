@@ -20,7 +20,9 @@
     "test": "jest -c ./config/jest.config.js",
     "rollup": "rollup -c config/rollup.config.js",
     "tsc": "tsc --declaration",
-    "api": "api-extractor run --local --verbose",
+    "api:main": "api-extractor run -c config/api-extractor.main.json --local --verbose",
+    "api:react": "api-extractor run -c config/api-extractor.react.json --local --verbose",
+    "api": "yarn api:main && yarn api:react",
     "build": "yarn run rollup && yarn run tsc && yarn run api",
     "postbuild": "rm -r ./temp/tsc",
     "all": "yarn lint:fix && yarn build && yarn test && yarn pack"

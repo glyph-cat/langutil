@@ -1,3 +1,6 @@
+/**
+ * @public
+ */
 function getClientLanguage(): string | null {
   if (typeof navigator !== 'undefined') {
     if (navigator.language) {
