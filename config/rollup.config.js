@@ -3,10 +3,7 @@ import babel from '@rollup/plugin-babel'
 import commonjs from '@rollup/plugin-commonjs'
 import replace from '@rollup/plugin-replace'
 import { terser } from 'rollup-plugin-terser'
-
-const coreInputFile = 'src/index.js'
-
-// TODO: Only replace process.env.NODE_ENV in UMD and ES (Browser) builds
+import typescript from 'rollup-plugin-typescript2'
 
 /**
  * @param {object} config
@@ -15,8 +12,17 @@ const coreInputFile = 'src/index.js'
  * @param {'development'|'production'} config.mode
  * @returns {Array}
  */
-function getPlugins({ overrides, mode, presets = [] }) {
+function getPlugins({ overrides, mode, presets = [] } = {}) {
   const basePlugins = {
+    typescript: typescript({
+      tsconfigOverride: {
+        compilerOptions: {
+          declaration: false,
+          declarationDir: null,
+          outDir: null,
+        },
+      },
+    }),
     babel: babel({
       presets,
       plugins: ['@babel/plugin-proposal-optional-chaining'],
@@ -25,12 +31,6 @@ function getPlugins({ overrides, mode, presets = [] }) {
     }),
     nodeResolve: nodeResolve(),
     commonjs: commonjs(),
-    replace: replace({
-      preventAssignment: true,
-      values: {
-        'process.env.NODE_ENV': JSON.stringify(mode),
-      },
-    }),
   }
   for (const overrideKey in overrides) {
     basePlugins[overrideKey] = overrides[overrideKey]
@@ -42,37 +42,47 @@ function getPlugins({ overrides, mode, presets = [] }) {
       pluginStack.push(basePlugins[i])
     }
   }
+  if (mode) {
+    pluginStack.push(replace({
+      preventAssignment: true,
+      values: {
+        'process.env.NODE_ENV': JSON.stringify(mode),
+      },
+    }))
+  }
   if (mode === 'production') {
     const terserPlugin = terser({ mangle: { properties: { regex: /^M\$/ } } })
     pluginStack.push(terserPlugin)
   }
+  pluginStack.push(forceCleanup())
   return pluginStack
 }
 
+const mainInputFile = 'src/main/index.ts'
 const coreConfig = [
   {
     // CommonJS
-    input: coreInputFile,
+    input: mainInputFile,
     output: {
       file: 'dist/cjs/index.js',
       format: 'cjs',
       exports: 'named',
     },
-    plugins: getPlugins({ mode: 'development' }),
+    plugins: getPlugins(),
   },
   {
     // EcmaScript
-    input: coreInputFile,
+    input: mainInputFile,
     output: {
       file: 'dist/es/index.js',
       format: 'es',
       exports: 'named',
     },
-    plugins: getPlugins({ mode: 'development' }),
+    plugins: getPlugins(),
   },
   {
     // EcmaScript (Browsers)
-    input: coreInputFile,
+    input: mainInputFile,
     output: {
       file: 'dist/es/index.mjs',
       format: 'es',
@@ -82,7 +92,7 @@ const coreConfig = [
   },
   {
     // React Native
-    input: coreInputFile,
+    input: mainInputFile,
     output: {
       file: 'dist/native/index.js',
       format: 'es',
@@ -90,20 +100,16 @@ const coreConfig = [
     },
     external: ['react-native'],
     plugins: getPlugins({
-      mode: 'development',
       overrides: {
         nodeResolve: nodeResolve({
           extensions: ['.native.js', '.js'],
         }),
-        // Here, we leave `process.env.NODE_ENV` as is and let RN's bundler
-        // handle it
-        replace: null,
       },
     }),
   },
   {
     // UMD
-    input: coreInputFile,
+    input: mainInputFile,
     output: {
       file: 'dist/umd/index.js',
       format: 'umd',
@@ -114,7 +120,7 @@ const coreConfig = [
   },
   {
     // UMD (Production)
-    input: coreInputFile,
+    input: mainInputFile,
     output: {
       file: 'dist/umd/index.min.js',
       format: 'umd',
@@ -125,13 +131,12 @@ const coreConfig = [
   },
 ]
 
-const reactInputFile = 'src-react/index.js'
-const reactCommonExternalLibs = ['hoist-non-react-statics', 'react']
+const reactInputFile = 'src/react/index.ts'
 const reactCommonUmdGlobals = {
   react: 'React',
   'hoist-non-react-statics': 'hoist',
 }
-
+const reactCommonExternalLibs = Object.keys(reactCommonUmdGlobals)
 const reactConfig = [
   {
     // CommonJS
@@ -143,7 +148,6 @@ const reactConfig = [
     },
     external: [...reactCommonExternalLibs, 'react-dom'],
     plugins: getPlugins({
-      mode: 'development',
       presets: ['@babel/preset-react'],
     }),
   },
@@ -157,7 +161,6 @@ const reactConfig = [
     },
     external: [...reactCommonExternalLibs, 'react-dom'],
     plugins: getPlugins({
-      mode: 'development',
       presets: ['@babel/preset-react'],
     }),
   },
@@ -185,15 +188,11 @@ const reactConfig = [
     },
     external: [...reactCommonExternalLibs, 'react-native'],
     plugins: getPlugins({
-      mode: 'development',
       presets: ['@babel/preset-react'],
       overrides: {
         nodeResolve: nodeResolve({
           extensions: ['.native.js', '.js'],
         }),
-        // Here, we leave `process.env.NODE_ENV` as is and let RN's bundler
-        // handle it
-        replace: null,
       },
     }),
   },
@@ -234,3 +233,25 @@ const reactConfig = [
 const config = [...coreConfig, ...reactConfig]
 
 export default config
+
+function forceCleanup() {
+  return {
+    name: 'forceCleanup',
+    transform: (code, id) => {
+      if (id.includes('tslib')) {
+        return new Promise((resolve) => {
+          const indexOfFirstCommentCloseAsterisk = code.indexOf('*/')
+          if (indexOfFirstCommentCloseAsterisk >= 0) {
+            // +2 to include the 2 searched characters as well
+            code = code.substring(
+              indexOfFirstCommentCloseAsterisk + 2,
+              code.length
+            )
+          }
+          resolve({ code })
+        })
+      }
+      return null
+    },
+  }
+}

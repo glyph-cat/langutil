@@ -1,5 +1,11 @@
 import hoist from 'hoist-non-react-statics'
-import { ForwardedRef, forwardRef, PropsWithChildren, useState } from 'react'
+import {
+  createElement,
+  ForwardedRef,
+  forwardRef,
+  PropsWithChildren,
+  useState,
+} from 'react'
 import { SYNTAX_ERROR_CONFLICTING_LANGSTATE_PROP } from '../errors'
 import { LangutilState, LangutilCore, LangutilEvent } from '../schema'
 import { componentShouldUpdateFrom } from './component-should-update'
@@ -52,13 +58,11 @@ export function withLangutil<D, P extends WithLangutilProps<D>>(
     if (props['langutilState']) {
       throw SYNTAX_ERROR_CONFLICTING_LANGSTATE_PROP(displayName)
     }
-    return (
-      <WrappedComponent
-        langutilState={state}
-        ref={ref}
-        {...props}
-      />
-    )
+    return createElement(WrappedComponent, {
+      langutilState: state,
+      ref,
+      ...props,
+    })
   }
   WithLangutil.displayName = displayName
   hoist(WithLangutil, WrappedComponent)
