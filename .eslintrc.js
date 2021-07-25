@@ -6,12 +6,8 @@ module.exports = {
   env: {
     browser: true,
     commonjs: true,
-    es2020: true,
     jest: true,
-  },
-  globals: {
-    window: 'readonly',
-    process: 'readonly',
+    node: true,
   },
   extends: [
     'eslint:recommended',
@@ -19,8 +15,7 @@ module.exports = {
     'plugin:react/recommended',
     'plugin:react-hooks/recommended',
   ],
-  plugins: ['eslint-plugin-import'],
-  parser: '@babel/eslint-parser',
+  parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaVersion: 11,
     ecmaFeatures: {
@@ -28,14 +23,15 @@ module.exports = {
     },
     sourceType: 'module',
   },
+  plugins: ['eslint-plugin-functional', 'eslint-plugin-import'],
   rules: {
 
     // === Code Health ===
     // Problems that fall under this category may produce nasty bugs
     '@typescript-eslint/no-unused-vars': [ERROR, { ignoreRestSiblings: true }],
-    '@typescript-eslint/explicit-module-boundary-types': ERROR,
+    '@typescript-eslint/explicit-module-boundary-types': OFF,
     '@typescript-eslint/no-explicit-any': [ERROR, { ignoreRestArgs: true }],
-    eqeqeq: [ERROR, 'always'],
+    'eqeqeq': [ERROR, 'always'],
     'import/no-cycle': ERROR,
     'import/no-deprecated': ERROR,
     'import/no-unresolved': ERROR,
@@ -87,19 +83,36 @@ module.exports = {
       },
       { allowSingleLineBlocks: true },
     ],
-    quotes: [ERROR, 'single'],
-    semi: [ERROR, 'never'],
-    yoda: [ERROR, 'never'],
+    'quotes': [ERROR, 'single'],
+    'semi': [ERROR, 'never'],
+    'yoda': [ERROR, 'never'],
 
     // React
     'react/no-children-prop': OFF,
     'react/prop-types': OFF,
     'react/react-in-jsx-scope': OFF,
 
-    // TODO: Override for js|jsx files to ignore ...boundary-types
   },
+  overrides: [
+    {
+      files: ['*.ts', '*.tsx'],
+      rules: {
+        '@typescript-eslint/explicit-module-boundary-types': ERROR,
+      },
+    },
+  ],
   settings: {
-    react: {
+    // 'import/extensions': ['.js', '.jsx', '.ts', '.tsx'],
+    'import/resolver': {
+      node: {
+        // paths: ['src', 'src-react'],
+        extensions: ['.js', '.jsx', '.ts', '.tsx'],
+      },
+    },
+    // 'import/resolver': {
+    //   typescript: {},
+    // },
+    'react': {
       pragma: 'React',
       fragment: 'Fragment',
       version: 'detect',

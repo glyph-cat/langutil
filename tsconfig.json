@@ -1,23 +1,26 @@
 {
   "compilerOptions": {
     "allowJs": true,
+    "allowSyntheticDefaultImports": true,
     "declaration": true,
     "declarationDir": "./temp/tsc/types",
-    "experimentalDecorators": true,
-    "outDir": "./temp/tsc/js",
-    "module": "ESNext",
     "esModuleInterop": true,
+    "experimentalDecorators": true,
     "importHelpers": false,
+    "isolatedModules": false,
+    "jsx": "preserve",
+    "module": "ESNext",
     "moduleResolution": "Node",
-    "stripInternal": true,
+    "outDir": "./temp/tsc/js",
     "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "stripInternal": true,
     "target": "es2016"
   },
   "exclude": [
     "node_modules"
   ],
   "include": [
-    "src/index.ts",
-    "src-react/index.ts"
+    "src",
   ]
 }

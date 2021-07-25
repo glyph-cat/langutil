@@ -6,6 +6,8 @@ import { terser } from 'rollup-plugin-terser'
 
 const coreInputFile = 'src/index.js'
 
+// TODO: Only replace process.env.NODE_ENV in UMD and ES (Browser) builds
+
 /**
  * @param {object} config
  * @param {object} config.overrides
@@ -69,7 +71,7 @@ const coreConfig = [
     plugins: getPlugins({ mode: 'development' }),
   },
   {
-    // EcmaScript (Production)
+    // EcmaScript (Browsers)
     input: coreInputFile,
     output: {
       file: 'dist/es/index.mjs',
@@ -160,7 +162,7 @@ const reactConfig = [
     }),
   },
   {
-    // EcmaScript (Production)
+    // EcmaScript (Browsers)
     input: reactInputFile,
     output: {
       file: 'react/dist/es/index.mjs',
