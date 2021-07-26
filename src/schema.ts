@@ -65,26 +65,26 @@ export interface LangutilEvent<D = LangutilDictionaryIsolated> {
 /**
  * @public
  */
-export type LangutilStringMapParamArray = Array<unknown>
+export type LangutilStringmapParamArray = Array<unknown>
 
 /**
  * @public
  */
-export type LangutilStringMapParamObject = Record<string, unknown>
+export type LangutilStringmapParamObject = Record<string, unknown>
 
 /**
  * @public
  */
-export type LangutilStringMapParam =
-  | LangutilStringMapParamArray
-  | LangutilStringMapParamObject
+export type LangutilStringmapParam =
+  | LangutilStringmapParamArray
+  | LangutilStringmapParamObject
 
 /**
  * @public
  */
 export interface LangutilMethodObjArgsLocalize<D = LangutilDictionaryIsolated> {
   keyword: LangutilKeyword<D>,
-  param?: LangutilStringMapParam
+  param?: LangutilStringmapParam
 }
 
 /**
@@ -156,7 +156,7 @@ export interface LangutilCore<D = LangutilDictionaryIsolated> {
    */
   localize(
     keyword: LangutilKeyword<D>,
-    param?: LangutilStringMapParam
+    param?: LangutilStringmapParam
   ): LangutilLocalizedValue<D>
   localize(...args: [
     LangutilMethodObjArgsLocalize<D>,
@@ -169,7 +169,7 @@ export interface LangutilCore<D = LangutilDictionaryIsolated> {
   localizeExplicitly(
     language: LangutilLanguage<D>,
     keyword: LangutilKeyword<D>,
-    param?: LangutilStringMapParam
+    param?: LangutilStringmapParam
   ): LangutilLocalizedValue<D>
   localizeExplicitly(...args: [
     LangutilMethodObjArgsLocalizeExplicitly<D>,
@@ -188,7 +188,7 @@ export interface LangutilCore<D = LangutilDictionaryIsolated> {
     baseLanguage: LangutilLanguage<D>
   ): ((
     a: LangutilKeyword<D> | LangutilMethodObjArgsLocalize<D>,
-    b?: LangutilStringMapParam
+    b?: LangutilStringmapParam
   ) => LangutilLocalizedValue<D>)
   /**
    * Given a language, get a closest match based on the available languages in

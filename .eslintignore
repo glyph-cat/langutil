@@ -2,4 +2,4 @@ dist
 react/
 node_modules
 temp
-*draft.*
+*.draft*
