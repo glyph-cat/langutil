@@ -1,21 +1,27 @@
-import { createVirtualBatcher } from '.'
+import { createBrowserBatcher, createServerBatcher } from '.'
 
-describe('createBatcher', () => {
-  jest.useFakeTimers()
+describe('Virtual batch', () => {
 
-  it('All callbacks are fired', () => {
-    let counter = 0
-    const batch = createVirtualBatcher()
-    batch(() => {
-      counter += 1
-    })
-    batch(() => {
-      counter += 1
-    })
-    batch(() => {
-      counter += 1
-    })
-    jest.advanceTimersByTime(0)
-    expect(counter).toBe(3)
+  test('createBrowserBatcher', () => {
+    jest.useFakeTimers()
+    const batch = createBrowserBatcher()
+    const spyFn = jest.fn()
+    batch(spyFn)
+    batch(spyFn)
+    batch(spyFn)
+    expect(spyFn).toBeCalledTimes(0)
+    jest.advanceTimersByTime(10)
+    expect(spyFn).toBeCalledTimes(3)
   })
+
+  test('createServerBatcher', () => {
+    const batch = createServerBatcher()
+    const spyFn = jest.fn()
+    batch(spyFn)
+    batch(spyFn)
+    batch(spyFn)
+    expect(spyFn).toBeCalledTimes(3)
+    // NOTE: Callbacks will be fired right way in server
+  })
+
 })

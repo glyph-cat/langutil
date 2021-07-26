@@ -122,7 +122,9 @@ export function stringMapObject(
 }
 
 /**
- * A convenience wrapper around `stringMapArray` and `stringMapObject`.
+ * A convenience wrapper around `stringMapArray` and `stringMapObject`, which
+ * maps values in arrays/objects to a string. This is internally used by
+ * Langutil for inserting parameters into localized values.
  * @public
  */
 export default function stringMap(

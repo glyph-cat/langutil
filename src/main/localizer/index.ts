@@ -1,9 +1,7 @@
 import { IS_DEBUG_ENV } from '../../constants'
 import {
   LangutilKeyword,
-  LangutilKeywordIsolated,
   LangutilLanguage,
-  LangutilLanguageIsolated,
   LangutilLocalizedValue,
   LangutilStringMapParam,
 } from '../../schema'
@@ -45,8 +43,8 @@ export function baseLocalizer<D>(
     localizedValue = `${keyword}`.toUpperCase()
     if (IS_DEBUG_ENV) {
       pushWarning(
-        language as LangutilLanguageIsolated,
-        keyword as LangutilKeywordIsolated
+        language as LangutilLanguage,
+        keyword as LangutilKeyword
       )
     }
   }

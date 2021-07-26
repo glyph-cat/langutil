@@ -1,16 +1,13 @@
 import { IS_TEST_ENV } from '../../constants'
-import {
-  LangutilKeywordIsolated,
-  LangutilLanguageIsolated,
-} from '../../schema'
+import { LangutilKeyword, LangutilLanguage } from '../../schema'
 import { devPrint } from '../dev'
 
 export type WarningDebouncer = (
-  language: LangutilLanguageIsolated,
-  keyword: LangutilKeywordIsolated
+  language: LangutilLanguage,
+  keyword: LangutilKeyword
 ) => void
 
-type MissingLocalizationsSchema = Record<LangutilLanguageIsolated, Array<LangutilKeywordIsolated>>
+type MissingLocalizationsSchema = Record<LangutilLanguage, Array<LangutilKeyword>>
 
 export function createWarningDebouncer(
   spy?: (msg: string) => void
@@ -38,8 +35,8 @@ export function createWarningDebouncer(
   })
 
   const pushWarning = (
-    language: LangutilLanguageIsolated,
-    keyword: LangutilKeywordIsolated
+    language: LangutilLanguage,
+    keyword: LangutilKeyword
   ): void => {
     const memoKey = `${language},${keyword}`
     if (!memoizedStack.includes(memoKey)) {

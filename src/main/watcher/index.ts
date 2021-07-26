@@ -3,7 +3,7 @@ export type WatcherCallback<P> = (...args: Array<P>) => void
 export type UnwatchCallback = () => void
 
 export interface Watcher<P> {
-  M$watch: (callback: WatcherCallback<P>) => UnwatchCallback
+  M$watch(callback: WatcherCallback<P>): UnwatchCallback
   M$refresh: WatcherCallback<P>
 }
 

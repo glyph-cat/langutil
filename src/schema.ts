@@ -4,33 +4,22 @@ import { Watcher } from './main/watcher'
 /**
  * @public
  */
-export type LangutilLanguage<D> = keyof D
-
-/**
- * @public
- */
-export type LangutilKeyword<D> = keyof D[keyof D]
-
-/**
- * @public
- */
-export type LangutilLocalizedValue<D> = D[keyof D][keyof D[keyof D]] | string
-// KIV: `| string`
-
-/**
- * @public
- */
 export type LangutilDictionaryIsolated = Record<string, Record<string, unknown>>
 
 /**
  * @public
  */
-export type LangutilLanguageIsolated = string
+export type LangutilLanguage<D = LangutilDictionaryIsolated> = keyof D
 
 /**
  * @public
  */
-export type LangutilKeywordIsolated = string
+export type LangutilKeyword<D = LangutilDictionaryIsolated> = keyof D[keyof D]
+
+/**
+ * @public
+ */
+export type LangutilLocalizedValue<D = LangutilDictionaryIsolated> = D[keyof D][keyof D[keyof D]] | string
 
 /**
  * @public
@@ -40,7 +29,7 @@ export type LangutilAutoDetectFlag = boolean
 /**
  * @public
  */
-export interface LangutilState<D> {
+export interface LangutilState<D = LangutilDictionaryIsolated> {
   language: keyof D
   isAuto: boolean
 }
@@ -50,21 +39,12 @@ export interface LangutilState<D> {
  */
 export interface LangutilInitOptions {
   auto?: boolean
-  lifecycle?: {
-    init(arg: {
-      commit(state: LangutilState<LangutilDictionaryIsolated>): void
-    }): void
-    didSet?(details: { state: LangutilState<LangutilDictionaryIsolated> }): void
-    didReset?(): void
-  }
 }
 
 /**
  * @public
  */
-export interface LangutilSetLanguageOptions extends Pick<LangutilInitOptions, 'auto'> {
-  shouldRefresh?: boolean
-}
+export type LangutilSetLanguageOptions = LangutilInitOptions
 
 /**
  * @public
@@ -74,7 +54,7 @@ export type LangutilEventType = number
 /**
  * @public
  */
-export interface LangutilEvent<D> {
+export interface LangutilEvent<D = LangutilDictionaryIsolated> {
   type: LangutilEventType
   data: {
     oldLangState: LangutilState<D>
@@ -102,7 +82,7 @@ export type LangutilStringMapParam =
 /**
  * @public
  */
-export interface LangutilMethodObjArgsLocalize<D> {
+export interface LangutilMethodObjArgsLocalize<D = LangutilDictionaryIsolated> {
   keyword: LangutilKeyword<D>,
   param?: LangutilStringMapParam
 }
@@ -110,27 +90,32 @@ export interface LangutilMethodObjArgsLocalize<D> {
 /**
  * @public
  */
-export interface LangutilMethodObjArgsLocalizeExplicitly<D> extends LangutilMethodObjArgsLocalize<D> {
+export interface LangutilMethodObjArgsLocalizeExplicitly<D = LangutilDictionaryIsolated> extends LangutilMethodObjArgsLocalize<D> {
   language: LangutilLanguage<D>
 }
 
 /**
  * @public
  */
-export interface LangutilMethodObjArgsLocalizeFromScratch<Dn> extends LangutilMethodObjArgsLocalizeExplicitly<Dn> {
+export interface LangutilMethodObjArgsLocalizeFromScratch<Dn = LangutilDictionaryIsolated> extends LangutilMethodObjArgsLocalizeExplicitly<Dn> {
   dictionary: Dn
 }
 
 /**
  * @public
  */
-export interface LangutilCore<D> {
+export interface LangutilCore<D = LangutilDictionaryIsolated> {
   /**
    * @internal
    */
   [INTERNALS_SYMBOL]: {
-    M$getDictionary?(): D
+    getDictionary?(): D
   }
+  hydrate(
+    dictionary: D,
+    language: LangutilLanguage<D>,
+    options?: LangutilInitOptions
+  ): void
   /**
    * Sets the language.
    * @public
@@ -192,11 +177,44 @@ export interface LangutilCore<D> {
     never?,
   ]): LangutilLocalizedValue<D>
   /**
+   * Creates an isomorphic `localize` function. When executed in the server,
+   * values will be localized according to the language from the request header,
+   * when executed in a browser, values will be localized based on the user
+   * preference persisted in the browser or the default values.
+   * @public
+   * @param baseLanguage The language from request the header.
+   */
+  createIsomorphicLocalizer(
+    baseLanguage: LangutilLanguage<D>
+  ): ((
+    a: LangutilKeyword<D> | LangutilMethodObjArgsLocalize<D>,
+    b?: LangutilStringMapParam
+  ) => LangutilLocalizedValue<D>)
+  /**
    * Given a language, get a closest match based on the available languages in
    * the current dictionary.
    * @public
+   * @returns A string representing the language, if resolvable, otherwise null.
    */
-  resolveLanguage(language: LangutilLanguageIsolated): LangutilLanguage<D>
+  resolveLanguage(language: LangutilLanguage): LangutilLanguage<D>
+  /**
+   * Given a language, get a closest match based on the available languages in
+   * the current dictionary.
+   * @public
+   * @returns A string representing the language, if resolvable, otherwise the
+   * first language that is available in the dictionary will be selected.
+   */
+  safelyResolveLanguage(language: LangutilLanguage): LangutilLanguage<D>
+  /**
+   * Creates a copy of the Langutil core with the initial configuration.
+   * @public
+   */
+  cloneInitial(): LangutilCore<D>
+  /**
+   * Creates a copy of the Langutil core with the current configuration.
+   * @public
+   */
+  cloneCurrent(): LangutilCore<D>
   /**
    * Watch for changes when language is set or dictionary is set or appendded.
    * @public

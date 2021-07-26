@@ -28,16 +28,17 @@ module.exports = {
 
     // === Code Health ===
     // Problems that fall under this category may produce nasty bugs
-    '@typescript-eslint/no-unused-vars': [ERROR, { ignoreRestSiblings: true }],
     '@typescript-eslint/explicit-module-boundary-types': OFF,
     '@typescript-eslint/no-explicit-any': [ERROR, { ignoreRestArgs: true }],
+    '@typescript-eslint/no-shadow': [ERROR],
+    '@typescript-eslint/no-unused-vars': [ERROR, { ignoreRestSiblings: true }],
     'eqeqeq': [ERROR, 'always'],
     'import/no-cycle': ERROR,
     'import/no-deprecated': ERROR,
     'import/no-unresolved': ERROR,
     'no-duplicate-imports': ERROR,
     'no-console': ERROR,
-    'no-shadow': ERROR,
+    'no-shadow': OFF,
 
     // === Code that requires attention ===
     'no-warning-comments': ['warn', {

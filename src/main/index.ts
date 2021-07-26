@@ -1,4 +1,4 @@
-export { EVENT_TYPE_DICTIONARY, EVENT_TYPE_LANGUAGE } from '../constants'
+export { LangutilEvents } from '../constants'
 export * from './core'
 export { default as getClientLanguage } from './get-client-language'
 export * from '../schema'
