@@ -1,6 +1,8 @@
 import { IntegrationTestProps } from '../../constants'
 
-export default function ({ Langutil }: IntegrationTestProps): void {
+export default function (testProps: IntegrationTestProps): void {
+
+  const { Langutil } = testProps
 
   describe('stringmap', () => {
 
@@ -18,6 +20,8 @@ export default function ({ Langutil }: IntegrationTestProps): void {
 
     test('Invalid param', () => {
       const { stringmap } = Langutil
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore Ignored on purpose to test incorrect types
       const callback = () => { stringmap('', 42) }
       expect(callback).toThrow(TypeError)
     })
