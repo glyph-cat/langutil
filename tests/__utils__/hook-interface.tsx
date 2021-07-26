@@ -1,25 +1,55 @@
-import React, { Fragment, useLayoutEffect } from 'react'
-import { act, create } from 'react-test-renderer'
+import { Component as ReactComponent, Fragment, useLayoutEffect } from 'react'
+import { act, create, ReactTestRenderer } from 'react-test-renderer'
+
+export interface HookInterfaceChannel<A extends string, V extends string> {
+  hook: {
+    method(...args: Array<unknown>): unknown
+    parameters?: Array<unknown>
+  }
+  actions?: Record<A, (...args: Array<unknown>) => void>
+  values?: Record<V, (...args: Array<unknown>) => string>
+}
+
+export type HookInterfaceChannelsCollection<A extends string, V extends string> = Record<string, HookInterfaceChannel<A, V>>
+
+export interface HookInterface<A extends string, V extends string> {
+  actions(actionKeyStack: Array<A>): void,
+  get(valueKey: V): string
+  getRenderCount(): number
+  cleanup(): void
+}
+
+export interface CompoundHookInterface<A extends string, V extends string> {
+  at(channelKey: string): Omit<HookInterface<A, V>, 'cleanup'>
+  cleanup: HookInterface<A, V>['cleanup'],
+}
+
+export interface HocInterfaceConfig<A extends string, V extends string> {
+  entry<E>(entryArgs: { C: E }): E
+  actions?: HookInterfaceChannel<A, V>['actions']
+  values?: HookInterfaceChannel<A, V>['values']
+}
+
+export type HocInterface<A extends string, V extends string> = HookInterface<A, V>
 
 /**
- * @description A wrapper for testing React Hooks by abstracting the DOM container's logic.
- * @param {object} config
- * @param {object} config.hook
- * @param {Function} config.hook.method
- * @param {Array<any>} config.hook.props
- * @param {Object.<Function>} config.actions
- * @param {Object.<Function>} config.values
+ * A wrapper for testing React Hooks by abstracting the DOM container's logic.
  */
-export function createHookInterface({ hook = {}, actions = {}, values = {} }) {
+export function createHookInterface<A extends string, V extends string>(
+  config: HookInterfaceChannel<A, V>
+): HookInterface<A, V> {
+
+  const { hook, actions = {}, values = {} } = config
+
   let renderCount = 0
   let dispatchableActions = {}
   let retrievableValues = {}
 
   const Component = () => {
-    const providedHook = hook.method(...hook.props)
-    useLayoutEffect(() => {
-      renderCount += 1
-    })
+
+    const providedHook = hook.method(...hook.parameters)
+
+    useLayoutEffect(() => { renderCount += 1 })
 
     const actionKeys = Object.keys(actions)
     dispatchableActions = {}
@@ -39,15 +69,14 @@ export function createHookInterface({ hook = {}, actions = {}, values = {} }) {
     }
 
     return null
+
   }
 
-  let root
-  act(() => {
-    root = create(<Component />)
-  })
+  let root: ReactTestRenderer
+  act(() => { root = create(<Component />) })
 
   return {
-    actions: (actionKeyStack) => {
+    actions: (actionKeyStack: Array<string>) => {
       if (!Array.isArray(actionKeyStack)) {
         // This allows multiple actions to be invoked in the same `act()` callback
         actionKeyStack = [actionKeyStack]
@@ -56,15 +85,15 @@ export function createHookInterface({ hook = {}, actions = {}, values = {} }) {
         // Array of actions are batched in one `act()`
         for (const actionKey of actionKeyStack) {
           if (!dispatchableActions[actionKey]) {
-            throw new ReferenceError(`Action "${actionKey}" is undefined`)
+            throw new ReferenceError(`Action '${actionKey}' is undefined`)
           }
           dispatchableActions[actionKey]()
         }
       })
     },
-    get: (valueKey) => {
+    get: (valueKey: string) => {
       if (!retrievableValues[valueKey]) {
-        throw new ReferenceError(`Value "${valueKey}" is undefined`)
+        throw new ReferenceError(`Value '${valueKey}' is undefined`)
       }
       return retrievableValues[valueKey]
     },
@@ -73,7 +102,10 @@ export function createHookInterface({ hook = {}, actions = {}, values = {} }) {
   }
 }
 
-export function createCompoundHookInterface(channels = {}) {
+export function createCompoundHookInterface<A extends string, V extends string>(
+  channels: HookInterfaceChannelsCollection<A, V> = {}
+): CompoundHookInterface<A, V> {
+
   const renderStack = []
   const renderCount = {}
   const outlets = {}
@@ -85,10 +117,10 @@ export function createCompoundHookInterface(channels = {}) {
       dispatchableActions: {},
       retrievableValues: {},
     }
-    const { hook = {}, actions = {}, values = {} } = channels[channelKey]
+    const { hook, actions = {}, values = {} } = channels[channelKey]
 
     const ChildComponent = () => {
-      const providedHook = hook.method(...hook.props)
+      const providedHook = hook.method(...hook.parameters)
       useLayoutEffect(() => {
         renderCount[channelKey] += 1
       })
@@ -117,18 +149,16 @@ export function createCompoundHookInterface(channels = {}) {
     renderStack.push(<ChildComponent key={channelKey} />)
   }
 
-  let root
-  act(() => {
-    root = create(<Fragment children={renderStack} />)
-  })
+  let root: ReactTestRenderer
+  act(() => { root = create(<Fragment children={renderStack} />) })
 
   return {
-    at: (channelKey) => {
+    at: (channelKey: string) => {
       if (!outlets[channelKey]) {
-        throw new ReferenceError(`Channel "${channelKey}" is undefined`)
+        throw new ReferenceError(`Channel '${channelKey}' is undefined`)
       }
       return {
-        actions: (actionKeyStack) => {
+        actions: (actionKeyStack: Array<string>) => {
           if (!Array.isArray(actionKeyStack)) {
             // This allows multiple actions to be invoked in the same `act()` callback
             actionKeyStack = [actionKeyStack]
@@ -138,14 +168,14 @@ export function createCompoundHookInterface(channels = {}) {
             for (const actionKey of actionKeyStack) {
               if (!outlets[channelKey].dispatchableActions[actionKey]) {
                 throw new ReferenceError(
-                  `Action "${actionKey}" in "${channelKey}" is undefined`
+                  `Action '${actionKey} in '${channelKey}' is undefined`
                 )
               }
               outlets[channelKey].dispatchableActions[actionKey]()
             }
           })
         },
-        get: (valueKey) => outlets[channelKey].retrievableValues[valueKey],
+        get: (valueKey: string) => outlets[channelKey].retrievableValues[valueKey],
         getRenderCount: () => renderCount[channelKey],
       }
     },
@@ -153,12 +183,17 @@ export function createCompoundHookInterface(channels = {}) {
   }
 }
 
-export function createHocInterface({ entry, actions = {}, values = {} }) {
+export function createHocInterface<A extends string, V extends string>(
+  config: HocInterfaceConfig<A, V>
+): HocInterface<A, V> {
+
+  const { entry, actions = {}, values = {} } = config
+
   let renderCount = 0
   let dispatchableActions = {}
   let retrievableValues = {}
 
-  class Component extends React.Component {
+  class Component extends ReactComponent {
 
     render() {
       return null
@@ -194,7 +229,7 @@ export function createHocInterface({ entry, actions = {}, values = {} }) {
 
   }
 
-  let root
+  let root: ReactTestRenderer
   act(() => {
     // Parameters are first applied then passed in as a component, example
     // entry: ({ C }) => withHoc(C, options)
@@ -203,7 +238,7 @@ export function createHocInterface({ entry, actions = {}, values = {} }) {
   })
 
   return {
-    actions: (actionKeyStack) => {
+    actions: (actionKeyStack: Array<string>) => {
       if (!Array.isArray(actionKeyStack)) {
         // This allows multiple actions to be invoked in the same `act()` callback
         actionKeyStack = [actionKeyStack]
@@ -212,15 +247,15 @@ export function createHocInterface({ entry, actions = {}, values = {} }) {
         // Array of actions are batched in one `act()`
         for (const actionKey of actionKeyStack) {
           if (!dispatchableActions[actionKey]) {
-            throw new ReferenceError(`Action "${actionKey}" is undefined`)
+            throw new ReferenceError(`Action '${actionKey}' is undefined`)
           }
           dispatchableActions[actionKey]()
         }
       })
     },
-    get: (valueKey) => {
+    get: (valueKey: string) => {
       if (!retrievableValues[valueKey]) {
-        throw new ReferenceError(`Value "${valueKey}" is undefined`)
+        throw new ReferenceError(`Value '${valueKey}' is undefined`)
       }
       return retrievableValues[valueKey]
     },
