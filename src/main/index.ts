@@ -1,5 +1,5 @@
 export { LangutilEvents } from '../constants'
 export * from './core'
-export { default as getClientLanguage } from './get-client-language'
+export { default as getClientLanguages } from './get-client-languages'
 export * from '../schema'
-export { default as stringMap } from './string-map'
+export { default as stringmap } from './stringmap'

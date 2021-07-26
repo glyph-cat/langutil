@@ -6,7 +6,7 @@ export default function ({ Langutil, LangutilReact }) {
   const { createLangutilCore } = Langutil
   const { useLang } = LangutilReact
 
-  it('React useLang', () => {
+  test('React useLang', () => {
     jest.useFakeTimers()
     const LUcore = createLangutilCore(localizations, 'en')
 

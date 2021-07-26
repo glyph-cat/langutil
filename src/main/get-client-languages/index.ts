@@ -1,11 +1,11 @@
 import { LangutilLanguage } from '../../schema'
 
 /**
- * Gets the current device's language.
+ * Gets the available languages on the current device.
  * @public
  * @returns A a string representing the client language or null if unavailable.
  */
-function getClientLanguage(): Array<LangutilLanguage> | null {
+function getClientLanguages(): Array<LangutilLanguage> | null {
   if (typeof navigator !== 'undefined') {
     if (navigator.language) {
       return [navigator.language]
@@ -16,4 +16,4 @@ function getClientLanguage(): Array<LangutilLanguage> | null {
   return null
 }
 
-export default getClientLanguage
+export default getClientLanguages

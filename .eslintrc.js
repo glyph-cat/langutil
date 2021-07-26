@@ -65,6 +65,11 @@ module.exports = {
         skipTemplates: true,
       },
     ],
+    'no-restricted-imports': [ERROR, {
+      name: 'jest',
+      importNames: ['it'],
+      message: 'Please import `test` instead',
+    }],
     'no-trailing-spaces': ERROR,
     'operator-linebreak': [
       ERROR,
@@ -103,16 +108,11 @@ module.exports = {
     },
   ],
   settings: {
-    // 'import/extensions': ['.js', '.jsx', '.ts', '.tsx'],
     'import/resolver': {
       node: {
-        // paths: ['src', 'src-react'],
         extensions: ['.js', '.jsx', '.ts', '.tsx'],
       },
     },
-    // 'import/resolver': {
-    //   typescript: {},
-    // },
     'react': {
       pragma: 'React',
       fragment: 'Fragment',

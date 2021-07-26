@@ -23,7 +23,7 @@ import {
   LangutilStringMapParam,
 } from '../../schema'
 import { devPrint, displayStringArray } from '../dev'
-import getClientLanguage from '../get-client-language'
+import getClientLanguages from '../get-client-languages'
 import getMergedDictionary from '../get-merged-dictionary'
 import { baseLocalizer } from '../localizer'
 import { getResolvedLanguageAnyToMany } from '../resolve-language'
@@ -90,7 +90,7 @@ export function createLangutilCore<D extends LangutilDictionaryIsolated>(
     const newAuto = options.auto === true
 
     if (newAuto) {
-      const rawDetectedLanguage = getClientLanguage()
+      const rawDetectedLanguage = getClientLanguages()
       const resolvedLanguage = resolveLanguage(rawDetectedLanguage)
       if (resolvedLanguage) {
         newLanguage = resolvedLanguage

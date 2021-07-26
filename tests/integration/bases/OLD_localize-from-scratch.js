@@ -9,7 +9,7 @@ export default function ({ Langutil }) {
       },
     }
 
-    it('Parameters are spreaded', () => {
+    test('Parameters are spreaded', () => {
       const LUcore = createLangutilCore({}, 'en')
       const output = LUcore.localizeFromScratch(
         customLocalizations,
@@ -19,7 +19,7 @@ export default function ({ Langutil }) {
       expect(output).toBe('哈咯')
     })
 
-    it('Parameters as object', () => {
+    test('Parameters as object', () => {
       const LUcore = createLangutilCore({}, 'en')
       const output = LUcore.localizeFromScratch(customLocalizations, {
         language: 'zh-Hans',

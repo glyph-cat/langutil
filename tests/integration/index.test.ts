@@ -80,4 +80,4 @@
 //   })
 // }
 
-it('_integration_', () => { expect('').toBe('') })
+test('_integration_', () => { expect('').toBe('') })

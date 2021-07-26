@@ -1,6 +1,6 @@
 import { createWatcher } from '.'
 
-it('createWatcher', () => {
+test('createWatcher', () => {
   const watcher = createWatcher<number>()
 
   let counter = 0

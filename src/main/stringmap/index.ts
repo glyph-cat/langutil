@@ -60,7 +60,7 @@ export function getItemByPath(
  * @param arr Array to use.
  * @returns The mapped string.
  */
-export function stringMapArray(str: string, arr: Array<unknown>): string {
+export function stringmapArray(str: string, arr: Array<unknown>): string {
   const swapperSpecs = substituteWithUniqueSwapper(str, /(%%p)/g)
   let newStr = swapperSpecs[0]
   const swapper = swapperSpecs[1]
@@ -96,7 +96,7 @@ export function stringMapArray(str: string, arr: Array<unknown>): string {
  * string.
  * @returns The mapped string.
  */
-export function stringMapObject(
+export function stringmapObject(
   str: string,
   obj: Record<string, unknown>
 ): string {
@@ -122,12 +122,12 @@ export function stringMapObject(
 }
 
 /**
- * A convenience wrapper around `stringMapArray` and `stringMapObject`, which
+ * A convenience wrapper around `stringmapArray` and `stringmapObject`, which
  * maps values in arrays/objects to a string. This is internally used by
  * Langutil for inserting parameters into localized values.
  * @public
  */
-export default function stringMap(
+export default function stringmap(
   str: string,
   param: Array<unknown> | Record<string, unknown>
 ): string {
@@ -135,11 +135,11 @@ export default function stringMap(
   // will be level-downed. This means {::key} will not be level-downed if
   // the provided param type is an array.
   if (Array.isArray(param)) {
-    const mappedString = stringMapArray(str, param)
+    const mappedString = stringmapArray(str, param)
     warnIfPlaceholdersArePresent(mappedString)
     return mappedString
   } else if (typeof param === 'object') {
-    const mappedString = stringMapObject(str, param)
+    const mappedString = stringmapObject(str, param)
     warnIfPlaceholdersArePresent(mappedString)
     return mappedString
   } else {

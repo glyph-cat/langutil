@@ -1,6 +1,6 @@
 export default function ({ Langutil }) {
   const { createLangutilCore, INTERNALS_SYMBOL } = Langutil
-  it('Set dictionary', () => {
+  test('Set dictionary', () => {
     const customLocalizations = {
       en: {
         HELLO: 'Hello',
