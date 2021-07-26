@@ -1,11 +1,7 @@
 import localizations from '../../sample-dictionary'
 
 export default function ({ Langutil }) {
-  const {
-    createLangutilCore,
-    EVENT_TYPE_DICTIONARY,
-    EVENT_TYPE_LANGUAGE,
-  } = Langutil
+  const { createLangutilCore, LangutilEvents } = Langutil
 
   it('Listeners', () => {
     jest.useFakeTimers()
@@ -22,7 +18,7 @@ export default function ({ Langutil }) {
     LUcore.setDictionary(localizations)
     jest.advanceTimersByTime()
     expect(receivedEventData).toStrictEqual({
-      type: EVENT_TYPE_DICTIONARY,
+      type: LangutilEvents.dictionary,
       data: {
         oldLangState: { language: 'en', isAuto: false },
         newLangState: { language: 'en', isAuto: false },
@@ -32,7 +28,7 @@ export default function ({ Langutil }) {
     LUcore.appendDictionary({})
     jest.advanceTimersByTime()
     expect(receivedEventData).toStrictEqual({
-      type: EVENT_TYPE_DICTIONARY,
+      type: LangutilEvents.dictionary,
       data: {
         oldLangState: { language: 'en', isAuto: false },
         newLangState: { language: 'en', isAuto: false },
@@ -46,7 +42,7 @@ export default function ({ Langutil }) {
     expect(LUcore.getLanguage()).toBe('zh')
     expect(receivedEventData).toStrictEqual({
       // Should still remain the same as above
-      type: EVENT_TYPE_DICTIONARY,
+      type: LangutilEvents.dictionary,
       data: {
         oldLangState: { language: 'en', isAuto: false },
         newLangState: { language: 'en', isAuto: false },
@@ -56,7 +52,7 @@ export default function ({ Langutil }) {
     LUcore.setLanguage('ms')
     jest.advanceTimersByTime()
     expect(receivedEventData).toStrictEqual({
-      type: EVENT_TYPE_LANGUAGE,
+      type: LangutilEvents.language,
       data: {
         oldLangState: { language: 'zh', isAuto: false },
         newLangState: { language: 'ms', isAuto: false },
@@ -66,7 +62,7 @@ export default function ({ Langutil }) {
     LUcore.setLanguage('en', { auto: true })
     jest.advanceTimersByTime()
     expect(receivedEventData).toStrictEqual({
-      type: EVENT_TYPE_LANGUAGE,
+      type: LangutilEvents.language,
       data: {
         oldLangState: { language: 'ms', isAuto: false },
         newLangState: { language: 'en', isAuto: true },
@@ -78,7 +74,7 @@ export default function ({ Langutil }) {
     LUcore.setLanguage('en', false)
     jest.advanceTimersByTime()
     expect(receivedEventData).toStrictEqual({
-      type: EVENT_TYPE_LANGUAGE,
+      type: LangutilEvents.language,
       data: {
         oldLangState: { language: 'ms', isAuto: false },
         newLangState: { language: 'en', isAuto: true },

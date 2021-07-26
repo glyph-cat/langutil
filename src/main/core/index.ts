@@ -1,8 +1,9 @@
 import {
-  EVENT_TYPE_DICTIONARY,
-  EVENT_TYPE_LANGUAGE,
   INTERNALS_SYMBOL,
+  IS_BROWSER_ENV,
   IS_DEBUG_ENV,
+  IS_TEST_ENV,
+  LangutilEvents,
 } from '../../constants'
 import { TYPE_ERROR_DICTIONARY_INVALID_TYPE } from '../../errors'
 import {
@@ -13,14 +14,10 @@ import {
   LangutilEvent,
   LangutilInitOptions,
   LangutilLanguage,
-  LangutilLanguageIsolated,
   LangutilSetLanguageOptions,
   LangutilLocalizedValue,
-  // LangutilMethodArgsLocalize,
-  // LangutilMethodArgsLocalizeExplicitly,
   LangutilMethodObjArgsLocalize,
   LangutilMethodObjArgsLocalizeExplicitly,
-  // LangutilMethodArgsLocalizeFromScratch,
   LangutilMethodObjArgsLocalizeFromScratch,
   LangutilKeyword,
   LangutilStringMapParam,
@@ -29,7 +26,7 @@ import { devPrint, displayStringArray } from '../dev'
 import getClientLanguage from '../get-client-language'
 import getMergedDictionary from '../get-merged-dictionary'
 import { baseLocalizer } from '../localizer'
-import { getResolvedLanguageFromList } from '../resolve-language'
+import { getResolvedLanguageAnyToMany } from '../resolve-language'
 import { VirtualBatchFunction, createVirtualBatcher } from '../virtual-batch'
 import { createWarningDebouncer } from '../warning-debouncer'
 import { createWatcher, Watcher } from '../watcher'
@@ -45,9 +42,8 @@ interface LangutilCoreInternalInstance<D> {
 
 const pushWarning = IS_DEBUG_ENV ? createWarningDebouncer() : undefined
 
-// TODO: Lifecycle???
-
 /**
+ * Creates a Langutil Core instance.
  * @public
  */
 export function createLangutilCore<D extends LangutilDictionaryIsolated>(
@@ -55,7 +51,7 @@ export function createLangutilCore<D extends LangutilDictionaryIsolated>(
 ): LangutilCore<D> {
 
   const self: LangutilCoreInternalInstance<D> = {
-    M$dictionary: null,
+    M$dictionary: ({} as D),
     M$language: null,
     M$isAuto: false,
     M$batch: createVirtualBatcher(),
@@ -68,16 +64,19 @@ export function createLangutilCore<D extends LangutilDictionaryIsolated>(
   // === Getters ===
 
   const getLanguage = (): LangutilLanguage<D> => self.M$language
+
   const getLangState = (): LangutilState<D> => ({
     isAuto: self.M$isAuto,
     language: self.M$language,
   })
+
   const getAllLanguages = (): Array<LangutilLanguage<D>> => Object.keys(
     self.M$dictionary
   )
+
   const __getDictionary = (): D => self.M$dictionary
 
-  // === Base Setters ===
+  // === Base Methods ===
 
   const __setLanguageBase = (
     language: LangutilLanguage<D>,
@@ -92,10 +91,7 @@ export function createLangutilCore<D extends LangutilDictionaryIsolated>(
 
     if (newAuto) {
       const rawDetectedLanguage = getClientLanguage()
-      const resolvedLanguage = getResolvedLanguageFromList(
-        rawDetectedLanguage,
-        getAllLanguages() as Array<LangutilLanguageIsolated>
-      )
+      const resolvedLanguage = resolveLanguage(rawDetectedLanguage)
       if (resolvedLanguage) {
         newLanguage = resolvedLanguage
         devPrint(
@@ -142,27 +138,35 @@ export function createLangutilCore<D extends LangutilDictionaryIsolated>(
 
   // === Setters ===
 
+  const hydrate = (
+    ...hydrateArgs: [D, LangutilLanguage<D>, LangutilInitOptions?]
+  ): void => {
+    const [dictionary, language, options] = hydrateArgs
+    // NOTE: dictionary is optional here
+    if (dictionary) { __setDictionaryBase(dictionary) }
+    const eventData = __setLanguageBase(language, options)
+    self.M$refresh({
+      type: LangutilEvents.hydration,
+      data: eventData,
+    })
+  }
+
   const setLanguage = (
     language: LangutilLanguage<D>,
     options: LangutilSetLanguageOptions
   ): void => {
-    // `shouldRefresh` defaults to true
-    options = { shouldRefresh: true, ...options }
-    const { shouldRefresh, ...remainingOptions } = options
-    const event = __setLanguageBase(language, remainingOptions)
-    if (shouldRefresh) {
-      self.M$refresh({
-        type: EVENT_TYPE_LANGUAGE,
-        data: event,
-      })
-    }
+    const eventData = __setLanguageBase(language, options)
+    self.M$refresh({
+      type: LangutilEvents.language,
+      data: eventData,
+    })
   }
 
   const setDictionary = (dictionary: LangutilDictionaryIsolated): void => {
-    const event = __setDictionaryBase(dictionary)
+    const eventData = __setDictionaryBase(dictionary)
     self.M$refresh({
-      type: EVENT_TYPE_DICTIONARY,
-      data: event,
+      type: LangutilEvents.dictionary,
+      data: eventData,
     })
   }
 
@@ -172,13 +176,14 @@ export function createLangutilCore<D extends LangutilDictionaryIsolated>(
     }
     // Note: Type of dictionary that is set or appended at runtime is unavailable
     self.M$dictionary = getMergedDictionary(self.M$dictionary, dictionary) as D
+    const eventData = {
+      // Separate `getLangState()` to prevent hard-to-debug mutability issues
+      oldLangState: getLangState(),
+      newLangState: getLangState(),
+    }
     self.M$refresh({
-      type: EVENT_TYPE_DICTIONARY,
-      data: {
-        // Separate `getLangState()` to prevent hard-to-debug mutability issues
-        oldLangState: getLangState(),
-        newLangState: getLangState(),
-      },
+      type: LangutilEvents.dictionary,
+      data: eventData,
     })
   }
 
@@ -189,13 +194,7 @@ export function createLangutilCore<D extends LangutilDictionaryIsolated>(
     b?: LangutilStringMapParam
   ): LangutilLocalizedValue<D> => {
     if (typeof a !== 'object') {
-      return baseLocalizer(
-        self.M$dictionary,
-        self.M$language,
-        a,
-        b,
-        pushWarning
-      )
+      return baseLocalizer(self.M$dictionary, self.M$language, a, b, pushWarning)
     } else {
       return baseLocalizer(
         self.M$dictionary,
@@ -225,26 +224,67 @@ export function createLangutilCore<D extends LangutilDictionaryIsolated>(
     }
   }
 
+  const createIsomorphicLocalizer = (
+    baseLanguage: LangutilLanguage
+  ): ((
+    a: LangutilKeyword<D> | LangutilMethodObjArgsLocalize<D>,
+    b?: LangutilStringMapParam
+  ) => LangutilLocalizedValue<D>) => {
+    if (IS_BROWSER_ENV) {
+      return (
+        a: LangutilKeyword<D> | LangutilMethodObjArgsLocalize<D>,
+        b: LangutilStringMapParam
+      ) => localize(a, b)
+    } else {
+      return (
+        a: LangutilKeyword<D> | LangutilMethodObjArgsLocalize<D>,
+        b: LangutilStringMapParam
+      ) => {
+        const safeBaseLanguage = safelyResolveLanguage(baseLanguage)
+        if (typeof a !== 'object') {
+          return localizeExplicitly(safeBaseLanguage, a, b)
+        } else {
+          return localizeExplicitly(safeBaseLanguage, a.keyword, a.param)
+        }
+      }
+    }
+  }
+
   const resolveLanguage = (
-    language: LangutilLanguageIsolated
+    language: LangutilLanguage | Array<LangutilLanguage>
   ): LangutilLanguage<D> => {
-    return getResolvedLanguageFromList(
+    return getResolvedLanguageAnyToMany(
       language,
-      getAllLanguages() as Array<LangutilLanguageIsolated>
+      getAllLanguages()
+    )
+  }
+
+  const safelyResolveLanguage = (
+    language: LangutilLanguage
+  ): LangutilLanguage<D> => {
+    return resolveLanguage(language) || Object.keys(self.M$dictionary)[0]
+  }
+
+  const cloneInitial = (): LangutilCore<D> => {
+    return createLangutilCore(...initArgs)
+  }
+
+  const cloneCurrent = (): LangutilCore<D> => {
+    return createLangutilCore(
+      self.M$dictionary,
+      self.M$language,
+      { auto: self.M$isAuto }
     )
   }
 
   // === Initialization ===
 
-  if (initArgs.length > 0) {
-    const [dictionary, language, options] = initArgs
-    __setDictionaryBase(dictionary)
-    __setLanguageBase(language, options)
-  }
+  if (initArgs) { hydrate(...initArgs) }
 
   // === Core Instance ===
 
   const coreInstance: LangutilCore<D> = {
+    hydrate,
     setLanguage,
     getLanguage,
     getLangutilState: getLangState,
@@ -253,13 +293,18 @@ export function createLangutilCore<D extends LangutilDictionaryIsolated>(
     appendDictionary,
     localize,
     localizeExplicitly,
+    createIsomorphicLocalizer,
     resolveLanguage,
+    safelyResolveLanguage,
+    cloneInitial,
+    cloneCurrent,
     watch: self.M$watcher.M$watch,
-    [INTERNALS_SYMBOL]: {
-      M$getDictionary: __getDictionary,
-    },
+    [INTERNALS_SYMBOL]: IS_TEST_ENV ? {
+      getDictionary: __getDictionary,
+    } : {},
   }
   return coreInstance
+
 }
 
 /**

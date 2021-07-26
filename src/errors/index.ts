@@ -21,7 +21,7 @@ export function TYPE_ERROR_STRINGMAP_INVALID_PARAM_TYPE(
   const typeofParam = typeof param
   return new TypeError(
     IS_DEBUG_ENV
-      ? `Expected \`param\` to be an array or object but got ${typeof typeofParam}`
+      ? `Expected \`param\` to be an array or object but got ${typeofParam}`
       : __formatErrorCode(1, typeofParam)
   )
 }

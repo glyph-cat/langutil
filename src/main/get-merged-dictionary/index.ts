@@ -1,7 +1,4 @@
-import {
-  LangutilDictionaryIsolated,
-  LangutilLanguageIsolated,
-} from '../../schema'
+import { LangutilDictionaryIsolated, LangutilLanguage } from '../../schema'
 
 /**
  * @description Merges two dictionaries together
@@ -15,10 +12,10 @@ export default function getMergedDictionary(
   d2: LangutilDictionaryIsolated
 ): LangutilDictionaryIsolated {
   const merged: LangutilDictionaryIsolated = {}
-  const d1LanguageStack: Array<LangutilLanguageIsolated> = Object.keys(d1)
-  const d2LanguageStack: Array<LangutilLanguageIsolated> = Object.keys(d2)
+  const d1LanguageStack: Array<LangutilLanguage> = Object.keys(d1)
+  const d2LanguageStack: Array<LangutilLanguage> = Object.keys(d2)
   // Merge the languages and remove duplicates
-  const mergedLanguageStack: Array<LangutilLanguageIsolated> = [
+  const mergedLanguageStack: Array<LangutilLanguage> = [
     ...new Set([...d1LanguageStack, ...d2LanguageStack]),
   ]
   for (let i = 0; i < mergedLanguageStack.length; i++) {

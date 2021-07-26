@@ -17,6 +17,7 @@ it('createDebouncedWarning - Warnings are batched', () => {
   pushWarning('en', 'FOO')
   pushWarning('en', 'BAR')
   pushWarning('en', 'BAZ')
+  expect(spyFunction).toHaveBeenCalledTimes(0)
   jest.advanceTimersByTime(0)
   expect(spyFunction).toHaveBeenCalledTimes(1)
   expect(warningMessage).toMatch(/BAR, BAZ, FOO, HELLO/)

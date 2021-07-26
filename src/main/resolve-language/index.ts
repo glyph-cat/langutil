@@ -1,41 +1,74 @@
-import { LangutilLanguageIsolated } from '../../schema'
+import { LangutilDictionaryIsolated, LangutilLanguage } from '../../schema'
+
+export function getResolvedLanguageAnyToMany<D = LangutilDictionaryIsolated>(
+  ul: Array<LangutilLanguage> | LangutilLanguage,
+  al: Array<LangutilLanguage<D>>
+) {
+  if (Array.isArray(ul)) {
+    return getResolvedLanguageManyToMany(ul, al)
+  } else {
+    return getResolvedLanguageOneToMany(ul, al)
+  }
+}
+
+export function getResolvedLanguageManyToMany<D = LangutilDictionaryIsolated>(
+  unconfirmedLanguageStack: Array<LangutilLanguage>,
+  availableLanguageStack: Array<LangutilLanguage<D>>
+): LangutilLanguage<D> | null {
+
+  if (!unconfirmedLanguageStack || unconfirmedLanguageStack.length <= 0) {
+    return null
+  } // Early exit
+
+  for (let i = 0; i < unconfirmedLanguageStack.length; i++) {
+    const resolvedLanguage = getResolvedLanguageOneToMany(
+      unconfirmedLanguageStack[i],
+      availableLanguageStack
+    )
+    if (resolvedLanguage) { return resolvedLanguage } // Early exit
+  }
+
+  return null // Last resort
+
+}
 
 /**
- * @param uL Unconfirmed language.
- * @param aLStack Available languages.
  * @returns The resolved language.
  */
-export function getResolvedLanguageFromList(
-  uL: LangutilLanguageIsolated,
-  aLStack: Array<LangutilLanguageIsolated>
-): LangutilLanguageIsolated | null {
-  if (!uL) {
-    return null
-  }
-  for (let aL of aLStack) {
-    // This is because the keys will be converted to lowercase below, but when
-    // returning a resolved key, it should be based on the original aLStack
-    const originalAL = aL
+export function getResolvedLanguageOneToMany<D = LangutilDictionaryIsolated>(
+  unconfirmedLanguage: LangutilLanguage,
+  availableLanguageStack: Array<LangutilLanguage<D>>
+): LangutilLanguage<D> | null {
 
-    // First level comparison by cross checking with
-    aL = aL.toLowerCase() // Eg: 'en'
-    uL = uL.toLowerCase() // Eg: 'en_us'
-    if (uL.includes(aL) || aL.includes(uL)) {
-      return originalAL // Return the current inspected available language
+  if (!unconfirmedLanguage) { return null } // Early exit
+
+  for (const originalAvailableLanguage of availableLanguageStack) {
+
+    /**
+     * @example 'en'
+     */
+    const availableLanguage = (originalAvailableLanguage as string).toLowerCase()
+
+    // First level comparison by cross checking the unconfirmed language with
+    // available languages
+    unconfirmedLanguage = unconfirmedLanguage.toLowerCase() // Eg: 'en_us'
+    if (unconfirmedLanguage.includes(availableLanguage) || availableLanguage.includes(unconfirmedLanguage)) {
+      return originalAvailableLanguage
     } // Early exit
 
     // If still no match, split by dashes and underscores
     // to perform a more granular comparison
     const splitter = /_|-/g
-    const aLSub = aL.split(splitter) // Eg: ['en']
-    const uLSub = uL.split(splitter) // Eg: ['en', 'US']
+    const aLSub = availableLanguage.split(splitter) // Eg: ['en']
+    const uLSub = unconfirmedLanguage.split(splitter) // Eg: ['en', 'US']
     for (const a of aLSub) {
       // Eg: a = 'en'
       if (uLSub.includes(a)) {
-        return originalAL
+        return originalAvailableLanguage
       } // Early exit
     }
   }
 
-  return null
+  return null // Last resort
+
 }
