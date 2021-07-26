@@ -31,7 +31,7 @@ node_modules
 temp/
 
 # Drafts
-*draft.*
+*.draft*
 
 # OS
 .DS_Store
