@@ -3,7 +3,7 @@ import {
   LangutilKeyword,
   LangutilLanguage,
   LangutilLocalizedValue,
-  LangutilStringMapParam,
+  LangutilStringmapParam,
 } from '../../schema'
 import stringmap, { warnIfPlaceholdersArePresent } from '../stringmap'
 import { WarningDebouncer } from '../warning-debouncer'
@@ -12,7 +12,7 @@ export function baseLocalizer<D>(
   dictionary: D,
   language: LangutilLanguage<D>,
   keyword: LangutilKeyword<D>,
-  param: LangutilStringMapParam,
+  param: LangutilStringmapParam,
   pushWarning: WarningDebouncer | undefined
 ): LangutilLocalizedValue<D> {
 

@@ -20,7 +20,7 @@ import {
   LangutilMethodObjArgsLocalizeExplicitly,
   LangutilMethodObjArgsLocalizeFromScratch,
   LangutilKeyword,
-  LangutilStringMapParam,
+  LangutilStringmapParam,
 } from '../../schema'
 import { devPrint, displayStringArray } from '../dev'
 import getClientLanguages from '../get-client-languages'
@@ -191,7 +191,7 @@ export function createLangutilCore<D extends LangutilDictionaryIsolated>(
 
   const localize = (
     a: LangutilKeyword<D> | LangutilMethodObjArgsLocalize<D>,
-    b?: LangutilStringMapParam
+    b?: LangutilStringmapParam
   ): LangutilLocalizedValue<D> => {
     if (typeof a !== 'object') {
       return baseLocalizer(self.M$dictionary, self.M$language, a, b, pushWarning)
@@ -209,7 +209,7 @@ export function createLangutilCore<D extends LangutilDictionaryIsolated>(
   const localizeExplicitly = (
     a: LangutilLanguage<D> | LangutilMethodObjArgsLocalizeExplicitly<D>,
     b: LangutilKeyword<D>,
-    c?: LangutilStringMapParam
+    c?: LangutilStringmapParam
   ): LangutilLocalizedValue<D> => {
     if (typeof a !== 'object') {
       return baseLocalizer(self.M$dictionary, a, b, c, pushWarning)
@@ -228,17 +228,17 @@ export function createLangutilCore<D extends LangutilDictionaryIsolated>(
     baseLanguage: LangutilLanguage
   ): ((
     a: LangutilKeyword<D> | LangutilMethodObjArgsLocalize<D>,
-    b?: LangutilStringMapParam
+    b?: LangutilStringmapParam
   ) => LangutilLocalizedValue<D>) => {
     if (IS_BROWSER_ENV) {
       return (
         a: LangutilKeyword<D> | LangutilMethodObjArgsLocalize<D>,
-        b: LangutilStringMapParam
+        b: LangutilStringmapParam
       ) => localize(a, b)
     } else {
       return (
         a: LangutilKeyword<D> | LangutilMethodObjArgsLocalize<D>,
-        b: LangutilStringMapParam
+        b: LangutilStringmapParam
       ) => {
         const safeBaseLanguage = safelyResolveLanguage(baseLanguage)
         if (typeof a !== 'object') {
@@ -252,7 +252,7 @@ export function createLangutilCore<D extends LangutilDictionaryIsolated>(
 
   const resolveLanguage = (
     language: LangutilLanguage | Array<LangutilLanguage>
-  ): LangutilLanguage<D> => {
+  ): LangutilLanguage<D> | null => {
     return getResolvedLanguageAnyToMany(
       language,
       getAllLanguages()
@@ -314,7 +314,7 @@ export function localizeFromScratch<Dn>(
   dictionary: Dn,
   language: LangutilLanguage<Dn>,
   keyword?: LangutilKeyword<Dn>,
-  param?: LangutilStringMapParam
+  param?: LangutilStringmapParam
 ): LangutilLocalizedValue<Dn>
 
 /**
@@ -334,7 +334,7 @@ export function localizeFromScratch<Dn>(
   dictionary: Dn,
   a: LangutilLanguage<Dn> | LangutilMethodObjArgsLocalizeFromScratch<Dn>,
   b?: LangutilKeyword<Dn>,
-  c?: LangutilStringMapParam
+  c?: LangutilStringmapParam
 ): LangutilLocalizedValue<Dn> {
   // NOTE: `dictionary` cannot be part of the a,b,c because the dictionary
   // itself is an object, which means `isByObj` will always evaluate to true
