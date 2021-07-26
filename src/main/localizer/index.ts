@@ -5,7 +5,7 @@ import {
   LangutilLocalizedValue,
   LangutilStringMapParam,
 } from '../../schema'
-import stringMap, { warnIfPlaceholdersArePresent } from '../string-map'
+import stringmap, { warnIfPlaceholdersArePresent } from '../stringmap'
 import { WarningDebouncer } from '../warning-debouncer'
 
 export function baseLocalizer<D>(
@@ -28,8 +28,8 @@ export function baseLocalizer<D>(
   if (typeof localizedValue === 'string') {
     if (param) {
       // If param is provided, do mapping, warning for leftover
-      // placeholders will be shown in `stringMap`
-      localizedValue = stringMap(localizedValue, param)
+      // placeholders will be shown in `stringmap`
+      localizedValue = stringmap(localizedValue, param)
     } else {
       // Otherwise, perform a check in case placeholders are
       // present but there are no params provided

@@ -3,7 +3,7 @@ import { LangutilDictionaryIsolated, LangutilLanguage } from '../../schema'
 export function getResolvedLanguageAnyToMany<D = LangutilDictionaryIsolated>(
   ul: Array<LangutilLanguage> | LangutilLanguage,
   al: Array<LangutilLanguage<D>>
-) {
+): LangutilLanguage<D> | null {
   if (Array.isArray(ul)) {
     return getResolvedLanguageManyToMany(ul, al)
   } else {

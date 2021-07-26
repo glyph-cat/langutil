@@ -1,6 +1,6 @@
 export default function ({ Langutil }) {
   const { createLangutilCore } = Langutil
-  it('Get/Set language', () => {
+  test('Get/Set language', () => {
     const LUcore = createLangutilCore({}, 'en')
 
     LUcore.setLanguage('ms')
@@ -18,7 +18,7 @@ export default function ({ Langutil }) {
     })
   })
 
-  it('Invalid setLanguage options', () => {
+  test('Invalid setLanguage options', () => {
     const callback = () => {
       const LUcore = createLangutilCore({}, 'en')
       LUcore.setLanguage('en', 'auto: true')

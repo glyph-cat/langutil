@@ -3,7 +3,7 @@ import localizations from '../../sample-dictionary'
 export default function ({ Langutil }) {
   const { createLangutilCore, LangutilEvents } = Langutil
 
-  it('Listeners', () => {
+  test('Listeners', () => {
     jest.useFakeTimers()
 
     let receivedEventData = null

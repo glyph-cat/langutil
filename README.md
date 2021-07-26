@@ -127,7 +127,7 @@ describe('Localizations are tally', () => {
   const firstKeywordStack = Object.keys(dictionary[firstLanguage]).sort()
   for (let i = 1; i < languageStack.length; i++) {
     const language = languageStack[i]
-    it(`Comparing ${firstLanguage} - ${language}`, () => {
+    test(`Comparing ${firstLanguage} - ${language}`, () => {
       const keywordStack = Object.keys(dictionary[language]).sort()
       expect(firstKeywordStack).toStrictEqual(keywordStack)
     })

@@ -5,7 +5,7 @@ import { baseLocalizer } from './'
 const mockDebouncedWarning = () => { }
 
 describe('baseLocalizer', () => {
-  it('Basic localization', () => {
+  test('Basic localization', () => {
     const output = baseLocalizer(
       localizations,
       'en',
@@ -16,7 +16,7 @@ describe('baseLocalizer', () => {
     expect(output).toBe('Hello')
   })
 
-  it('Non-existent key', () => {
+  test('Non-existent key', () => {
     const output = baseLocalizer(
       localizations,
       'en',
@@ -31,7 +31,7 @@ describe('baseLocalizer', () => {
 
   describe('With parameters', () => {
     describe('With array as param', () => {
-      it('1 item', () => {
+      test('1 item', () => {
         const output = baseLocalizer(
           localizations,
           'en',
@@ -42,7 +42,7 @@ describe('baseLocalizer', () => {
         expect(output).toBe('Hello, John')
       })
 
-      it('2 items', () => {
+      test('2 items', () => {
         const output = baseLocalizer(
           localizations,
           'en',
@@ -53,7 +53,7 @@ describe('baseLocalizer', () => {
         expect(output).toBe('Hello, John and Jane')
       })
 
-      it('No items', () => {
+      test('No items', () => {
         const output = baseLocalizer(
           localizations,
           'en',
@@ -66,7 +66,7 @@ describe('baseLocalizer', () => {
     })
 
     describe('With object as param', () => {
-      it('1 item', () => {
+      test('1 item', () => {
         const output = baseLocalizer(
           localizations,
           'en',
@@ -79,7 +79,7 @@ describe('baseLocalizer', () => {
         expect(output).toBe('Hello, John')
       })
 
-      it('2 item', () => {
+      test('2 item', () => {
         const output = baseLocalizer(
           localizations,
           'en',
@@ -93,7 +93,7 @@ describe('baseLocalizer', () => {
         expect(output).toBe('Hello, John and Jane')
       })
 
-      it('No items', () => {
+      test('No items', () => {
         const output = baseLocalizer(
           localizations,
           'en',
@@ -105,7 +105,7 @@ describe('baseLocalizer', () => {
       })
     })
 
-    it('Invalid param type', () => {
+    test('Invalid param type', () => {
       const callback = () => {
         baseLocalizer(
           localizations,

@@ -1,6 +1,6 @@
 // import { extractCoreMethodsForHook } from './'
 
-// it('extractCoreMethodsForHook', () => {
+// test('extractCoreMethodsForHook', () => {
 //   const core = {
 //     noise1: true,
 //     localize: true,
@@ -29,6 +29,6 @@
 //   })
 // })
 
-it('__react', () => { expect('').toBe('') })
+test('__react', () => { expect('').toBe('') })
 
 export { }
