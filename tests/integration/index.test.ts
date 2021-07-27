@@ -5,8 +5,8 @@ const SCOPE = process.env.scope
 const DEBUG_BUILDS = [
   {
     tag: 'Debug',
-    src: require('../../src/index.js'),
-    srcReact: require('../../src-react/index.js'),
+    src: require('../../src/main/index.ts'),
+    srcReact: require('../../src/react/index.ts'),
     debug: true,
   },
 ]
@@ -42,12 +42,12 @@ const BUNDLED_BUILDS = [
   //   srcReact: require('../../react/dist/es/index.mjs'),
   // },
   // // Doesn't use ReactDOM
-  // {
-  //   tag: 'React Native',
-  //   src: require('../../dist/native/index.js'),
-  //   srcReact: require('../../react/dist/native/index.js'),
-  //   debug: true,
-  // },
+  {
+    tag: 'React Native',
+    src: require('../../dist/native/index.js'),
+    srcReact: require('../../react/dist/native/index.js'),
+    debug: true,
+  },
 ]
 
 const buildStack = []
@@ -66,6 +66,7 @@ for (const build of buildStack) {
   const { tag, src, srcReact, debug } = build
   describe(tag, () => {
     for (const l of list) {
+      if (!/^\d{3}-/.test(l)) { continue }
       // eslint-disable-next-line @typescript-eslint/no-var-requires
       const requiredTest = require(`./bases/${l}`)
       const executor = requiredTest.default || requiredTest

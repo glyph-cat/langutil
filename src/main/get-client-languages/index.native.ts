@@ -1,6 +1,7 @@
 // eslint-disable-next-line import/no-deprecated
 import { NativeModules, Platform } from 'react-native'
 import { LangutilLanguage } from '../../schema'
+import parseAppleKeyboards from './parse-apple-keyboard'
 
 function getClientLanguages(): Array<LangutilLanguage> | null {
   const getLocale = Platform.select({
@@ -29,16 +30,3 @@ function getClientLanguages(): Array<LangutilLanguage> | null {
 }
 
 export default getClientLanguages
-
-export function parseAppleKeyboards<S extends string = string>(
-  values: Array<S>
-): Array<S> {
-  const parsedValues = []
-  for (let i = 0; i < values.length; i++) {
-    const value = values[i]
-    // Value splitting
-    // 'en_US@sw=QWERTY;hw=Automatic' -> ['en_US', 'sw=QWERTY;hw=Automatic']
-    parsedValues.push(value.split('@')[0])
-  }
-  return parsedValues
-}

@@ -1,4 +1,4 @@
-import { IS_TEST_ENV } from '../../constants'
+import { IS_DIST_ENV } from '../../constants'
 import { LangutilKeyword, LangutilLanguage } from '../../schema'
 import { devPrint } from '../dev'
 
@@ -31,7 +31,7 @@ export function createWarningDebouncer(
       : formatMultiLineMissingLoc(missingLocalizations)
     missingLocalizations = {}
     devPrint('warn', message)
-    if (IS_TEST_ENV) { spy(message) }
+    if (!IS_DIST_ENV) { spy(message) }
   })
 
   const pushWarning = (

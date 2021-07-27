@@ -1,9 +1,11 @@
-import nodeResolve from '@rollup/plugin-node-resolve'
 import babel from '@rollup/plugin-babel'
 import commonjs from '@rollup/plugin-commonjs'
+// import json from '@rollup/plugin-json'
+import nodeResolve from '@rollup/plugin-node-resolve'
 import replace from '@rollup/plugin-replace'
 import { terser } from 'rollup-plugin-terser'
 import typescript from 'rollup-plugin-typescript2'
+import { version } from '../package.json'
 
 /**
  * @param {object} config
@@ -29,6 +31,8 @@ function getPlugins({ overrides, mode, presets = [] } = {}) {
       exclude: '**/node_modules/**',
       babelHelpers: 'bundled',
     }),
+    // // @see https://stackoverflow.com/questions/55362346/rollup-how-to-require-json-but-not-include-it-in-bundle#57922092
+    // json: json({ compact: true }),
     nodeResolve: nodeResolve(),
     commonjs: commonjs(),
   }
@@ -42,14 +46,17 @@ function getPlugins({ overrides, mode, presets = [] } = {}) {
       pluginStack.push(basePlugins[i])
     }
   }
-  if (mode) {
-    pluginStack.push(replace({
-      preventAssignment: true,
-      values: {
-        'process.env.NODE_ENV': JSON.stringify(mode),
-      },
-    }))
+  const replaceValues = {
+    'process.env.DIST_ENV': JSON.stringify(true),
+    'process.env.NPM_PACKAGE_VERSION': JSON.stringify(version),
   }
+  if (mode) {
+    replaceValues['process.env.NODE_ENV'] = JSON.stringify(mode)
+  }
+  pluginStack.push(replace({
+    preventAssignment: true,
+    values: replaceValues,
+  }))
   if (mode === 'production') {
     const terserPlugin = terser({ mangle: { properties: { regex: /^M\$/ } } })
     pluginStack.push(terserPlugin)
