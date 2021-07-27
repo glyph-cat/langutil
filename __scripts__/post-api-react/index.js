@@ -33,7 +33,7 @@ for (let i = 0; i < fileContentsByRow.length; i++) {
   // Tamper with all exported declarations so that editor will underline them in red
   // This makes it less likely that we will forget to remove them
   if (firstImportLine >= 0 && lastImportLine >= 0) {
-    fileContentsByRow[i] = fileContentsByRow[i].replace(/^declare/, 'TODO_REMOVE')
+    fileContentsByRow[i] = fileContentsByRow[i].replace(/^declare/, 'TO_REMOVE')
   }
 
 }

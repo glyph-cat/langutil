@@ -255,7 +255,7 @@ export function createLangutilCore<D extends LangutilDictionaryIsolated>(
   }
 
   const resolveLanguage = (
-    language: LangutilLanguage | Array<LangutilLanguage>
+    language: Array<LangutilLanguage> | LangutilLanguage
   ): LangutilLanguage<D> | null => {
     return getResolvedLanguageAnyToMany(
       language,
@@ -264,7 +264,7 @@ export function createLangutilCore<D extends LangutilDictionaryIsolated>(
   }
 
   const safelyResolveLanguage = (
-    language: LangutilLanguage
+    language: Array<LangutilLanguage> | LangutilLanguage
   ): LangutilLanguage<D> => {
     return resolveLanguage(language) || Object.keys(self.M$dictionary)[0]
   }
@@ -317,7 +317,7 @@ export function createLangutilCore<D extends LangutilDictionaryIsolated>(
 export function localizeFromScratch<Dn>(
   dictionary: Dn,
   language: LangutilLanguage<Dn>,
-  keyword?: LangutilKeyword<Dn>,
+  keyword: LangutilKeyword<Dn>,
   param?: LangutilStringmapParam
 ): LangutilLocalizedValue<Dn>
 
@@ -337,7 +337,7 @@ export function localizeFromScratch<Dn>(...args: [
 export function localizeFromScratch<Dn>(
   dictionary: Dn,
   a: LangutilLanguage<Dn> | LangutilMethodObjArgsLocalizeFromScratch<Dn>,
-  b?: LangutilKeyword<Dn>,
+  b: LangutilKeyword<Dn>,
   c?: LangutilStringmapParam
 ): LangutilLocalizedValue<Dn> {
   // NOTE: `dictionary` cannot be part of the a,b,c because the dictionary

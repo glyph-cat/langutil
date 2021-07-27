@@ -34,14 +34,12 @@ const BUNDLED_BUILDS = [
     srcReact: require('../../react/dist/es/index.js'),
     debug: true,
   },
-  // --------------------------------------------------
-  // // Will fail (unexpected token "import")
+  // Will fail (unexpected token "import"):
   // {
   //   tag: 'ES (Minified)',
   //   src: require('../../dist/es/index.mjs'),
   //   srcReact: require('../../react/dist/es/index.mjs'),
   // },
-  // // Doesn't use ReactDOM
   {
     tag: 'React Native',
     src: require('../../dist/native/index.js'),

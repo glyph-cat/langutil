@@ -11,6 +11,13 @@ export type LangutilDictionaryIsolated = Record<string, Record<string, unknown>>
  */
 export type LangutilLanguage<D = LangutilDictionaryIsolated> = keyof D
 
+// /**
+//  * @public
+//  */
+// export type LangutilLanguageLenient<D = LangutilDictionaryIsolated> =
+//   | LangutilLanguage<D>
+//   | (string & {}) // eslint-disable-line @typescript-eslint/ban-types
+
 /**
  * @public
  */
@@ -109,9 +116,7 @@ export interface LangutilMethodObjArgsLocalizeExplicitly<D = LangutilDictionaryI
 /**
  * @public
  */
-export interface LangutilMethodObjArgsLocalizeFromScratch<Dn = LangutilDictionaryIsolated> extends LangutilMethodObjArgsLocalizeExplicitly<Dn> {
-  dictionary: Dn
-}
+export type LangutilMethodObjArgsLocalizeFromScratch<Dn = LangutilDictionaryIsolated> = LangutilMethodObjArgsLocalizeExplicitly<Dn>
 
 /**
  * @public
@@ -196,9 +201,7 @@ export interface LangutilCore<D = LangutilDictionaryIsolated> {
    * @public
    * @param baseLanguage The language from request the header.
    */
-  createIsomorphicLocalizer(
-    baseLanguage: LangutilLanguage<D>
-  ): ((
+  createIsomorphicLocalizer(baseLanguage: LangutilLanguage): ((
     a: LangutilKeyword<D> | LangutilMethodObjArgsLocalize<D>,
     b?: LangutilStringmapParam
   ) => LangutilLocalizedValue<D>)
@@ -208,7 +211,9 @@ export interface LangutilCore<D = LangutilDictionaryIsolated> {
    * @public
    * @returns A string representing the language, if resolvable, otherwise null.
    */
-  resolveLanguage(language: LangutilLanguage): LangutilLanguage<D>
+  resolveLanguage(
+    language: Array<LangutilLanguage> | LangutilLanguage
+  ): LangutilLanguage<D>
   /**
    * Given a language, get a closest match based on the available languages in
    * the current dictionary.
@@ -216,7 +221,9 @@ export interface LangutilCore<D = LangutilDictionaryIsolated> {
    * @returns A string representing the language, if resolvable, otherwise the
    * first language that is available in the dictionary will be selected.
    */
-  safelyResolveLanguage(language: LangutilLanguage): LangutilLanguage<D>
+  safelyResolveLanguage(
+    language: Array<LangutilLanguage> | LangutilLanguage
+  ): LangutilLanguage<D>
   /**
    * Creates a copy of the Langutil core with the initial configuration.
    * @public

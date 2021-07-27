@@ -16,10 +16,10 @@ export default function (testProps: IntegrationTestProps): void {
     const hocInterface = createHocInterface({
       entry: ({ C }) => withLang(C),
       actions: {
-        changeLangToIn: ({ H }) => { H.setLanguage('in') },
+        changeLangToIn: (props) => { props.langutilState.setLanguage('in') },
       },
       values: {
-        value: (langState) => langState.localize('GOOD_MORNING'),
+        value: (props) => props.langutilState.localize('GOOD_MORNING'),
       },
     })
 
