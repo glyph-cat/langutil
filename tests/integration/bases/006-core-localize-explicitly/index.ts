@@ -6,82 +6,36 @@ export default function (testProps: IntegrationTestProps): void {
   const { Langutil } = testProps
   const { createLangutilCore } = Langutil
 
-  describe('.localizeExplicitly', () => {
+  test('Basic usage', () => {
+    const core = createLangutilCore(SAMPLE_DICTIONARY, 'en')
+    const output1 = core.localizeExplicitly('en', 'SOMETIMES_IM_A_BEAR')
+    expect(output1).toBe('Sometimes, I\'m a bear, and at other times I am a be-ar.')
+    const output2 = core.localizeExplicitly('in', 'SOMETIMES_IM_A_BEAR')
+    expect(output2).toBe('Kadang-kadang aku beruang, dan kadang-kadang aku ber-uang.')
+    const output3 = core.localizeExplicitly('ja', 'SOMETIMES_IM_A_BEAR')
+    expect(output3).toBe('ある時はクマ、そしてまたある時は…ク-マ。')
+  })
 
-    describe('Basic usage', () => {
+  describe('Different argument syntaxes', () => {
 
-      test('en', () => {
-        const core = createLangutilCore(SAMPLE_DICTIONARY, 'en')
-        const output = core.localizeExplicitly('en', 'SOMETIMES_IM_A_BEAR')
-        expect(output).toBe('Sometimes, I\'m a bear, and at other times I am a be-ar.')
-      })
-
-      test('ja', () => {
-        const core = createLangutilCore(SAMPLE_DICTIONARY, 'en')
-        const output = core.localizeExplicitly('in', 'SOMETIMES_IM_A_BEAR')
-        expect(output).toBe('Kadang-kadang aku beruang, dan kadang-kadang aku ber-uang.')
-      })
-
-      test('in', () => {
-        const core = createLangutilCore(SAMPLE_DICTIONARY, 'en')
-        const output = core.localizeExplicitly('ja', 'SOMETIMES_IM_A_BEAR')
-        expect(output).toBe('ある時はクマ、そしてまたある時は…ク-マ。')
-      })
-
+    test('Argument are spreaded', () => {
+      const core = createLangutilCore(SAMPLE_DICTIONARY, 'en')
+      const output1 = core.localizeExplicitly('en', 'GOOD_MORNING_PNAME', ['John'])
+      expect(output1).toBe('Good morning, John.')
+      const output2 = core.localizeExplicitly('in', 'GOOD_MORNING_PNAME', ['John'])
+      expect(output2).toBe('Selamat pagi, John.')
+      const output3 = core.localizeExplicitly('ja', 'GOOD_MORNING_PNAME', ['ジョン'])
+      expect(output3).toBe('おはようございまする、ジョンさん。')
     })
 
-    describe('Different argument syntaxes', () => {
-
-      describe('Argument are spreaded', () => {
-
-        test('en', () => {
-          const core = createLangutilCore(SAMPLE_DICTIONARY, 'en')
-          const output = core.localizeExplicitly('en', 'GOOD_MORNING_PNAME', ['John'])
-          expect(output).toBe('Good morning, John.')
-        })
-
-        test('ja', () => {
-          const core = createLangutilCore(SAMPLE_DICTIONARY, 'en')
-          const output = core.localizeExplicitly('in', 'GOOD_MORNING_PNAME', ['John'])
-          expect(output).toBe('Selamat pagi, John.')
-        })
-
-        test('in', () => {
-          const core = createLangutilCore(SAMPLE_DICTIONARY, 'en')
-          const output = core.localizeExplicitly('ja', 'GOOD_MORNING_PNAME', ['ジョン'])
-          expect(output).toBe('おはようございまする、ジョンさん。')
-        })
-
-      })
-
-      describe('Argument as object', () => {
-
-        test('en', () => {
-          const core = createLangutilCore(SAMPLE_DICTIONARY, 'en')
-          const output = core.localizeExplicitly('en', 'GOOD_MORNING_NAME', {
-            name: 'John',
-          })
-          expect(output).toBe('Good morning, John.')
-        })
-
-        test('ja', () => {
-          const core = createLangutilCore(SAMPLE_DICTIONARY, 'en')
-          const output = core.localizeExplicitly('in', 'GOOD_MORNING_NAME', {
-            name: 'John',
-          })
-          expect(output).toBe('Selamat pagi, John.')
-        })
-
-        test('in', () => {
-          const core = createLangutilCore(SAMPLE_DICTIONARY, 'en')
-          const output = core.localizeExplicitly('ja', 'GOOD_MORNING_NAME', {
-            name: 'ジョン',
-          })
-          expect(output).toBe('おはようございまする、ジョンさん。')
-        })
-
-      })
-
+    test('Argument as object', () => {
+      const core = createLangutilCore(SAMPLE_DICTIONARY, 'en')
+      const o1 = core.localizeExplicitly('en', 'GOOD_MORNING_NAME', { name: 'John' })
+      expect(o1).toBe('Good morning, John.')
+      const o2 = core.localizeExplicitly('in', 'GOOD_MORNING_NAME', { name: 'John' })
+      expect(o2).toBe('Selamat pagi, John.')
+      const o3 = core.localizeExplicitly('ja', 'GOOD_MORNING_NAME', { name: 'ジョン' })
+      expect(o3).toBe('おはようございまする、ジョンさん。')
     })
 
   })

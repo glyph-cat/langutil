@@ -1,16 +1,24 @@
-import { Component as ReactComponent, Fragment, useLayoutEffect } from 'react'
+import React, { Component as ReactComponent, Fragment, ReactComponentElement, useLayoutEffect } from 'react'
 import { act, create, ReactTestRenderer } from 'react-test-renderer'
 
-export interface HookInterfaceChannel<A extends string, V extends string> {
+// Type explanation:
+// A: action
+// V: values
+// K: Channel key
+// M: Method (The hook function)
+
+type FunctionType = (...args: Array<unknown>) => unknown
+
+export interface HookInterfaceChannel<A extends string, V extends string, M extends FunctionType> {
   hook: {
-    method(...args: Array<unknown>): unknown
+    method: M
     parameters?: Array<unknown>
   }
-  actions?: Record<A, (...args: Array<unknown>) => void>
-  values?: Record<V, (...args: Array<unknown>) => string>
+  actions?: Record<A, (arg: { H: ReturnType<M> }) => void>
+  values?: Record<V, (hookData: ReturnType<M>) => string>
 }
 
-export type HookInterfaceChannelsCollection<K extends string, A extends string, V extends string> = Record<K, HookInterfaceChannel<A, V>>
+export type HookInterfaceChannelsCollection<K extends string, A extends string, V extends string, M extends FunctionType> = Record<K, HookInterfaceChannel<A, V, M>>
 
 export interface HookInterface<A extends string, V extends string> {
   actions(actionKeyStack: Array<A>): void,
@@ -24,10 +32,10 @@ export interface CompoundHookInterface<K extends string, A extends string, V ext
   cleanup: HookInterface<A, V>['cleanup'],
 }
 
-export interface HocInterfaceConfig<A extends string, V extends string> {
-  entry<E>(entryArgs: { C: E }): E
-  actions?: HookInterfaceChannel<A, V>['actions']
-  values?: HookInterfaceChannel<A, V>['values']
+export interface HocInterfaceConfig<A extends string, V extends string, M extends FunctionType> {
+  entry(entryArgs: { C: any }): any
+  actions?: HookInterfaceChannel<A, V, M>['actions']
+  values?: HookInterfaceChannel<A, V, M>['values']
 }
 
 export type HocInterface<A extends string, V extends string> = HookInterface<A, V>
@@ -35,8 +43,8 @@ export type HocInterface<A extends string, V extends string> = HookInterface<A, 
 /**
  * A wrapper for testing a React Hook by abstracting the DOM container's logic.
  */
-export function createHookInterface<A extends string, V extends string>(
-  config: HookInterfaceChannel<A, V>
+export function createHookInterface<A extends string, V extends string, M extends FunctionType>(
+  config: HookInterfaceChannel<A, V, M>
 ): HookInterface<A, V> {
   const chi = createCompoundHookInterface({ a: config })
   return {
@@ -51,8 +59,8 @@ export function createHookInterface<A extends string, V extends string>(
  * A wrapper for testing multiple React Hooks by abstracting the DOM container's
  * logic.
  */
-export function createCompoundHookInterface<K extends string, A extends string, V extends string>(
-  channels: HookInterfaceChannelsCollection<K, A, V>
+export function createCompoundHookInterface<K extends string, A extends string, V extends string, M extends FunctionType>(
+  channels: HookInterfaceChannelsCollection<K, A, V, M>
 ): CompoundHookInterface<K, A, V> {
 
   const renderStack = []
@@ -132,8 +140,8 @@ export function createCompoundHookInterface<K extends string, A extends string, 
   }
 }
 
-export function createHocInterface<A extends string, V extends string>(
-  config: HocInterfaceConfig<A, V>
+export function createHocInterface<A extends string, V extends string, M extends FunctionType>(
+  config: HocInterfaceConfig<A, V, M>
 ): HocInterface<A, V> {
 
   const { entry, actions = {}, values = {} } = config
