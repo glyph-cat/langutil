@@ -31,7 +31,7 @@ export function createWarningDebouncer(
       : formatMultiLineMissingLoc(missingLocalizations)
     missingLocalizations = {}
     devPrint('warn', message)
-    if (!IS_DIST_ENV) { spy(message) }
+    if (!IS_DIST_ENV && spy) { spy(message) }
   })
 
   const pushWarning = (

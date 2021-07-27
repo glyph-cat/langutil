@@ -1,18 +1,38 @@
-const SAMPLE_DICTIONARY = {
+export const SAMPLE_DICTIONARY = {
   en: {
-    HELLO: 'Hello',
-    HELLO_PARAM: 'Hello, %p',
-    HELLO_PARAM_AND_PARAM: 'Hello, %p and %p',
-    HELLO_NAME: 'Hello, {:name}',
-    HELLO_NAME_AND_NAME: 'Hello, {:name1} and {:name2}',
+    GOOD_MORNING: 'Good morning.',
+    GOOD_MORNING_NAME: 'Good morning, {:name}.',
+    GOOD_MORNING_PNAME: 'Good morning, %p.',
+    GOOD_MORNING_PNAME_AND_PNAME: 'Good morning, %p and %p.',
+    GOOD_MORNING_NAME1_AND_NAME2: 'Good morning, {:name1} and {:name2}.',
+    SOMETIMES_IM_A_BEAR: 'Sometimes, I\'m a bear, and at other times I am a be-ar.',
   },
-  ms: {
-    HELLO: 'Apa khabar',
-    HELLO_PARAM: 'Apa khabar, %p',
-    HELLO_PARAM_AND_PARAM: 'Apa khabar, %p dan %p',
-    HELLO_NAME: 'Apa khabar, {:name}',
-    HELLO_NAME_AND_NAME: 'Apa khabar, {:name1} dan {:name2}',
+  ja: {
+    GOOD_MORNING: 'おはようございまする。',
+    GOOD_MORNING_NAME: 'おはようございまする、{:name}さん。',
+    GOOD_MORNING_PNAME: 'おはようございまする、%pさん。',
+    GOOD_MORNING_PNAME_AND_PNAME: 'おはようございまする、%pさん、%pさん。',
+    GOOD_MORNING_NAME1_AND_NAME2: 'おはようございまする、{:name1}さん、{:name2}さん。',
+    SOMETIMES_IM_A_BEAR: 'ある時はクマ、そしてまたある時は…ク-マ。'
+  },
+  in: {
+    GOOD_MORNING: 'Selamat pagi.',
+    GOOD_MORNING_NAME: 'Selamat pagi, {:name}.',
+    GOOD_MORNING_PNAME: 'Selamat pagi, %p.',
+    GOOD_MORNING_PNAME_AND_PNAME: 'Selamat pagi, %p dan %p.',
+    GOOD_MORNING_NAME1_AND_NAME2: 'Selamat pagi, {:name1} dan {:name2}.',
+    SOMETIMES_IM_A_BEAR: 'Kadang-kadang aku beruang, dan kadang-kadang aku ber-uang(berwang).',
   },
 }
 
-export default SAMPLE_DICTIONARY
+export const SAMPLE_DICTIONARY_ALT = {
+  en: {
+    GOOD_NIGHT: 'Good night.',
+  },
+  ja: {
+    GOOD_NIGHT: 'おやすみなさい。',
+  },
+  in: {
+    GOOD_NIGHT: 'Selamat malam.',
+  },
+}

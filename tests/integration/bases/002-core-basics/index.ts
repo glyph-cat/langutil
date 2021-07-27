@@ -1,4 +1,4 @@
-import SAMPLE_DICTIONARY from '../../../sample-dictionary'
+import { SAMPLE_DICTIONARY } from '../../../sample-dictionary'
 import { IntegrationTestProps } from '../../constants'
 
 export default function (testProps: IntegrationTestProps): void {
@@ -6,7 +6,7 @@ export default function (testProps: IntegrationTestProps): void {
   const { Langutil } = testProps
   const { createLangutilCore } = Langutil
 
-  describe('LangutilCore (Basics)', () => {
+  describe('Langutil Core Basics', () => {
 
     test('.getLanguage', () => {
       const core = createLangutilCore(SAMPLE_DICTIONARY, 'en')
@@ -16,9 +16,9 @@ export default function (testProps: IntegrationTestProps): void {
 
     test('.setLanguage + .getLanguage', () => {
       const core = createLangutilCore(SAMPLE_DICTIONARY, 'en')
-      core.setLanguage('ms')
+      core.setLanguage('in')
       const output = core.getLanguage()
-      expect(output).toBe('ms')
+      expect(output).toBe('in')
     })
 
     test('.getLangutilState', () => {
@@ -28,6 +28,12 @@ export default function (testProps: IntegrationTestProps): void {
         isAuto: false,
         language: 'en',
       })
+    })
+
+    test('.getAllLanguages', () => {
+      const core = createLangutilCore(SAMPLE_DICTIONARY, 'en')
+      const output = core.getAllLanguages().sort()
+      expect(output).toStrictEqual(['en', 'in', 'ja'].sort())
     })
 
   })

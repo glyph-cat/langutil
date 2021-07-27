@@ -10,7 +10,7 @@ export interface HookInterfaceChannel<A extends string, V extends string> {
   values?: Record<V, (...args: Array<unknown>) => string>
 }
 
-export type HookInterfaceChannelsCollection<A extends string, V extends string> = Record<string, HookInterfaceChannel<A, V>>
+export type HookInterfaceChannelsCollection<K extends string, A extends string, V extends string> = Record<K, HookInterfaceChannel<A, V>>
 
 export interface HookInterface<A extends string, V extends string> {
   actions(actionKeyStack: Array<A>): void,
@@ -19,8 +19,8 @@ export interface HookInterface<A extends string, V extends string> {
   cleanup(): void
 }
 
-export interface CompoundHookInterface<A extends string, V extends string> {
-  at(channelKey: string): Omit<HookInterface<A, V>, 'cleanup'>
+export interface CompoundHookInterface<K extends string, A extends string, V extends string> {
+  at(channelKey: K): Omit<HookInterface<A, V>, 'cleanup'>
   cleanup: HookInterface<A, V>['cleanup'],
 }
 
@@ -33,78 +33,27 @@ export interface HocInterfaceConfig<A extends string, V extends string> {
 export type HocInterface<A extends string, V extends string> = HookInterface<A, V>
 
 /**
- * A wrapper for testing React Hooks by abstracting the DOM container's logic.
+ * A wrapper for testing a React Hook by abstracting the DOM container's logic.
  */
 export function createHookInterface<A extends string, V extends string>(
   config: HookInterfaceChannel<A, V>
 ): HookInterface<A, V> {
-
-  const { hook, actions = {}, values = {} } = config
-
-  let renderCount = 0
-  let dispatchableActions = {}
-  let retrievableValues = {}
-
-  const Component = () => {
-
-    const providedHook = hook.method(...hook.parameters)
-
-    useLayoutEffect(() => { renderCount += 1 })
-
-    const actionKeys = Object.keys(actions)
-    dispatchableActions = {}
-    for (const actionKey of actionKeys) {
-      const callback = actions[actionKey]
-      dispatchableActions[actionKey] = () => {
-        callback({ H: providedHook })
-      }
-    }
-
-    const valueKeys = Object.keys(values)
-    retrievableValues = {}
-    for (const valueKey of valueKeys) {
-      const valueMapper = values[valueKey]
-      // All values should be casted to string
-      retrievableValues[valueKey] = '' + valueMapper(providedHook)
-    }
-
-    return null
-
-  }
-
-  let root: ReactTestRenderer
-  act(() => { root = create(<Component />) })
-
+  const chi = createCompoundHookInterface({ a: config })
   return {
-    actions: (actionKeyStack: Array<string>) => {
-      if (!Array.isArray(actionKeyStack)) {
-        // This allows multiple actions to be invoked in the same `act()` callback
-        actionKeyStack = [actionKeyStack]
-      }
-      act(() => {
-        // Array of actions are batched in one `act()`
-        for (const actionKey of actionKeyStack) {
-          if (!dispatchableActions[actionKey]) {
-            throw new ReferenceError(`Action '${actionKey}' is undefined`)
-          }
-          dispatchableActions[actionKey]()
-        }
-      })
-    },
-    get: (valueKey: string) => {
-      if (!retrievableValues[valueKey]) {
-        throw new ReferenceError(`Value '${valueKey}' is undefined`)
-      }
-      return retrievableValues[valueKey]
-    },
-    getRenderCount: () => renderCount,
-    cleanup: root.unmount,
+    actions: chi.at('a').actions,
+    get: chi.at('a').get,
+    getRenderCount: chi.at('a').getRenderCount,
+    cleanup: chi.cleanup,
   }
 }
 
-export function createCompoundHookInterface<A extends string, V extends string>(
-  channels: HookInterfaceChannelsCollection<A, V> = {}
-): CompoundHookInterface<A, V> {
+/**
+ * A wrapper for testing multiple React Hooks by abstracting the DOM container's
+ * logic.
+ */
+export function createCompoundHookInterface<K extends string, A extends string, V extends string>(
+  channels: HookInterfaceChannelsCollection<K, A, V>
+): CompoundHookInterface<K, A, V> {
 
   const renderStack = []
   const renderCount = {}
@@ -121,9 +70,7 @@ export function createCompoundHookInterface<A extends string, V extends string>(
 
     const ChildComponent = () => {
       const providedHook = hook.method(...hook.parameters)
-      useLayoutEffect(() => {
-        renderCount[channelKey] += 1
-      })
+      useLayoutEffect(() => { renderCount[channelKey] += 1 })
 
       const actionKeys = Object.keys(actions)
       outlets[channelKey].dispatchableActions = {}
