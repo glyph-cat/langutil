@@ -1,15 +1,15 @@
-import SAMPLE_DICTIONARY from '../../../sample-dictionary'
+import { SAMPLE_DICTIONARY } from '../../../sample-dictionary'
 import { IntegrationTestProps } from '../../constants'
 
 export default function (testProps: IntegrationTestProps): void {
 
   const { Langutil } = testProps
-  const { isLangutilCore } = Langutil
+  const { createLangutilCore, isLangutilCore } = Langutil
 
   describe('isLangutilCore', () => {
 
     test('Test against a Langutil Core', () => {
-      const core = Langutil.createLangutilCore(SAMPLE_DICTIONARY, 'en')
+      const core = createLangutilCore(SAMPLE_DICTIONARY, 'en')
       const output = isLangutilCore(core)
       expect(output).toBe(true)
     })

@@ -19,9 +19,13 @@ export function baseLocalizer<D>(
   let localizedValue: LangutilLocalizedValue<D>
   let isLocalizationSuccessful: boolean
 
-  if (dictionary[language] && dictionary[language][keyword]) {
-    localizedValue = dictionary[language][keyword]
-    isLocalizationSuccessful = true
+  if (dictionary[language]) {
+    const dL = dictionary[language]
+    const kw = keyword as keyof D[keyof D]
+    if (dL[kw]) {
+      localizedValue = dL[kw]
+      isLocalizationSuccessful = true
+    }
   }
 
   // Apply params

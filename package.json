@@ -21,6 +21,7 @@
     "rollup": "rollup -c ./config/rollup.config.js",
     "tsc": "tsc --declaration",
     "api:main": "api-extractor run -c ./config/api-extractor.main.json --local --verbose",
+    "postapi:main": "node __scripts__/post-api-main",
     "api:react": "api-extractor run -c ./config/api-extractor.react.json --local --verbose",
     "postapi:react": "node __scripts__/post-api-react",
     "api": "yarn api:main && yarn api:react",

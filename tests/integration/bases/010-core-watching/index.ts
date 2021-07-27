@@ -1,5 +1,5 @@
 import { LangutilEvent } from '../../../../src/schema'
-import SAMPLE_DICTIONARY from '../../../sample-dictionary'
+import { SAMPLE_DICTIONARY } from '../../../sample-dictionary'
 import { IntegrationTestProps } from '../../constants'
 
 export default function (testProps: IntegrationTestProps): void {
@@ -16,39 +16,39 @@ export default function (testProps: IntegrationTestProps): void {
       eventSnapshots.push(event)
     })
 
-    core.setLanguage('ms')
+    core.setLanguage('in')
     core.setDictionary(SAMPLE_DICTIONARY)
     core.appendDictionary(SAMPLE_DICTIONARY)
     core.hydrate(null, 'en')
     unwatch()
-    core.setLanguage('ms') // Test for memory leak
+    core.setLanguage('in') // Test for memory leak
 
     expect(eventSnapshots).toStrictEqual([
       {
         type: LangutilEvents.language,
         data: {
           oldLangState: { isAuto: false, language: 'en' },
-          newLangState: { isAuto: false, language: 'ms' },
+          newLangState: { isAuto: false, language: 'in' },
         },
       },
       {
-        type: LangutilEvents.setDictionary,
+        type: LangutilEvents.dictionarySet,
         data: {
-          oldLangState: { isAuto: false, language: 'ms' },
-          newLangState: { isAuto: false, language: 'ms' },
+          oldLangState: { isAuto: false, language: 'in' },
+          newLangState: { isAuto: false, language: 'in' },
         },
       },
       {
-        type: LangutilEvents.appendDictionary,
+        type: LangutilEvents.dictionaryAppend,
         data: {
-          oldLangState: { isAuto: false, language: 'ms' },
-          newLangState: { isAuto: false, language: 'ms' },
+          oldLangState: { isAuto: false, language: 'in' },
+          newLangState: { isAuto: false, language: 'in' },
         },
       },
       {
         type: LangutilEvents.hydration,
         data: {
-          oldLangState: { isAuto: false, language: 'ms' },
+          oldLangState: { isAuto: false, language: 'in' },
           newLangState: { isAuto: false, language: 'en' },
         },
       },

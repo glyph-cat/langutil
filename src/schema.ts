@@ -14,7 +14,14 @@ export type LangutilLanguage<D = LangutilDictionaryIsolated> = keyof D
 /**
  * @public
  */
-export type LangutilKeyword<D = LangutilDictionaryIsolated> = keyof D[keyof D]
+export type LangutilKeyword<D = LangutilDictionaryIsolated> =
+  | keyof D[keyof D]
+  | (string & {}) // eslint-disable-line @typescript-eslint/ban-types
+// NOTE: This allows for auto-complete while still maintaining the flexibility
+// to input a value that is not originally in the dictionary.
+// By adding `| (string & {})`, we are able to provide some leniency for methods
+// like `setDictionary` and `appendDictionary` so that TypeScript doesn't
+// complain about invalid types.
 
 /**
  * @public

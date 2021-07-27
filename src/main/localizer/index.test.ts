@@ -1,4 +1,4 @@
-import localizations from '../../../tests/sample-dictionary'
+import { SAMPLE_DICTIONARY } from '../../../tests/sample-dictionary'
 import { baseLocalizer } from './'
 
 // eslint-disable-next-line
@@ -7,18 +7,18 @@ const mockDebouncedWarning = () => { }
 describe('baseLocalizer', () => {
   test('Basic localization', () => {
     const output = baseLocalizer(
-      localizations,
+      SAMPLE_DICTIONARY,
       'en',
-      'HELLO',
+      'GOOD_MORNING',
       undefined,
       mockDebouncedWarning
     )
-    expect(output).toBe('Hello')
+    expect(output).toBe('Good morning.')
   })
 
   test('Non-existent key', () => {
     const output = baseLocalizer(
-      localizations,
+      SAMPLE_DICTIONARY,
       'en',
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore Ignored on purpose to test incorrect types
@@ -33,84 +33,82 @@ describe('baseLocalizer', () => {
     describe('With array as param', () => {
       test('1 item', () => {
         const output = baseLocalizer(
-          localizations,
+          SAMPLE_DICTIONARY,
           'en',
-          'HELLO_PARAM',
+          'GOOD_MORNING_PNAME',
           ['John'],
           mockDebouncedWarning
         )
-        expect(output).toBe('Hello, John')
+        expect(output).toBe('Good morning, John.')
       })
 
       test('2 items', () => {
         const output = baseLocalizer(
-          localizations,
+          SAMPLE_DICTIONARY,
           'en',
-          'HELLO_PARAM_AND_PARAM',
+          'GOOD_MORNING_PNAME_AND_PNAME',
           ['John', 'Jane'],
           mockDebouncedWarning
         )
-        expect(output).toBe('Hello, John and Jane')
+        expect(output).toBe('Good morning, John and Jane.')
       })
 
       test('No items', () => {
         const output = baseLocalizer(
-          localizations,
+          SAMPLE_DICTIONARY,
           'en',
-          'HELLO_PARAM',
+          'GOOD_MORNING_PNAME',
           undefined,
           mockDebouncedWarning
         )
-        expect(output).toBe('Hello, %p')
+        expect(output).toBe('Good morning, %p.')
       })
     })
 
     describe('With object as param', () => {
       test('1 item', () => {
         const output = baseLocalizer(
-          localizations,
+          SAMPLE_DICTIONARY,
           'en',
-          'HELLO_NAME',
-          {
-            name: 'John',
-          },
+          'GOOD_MORNING_NAME',
+          { name: 'John' },
           mockDebouncedWarning
         )
-        expect(output).toBe('Hello, John')
+        expect(output).toBe('Good morning, John.')
       })
 
       test('2 item', () => {
         const output = baseLocalizer(
-          localizations,
+          SAMPLE_DICTIONARY,
           'en',
-          'HELLO_NAME_AND_NAME',
+          'GOOD_MORNING_NAME1_AND_NAME2',
           {
             name1: 'John',
             name2: 'Jane',
           },
           mockDebouncedWarning
         )
-        expect(output).toBe('Hello, John and Jane')
+        expect(output).toBe('Good morning, John and Jane.')
       })
 
       test('No items', () => {
         const output = baseLocalizer(
-          localizations,
+          SAMPLE_DICTIONARY,
           'en',
-          'HELLO_NAME',
+          'GOOD_MORNING_NAME',
           undefined,
           mockDebouncedWarning
         )
-        expect(output).toBe('Hello, {:name}')
+        expect(output).toBe('Good morning, {:name}.')
       })
     })
 
     test('Invalid param type', () => {
       const callback = () => {
         baseLocalizer(
-          localizations,
+          SAMPLE_DICTIONARY,
           'en',
-          'HELLO_NAME',
+          'GOOD_MORNING_NAME',
           // eslint-disable-next-line @typescript-eslint/ban-ts-comment
           // @ts-ignore Ignored on purpose to test incorrect types
           2,

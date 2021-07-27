@@ -2,7 +2,7 @@
 These commands will be available after you run `yarn install` upon first cloning the repository.
 
 ## Commonly Used
-* `yarn clean` Remove (automatically-generated) temporary files
+* `yarn clean` Remove (automatically-generated) temporary files. This does not include `.draft` files and folders.
 * `yarn lint` Checks code for problems
 * `yarn debug` Run a test on the unbundled code only
 * `yarn test` Run tests on the unbundled code and builds for CJS, ES and UMD
