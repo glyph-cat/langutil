@@ -13,11 +13,6 @@ import getDisplayName from './get-display-name'
 import useLayoutEffect from './isomorphic-layout-effect'
 import unstable_batchedUpdates from './react-batch'
 
-// eslint-disable-next-line no-warning-comments
-// TODO: After `yarn build`
-// 1. Remove all declarations that matches the /^declare/ regular expression
-// 2. Add: import { LangutilCore, LangutilState } from '../../..';
-
 /**
  * @public
  */
@@ -59,6 +54,8 @@ export interface withLangutilOptions {
 export interface WithLangutilProps<D> extends React.ComponentProps<any> {
   langutilState: LangutilReactState<D>
 }
+
+// TODO: Solve the `any` type
 
 /**
  * @public

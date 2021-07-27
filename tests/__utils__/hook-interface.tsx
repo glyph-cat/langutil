@@ -1,4 +1,4 @@
-import React, { Component as ReactComponent, Fragment, ReactComponentElement, useLayoutEffect } from 'react'
+import React, { Component as ReactComponent, Fragment, useLayoutEffect } from 'react'
 import { act, create, ReactTestRenderer } from 'react-test-renderer'
 
 // Type explanation:
@@ -31,14 +31,6 @@ export interface CompoundHookInterface<K extends string, A extends string, V ext
   at(channelKey: K): Omit<HookInterface<A, V>, 'cleanup'>
   cleanup: HookInterface<A, V>['cleanup'],
 }
-
-export interface HocInterfaceConfig<A extends string, V extends string, M extends FunctionType> {
-  entry(entryArgs: { C: any }): any
-  actions?: HookInterfaceChannel<A, V, M>['actions']
-  values?: HookInterfaceChannel<A, V, M>['values']
-}
-
-export type HocInterface<A extends string, V extends string> = HookInterface<A, V>
 
 /**
  * A wrapper for testing a React Hook by abstracting the DOM container's logic.
@@ -140,8 +132,32 @@ export function createCompoundHookInterface<K extends string, A extends string, 
   }
 }
 
-export function createHocInterface<A extends string, V extends string, M extends FunctionType>(
-  config: HocInterfaceConfig<A, V, M>
+// NOTE: I don't have enough knowledge on how to make this work, so I'm only
+// using the `any` type for HOCs...
+
+export interface HocInterfaceChannel<A extends string, V extends string> {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  actions?: Record<A, (props: any) => void>
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  values?: Record<V, (hookData: ReturnType<any>) => string>
+}
+
+export interface HocInterfaceConfig<A extends string, V extends string> {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  entry(entryArgs: { C: any }): any
+  actions?: HocInterfaceChannel<A, V>['actions']
+  values?: HocInterfaceChannel<A, V>['values']
+}
+
+export interface HocInterface<A extends string, V extends string> {
+  actions(actionKeyStack: Array<A>): void,
+  get(valueKey: V): string
+  getRenderCount(): number
+  cleanup(): void
+}
+
+export function createHocInterface<A extends string, V extends string>(
+  config: HocInterfaceConfig<A, V>
 ): HocInterface<A, V> {
 
   const { entry, actions = {}, values = {} } = config
