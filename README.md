@@ -1,10 +1,15 @@
-[![NPM](https://img.shields.io/npm/v/langutil.svg)](https://www.npmjs.com/package/langutil)
-
 Langutil — A localization utility for JavaScript that comes with support for React and React Native.
 
 <br/>
 
-[**💖 Support me on Patreon**](https://patreon.com/chin98edwin_dev)
+[![NPM](https://img.shields.io/npm/v/langutil.svg)](https://www.npmjs.com/package/langutil)
+[![Open in Visual Studio Code](https://open.vscode.dev/badges/open-in-vscode.svg)](https://open.vscode.dev/chin98edwin/langutil)
+
+<br/>
+
+[![Become a Patreon](https://raw.githubusercontent.com/chin98edwin/react-relink/main/assets/become-a-patron-button.svg)](https://www.patreon.com/bePatron?u=27931751)
+
+<!-- [![Become a Patreon](./assets/patreon-button.svg)](https://www.patreon.com/bePatron?u=27931751) -->
 
 <br/>
 
@@ -13,10 +18,22 @@ Langutil — A localization utility for JavaScript that comes with support for R
 - [Table of Contents](#table-of-contents)
 - [Installation](#installation)
 - [Basic Usage](#basic-usage)
+  - [Initialization](#initialization)
+  - [Set language](#set-language)
+  - [Get language](#get-language)
+  - [Get Localized Content](#get-localized-content)
+    - [Basic](#basic)
+    - [With Dynamic Values](#with-dynamic-values)
+    - [Alternative Syntax](#alternative-syntax)
+  - [Advanced Usage](#advanced-usage)
 - [Using with React](#using-with-react)
+  - [Function Components](#function-components)
+  - [Higher Order Component (For Classes)](#higher-order-component-for-classes)
 - [Testing Recipes](#testing-recipes)
 - [Error Codes](#error-codes)
 - [Migrating from v3 and below](#migrating-from-v3-and-below)
+
+<br/>
 
 # Installation
 
@@ -34,82 +51,169 @@ yarn add langutil
 
 # Basic Usage
 
-```js
-// ## Initialization
+## Initialization
 
+```js
 import { createLangutilCore } from 'langutil'
 
-// * The 1st parameter should be a dictionary
-// * The 2nd parameter should be a language key from your dictionary
-// * The 3rd parameter is an object where you can set `auto: true`
-//   to enable auto-detect
 const dictionary = {
   en: {
-    HELLO: 'Hello',
-    HELLO_PARAM_AND_PARAM: 'Hello, %p and %p',
-    HELLO_NAME_AND_NAME: 'Hello, {:name1} and {:name2}',
+    GOOD_MORNING: 'Good morning',
+    GOOD_MORNING_NAME: 'Good morning, {:name}.',
+    GOOD_MORNING_NAME_AND_NAME: 'Good morning, {:name1} and  {:name2}.',
   },
-  'zh-Hans': {
-    HELLO: '哈咯',
-    HELLO_PARAM_AND_PARAM: '%p、%p，你们好',
-    HELLO_NAME_AND_NAME: '{:name1}、{:name2}，你们好',
+  in: {
+    GOOD_MORNING: 'Selamat pagi.',
+    GOOD_MORNING_NAME: 'Selamat pagi, {:name}.',
+    GOOD_MORNING_NAME_AND_NAME: 'Selamat pagi, {:name1} dan {:name2}.',
   },
 }
-const AppLocalizationCore = createLangutilCore(dictionary, 'en', { auto: true })
 
-// ## Set language
-AppLocalizationCore.setLanguage('en') // Basic
-AppLocalizationCore.setLanguage('en', { auto: true }) // With auto-detect
-
-// ## Get language
-const language = AppLocalizationCore.getLanguage()
-console.log(language) // en
-
-// ## Get localized content
-const a = AppLocalizationCore.localize('HELLO')
-console.log(a) // Hello
-
-// ## Get localized content with dynamic values (array)
-const b = AppLocalizationCore.localize('HELLO_PARAM_AND_PARAM', ['John', 'Jane'])
-console.log(b) // Hello, John and Jane
-
-// ## Get localized content with dynamic values (object)
-const c = AppLocalizationCore.localize('HELLO_PARAM_AND_PARAM', {
-  name1: 'Jack',
-  name2: 'Jill',
-})
-console.log(c) // Hello, Jack and Jill
-
-// ## Get localized content (alternative syntax)
-const d = AppLocalizationCore.localize({
-  keyword: 'HELLO_PARAM_AND_PARAM',
-  param: { name1: 'Foo', name2: 'Bar' },
-})
-console.log(d) // Hello, Foo and Bar
-
+const core = createLangutilCore(dictionary, 'en', { auto: true })
 ```
 
-Langutil is packed with many more methods such as `localizeExplicitly`,`localizeFromScratch`, `setLanguage`, `setDictionary`, `appendDictionary`, `resolveLanguage`, and `getAllLanguages`. You can inspect the TypeScript Definitions in `index.d.ts` of the package's folder to find out more.
+## Set language
+
+```js
+// With auto-detect
+core.setLanguage('en', { auto: true })
+
+// Without auto-detect
+core.setLanguage('en')
+```
+
+## Get language
+
+```js
+core.getLanguage()
+// en
+```
+
+## Get Localized Content
+
+### Basic
+
+```js
+core.localize('GOOD_MORNING')
+// Good morning.
+```
+
+### With Dynamic Values
+
+```js
+// By object (Recommended for strings with multiple placeholders)
+core.localize('GOOD_MORNING_NAME_AND_NAME', {
+  name1: 'John',
+  name2: 'Jane',
+})
+// Good morning, John and Jane.
+
+// By array (Recommended for strings with only one placeholder)
+core.localize('GOOD_MORNING_NAME', ['John'])
+// Good morning, John.
+```
+
+### Alternative Syntax
+
+Instead of spreading the parameters, you can pass an object like this:
+
+```js
+const localizedValue = core.localize({
+  keyword: 'GOOD_MORNING_NAME_AND_NAME',
+  param: {
+    name1: 'John',
+    name2: 'Jane',
+  }
+})
+// Good morning, John and Jane.
+```
+
+## Advanced Usage
+
+In rare cases, you might need to get values that are localized into a different language from the one currently set, this is when `.localizeExplicitly` and `localizeFromScratch` become useful.
+
+```js
+import { createLangutilCore, localizeFromScratch } from 'langutil'
+
+const dictionary = {
+  en: {
+    SOMETIMES_IM_A_BEAR: 'Sometimes, I\'m a bear, and at other times I am a be-ar.',
+  },
+  in: {
+    SOMETIMES_IM_A_BEAR: 'Kadang-kadang aku beruang, dan kadang-kadang aku ber-uang.',
+  },
+  ja: {
+    SOMETIMES_IM_A_BEAR: 'ある時はクマ、そしてまたある時は…ク-マ。'
+  },
+}
+
+const core = createLangutilCore(dictionary, 'en')
+
+core.localizeExplicitly('ja', 'SOMETIMES_IM_A_BEAR')
+// ある時はクマ、そしてまたある時は…ク-マ。
+
+core.localizeExplicitly('in', 'SOMETIMES_IM_A_BEAR')
+// Kadang-kadang aku beruang, dan kadang-kadang aku ber-uang.
+
+core.localize('SOMETIMES_IM_A_BEAR')
+// Sometimes, I'm a bear, and at other times I am a be-ar.
+
+const dictionaryAlt = {
+  en: {
+    GOOD_NIGHT: 'Good night.',
+  },
+  ja: {
+    GOOD_NIGHT: 'おやすみなさい。',
+  },
+  in: {
+    GOOD_NIGHT: 'Selamat malam.',
+  },
+}
+
+localizeFromScratch(dictionaryAlt, 'ja', 'GOOD_NIGHT')
+// おやすみなさい。
+
+```
 
 <br/>
 
 # Using with React
 
-```js
-import React from 'react'
-import { useLang, withLang } from 'langutil/react'
+## Function Components
 
-function UsingHook() {
-  const langState = useLang(AppLocalizationCore)
+```js
+import { useLangutil } from 'langutil/react'
+
+// It is recommended to create a custom hook instead of
+// directly consuming it in components.
+export function useLang() {
+  return useLangutil(core)
+}
+
+function MyComponent() {
+  const langState = useLang()
   return <h1>{langState.localize('HELLO')}</h1>
 }
 
-class UsingHigherOrderComponent extends React.Component {
+```
+
+## Higher Order Component (For Classes)
+
+```js
+import React from 'react'
+import { createLangutilHOC } from 'langutil/react'
+
+export const withLang = createLangutilHOC(core)
+
+class MyComponent extends React.Component {
   render() {
     const { langState } = this.props
     return <h1>{langState.localize('HELLO')}</h1>
   }
 }
+
+export default withLang(MyComponent)
+
 ```
 
 <br/>
@@ -141,16 +245,13 @@ describe('Localizations are tally', () => {
 In production builds, these error codes are thrown instead of the usual messages.
 
 * **`LangutilE1,x`**<br/>
-Expected 'param' to be an array or object but got `x`
+Expected `param` to be an array or object but got `x`
 
 * **`LangutilE2,x`**<br/>
-Expected 'options' to be an object but got `x`
+Expected `dictionary` to be an object but got `x`
 
 * **`LangutilE3,x`**<br/>
-Expected dictionary to be an object but got `x`
-
-* **`LangutilE4,x`**<br/>
-Prop conflict for 'langState' in `x`
+Prop conflict for `langState` in <`x`/>
 
 <br/>
 

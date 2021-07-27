@@ -19,7 +19,7 @@ export default function (testProps: IntegrationTestProps): void {
       test('ja', () => {
         const core = createLangutilCore(SAMPLE_DICTIONARY, 'en')
         const output = core.localizeExplicitly('in', 'SOMETIMES_IM_A_BEAR')
-        expect(output).toBe('Kadang-kadang aku beruang, dan kadang-kadang aku ber-uang(berwang).')
+        expect(output).toBe('Kadang-kadang aku beruang, dan kadang-kadang aku ber-uang.')
       })
 
       test('in', () => {

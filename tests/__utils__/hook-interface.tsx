@@ -60,16 +60,19 @@ export function createCompoundHookInterface<K extends string, A extends string, 
   const outlets = {}
 
   const channelKeys = Object.keys(channels)
-  for (const channelKey of channelKeys) {
+  for (let i = 0; i < channelKeys.length; i++) {
+    const channelKey = channelKeys[i]
+
     renderCount[channelKey] = 0
     outlets[channelKey] = {
       dispatchableActions: {},
       retrievableValues: {},
     }
     const { hook, actions = {}, values = {} } = channels[channelKey]
+    const { method: hookMethod, parameters: hookParameters = [] } = hook
 
     const ChildComponent = () => {
-      const providedHook = hook.method(...hook.parameters)
+      const hookData = hookMethod(...hookParameters)
       useLayoutEffect(() => { renderCount[channelKey] += 1 })
 
       const actionKeys = Object.keys(actions)
@@ -77,7 +80,7 @@ export function createCompoundHookInterface<K extends string, A extends string, 
       for (const actionKey of actionKeys) {
         const callback = actions[actionKey]
         outlets[channelKey].dispatchableActions[actionKey] = () => {
-          callback({ H: providedHook })
+          callback({ H: hookData })
         }
       }
 
@@ -86,8 +89,7 @@ export function createCompoundHookInterface<K extends string, A extends string, 
       for (const valueKey of valueKeys) {
         const valueMapper = values[valueKey]
         // All values should be casted to string
-        outlets[channelKey].retrievableValues[valueKey] =
-          '' + valueMapper(providedHook)
+        outlets[channelKey].retrievableValues[valueKey] = `${valueMapper(hookData)}`
       }
 
       return null
