@@ -63,7 +63,7 @@ export interface WithLangutilProps<D> extends React.ComponentProps<any> {
 /**
  * @public
  */
-export function createLangutilHOC<D, P extends WithLangutilProps<D>>(
+export function createLangutilHOC<D, P extends WithLangutilProps<D> = WithLangutilProps<D>>(
   core: LangutilCore<D>,
 ): ((
   WrappedComponent: React.ComponentType<P>,
@@ -73,7 +73,7 @@ export function createLangutilHOC<D, P extends WithLangutilProps<D>>(
     WrappedComponent: React.ComponentType<P>,
     options?: withLangutilOptions
   ): any {
-    const displayName = options.displayName || getDisplayName(WrappedComponent)
+    const displayName = options?.displayName || getDisplayName(WrappedComponent)
     function WithLangutil(
       props: PropsWithChildren<P>,
       ref: ForwardedRef<React.ComponentType<P>>

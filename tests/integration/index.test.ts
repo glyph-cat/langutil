@@ -67,20 +67,20 @@ for (const build of buildStack) {
   describe(tag, () => {
     for (const l of list) {
       if (!/^\d{3}-/.test(l)) { continue }
-      // eslint-disable-next-line @typescript-eslint/no-var-requires
-      const requiredTest = require(`./bases/${l}`)
-      const executor = requiredTest.default || requiredTest
-      const testProps: IntegrationTestProps = {
-        Langutil: src,
-        LangutilReact: srcReact,
-        buildEnv: {
-          tag,
-          IS_DEBUG: debug,
-        },
-      }
-      executor(testProps)
+      describe(l, () => {
+        // eslint-disable-next-line @typescript-eslint/no-var-requires
+        const requiredTest = require(`./bases/${l}`)
+        const executor = requiredTest.default || requiredTest
+        const testProps: IntegrationTestProps = {
+          Langutil: src,
+          LangutilReact: srcReact,
+          buildEnv: {
+            tag,
+            IS_DEBUG: debug,
+          },
+        }
+        executor(testProps)
+      })
     }
   })
 }
-
-test('_integration_', () => { expect('').toBe('') })
