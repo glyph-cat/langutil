@@ -2,7 +2,7 @@ import {
   INTERNALS_SYMBOL,
   IS_BROWSER_ENV,
   IS_DEBUG_ENV,
-  IS_TEST_ENV,
+  IS_DIST_ENV,
   LangutilEvents,
 } from '../../constants'
 import { TYPE_ERROR_DICTIONARY_INVALID_TYPE } from '../../errors'
@@ -87,7 +87,7 @@ export function createLangutilCore<D extends LangutilDictionaryIsolated>(
     // Immediately assign new values, if is not auto or auto detect fails
     // it will fallback to these values
     let newLanguage = language
-    const newAuto = options.auto === true
+    const newAuto = options?.auto === true
 
     if (newAuto) {
       const rawDetectedLanguage = getClientLanguages()
@@ -107,12 +107,16 @@ export function createLangutilCore<D extends LangutilDictionaryIsolated>(
     } else {
       // Check if language exists in dictionary
       if (!self.M$dictionary[language]) {
-        devPrint(
-          'warn',
-          `The language '${language}' does not exist within the dictionary, ` +
-          'available languages: ' +
-          displayStringArray(getAllLanguages() as Array<string>) + '.'
-        )
+        // NOTE: Must wrap in `if (IS_DEBUG_ENV) { ... }` otherwise terser will
+        // still include code for `displayStringArray` in the minified bundles.
+        if (IS_DEBUG_ENV) {
+          devPrint(
+            'warn',
+            `The language '${language}' does not exist within the dictionary, ` +
+            'available languages: ' +
+            displayStringArray(getAllLanguages() as Array<string>) + '.'
+          )
+        }
       }
     }
 
@@ -153,7 +157,7 @@ export function createLangutilCore<D extends LangutilDictionaryIsolated>(
 
   const setLanguage = (
     language: LangutilLanguage<D>,
-    options: LangutilSetLanguageOptions
+    options?: LangutilSetLanguageOptions
   ): void => {
     const eventData = __setLanguageBase(language, options)
     self.M$refresh({
@@ -165,7 +169,7 @@ export function createLangutilCore<D extends LangutilDictionaryIsolated>(
   const setDictionary = (dictionary: LangutilDictionaryIsolated): void => {
     const eventData = __setDictionaryBase(dictionary)
     self.M$refresh({
-      type: LangutilEvents.dictionary,
+      type: LangutilEvents.dictionarySet,
       data: eventData,
     })
   }
@@ -182,7 +186,7 @@ export function createLangutilCore<D extends LangutilDictionaryIsolated>(
       newLangState: getLangState(),
     }
     self.M$refresh({
-      type: LangutilEvents.dictionary,
+      type: LangutilEvents.dictionaryAppend,
       data: eventData,
     })
   }
@@ -299,9 +303,9 @@ export function createLangutilCore<D extends LangutilDictionaryIsolated>(
     cloneInitial,
     cloneCurrent,
     watch: self.M$watcher.M$watch,
-    [INTERNALS_SYMBOL]: IS_TEST_ENV ? {
+    [INTERNALS_SYMBOL]: IS_DIST_ENV ? {} : {
       getDictionary: __getDictionary,
-    } : {},
+    },
   }
   return coreInstance
 

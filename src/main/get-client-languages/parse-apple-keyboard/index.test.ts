@@ -1,4 +1,4 @@
-import { parseAppleKeyboards } from './index.native'
+import parseAppleKeyboards from '.'
 
 describe('parseAppleKeyboards', () => {
 

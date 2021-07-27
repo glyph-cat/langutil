@@ -28,10 +28,14 @@ module.exports = {
 
     // === Code Health ===
     // Problems that fall under this category may produce nasty bugs
+    // NOTE: Some of the rules below are turned off because they trigger false
+    // positives in JavaScript files. They are re-enabled exclusively for
+    // TypeScript in the `overrides` section.
     '@typescript-eslint/explicit-module-boundary-types': OFF,
     '@typescript-eslint/no-explicit-any': [ERROR, { ignoreRestArgs: true }],
     '@typescript-eslint/no-shadow': [ERROR],
     '@typescript-eslint/no-unused-vars': [ERROR, { ignoreRestSiblings: true }],
+    '@typescript-eslint/no-var-requires': OFF,
     'eqeqeq': [ERROR, 'always'],
     'import/no-cycle': ERROR,
     'import/no-deprecated': ERROR,
@@ -104,6 +108,7 @@ module.exports = {
       files: ['*.ts', '*.tsx'],
       rules: {
         '@typescript-eslint/explicit-module-boundary-types': ERROR,
+        '@typescript-eslint/no-var-requires': ERROR,
       },
     },
   ],

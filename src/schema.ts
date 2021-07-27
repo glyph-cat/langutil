@@ -62,6 +62,11 @@ export interface LangutilEvent<D = LangutilDictionaryIsolated> {
   }
 }
 
+// /**
+//  * @public
+//  */
+// export type LangutilEventCallback<D = LangutilDictionaryIsolated> = Watcher<LangutilEvent<D>>['M$watch']
+
 /**
  * @public
  */
@@ -122,7 +127,7 @@ export interface LangutilCore<D = LangutilDictionaryIsolated> {
    */
   setLanguage(
     language: LangutilLanguage<D>,
-    options: LangutilSetLanguageOptions
+    options?: LangutilSetLanguageOptions
   ): void,
   /**
    * Gets the current language.
@@ -219,5 +224,5 @@ export interface LangutilCore<D = LangutilDictionaryIsolated> {
    * Watch for changes when language is set or dictionary is set or appendded.
    * @public
    */
-  watch: Watcher<LangutilEvent<D>>['M$watch']
+  watch: Watcher<LangutilEvent<D>>['M$watch'] // LangutilEventCallback<D>
 }

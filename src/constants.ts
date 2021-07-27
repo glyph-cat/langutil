@@ -1,5 +1,5 @@
 export const IS_DEBUG_ENV = process.env.NODE_ENV !== 'production'
-export const IS_TEST_ENV = process.env.NODE_ENV === 'test'
+export const IS_DIST_ENV = process.env['DIST_ENV'] === 'true'
 
 export const INTERNALS_SYMBOL = Symbol()
 
@@ -11,6 +11,12 @@ export const IS_SERVER_ENV = typeof window === 'undefined'
  */
 export enum LangutilEvents {
   hydration = 1,
-  dictionary,
+  dictionarySet,
+  dictionaryAppend,
   language,
 }
+
+/**
+ * @public
+ */
+export const VERSION = process.env.NPM_PACKAGE_VERSION
