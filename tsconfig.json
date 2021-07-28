@@ -4,13 +4,10 @@
     "declaration": true,
     "declarationDir": "./temp/tsc/types",
     "esModuleInterop": true,
-    "experimentalDecorators": true,
     "importHelpers": false,
     "jsx": "preserve",
     "module": "ESNext",
-    "moduleResolution": "Node",
     "outDir": "./temp/tsc/js",
-    "resolveJsonModule": true,
     "stripInternal": true,
     "target": "es2016"
   },
