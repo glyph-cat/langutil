@@ -6,7 +6,7 @@ import {
   PropsWithChildren,
   useState,
 } from 'react'
-import { SYNTAX_ERROR_CONFLICTING_LANGSTATE_PROP } from '../errors'
+import { SYNTAX_ERROR_CONFLICTING_LANGUTIL_STATE_PROP } from '../errors'
 import { LangutilState, LangutilCore, LangutilEvent } from '../schema'
 import { componentShouldUpdateFrom } from './component-should-update'
 import getDisplayName from './get-display-name'
@@ -31,7 +31,7 @@ export function useLangutil<D>(core: LangutilCore<D>): LangutilReactState<D> {
         unstable_batchedUpdates(() => {
           setState({
             ...core,
-            ...event.data.newLangState,
+            ...event.data.state.current,
           })
         })
       }
@@ -77,7 +77,7 @@ export function createLangutilHOC<D, P extends WithLangutilProps<D> = WithLangut
     ): JSX.Element {
       const state = useLangutil<D>(core)
       if (props['langutilState']) {
-        throw SYNTAX_ERROR_CONFLICTING_LANGSTATE_PROP(displayName)
+        throw SYNTAX_ERROR_CONFLICTING_LANGUTIL_STATE_PROP(displayName)
       }
       return createElement(WrappedComponent, {
         langutilState: state,

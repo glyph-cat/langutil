@@ -22,7 +22,7 @@ export default function (testProps: IntegrationTestProps): void {
         changeLangToIn: ({ H }) => { H.setLanguage('in') },
       },
       values: {
-        value: (langState) => langState.localize('GOOD_MORNING'),
+        value: (langutilState) => langutilState.localize('GOOD_MORNING'),
       },
     })
 

@@ -37,12 +37,12 @@ export function TYPE_ERROR_DICTIONARY_INVALID_TYPE(
   )
 }
 
-export function SYNTAX_ERROR_CONFLICTING_LANGSTATE_PROP(
+export function SYNTAX_ERROR_CONFLICTING_LANGUTIL_STATE_PROP(
   componentDisplayName: string
 ): SyntaxError {
   return new SyntaxError(
     IS_DEBUG_ENV
-      ? `Prop conflict for \`langState\` in <${componentDisplayName}/>`
+      ? `Prop conflict for \`langutilState\` in <${componentDisplayName}/>`
       : __formatErrorCode(3, componentDisplayName)
   )
 }

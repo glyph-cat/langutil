@@ -68,12 +68,19 @@ export type LangutilEventType = number
 /**
  * @public
  */
+export interface LangutilEventData<D = LangutilDictionaryIsolated> {
+  state: {
+    previous: LangutilState<D>
+    current: LangutilState<D>
+  }
+}
+
+/**
+ * @public
+ */
 export interface LangutilEvent<D = LangutilDictionaryIsolated> {
   type: LangutilEventType
-  data: {
-    oldLangState: LangutilState<D>
-    newLangState: LangutilState<D>
-  }
+  data: LangutilEventData<D>
 }
 
 // /**

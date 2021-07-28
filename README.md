@@ -1,4 +1,4 @@
-<center>
+<div align="center">
 
 [![Langutil](https://raw.githubusercontent.com/chin98edwin/langutil/main/assets/langutil-wording.svg)](https://github.com/chin98edwin/langutil)
 
@@ -11,7 +11,7 @@
 [![Open in Visual Studio Code](https://open.vscode.dev/badges/open-in-vscode.svg)](https://open.vscode.dev/chin98edwin/langutil)
 [![Become a Patron](https://img.shields.io/static/v1?label&logo=patreon&logoColor=ffffff&message=Become%20a%20Patron&color=ff424d)](https://www.patreon.com/bePatron?u=27931751)
 
-</center>
+</div>
 
 <br/>
 
@@ -66,11 +66,13 @@ const dictionary = {
   en: {
     GOOD_MORNING: 'Good morning',
     GOOD_MORNING_NAME: 'Good morning, {:name}.',
-    GOOD_MORNING_NAME_AND_NAME: 'Good morning, {:name1} and  {:name2}.',
+    GOOD_MORNING_PNAME: 'Good morning, %p.',
+    GOOD_MORNING_NAME_AND_NAME: 'Good morning, {:name1} and {:name2}.',
   },
   in: {
     GOOD_MORNING: 'Selamat pagi.',
     GOOD_MORNING_NAME: 'Selamat pagi, {:name}.',
+    GOOD_MORNING_PNAME: 'Selamat pagi, %p.',
     GOOD_MORNING_NAME_AND_NAME: 'Selamat pagi, {:name1} dan {:name2}.',
   },
 }
@@ -112,11 +114,13 @@ core.localize('GOOD_MORNING_NAME_AND_NAME', {
   name1: 'John',
   name2: 'Jane',
 })
-// Good morning, John and Jane.
+//  Original: Good morning, {:name1} and {:name1}.
+// Localized: Good morning, John and Jane.
 
 // By array (Recommended for strings with only one placeholder)
-core.localize('GOOD_MORNING_NAME', ['John'])
-// Good morning, John.
+core.localize('GOOD_MORNING_PNAME', ['John'])
+//  Original: Good morning, %p.
+// Localized: Good morning, John.
 ```
 
 ### Alternative Syntax
@@ -197,8 +201,8 @@ export function useLang() {
 }
 
 function MyComponent() {
-  const langState = useLang()
-  return <h1>{langState.localize('HELLO')}</h1>
+  const langutilState = useLang()
+  return <h1>{langutilState.localize('HELLO')}</h1>
 }
 
 ```
@@ -213,8 +217,8 @@ export const withLang = createLangutilHOC(core)
 
 class MyComponent extends React.Component {
   render() {
-    const { langState } = this.props
-    return <h1>{langState.localize('HELLO')}</h1>
+    const { langutilState } = this.props
+    return <h1>{langutilState.localize('HELLO')}</h1>
   }
 }
 
@@ -257,7 +261,7 @@ Expected `param` to be an array or object but got `x`
 Expected `dictionary` to be an object but got `x`
 
 * **`LangutilE3,x`**<br/>
-Prop conflict for `langState` in <`x`/>
+Prop conflict for `langutilState` in <`x`/>
 
 <br/>
 
