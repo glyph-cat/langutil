@@ -7,7 +7,7 @@ These commands will be available after you run `yarn install` upon first cloning
 * `yarn debug` Run a test on the unbundled code only
 * `yarn test` Run tests on the unbundled code and builds for CJS, ES and UMD
 * `yarn build` Equivalent of `yarn rollup` && `yarn tsc` && `yarn api`
-* `yarn all` Equivalent of `yarn lint:fix` && `yarn build` && `yarn test` && `yarn pack`
+* `yarn all` Equivalent of `yarn clean` && `yarn lint:fix` && `yarn build` && `yarn test` && `yarn pack`
 
 <br/>
 

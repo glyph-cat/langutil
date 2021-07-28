@@ -27,7 +27,7 @@
     "api": "yarn api:main && yarn api:react",
     "build": "yarn run rollup && yarn run tsc && yarn run api",
     "postbuild": "rm -r ./temp/tsc",
-    "all": "yarn lint:fix && yarn build && node__scripts__/mid-all && yarn test && yarn pack"
+    "all": "yarn clean && yarn lint:fix && yarn build && node __scripts__/mid-all && yarn test && yarn pack"
   },
   "keywords": [
     "Accessbility",
