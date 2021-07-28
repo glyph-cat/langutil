@@ -40,12 +40,12 @@ const BUNDLED_BUILDS = [
   //   src: require('../../dist/es/index.mjs'),
   //   srcReact: require('../../react/dist/es/index.mjs'),
   // },
-  {
-    tag: 'React Native',
-    src: require('../../dist/native/index.js'),
-    srcReact: require('../../react/dist/native/index.js'),
-    debug: true,
-  },
+  // {
+  //   tag: 'React Native',
+  //   src: require('../../dist/native/index.js'),
+  //   srcReact: require('../../react/dist/native/index.js'),
+  //   debug: true,
+  // },
 ]
 
 const buildStack = []
