@@ -12,12 +12,3 @@ const message = 'Build process is half complete, please complete the ' +
   "2. import { LangutilCore, LangutilState } from '../../..';"
 
 rl.question(message, () => { rl.close() })
-
-
-
-// // TODO: Press any key to continue
-// process.stdin.setRawMode(true)
-// process.stdin.resume()
-// process.stdin.on('data', () => {
-//   process.stdin.setRawMode(false)
-// })
