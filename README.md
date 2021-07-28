@@ -2,10 +2,10 @@
 
 [![Langutil](https://raw.githubusercontent.com/chin98edwin/langutil/main/assets/langutil-wording.svg)](https://github.com/chin98edwin/langutil)
 
-[![Version](https://img.shields.io/npm/v/langutil.svg)](https://www.npmjs.com/package/langutil)
+[![Version](https://img.shields.io/npm/v/langutil.svg)](https://github.com/chin98edwin/langutil/releases)
 ![Bundle size](https://img.shields.io/bundlephobia/min/langutil)
 ![Downloads](https://img.shields.io/npm/dt/langutil)
-![License](https://img.shields.io/npm/l/langutil)
+[![License](https://img.shields.io/npm/l/langutil)](https://github.com/chin98edwin/langutil/blob/main/LICENSE)
 
 [![Works with React](https://img.shields.io/static/v1?label&logo=react&logoColor=61DBFB&message=Works%20with%20React&color=4a4a4a)](#using-with-react)
 [![Open in Visual Studio Code](https://open.vscode.dev/badges/open-in-vscode.svg)](https://open.vscode.dev/chin98edwin/langutil)
