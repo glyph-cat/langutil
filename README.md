@@ -1,15 +1,21 @@
-Langutil — A localization utility for JavaScript that comes with support for React and React Native.
+<center>
 
-<br/>
+[![Langutil](../langutil/assets/langutil-wording.svg)](https://github.com/chin98edwin/langutil)
 
-[![NPM](https://img.shields.io/npm/v/langutil.svg)](https://www.npmjs.com/package/langutil)
+[![Version](https://img.shields.io/npm/v/langutil.svg)](https://www.npmjs.com/package/langutil)
+![Bundle size](https://img.shields.io/bundlephobia/min/langutil)
+![Downloads](https://img.shields.io/npm/dt/langutil)
+![License](https://img.shields.io/npm/l/langutil)
+
+[![Works with React](https://img.shields.io/static/v1?label&logo=react&logoColor=61DBFB&message=Works%20with%20React&color=4a4a4a)](#using-with-react)
 [![Open in Visual Studio Code](https://open.vscode.dev/badges/open-in-vscode.svg)](https://open.vscode.dev/chin98edwin/langutil)
+[![Become a Patron](https://img.shields.io/static/v1?label&logo=patreon&logoColor=ffffff&message=Become%20a%20Patron&color=ff424d)](https://www.patreon.com/bePatron?u=27931751)
+
+</center>
 
 <br/>
 
-[![Become a Patreon](https://raw.githubusercontent.com/chin98edwin/react-relink/main/assets/become-a-patron-button.svg)](https://www.patreon.com/bePatron?u=27931751)
-
-<!-- [![Become a Patreon](./assets/patreon-button.svg)](https://www.patreon.com/bePatron?u=27931751) -->
+A localization utility for JavaScript that comes with support for React and React Native.
 
 <br/>
 
