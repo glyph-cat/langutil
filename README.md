@@ -1,6 +1,6 @@
 <center>
 
-[![Langutil](../langutil/assets/langutil-wording.svg)](https://github.com/chin98edwin/langutil)
+[![Langutil](https://raw.githubusercontent.com/chin98edwin/langutil/main/assets/langutil-wording.svg)](https://github.com/chin98edwin/langutil)
 
 [![Version](https://img.shields.io/npm/v/langutil.svg)](https://www.npmjs.com/package/langutil)
 ![Bundle size](https://img.shields.io/bundlephobia/min/langutil)
