@@ -1,4 +1,4 @@
-import hoist from 'hoist-non-react-statics'
+import hoistNonReactStatics from 'hoist-non-react-statics'
 import {
   createElement,
   ForwardedRef,
@@ -28,6 +28,9 @@ export function useLangutil<D>(core: LangutilCore<D>): LangutilReactState<D> {
   useLayoutEffect(() => {
     const unwatch = core.watch((event: LangutilEvent<D>) => {
       if (componentShouldUpdateFrom(event)) {
+        // KIV: We might not even need this anymore... depending on when
+        // React 18 is released...
+        // Ref: https://reactjs.org/blog/2021/06/08/the-plan-for-react-18.html
         unstable_batchedUpdates(() => {
           setState({
             ...core,
@@ -86,7 +89,7 @@ export function createLangutilHOC<D, P extends WithLangutilProps<D> = WithLangut
       })
     }
     WithLangutil.displayName = displayName
-    hoist(WithLangutil, WrappedComponent)
+    hoistNonReactStatics(WithLangutil, WrappedComponent)
     return forwardRef(WithLangutil)
   }
 }

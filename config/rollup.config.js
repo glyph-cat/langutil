@@ -1,11 +1,44 @@
 import babel from '@rollup/plugin-babel'
 import commonjs from '@rollup/plugin-commonjs'
-// import json from '@rollup/plugin-json'
 import nodeResolve from '@rollup/plugin-node-resolve'
 import replace from '@rollup/plugin-replace'
 import { terser } from 'rollup-plugin-terser'
 import typescript from 'rollup-plugin-typescript2'
-import { version } from '../package.json'
+import { devDependencies, version } from '../package.json'
+
+// NOTE: Adding '@types/react-native' will cause error when running `yarn tsc`
+
+const NODE_RESOLVE_CONFIG_BASE = {
+  skip: Object.keys(devDependencies),
+}
+const NODE_RESOLVE_CONFIG_REACT_NATIVE = {
+  ...NODE_RESOLVE_CONFIG_BASE,
+  extensions: ['.native.ts', '.ts'],
+}
+
+const MAIN_INPUT_FILE = 'src/main/index.ts'
+const REACT_INPUT_FILE = 'src/react/index.ts'
+
+const EXTERNAL_LIBS_MAIN = []
+const EXTERNAL_LIBS_REACT = [
+  ...EXTERNAL_LIBS_MAIN,
+  'hoist-non-react-statics',
+  'react',
+]
+const EXTERNAL_LIBS_REACT_DOM = [
+  ...EXTERNAL_LIBS_REACT,
+  'react-dom',
+]
+const EXTERNAL_LIBS_REACT_NATIVE = [
+  ...EXTERNAL_LIBS_REACT,
+  'react-native',
+]
+
+const UMD_GLOBALS = {
+  react: 'React',
+  'hoist-non-react-statics': 'hoistNonReactStatics',
+  'react-dom': 'ReactDOM',
+}
 
 /**
  * @param {object} config
@@ -15,6 +48,7 @@ import { version } from '../package.json'
  * @returns {Array}
  */
 function getPlugins({ overrides, mode, presets = [] } = {}) {
+
   const basePlugins = {
     typescript: typescript({
       tsconfigOverride: {
@@ -31,14 +65,16 @@ function getPlugins({ overrides, mode, presets = [] } = {}) {
       exclude: '**/node_modules/**',
       babelHelpers: 'bundled',
     }),
-    // // @see https://stackoverflow.com/questions/55362346/rollup-how-to-require-json-but-not-include-it-in-bundle#57922092
-    // json: json({ compact: true }),
-    nodeResolve: nodeResolve(),
+    nodeResolve: nodeResolve(NODE_RESOLVE_CONFIG_BASE),
     commonjs: commonjs(),
   }
+
+  // Override plugins
   for (const overrideKey in overrides) {
     basePlugins[overrideKey] = overrides[overrideKey]
   }
+
+  // Convert plugins object to array
   const pluginStack = []
   for (const i in basePlugins) {
     // Allows plugins to be excluded by replacing them with falsey values
@@ -46,6 +82,8 @@ function getPlugins({ overrides, mode, presets = [] } = {}) {
       pluginStack.push(basePlugins[i])
     }
   }
+
+  // Replace values
   const replaceValues = {
     'process.env.DIST_ENV': JSON.stringify(true),
     'process.env.NPM_PACKAGE_VERSION': JSON.stringify(version),
@@ -57,129 +95,129 @@ function getPlugins({ overrides, mode, presets = [] } = {}) {
     preventAssignment: true,
     values: replaceValues,
   }))
+
+  // Minification and cleanup
   if (mode === 'production') {
     const terserPlugin = terser({ mangle: { properties: { regex: /^M\$/ } } })
     pluginStack.push(terserPlugin)
   }
   pluginStack.push(forceCleanup())
+
   return pluginStack
+
 }
 
-const mainInputFile = 'src/main/index.ts'
 const coreConfig = [
   {
     // CommonJS
-    input: mainInputFile,
+    input: MAIN_INPUT_FILE,
     output: {
       file: 'dist/cjs/index.js',
       format: 'cjs',
       exports: 'named',
     },
+    external: EXTERNAL_LIBS_MAIN,
     plugins: getPlugins(),
   },
   {
     // EcmaScript
-    input: mainInputFile,
+    input: MAIN_INPUT_FILE,
     output: {
       file: 'dist/es/index.js',
       format: 'es',
       exports: 'named',
     },
+    external: EXTERNAL_LIBS_MAIN,
     plugins: getPlugins(),
   },
   {
     // EcmaScript (Browsers)
-    input: mainInputFile,
+    input: MAIN_INPUT_FILE,
     output: {
       file: 'dist/es/index.mjs',
       format: 'es',
       exports: 'named',
     },
+    external: EXTERNAL_LIBS_MAIN,
     plugins: getPlugins({ mode: 'production' }),
   },
   {
     // React Native
-    input: mainInputFile,
+    input: MAIN_INPUT_FILE,
     output: {
       file: 'dist/native/index.js',
       format: 'es',
       exports: 'named',
     },
-    external: ['react-native'],
+    external: EXTERNAL_LIBS_REACT_NATIVE,
     plugins: getPlugins({
       overrides: {
-        nodeResolve: nodeResolve({
-          extensions: ['.native.js', '.js'],
-        }),
+        nodeResolve: nodeResolve(NODE_RESOLVE_CONFIG_REACT_NATIVE),
       },
     }),
   },
   {
     // UMD
-    input: mainInputFile,
+    input: MAIN_INPUT_FILE,
     output: {
       file: 'dist/umd/index.js',
       format: 'umd',
       name: 'Langutil',
       exports: 'named',
     },
+    external: EXTERNAL_LIBS_MAIN,
     plugins: getPlugins({ mode: 'development' }),
   },
   {
     // UMD (Production)
-    input: mainInputFile,
+    input: MAIN_INPUT_FILE,
     output: {
       file: 'dist/umd/index.min.js',
       format: 'umd',
       name: 'Langutil',
       exports: 'named',
     },
+    external: EXTERNAL_LIBS_MAIN,
     plugins: getPlugins({ mode: 'production' }),
   },
 ]
 
-const reactInputFile = 'src/react/index.ts'
-const reactCommonUmdGlobals = {
-  react: 'React',
-  'hoist-non-react-statics': 'hoist',
-}
-const reactCommonExternalLibs = Object.keys(reactCommonUmdGlobals)
 const reactConfig = [
   {
     // CommonJS
-    input: reactInputFile,
+    input: REACT_INPUT_FILE,
     output: {
       file: 'react/dist/cjs/index.js',
       format: 'cjs',
       exports: 'named',
     },
-    external: [...reactCommonExternalLibs, 'react-dom'],
+    external: EXTERNAL_LIBS_REACT_DOM,
     plugins: getPlugins({
       presets: ['@babel/preset-react'],
     }),
   },
   {
     // EcmaScript
-    input: reactInputFile,
+    input: REACT_INPUT_FILE,
     output: {
       file: 'react/dist/es/index.js',
       format: 'es',
       exports: 'named',
     },
-    external: [...reactCommonExternalLibs, 'react-dom'],
+    external: EXTERNAL_LIBS_REACT_DOM,
     plugins: getPlugins({
       presets: ['@babel/preset-react'],
     }),
   },
   {
     // EcmaScript (Browsers)
-    input: reactInputFile,
+    input: REACT_INPUT_FILE,
     output: {
       file: 'react/dist/es/index.mjs',
       format: 'es',
       exports: 'named',
     },
-    external: [...reactCommonExternalLibs, 'react-dom'],
+    external: EXTERNAL_LIBS_REACT_DOM,
     plugins: getPlugins({
       mode: 'production',
       presets: ['@babel/preset-react'],
@@ -187,33 +225,31 @@ const reactConfig = [
   },
   {
     // React Native
-    input: reactInputFile,
+    input: REACT_INPUT_FILE,
     output: {
       file: 'react/dist/native/index.js',
       format: 'es',
       exports: 'named',
     },
-    external: [...reactCommonExternalLibs, 'react-native'],
+    external: EXTERNAL_LIBS_REACT_NATIVE,
     plugins: getPlugins({
       presets: ['@babel/preset-react'],
       overrides: {
-        nodeResolve: nodeResolve({
-          extensions: ['.native.js', '.js'],
-        }),
+        nodeResolve: nodeResolve(NODE_RESOLVE_CONFIG_REACT_NATIVE),
       },
     }),
   },
   {
     // UMD
-    input: reactInputFile,
+    input: REACT_INPUT_FILE,
     output: {
       file: 'react/dist/umd/index.js',
       format: 'umd',
       name: 'LangutilReact',
       exports: 'named',
-      globals: reactCommonUmdGlobals,
+      globals: UMD_GLOBALS,
     },
-    external: reactCommonExternalLibs,
+    external: EXTERNAL_LIBS_REACT_DOM,
     plugins: getPlugins({
       mode: 'development',
       presets: ['@babel/preset-react'],
@@ -221,15 +257,15 @@ const reactConfig = [
   },
   {
     // UMD (Production)
-    input: reactInputFile,
+    input: REACT_INPUT_FILE,
     output: {
       file: 'react/dist/umd/index.min.js',
       format: 'umd',
       name: 'LangutilReact',
       exports: 'named',
-      globals: reactCommonUmdGlobals,
+      globals: UMD_GLOBALS,
     },
-    external: reactCommonExternalLibs,
+    external: EXTERNAL_LIBS_REACT_DOM,
     plugins: getPlugins({
       mode: 'production',
       presets: ['@babel/preset-react'],
@@ -237,7 +273,10 @@ const reactConfig = [
   },
 ]
 
-const config = [...coreConfig, ...reactConfig]
+const config = [
+  ...coreConfig,
+  ...reactConfig,
+]
 
 export default config
 

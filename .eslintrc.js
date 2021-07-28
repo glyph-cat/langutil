@@ -42,7 +42,7 @@ module.exports = {
     'import/no-unresolved': ERROR,
     'no-duplicate-imports': ERROR,
     'no-console': ERROR,
-    'no-shadow': OFF,
+    'no-shadow': OFF, // See '@typescript-eslint/no-shadow'
 
     // === Code that requires attention ===
     'no-warning-comments': ['warn', {
