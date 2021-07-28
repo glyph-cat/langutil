@@ -21,6 +21,7 @@ import {
   LangutilMethodObjArgsLocalizeFromScratch,
   LangutilKeyword,
   LangutilStringmapParam,
+  LangutilEventData,
 } from '../../schema'
 import { devPrint, displayStringArray } from '../dev'
 import getClientLanguages from '../get-client-languages'
@@ -65,7 +66,7 @@ export function createLangutilCore<D extends LangutilDictionaryIsolated>(
 
   const getLanguage = (): LangutilLanguage<D> => self.M$language
 
-  const getLangState = (): LangutilState<D> => ({
+  const getLangutilState = (): LangutilState<D> => ({
     isAuto: self.M$isAuto,
     language: self.M$language,
   })
@@ -81,8 +82,8 @@ export function createLangutilCore<D extends LangutilDictionaryIsolated>(
   const __setLanguageBase = (
     language: LangutilLanguage<D>,
     options?: LangutilSetLanguageOptions
-  ) => {
-    const oldLangState = { ...getLangState() }
+  ): LangutilEventData<D> => {
+    const oldLangutilState = { ...getLangutilState() }
 
     // Immediately assign new values, if is not auto or auto detect fails
     // it will fallback to these values
@@ -123,20 +124,29 @@ export function createLangutilCore<D extends LangutilDictionaryIsolated>(
     self.M$language = newLanguage
     self.M$isAuto = newAuto
 
-    const newLangState = getLangState()
-    return { oldLangState, newLangState }
+    const newLangutilState = getLangutilState()
+    return {
+      state: {
+        previous: oldLangutilState,
+        current: newLangutilState,
+      }
+    }
   }
 
-  const __setDictionaryBase = (dictionary: LangutilDictionaryIsolated) => {
+  const __setDictionaryBase = (
+    dictionary: LangutilDictionaryIsolated
+  ): LangutilEventData<D> => {
     if (typeof dictionary !== 'object') {
       throw TYPE_ERROR_DICTIONARY_INVALID_TYPE(dictionary)
     }
     // Note: Type of dictionary that is set or appended at runtime is unavailable
     self.M$dictionary = dictionary as D
-    const langState = getLangState()
     return {
-      oldLangState: langState,
-      newLangState: langState,
+      state: {
+        // Separately get the values to prevent hard-to-debug mutability issues
+        previous: getLangutilState(),
+        current: getLangutilState(),
+      }
     }
   }
 
@@ -180,14 +190,15 @@ export function createLangutilCore<D extends LangutilDictionaryIsolated>(
     }
     // Note: Type of dictionary that is set or appended at runtime is unavailable
     self.M$dictionary = getMergedDictionary(self.M$dictionary, dictionary) as D
-    const eventData = {
-      // Separate `getLangState()` to prevent hard-to-debug mutability issues
-      oldLangState: getLangState(),
-      newLangState: getLangState(),
-    }
     self.M$refresh({
       type: LangutilEvents.dictionaryAppend,
-      data: eventData,
+      data: {
+        state: {
+          // Separately get the values to prevent hard-to-debug mutability issues
+          previous: getLangutilState(),
+          current: getLangutilState(),
+        }
+      },
     })
   }
 
@@ -291,7 +302,7 @@ export function createLangutilCore<D extends LangutilDictionaryIsolated>(
     hydrate,
     setLanguage,
     getLanguage,
-    getLangutilState: getLangState,
+    getLangutilState: getLangutilState,
     getAllLanguages,
     setDictionary,
     appendDictionary,

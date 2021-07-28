@@ -2,7 +2,7 @@ import {
   __formatErrorCode,
   TYPE_ERROR_DICTIONARY_INVALID_TYPE,
   TYPE_ERROR_STRINGMAP_INVALID_PARAM_TYPE,
-  SYNTAX_ERROR_CONFLICTING_LANGSTATE_PROP,
+  SYNTAX_ERROR_CONFLICTING_LANGUTIL_STATE_PROP,
 } from '.'
 
 test('__formatErrorCode', () => {
@@ -23,7 +23,7 @@ test('TYPE_ERROR_STRINGMAP_INVALID_PARAM_TYPE', () => {
   )
 })
 
-test('SYNTAX_ERROR_CONFLICTING_LANGSTATE_PROP', () => {
-  const err = SYNTAX_ERROR_CONFLICTING_LANGSTATE_PROP('MyComponent')
-  expect(err.message).toBe('Prop conflict for `langState` in <MyComponent/>')
+test('SYNTAX_ERROR_CONFLICTING_LANGUTIL_STATE_PROP', () => {
+  const err = SYNTAX_ERROR_CONFLICTING_LANGUTIL_STATE_PROP('MyComponent')
+  expect(err.message).toBe('Prop conflict for `langutilState` in <MyComponent/>')
 })

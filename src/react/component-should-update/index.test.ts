@@ -1,19 +1,22 @@
 import { componentShouldUpdateFrom } from '.'
+import { LangutilEvents } from '../../constants'
 
 describe('componentShouldUpdateFrom', () => {
 
   test('Same language, same auto', () => {
     const output = componentShouldUpdateFrom({
-      type: 1,
+      type: LangutilEvents.language,
       data: {
-        oldLangState: {
-          language: 'en',
-          isAuto: false,
-        },
-        newLangState: {
-          language: 'en',
-          isAuto: false,
-        },
+        state: {
+          previous: {
+            language: 'en',
+            isAuto: false,
+          },
+          current: {
+            language: 'en',
+            isAuto: false,
+          },
+        }
       }
     })
     expect(output).toBe(false)
@@ -21,15 +24,17 @@ describe('componentShouldUpdateFrom', () => {
 
   test('Same language, different auto', () => {
     const output = componentShouldUpdateFrom({
-      type: 1,
+      type: LangutilEvents.language,
       data: {
-        oldLangState: {
-          language: 'en',
-          isAuto: false,
-        },
-        newLangState: {
-          language: 'en',
-          isAuto: true,
+        state: {
+          previous: {
+            language: 'en',
+            isAuto: false,
+          },
+          current: {
+            language: 'en',
+            isAuto: true,
+          },
         },
       }
     })
@@ -38,15 +43,17 @@ describe('componentShouldUpdateFrom', () => {
 
   test('Different language, same auto', () => {
     const output = componentShouldUpdateFrom({
-      type: 1,
+      type: LangutilEvents.language,
       data: {
-        oldLangState: {
-          language: 'en',
-          isAuto: false,
-        },
-        newLangState: {
-          language: 'zh',
-          isAuto: false,
+        state: {
+          previous: {
+            language: 'en',
+            isAuto: false,
+          },
+          current: {
+            language: 'zh',
+            isAuto: false,
+          },
         },
       }
     })
@@ -55,15 +62,17 @@ describe('componentShouldUpdateFrom', () => {
 
   test('Different language, different auto', () => {
     const output = componentShouldUpdateFrom({
-      type: 1,
+      type: LangutilEvents.language,
       data: {
-        oldLangState: {
-          language: 'en',
-          isAuto: false,
-        },
-        newLangState: {
-          language: 'zh',
-          isAuto: true,
+        state: {
+          previous: {
+            language: 'en',
+            isAuto: false,
+          },
+          current: {
+            language: 'zh',
+            isAuto: true,
+          },
         },
       }
     })

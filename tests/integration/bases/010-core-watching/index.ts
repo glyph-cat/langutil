@@ -27,29 +27,37 @@ export default function (testProps: IntegrationTestProps): void {
       {
         type: LangutilEvents.language,
         data: {
-          oldLangState: { isAuto: false, language: 'en' },
-          newLangState: { isAuto: false, language: 'in' },
+          state: {
+            previous: { isAuto: false, language: 'en' },
+            current: { isAuto: false, language: 'in' },
+          },
         },
       },
       {
         type: LangutilEvents.dictionarySet,
         data: {
-          oldLangState: { isAuto: false, language: 'in' },
-          newLangState: { isAuto: false, language: 'in' },
+          state: {
+            previous: { isAuto: false, language: 'in' },
+            current: { isAuto: false, language: 'in' },
+          },
         },
       },
       {
         type: LangutilEvents.dictionaryAppend,
         data: {
-          oldLangState: { isAuto: false, language: 'in' },
-          newLangState: { isAuto: false, language: 'in' },
+          state: {
+            previous: { isAuto: false, language: 'in' },
+            current: { isAuto: false, language: 'in' },
+          },
         },
       },
       {
         type: LangutilEvents.hydration,
         data: {
-          oldLangState: { isAuto: false, language: 'in' },
-          newLangState: { isAuto: false, language: 'en' },
+          state: {
+            previous: { isAuto: false, language: 'in' },
+            current: { isAuto: false, language: 'en' },
+          },
         },
       },
     ])
