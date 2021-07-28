@@ -4,16 +4,20 @@ import nodeResolve from '@rollup/plugin-node-resolve'
 import replace from '@rollup/plugin-replace'
 import { terser } from 'rollup-plugin-terser'
 import typescript from 'rollup-plugin-typescript2'
-import { devDependencies, version } from '../package.json'
+import { version } from '../package.json'
 
 // NOTE: Adding '@types/react-native' will cause error when running `yarn tsc`
 
 const NODE_RESOLVE_CONFIG_BASE = {
-  skip: Object.keys(devDependencies),
+  extensions: ['.ts', '.js'],
 }
 const NODE_RESOLVE_CONFIG_REACT_NATIVE = {
   ...NODE_RESOLVE_CONFIG_BASE,
-  extensions: ['.native.ts', '.ts'],
+  extensions: [
+    '.native.ts',
+    '.native.js',
+    ...NODE_RESOLVE_CONFIG_BASE.extensions,
+  ],
 }
 
 const MAIN_INPUT_FILE = 'src/main/index.ts'
@@ -45,11 +49,17 @@ const UMD_GLOBALS = {
  * @param {object} config.overrides
  * @param {Array<string>} config.presets
  * @param {'development'|'production'} config.mode
+ * @param {'boolean'} config.isRNBuild
  * @returns {Array}
  */
-function getPlugins({ overrides, mode, presets = [] } = {}) {
+function getPlugins({
+  overrides,
+  mode,
+  presets = [],
+} = {}) {
 
   const basePlugins = {
+    nodeResolve: nodeResolve(NODE_RESOLVE_CONFIG_BASE),
     typescript: typescript({
       tsconfigOverride: {
         compilerOptions: {
@@ -65,7 +75,6 @@ function getPlugins({ overrides, mode, presets = [] } = {}) {
       exclude: '**/node_modules/**',
       babelHelpers: 'bundled',
     }),
-    nodeResolve: nodeResolve(NODE_RESOLVE_CONFIG_BASE),
     commonjs: commonjs(),
   }
 

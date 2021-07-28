@@ -11,7 +11,7 @@ import { LangutilState, LangutilCore, LangutilEvent } from '../schema'
 import { componentShouldUpdateFrom } from './component-should-update'
 import getDisplayName from './get-display-name'
 import useLayoutEffect from './isomorphic-layout-effect'
-import unstable_batchedUpdates from './react-batch'
+// import unstable_batchedUpdates from './react-batch'
 
 /**
  * @public
@@ -31,11 +31,10 @@ export function useLangutil<D>(core: LangutilCore<D>): LangutilReactState<D> {
         // KIV: We might not even need this anymore... depending on when
         // React 18 is released...
         // Ref: https://reactjs.org/blog/2021/06/08/the-plan-for-react-18.html
-        unstable_batchedUpdates(() => {
-          setState({
-            ...core,
-            ...event.data.state.current,
-          })
+        // unstable_batchedUpdates(() => { })
+        setState({
+          ...core,
+          ...event.data.state.current,
         })
       }
     })
