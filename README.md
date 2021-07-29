@@ -199,6 +199,12 @@ localizeFromScratch(dictionaryAlt, 'ja', 'GOOD_NIGHT')
 
 # Using with React
 
+To use Langutil with React, you will first need to install the `hoist-non-react-statics` package. 
+
+See [React Docs: Higher-Order Components](https://reactjs.org/docs/higher-order-components.html#static-methods-must-be-copied-over) (Head over to the section **Static Methods Must Be Copied Over** if the site doesn't automatically scroll to it).
+
+<br/>
+
 ## Function Components
 
 ```js
