@@ -323,6 +323,21 @@ export function createLangutilCore<D extends LangutilDictionaryIsolated>(
 }
 
 /**
+ * Same as `createLangutilCore`. See example.
+ * @example
+ * // Both are equally valid.
+ *
+ * import Langutil from 'langutil'
+ * Langutil.createCore()
+ *
+ * import { createLangutilCore } from 'langutil'
+ * createLangutilCore()
+ * 
+ * @public
+ */
+export const createCore = createLangutilCore
+
+/**
  * @public
  */
 export function localizeFromScratch<Dn>(
