@@ -332,7 +332,7 @@ export function createLangutilCore<D extends LangutilDictionaryIsolated>(
  *
  * import { createLangutilCore } from 'langutil'
  * createLangutilCore()
- * 
+ *
  * @public
  */
 export const createCore = createLangutilCore
