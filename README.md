@@ -39,18 +39,19 @@ A localization utility for JavaScript that comes with support for React and Reac
 - [Testing Recipes](#testing-recipes)
 - [Error Codes](#error-codes)
 - [Migrating from v3 and below](#migrating-from-v3-and-below)
+- [Miscellaneous](#miscellaneous)
 
 <br/>
 
 # Installation/Setup
 
-With NPM:
+With [NPM](https://www.npmjs.com/package/langutil):
 ```sh
 npm i langutil
 ```
 <br/>
 
-With Yarn:
+With [Yarn](https://yarnpkg.com/package/langutil):
 ```sh
 yarn add langutil
 ```
@@ -301,3 +302,7 @@ Of course, that quite a crazy example, but even if your app is going to need jus
 ![TypeScript autocomplete - keywords](https://raw.githubusercontent.com/chin98edwin/langutil/main/assets/ts-autocomplete-keywords.png)
 
 <br/>
+
+# Miscellaneous
+
+Looking for a general-purpose state manager for React? Then you might be interested in [React Relink](https://github.com/chin98edwin/react-relink).
