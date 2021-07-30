@@ -2,7 +2,7 @@ import { SAMPLE_DICTIONARY } from '../../../sample-dictionary'
 import {
   createCleanupRef,
   createHookInterface,
-} from '../../../__utils__/hook-interface'
+} from '@chin98edwin/react-test-utils'
 import { IntegrationTestProps } from '../../constants'
 
 const cleanupRef = createCleanupRef()
