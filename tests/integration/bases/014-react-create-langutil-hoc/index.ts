@@ -1,6 +1,12 @@
 import { SAMPLE_DICTIONARY } from '../../../sample-dictionary'
-import { createHocInterface } from '../../../__utils__/hook-interface'
+import {
+  createCleanupRef,
+  createHocInterface,
+} from '../../../__utils__/hook-interface'
 import { IntegrationTestProps } from '../../constants'
+
+const cleanupRef = createCleanupRef()
+afterEach(() => { cleanupRef.run() })
 
 export default function (testProps: IntegrationTestProps): void {
 
@@ -14,20 +20,20 @@ export default function (testProps: IntegrationTestProps): void {
     const withLang = createLangutilHOC<typeof SAMPLE_DICTIONARY>(core)
 
     const hocInterface = createHocInterface({
-      entry: ({ C }) => withLang(C),
+      entry: ({ Component }) => withLang(Component),
       actions: {
-        changeLangToIn: (props) => { props.langutilState.setLanguage('in') },
+        changeLangToIn: ({ props }) => {
+          props.langutilState.setLanguage('in')
+        },
       },
       values: {
-        value: (props) => props.langutilState.localize('GOOD_MORNING'),
+        value: ({ props }) => props.langutilState.localize('GOOD_MORNING'),
       },
-    })
+    }, cleanupRef)
 
     expect(hocInterface.get('value')).toBe('Good morning.')
     hocInterface.actions(['changeLangToIn'])
     expect(hocInterface.get('value')).toBe('Selamat pagi.')
-
-    hocInterface.cleanup()
 
   })
 

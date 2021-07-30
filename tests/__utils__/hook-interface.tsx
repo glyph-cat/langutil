@@ -7,52 +7,126 @@ import { act, create, ReactTestRenderer } from 'react-test-renderer'
 // K: Channel key
 // M: Method (The hook function)
 
-type FunctionType = (...args: Array<unknown>) => unknown
 
-export interface HookInterfaceChannel<A extends string, V extends string, M extends FunctionType> {
-  hook: {
-    method: M
-    parameters?: Array<unknown>
-  }
-  actions?: Record<A, (arg: { H: ReturnType<M> }) => void>
-  values?: Record<V, (hookData: ReturnType<M>) => string>
+// === Cleanup Ref ===
+const $$cleanupQueue = Symbol()
+
+export interface CleanupRef {
+  /**
+   * @internal
+   */
+  [$$cleanupQueue]: Array<unknown>
+  /**
+   * @public
+   */
+  run(): void
 }
 
-export type HookInterfaceChannelsCollection<K extends string, A extends string, V extends string, M extends FunctionType> = Record<K, HookInterfaceChannel<A, V, M>>
+function appendCleanupQueue(
+  cleanupRef: CleanupRef,
+  callback: () => void
+): void {
+  cleanupRef[$$cleanupQueue].push(callback)
+}
 
+export function createCleanupRef(): CleanupRef {
+  const self = {
+    [$$cleanupQueue]: [],
+    run: () => {
+      for (let i = 0; i < self[$$cleanupQueue].length; i++) {
+        self[$$cleanupQueue][i]()
+      }
+    },
+  }
+  return self
+}
+
+// === Misc. ===
+
+export interface RootRef {
+  current: ReactTestRenderer
+}
+
+// === Hook ===
+
+type UNSTABLE_FunctionType = (...args: Array<unknown>) => unknown
+
+export interface HookInterfaceHookSpecs<M extends UNSTABLE_FunctionType> {
+  method: M
+  parameters?: Array<unknown>
+}
+
+/**
+ * @public
+ */
+export interface HookInterfaceActionDefinition<M extends UNSTABLE_FunctionType> {
+  (arg: { hookValue: ReturnType<M> }): void
+}
+
+/**
+ * @public
+ */
+export interface HookInterfaceValueMapper<M extends UNSTABLE_FunctionType> {
+  (arg: { hookValue: ReturnType<M> }): string
+}
+
+/**
+ * @public
+ */
+export interface HookInterfaceChannel<A extends string, V extends string, M extends UNSTABLE_FunctionType> {
+  hook: HookInterfaceHookSpecs<M>
+  actions?: Record<A, HookInterfaceActionDefinition<M>>
+  values?: Record<V, HookInterfaceValueMapper<M>>
+}
+
+/**
+ * @public
+ */
+export type HookInterfaceChannelsCollection<K extends string, A extends string, V extends string, M extends UNSTABLE_FunctionType> = Record<K, HookInterfaceChannel<A, V, M>>
+
+/**
+ * @public
+ */
 export interface HookInterface<A extends string, V extends string> {
+  root: RootRef,
   actions(actionKeyStack: Array<A>): void,
   get(valueKey: V): string
   getRenderCount(): number
-  cleanup(): void
 }
 
+/**
+ * @public
+ */
 export interface CompoundHookInterface<K extends string, A extends string, V extends string> {
-  at(channelKey: K): Omit<HookInterface<A, V>, 'cleanup'>
-  cleanup: HookInterface<A, V>['cleanup'],
+  root: RootRef,
+  at(channelKey: K): Omit<HookInterface<A, V>, 'root'>
 }
 
 /**
  * A wrapper for testing a React Hook by abstracting the DOM container's logic.
+ * @public
  */
-export function createHookInterface<A extends string, V extends string, M extends FunctionType>(
-  config: HookInterfaceChannel<A, V, M>
+export function createHookInterface<A extends string, V extends string, M extends UNSTABLE_FunctionType>(
+  config: HookInterfaceChannel<A, V, M>,
+  cleanupRef: CleanupRef
 ): HookInterface<A, V> {
-  const chi = createCompoundHookInterface({ a: config })
+  const chi = createCompoundHookInterface({ a: config }, cleanupRef)
   return {
+    root: chi.root,
     actions: chi.at('a').actions,
     get: chi.at('a').get,
     getRenderCount: chi.at('a').getRenderCount,
-    cleanup: chi.cleanup,
   }
 }
 
 /**
  * A wrapper for testing multiple React Hooks by abstracting the DOM container's
  * logic.
+ * @public
  */
-export function createCompoundHookInterface<K extends string, A extends string, V extends string, M extends FunctionType>(
-  channels: HookInterfaceChannelsCollection<K, A, V, M>
+export function createCompoundHookInterface<K extends string, A extends string, V extends string, M extends UNSTABLE_FunctionType>(
+  channels: HookInterfaceChannelsCollection<K, A, V, M>,
+  cleanupRef: CleanupRef
 ): CompoundHookInterface<K, A, V> {
 
   const renderStack = []
@@ -78,9 +152,9 @@ export function createCompoundHookInterface<K extends string, A extends string, 
       const actionKeys = Object.keys(actions)
       outlets[channelKey].dispatchableActions = {}
       for (const actionKey of actionKeys) {
-        const callback = actions[actionKey]
+        const actionCallback = actions[actionKey]
         outlets[channelKey].dispatchableActions[actionKey] = () => {
-          callback({ H: hookData })
+          actionCallback({ hookValue: hookData })
         }
       }
 
@@ -89,7 +163,8 @@ export function createCompoundHookInterface<K extends string, A extends string, 
       for (const valueKey of valueKeys) {
         const valueMapper = values[valueKey]
         // All values should be casted to string
-        outlets[channelKey].retrievableValues[valueKey] = `${valueMapper(hookData)}`
+        const mappedValue = `${valueMapper({ hookValue: hookData })}`
+        outlets[channelKey].retrievableValues[valueKey] = mappedValue
       }
 
       return null
@@ -100,8 +175,10 @@ export function createCompoundHookInterface<K extends string, A extends string, 
 
   let root: ReactTestRenderer
   act(() => { root = create(<Fragment children={renderStack} />) })
+  appendCleanupQueue(cleanupRef, root.unmount)
 
   return {
+    root: { current: root },
     at: (channelKey: string) => {
       if (!outlets[channelKey]) {
         throw new ReferenceError(`Channel '${channelKey}' is undefined`)
@@ -128,13 +205,15 @@ export function createCompoundHookInterface<K extends string, A extends string, 
         getRenderCount: () => renderCount[channelKey],
       }
     },
-    cleanup: root.unmount,
   }
 }
 
 // NOTE: I don't have enough knowledge on how to make this work, so I'm only
 // using the `any` type for HOCs...
 
+/**
+ * @public
+ */
 export interface HocInterfaceChannel<A extends string, V extends string> {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   actions?: Record<A, (props: any) => void>
@@ -142,22 +221,32 @@ export interface HocInterfaceChannel<A extends string, V extends string> {
   values?: Record<V, (hookData: ReturnType<any>) => string>
 }
 
+/**
+ * @public
+ */
 export interface HocInterfaceConfig<A extends string, V extends string> {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  entry(entryArgs: { C: any }): any
+  entry(entryArgs: { Component: any }): any
   actions?: HocInterfaceChannel<A, V>['actions']
   values?: HocInterfaceChannel<A, V>['values']
 }
 
+/**
+ * @public
+ */
 export interface HocInterface<A extends string, V extends string> {
+  root: RootRef
   actions(actionKeyStack: Array<A>): void,
   get(valueKey: V): string
   getRenderCount(): number
-  cleanup(): void
 }
 
+/**
+ * @public
+ */
 export function createHocInterface<A extends string, V extends string>(
-  config: HocInterfaceConfig<A, V>
+  config: HocInterfaceConfig<A, V>,
+  cleanupRef: CleanupRef
 ): HocInterface<A, V> {
 
   const { entry, actions = {}, values = {} } = config
@@ -185,9 +274,9 @@ export function createHocInterface<A extends string, V extends string>(
       const actionKeys = Object.keys(actions)
       dispatchableActions = {}
       for (const actionKey of actionKeys) {
-        const callback = actions[actionKey]
+        const actionCallback = actions[actionKey]
         dispatchableActions[actionKey] = () => {
-          callback(this.props)
+          actionCallback({ props: this.props })
         }
       }
 
@@ -196,7 +285,8 @@ export function createHocInterface<A extends string, V extends string>(
       for (const valueKey of valueKeys) {
         const valueMapper = values[valueKey]
         // All values should be casted to string
-        retrievableValues[valueKey] = '' + valueMapper(this.props)
+        const mappedValue = valueMapper({ props: this.props })
+        retrievableValues[valueKey] = `${mappedValue}`
       }
     }
 
@@ -205,12 +295,14 @@ export function createHocInterface<A extends string, V extends string>(
   let root: ReactTestRenderer
   act(() => {
     // Parameters are first applied then passed in as a component, example
-    // entry: ({ C }) => withHoc(C, options)
-    const WrappedComponent = entry({ C: Component })
+    // entry: ({ Component }) => withHoc(Component, options)
+    const WrappedComponent = entry({ Component })
     root = create(<WrappedComponent />)
   })
+  appendCleanupQueue(cleanupRef, root.unmount)
 
   return {
+    root: { current: root },
     actions: (actionKeyStack: Array<string>) => {
       if (!Array.isArray(actionKeyStack)) {
         // This allows multiple actions to be invoked in the same `act()` callback
@@ -233,6 +325,5 @@ export function createHocInterface<A extends string, V extends string>(
       return retrievableValues[valueKey]
     },
     getRenderCount: () => renderCount,
-    cleanup: root.unmount,
   }
 }
