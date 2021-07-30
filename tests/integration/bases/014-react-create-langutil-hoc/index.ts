@@ -1,8 +1,8 @@
 import { SAMPLE_DICTIONARY } from '../../../sample-dictionary'
 import {
   createCleanupRef,
-  createHocInterface,
-} from '../../../__utils__/hook-interface'
+  UNSTABLE_createHocInterface,
+} from '@chin98edwin/react-test-utils'
 import { IntegrationTestProps } from '../../constants'
 
 const cleanupRef = createCleanupRef()
@@ -19,7 +19,7 @@ export default function (testProps: IntegrationTestProps): void {
     const core = createLangutilCore(SAMPLE_DICTIONARY, 'en')
     const withLang = createLangutilHOC<typeof SAMPLE_DICTIONARY>(core)
 
-    const hocInterface = createHocInterface({
+    const hocInterface = UNSTABLE_createHocInterface({
       entry: ({ Component }) => withLang(Component),
       actions: {
         changeLangToIn: ({ props }) => {
