@@ -303,7 +303,7 @@ Here are some of the key changes summarized:
 
 Although this is one step extra, it actually brings a few benefits. There may be cases where your website needs to display different languages in different containers or canvases and this can be useful. For example, a novel reading website, where novels might only be written in limited languages but the website itself supports 20+ languages.
 
-Of course, that quite a crazy example, but even if your app is going to need just one `LangutilCore`, you can still benefit from TypeScript autocomplete thanks to the factory pattern in v4. Cheers 🍻
+Of course, that is quite a crazy example, but even if your app is going to need just one `LangutilCore`, you can still benefit from TypeScript autocomplete thanks to the factory pattern in v4. Cheers 🍻
 
 ![TypeScript autocomplete - keywords](https://raw.githubusercontent.com/chin98edwin/langutil/main/assets/ts-autocomplete-keywords.png)
 
