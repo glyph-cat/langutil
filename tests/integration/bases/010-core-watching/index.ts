@@ -16,12 +16,12 @@ export default function (testProps: IntegrationTestProps): void {
       eventSnapshots.push(event)
     })
 
-    core.setLanguage('in')
+    core.setLanguage('id')
     core.setDictionary(SAMPLE_DICTIONARY)
     core.appendDictionary(SAMPLE_DICTIONARY)
     core.hydrate(null, 'en')
     unwatch()
-    core.setLanguage('in') // Test for memory leak
+    core.setLanguage('id') // Test for memory leak
 
     expect(eventSnapshots).toStrictEqual([
       {
@@ -29,7 +29,7 @@ export default function (testProps: IntegrationTestProps): void {
         data: {
           state: {
             previous: { isAuto: false, language: 'en' },
-            current: { isAuto: false, language: 'in' },
+            current: { isAuto: false, language: 'id' },
           },
         },
       },
@@ -37,8 +37,8 @@ export default function (testProps: IntegrationTestProps): void {
         type: LangutilEvents.dictionarySet,
         data: {
           state: {
-            previous: { isAuto: false, language: 'in' },
-            current: { isAuto: false, language: 'in' },
+            previous: { isAuto: false, language: 'id' },
+            current: { isAuto: false, language: 'id' },
           },
         },
       },
@@ -46,8 +46,8 @@ export default function (testProps: IntegrationTestProps): void {
         type: LangutilEvents.dictionaryAppend,
         data: {
           state: {
-            previous: { isAuto: false, language: 'in' },
-            current: { isAuto: false, language: 'in' },
+            previous: { isAuto: false, language: 'id' },
+            current: { isAuto: false, language: 'id' },
           },
         },
       },
@@ -55,7 +55,7 @@ export default function (testProps: IntegrationTestProps): void {
         type: LangutilEvents.hydration,
         data: {
           state: {
-            previous: { isAuto: false, language: 'in' },
+            previous: { isAuto: false, language: 'id' },
             current: { isAuto: false, language: 'en' },
           },
         },

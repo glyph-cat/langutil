@@ -8,13 +8,13 @@ export default function (testProps: IntegrationTestProps): void {
 
   test('.cloneCurrent', () => {
     // Original core is compared as well to test for mutability
-    const originalCore = createLangutilCore(SAMPLE_DICTIONARY, 'in')
+    const originalCore = createLangutilCore(SAMPLE_DICTIONARY, 'id')
     originalCore.setLanguage('en', { auto: true })
     const clonedCore = originalCore.cloneCurrent()
-    originalCore.setLanguage('in', { auto: false })
+    originalCore.setLanguage('id', { auto: false })
     expect(originalCore.getLangutilState()).toStrictEqual({
       isAuto: false,
-      language: 'in',
+      language: 'id',
     })
     expect(clonedCore.getLangutilState()).toStrictEqual({
       isAuto: true,
@@ -24,17 +24,17 @@ export default function (testProps: IntegrationTestProps): void {
 
   test('.cloneCurrent', () => {
     // Original core is compared as well to test for mutability
-    const originalCore = createLangutilCore(SAMPLE_DICTIONARY, 'in')
+    const originalCore = createLangutilCore(SAMPLE_DICTIONARY, 'id')
     originalCore.setLanguage('en', { auto: true })
     const clonedCore = originalCore.cloneInitial()
-    originalCore.setLanguage('in', { auto: false })
+    originalCore.setLanguage('id', { auto: false })
     expect(originalCore.getLangutilState()).toStrictEqual({
       isAuto: false,
-      language: 'in',
+      language: 'id',
     })
     expect(clonedCore.getLangutilState()).toStrictEqual({
       isAuto: false,
-      language: 'in',
+      language: 'id',
     })
   })
 

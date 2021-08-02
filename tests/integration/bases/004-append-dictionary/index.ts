@@ -27,9 +27,9 @@ export default function (testProps: IntegrationTestProps): void {
         ...SAMPLE_DICTIONARY.en,
         ...SAMPLE_DICTIONARY_ALT.en,
       },
-      in: {
-        ...SAMPLE_DICTIONARY.in,
-        ...SAMPLE_DICTIONARY_ALT.in,
+      id: {
+        ...SAMPLE_DICTIONARY.id,
+        ...SAMPLE_DICTIONARY_ALT.id,
       },
       ja: {
         ...SAMPLE_DICTIONARY.ja,

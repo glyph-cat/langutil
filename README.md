@@ -79,7 +79,7 @@ const dictionary = {
     GOOD_MORNING_PNAME: 'Good morning, %p.',
     GOOD_MORNING_NAME_AND_NAME: 'Good morning, {:name1} and {:name2}.',
   },
-  in: {
+  id: {
     GOOD_MORNING: 'Selamat pagi.',
     GOOD_MORNING_NAME: 'Selamat pagi, {:name}.',
     GOOD_MORNING_PNAME: 'Selamat pagi, %p.',
@@ -159,7 +159,7 @@ const dictionary = {
   en: {
     SOMETIMES_IM_A_BEAR: 'Sometimes, I\'m a bear, and at other times I am a be-ar.',
   },
-  in: {
+  id: {
     SOMETIMES_IM_A_BEAR: 'Kadang-kadang aku beruang, dan kadang-kadang aku ber-uang.',
   },
   ja: {
@@ -172,7 +172,7 @@ const core = createLangutilCore(dictionary, 'en')
 core.localizeExplicitly('ja', 'SOMETIMES_IM_A_BEAR')
 // ある時はクマ、そしてまたある時は…ク-マ。
 
-core.localizeExplicitly('in', 'SOMETIMES_IM_A_BEAR')
+core.localizeExplicitly('id', 'SOMETIMES_IM_A_BEAR')
 // Kadang-kadang aku beruang, dan kadang-kadang aku ber-uang.
 
 core.localize('SOMETIMES_IM_A_BEAR')
@@ -185,7 +185,7 @@ const dictionaryAlt = {
   ja: {
     GOOD_NIGHT: 'おやすみなさい。',
   },
-  in: {
+  id: {
     GOOD_NIGHT: 'Selamat malam.',
   },
 }

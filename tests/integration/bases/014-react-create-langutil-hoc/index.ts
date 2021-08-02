@@ -22,8 +22,8 @@ export default function (testProps: IntegrationTestProps): void {
     const hocInterface = UNSTABLE_createHocInterface({
       entry: ({ Component }) => withLang(Component),
       actions: {
-        changeLangToIn: ({ props }) => {
-          props.langutilState.setLanguage('in')
+        changeLangToId: ({ props }) => {
+          props.langutilState.setLanguage('id')
         },
       },
       values: {
@@ -32,7 +32,7 @@ export default function (testProps: IntegrationTestProps): void {
     }, cleanupRef)
 
     expect(hocInterface.get('value')).toBe('Good morning.')
-    hocInterface.actions(['changeLangToIn'])
+    hocInterface.actions(['changeLangToId'])
     expect(hocInterface.get('value')).toBe('Selamat pagi.')
 
   })

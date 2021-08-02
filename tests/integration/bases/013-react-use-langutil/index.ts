@@ -25,8 +25,8 @@ export default function (testProps: IntegrationTestProps): void {
         parameters: [core],
       },
       actions: {
-        changeLangToIn: ({ hookValue: langutilState }) => {
-          langutilState.setLanguage('in')
+        changeLangToId: ({ hookValue: langutilState }) => {
+          langutilState.setLanguage('id')
         },
       },
       values: {
@@ -37,7 +37,7 @@ export default function (testProps: IntegrationTestProps): void {
     }, cleanupRef)
 
     expect(hookInterface.get('value')).toBe('Good morning.')
-    hookInterface.actions(['changeLangToIn'])
+    hookInterface.actions(['changeLangToId'])
     expect(hookInterface.get('value')).toBe('Selamat pagi.')
 
   })

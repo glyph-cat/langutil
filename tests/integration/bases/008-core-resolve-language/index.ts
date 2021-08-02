@@ -12,8 +12,8 @@ export default function (testProps: IntegrationTestProps): void {
 
       test('Contains exact match', () => {
         const core = createLangutilCore(SAMPLE_DICTIONARY, 'en')
-        const output = core.resolveLanguage('in')
-        expect(output).toBe('in')
+        const output = core.resolveLanguage('id')
+        expect(output).toBe('id')
       })
 
       test('Contains partial match', () => {
@@ -34,14 +34,14 @@ export default function (testProps: IntegrationTestProps): void {
 
       test('Contains exact match', () => {
         const core = createLangutilCore(SAMPLE_DICTIONARY, 'en')
-        const output = core.resolveLanguage(['ab', 'in'])
-        expect(output).toBe('in')
+        const output = core.resolveLanguage(['ab', 'id'])
+        expect(output).toBe('id')
       })
 
       test('Contains partial match', () => {
         const core = createLangutilCore(SAMPLE_DICTIONARY, 'en')
-        const output = core.resolveLanguage(['ab', 'ind'])
-        expect(output).toBe('in')
+        const output = core.resolveLanguage(['ab', 'id-GB'])
+        expect(output).toBe('id')
       })
 
       test('Contains no match', () => {
@@ -60,8 +60,8 @@ export default function (testProps: IntegrationTestProps): void {
 
       test('Contains exact match', () => {
         const core = createLangutilCore(SAMPLE_DICTIONARY, 'en')
-        const output = core.safelyResolveLanguage('in')
-        expect(output).toBe('in')
+        const output = core.safelyResolveLanguage('id')
+        expect(output).toBe('id')
       })
 
       test('Contains partial match', () => {
@@ -82,14 +82,14 @@ export default function (testProps: IntegrationTestProps): void {
 
       test('Contains exact match', () => {
         const core = createLangutilCore(SAMPLE_DICTIONARY, 'en')
-        const output = core.safelyResolveLanguage(['ab', 'in'])
-        expect(output).toBe('in')
+        const output = core.safelyResolveLanguage(['ab', 'id'])
+        expect(output).toBe('id')
       })
 
       test('Contains partial match', () => {
         const core = createLangutilCore(SAMPLE_DICTIONARY, 'en')
-        const output = core.safelyResolveLanguage(['ab', 'ind'])
-        expect(output).toBe('in')
+        const output = core.safelyResolveLanguage(['ab', 'id-GB'])
+        expect(output).toBe('id')
       })
 
       test('Contains no match', () => {
