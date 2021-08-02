@@ -16,7 +16,7 @@ export default function (testProps: IntegrationTestProps): void {
 
     test('In another language', () => {
       const core = createLangutilCore(SAMPLE_DICTIONARY, 'en')
-      core.setLanguage('in')
+      core.setLanguage('id')
       const output = core.localize('GOOD_MORNING')
       expect(output).toBe('Selamat pagi.')
     })

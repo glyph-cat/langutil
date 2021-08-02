@@ -14,9 +14,9 @@ export default function (testProps: IntegrationTestProps): void {
 
   test('.setLanguage + .getLanguage', () => {
     const core = createLangutilCore(SAMPLE_DICTIONARY, 'en')
-    core.setLanguage('in')
+    core.setLanguage('id')
     const output = core.getLanguage()
-    expect(output).toBe('in')
+    expect(output).toBe('id')
   })
 
   test('.getLangutilState', () => {
@@ -31,7 +31,7 @@ export default function (testProps: IntegrationTestProps): void {
   test('.getAllLanguages', () => {
     const core = createLangutilCore(SAMPLE_DICTIONARY, 'en')
     const output = core.getAllLanguages().sort()
-    expect(output).toStrictEqual(['en', 'in', 'ja'].sort())
+    expect(output).toStrictEqual(['en', 'id', 'ja'].sort())
   })
 
 }

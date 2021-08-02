@@ -23,7 +23,7 @@ import {
   LangutilStringmapParam,
   LangutilEventData,
 } from '../../schema'
-import { devPrint, displayStringArray } from '../dev'
+import { devInfo, devWarn, displayStringArray } from '../dev'
 import getClientLanguages from '../get-client-languages'
 import getMergedDictionary from '../get-merged-dictionary'
 import { baseLocalizer } from '../localizer'
@@ -95,13 +95,9 @@ export function createLangutilCore<D extends LangutilDictionaryIsolated>(
       const resolvedLanguage = resolveLanguage(rawDetectedLanguage)
       if (resolvedLanguage) {
         newLanguage = resolvedLanguage
-        devPrint(
-          'info',
-          `Automatically recognized language: ${resolvedLanguage}`
-        )
+        devInfo(`Automatically recognized language: ${resolvedLanguage}`)
       } else {
-        devPrint(
-          'info',
+        devInfo(
           `Unable to automatically recognize language, falling back to ${language}`
         )
       }
@@ -111,10 +107,9 @@ export function createLangutilCore<D extends LangutilDictionaryIsolated>(
         // NOTE: Must wrap in `if (IS_DEBUG_ENV) { ... }` otherwise terser will
         // still include code for `displayStringArray` in the minified bundles.
         if (IS_DEBUG_ENV) {
-          devPrint(
-            'warn',
-            `The language '${language}' does not exist within the dictionary, ` +
-            'available languages: ' +
+          devWarn(
+            `The language '${language}' does not exist within the ` +
+            'dictionary, available languages: ' +
             displayStringArray(getAllLanguages() as Array<string>) + '.'
           )
         }

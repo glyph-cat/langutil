@@ -1,6 +1,6 @@
 import { IS_DEBUG_ENV } from '../../constants'
 import { TYPE_ERROR_STRINGMAP_INVALID_PARAM_TYPE } from '../../errors'
-import { devPrint } from '../dev'
+import { devWarn } from '../dev'
 import getRandomHash from '../get-random-hash'
 
 const globalArrayPlaceholderPattern = /(%p)/g
@@ -70,9 +70,9 @@ export function stringmapArray(str: string, arr: Array<unknown>): string {
     newStr.match(globalArrayPlaceholderPattern)?.length || 0
 
   if (arr.length < placeholderCount) {
-    devPrint(
-      'warn',
-      `Found ${placeholderCount} placeholders but ${arr.length} value(s) are supplied in '${str}'`
+    devWarn(
+      `Found ${placeholderCount} placeholders but ${arr.length} value(s) ` +
+      `are supplied in '${str}'`
     )
   }
 
@@ -157,7 +157,7 @@ export function warnIfPlaceholdersArePresent(str: string): boolean | undefined {
       shouldWarn = true
     }
     if (shouldWarn) {
-      devPrint('warn', `Leftover placeholders found in '${str}'`)
+      devWarn(`Leftover placeholders found in '${str}'`)
     }
     return shouldWarn
   }

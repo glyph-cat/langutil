@@ -1,6 +1,6 @@
 import { IS_DIST_ENV } from '../../constants'
 import { LangutilKeyword, LangutilLanguage } from '../../schema'
-import { devPrint } from '../dev'
+import { devWarn } from '../dev'
 
 export type WarningDebouncer = (
   language: LangutilLanguage,
@@ -30,8 +30,14 @@ export function createWarningDebouncer(
       ? formatOneLineMissingLoc(missingLocalizations)
       : formatMultiLineMissingLoc(missingLocalizations)
     missingLocalizations = {}
-    devPrint('warn', message)
-    if (!IS_DIST_ENV && spy) { spy(message) }
+    devWarn(message)
+    if (!IS_DIST_ENV) {
+      // NOTE: Must be nested otherwise terser will not be able to completely
+      // remove it.
+      if (typeof spy === 'function') {
+        spy(message)
+      }
+    }
   })
 
   const pushWarning = (

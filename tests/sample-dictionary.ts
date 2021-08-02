@@ -7,7 +7,7 @@ export const SAMPLE_DICTIONARY = {
     GOOD_MORNING_NAME1_AND_NAME2: 'Good morning, {:name1} and {:name2}.',
     SOMETIMES_IM_A_BEAR: 'Sometimes, I\'m a bear, and at other times I am a be-ar.',
   },
-  in: {
+  id: {
     GOOD_MORNING: 'Selamat pagi.',
     GOOD_MORNING_NAME: 'Selamat pagi, {:name}.',
     GOOD_MORNING_PNAME: 'Selamat pagi, %p.',
@@ -32,7 +32,7 @@ export const SAMPLE_DICTIONARY_ALT = {
   ja: {
     GOOD_NIGHT: 'おやすみなさい。',
   },
-  in: {
+  id: {
     GOOD_NIGHT: 'Selamat malam.',
   },
 }

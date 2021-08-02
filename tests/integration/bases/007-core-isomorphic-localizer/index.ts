@@ -7,7 +7,7 @@ export default function (testProps: IntegrationTestProps): void {
   const { createLangutilCore } = Langutil
 
   test('Header language matches', () => {
-    const mockHeaderLanguage = 'in'
+    const mockHeaderLanguage = 'id'
     const core = createLangutilCore(SAMPLE_DICTIONARY, 'en')
     const isomorphicLocalize = core.createIsomorphicLocalizer(mockHeaderLanguage)
     const output = isomorphicLocalize('GOOD_MORNING')
