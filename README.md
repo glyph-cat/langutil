@@ -32,6 +32,8 @@ A localization utility for JavaScript that comes with support for React and Reac
     - [With Dynamic Values](#with-dynamic-values)
     - [Alternative Syntax](#alternative-syntax)
 - [Advanced Usage](#advanced-usage)
+  - [Advanced Localization](#advanced-localization)
+  - [Hydration & Persistence](#hydration--persistence)
 - [Using with React](#using-with-react)
   - [Function Components](#function-components)
   - [Higher Order Component (For Classes)](#higher-order-component-for-classes)
@@ -150,6 +152,8 @@ const localizedValue = core.localize({
 
 # Advanced Usage
 
+## Advanced Localization
+
 In rare cases, you might need to get values that are localized into a different language from the one currently set, this is when `.localizeExplicitly` and `localizeFromScratch` become useful.
 
 ```js
@@ -182,16 +186,67 @@ const dictionaryAlt = {
   en: {
     GOOD_NIGHT: 'Good night.',
   },
-  ja: {
-    GOOD_NIGHT: 'おやすみなさい。',
-  },
   id: {
     GOOD_NIGHT: 'Selamat malam.',
+  },
+  ja: {
+    GOOD_NIGHT: 'おやすみなさい。',
   },
 }
 
 localizeFromScratch(dictionaryAlt, 'ja', 'GOOD_NIGHT')
 // おやすみなさい。
+
+```
+
+<br/>
+
+## Hydration & Persistence
+
+```js
+
+import { createLangutilCore, LangutilEvents } from 'langutil'
+
+const DEFAULT_LANGUAGE = 'en'
+const DEFAULT_AUTO = true
+
+const core = createLangutilCore(dictionary, DEFAULT_LANGUAGE, {
+  auto: DEFAULT_AUTO,
+})
+
+const rawData = localStorage.getItem('language-pref')
+if (rawData) {
+  try {
+    // NOTE: Data structure of `parsedData` depends on how you persist it
+    // (Refer to `core.watch(...)` section below)
+    const parsedData = JSON.parse(rawData)
+    parsedData.language
+    core.hydrate(null, parsedData.language, { auto: parsedData.isAuto })
+    // Pass `null` to to use dictionary passed into `createLangutilCore`,
+    // or pass in another dictionary to completely override it. The former
+    // method is usually prefered.
+  } catch (e) {
+    // Remove from storage if the JSON string is malformed
+    localStorage.removeItem('language-pref')
+    // App will continue to run with the configuration as specified
+    // when calling `createLangutilCore` in the first place.
+  }
+}
+
+core.watch((event) => {
+  if (event.type === LangutilEvents.language) {
+    const { current } = event.data.state
+    const isDefaultLanguage = current.language === DEFAULT_LANGUAGE
+    const isDefaultAuto = current.isAuto === DEFAULT_AUTO
+    if (isDefaultLanguage && isDefaultAuto) {
+      // If preferences are same as default, remove from storage.
+      localStorage.removeItem('language-pref')
+    } else {
+      // If preferences are different from default, save into storage.
+      localStorage.setItem('language-pref', JSON.stringify(current))
+    }
+  }
+})
 
 ```
 
@@ -222,6 +277,8 @@ function MyComponent() {
 }
 
 ```
+
+<br/>
 
 ## Higher Order Component (For Classes)
 
@@ -258,7 +315,7 @@ export default withLang(MyComponent)
 You can check if your dictionary contains missing localizations with the code snippet below. The code below uses [Jest](https://jestjs.io).
 
 ```js
-import dictionary from './path-to-your-dictionary'
+import dictionary from './path/to/dictionary'
 
 describe('Localizations are tally', () => {
   const languageStack = Object.keys(dictionary)
