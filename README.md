@@ -3,7 +3,7 @@
 [![Langutil](https://raw.githubusercontent.com/chin98edwin/langutil/main/assets/langutil-wording.svg)](https://github.com/chin98edwin/langutil)
 
 [![Version](https://img.shields.io/npm/v/langutil.svg)](https://github.com/chin98edwin/langutil/releases)
-![Build Status](https://img.shields.io/github/workflow/status/chin98edwin/langutil/CI%20Test/main)
+![Build Status](https://img.shields.io/github/workflow/status/chin98edwin/langutil/Test/main)
 ![Bundle size](https://img.shields.io/bundlephobia/min/langutil)
 ![Downloads](https://img.shields.io/npm/dt/langutil)
 [![License](https://img.shields.io/npm/l/langutil)](https://github.com/chin98edwin/langutil/blob/main/LICENSE)
