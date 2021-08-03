@@ -289,7 +289,7 @@ export function createLangutilCore<D extends LangutilDictionaryIsolated>(
 
   // === Initialization ===
 
-  if (initArgs) { hydrate(...initArgs) }
+  hydrate(...initArgs)
 
   // === Core Instance ===
 
