@@ -1,7 +1,7 @@
 import { componentShouldUpdateFrom } from '.'
 import { LangutilEvents } from '../../constants'
 
-describe('componentShouldUpdateFrom', () => {
+describe(componentShouldUpdateFrom.name, () => {
 
   test('Same language, same auto', () => {
     const output = componentShouldUpdateFrom({

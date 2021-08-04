@@ -4,7 +4,7 @@ import {
   getResolvedLanguageOneToMany,
 } from '.'
 
-describe('getResolvedLanguageAnyToMany', () => {
+describe(getResolvedLanguageAnyToMany.name, () => {
 
   test('String', () => {
     const output = getResolvedLanguageAnyToMany('en', ['en', 'id', 'zh'])
@@ -18,7 +18,7 @@ describe('getResolvedLanguageAnyToMany', () => {
 
 })
 
-describe('getResolvedLanguageManyToMany', () => {
+describe(getResolvedLanguageManyToMany.name, () => {
 
   test('Exact language found', () => {
     const output1 = getResolvedLanguageManyToMany(['en', 'id'], ['en', 'id', 'zh'])
@@ -41,7 +41,7 @@ describe('getResolvedLanguageManyToMany', () => {
 
 })
 
-describe('getResolvedLanguageOneToMany', () => {
+describe(getResolvedLanguageOneToMany.name, () => {
 
   test('Exact language found', () => {
     const output = getResolvedLanguageOneToMany('en', ['en', 'id', 'zh'])

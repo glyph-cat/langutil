@@ -1,6 +1,6 @@
 import parseAppleKeyboards from '.'
 
-describe('parseAppleKeyboards', () => {
+describe(parseAppleKeyboards.name, () => {
 
   test('Set 1', () => {
     const output = parseAppleKeyboards([
