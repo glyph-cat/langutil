@@ -29,6 +29,8 @@ export function substituteWithUniqueSwapper(
   return [str, swapper]
 }
 
+export const NO_VALUE = {}
+
 /**
  * Allows you to access object properties by dot notation.
  * @param data The data that you wish to access it's value by dot notation.
@@ -45,10 +47,10 @@ export function getItemByPath(
   const keyStack = path.split('.')
   for (let i = 0, n = keyStack.length; i < n; ++i) {
     const key = keyStack[i]
-    if (key in data) {
+    if (Object.prototype.hasOwnProperty.call(data, key)) {
       data = data[key] as Record<string, unknown>
     } else {
-      return
+      return NO_VALUE
     }
   }
   return data
@@ -113,7 +115,7 @@ export function stringmapObject(
     // Data is accessed based on dot notation only when needed instead of
     // accessing it by flattening out the children
     const valueToSwap = getItemByPath(obj, _p)
-    if (valueToSwap) {
+    if (!Object.is(valueToSwap, NO_VALUE)) {
       newString = newString.replace(rgx, `${valueToSwap}`)
     }
   }
