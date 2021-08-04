@@ -4,7 +4,8 @@ import { baseLocalizer } from './'
 // eslint-disable-next-line
 const mockDebouncedWarning = () => { }
 
-describe('baseLocalizer', () => {
+describe(baseLocalizer.name, () => {
+
   test('Basic localization', () => {
     const output = baseLocalizer(
       SAMPLE_DICTIONARY,
@@ -30,7 +31,9 @@ describe('baseLocalizer', () => {
   })
 
   describe('With parameters', () => {
+
     describe('With array as param', () => {
+
       test('1 item', () => {
         const output = baseLocalizer(
           SAMPLE_DICTIONARY,
@@ -66,6 +69,7 @@ describe('baseLocalizer', () => {
     })
 
     describe('With object as param', () => {
+
       test('1 item', () => {
         const output = baseLocalizer(
           SAMPLE_DICTIONARY,
@@ -117,5 +121,7 @@ describe('baseLocalizer', () => {
       }
       expect(callback).toThrowError(TypeError)
     })
+
   })
+
 })

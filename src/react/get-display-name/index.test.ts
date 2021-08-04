@@ -1,6 +1,6 @@
 import getDisplayName from '.'
 
-describe('getDisplayName', () => {
+describe(getDisplayName.name, () => {
 
   test('Provided: (none)', () => {
     const MyComponent = (): JSX.Element => null

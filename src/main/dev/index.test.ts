@@ -1,6 +1,7 @@
 import { displayStringArray } from '.'
 
-describe('displayStringArray', () => {
+describe(displayStringArray.name, () => {
+
   test('Empty array', () => {
     const output = displayStringArray([])
     expect(output).toBe('[]')
@@ -10,4 +11,5 @@ describe('displayStringArray', () => {
     const output = displayStringArray(['foo', 'bar'])
     expect(output).toBe('[\'foo\', \'bar\']')
   })
+
 })

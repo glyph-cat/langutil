@@ -4,7 +4,7 @@ import {
   formatMultiLineMissingLoc,
 } from '.'
 
-test('createDebouncedWarning - Warnings are batched', () => {
+test(`${createWarningDebouncer.name} - Warnings are batched`, () => {
   jest.useFakeTimers()
 
   let warningMessage = ''
@@ -23,20 +23,23 @@ test('createDebouncedWarning - Warnings are batched', () => {
   expect(warningMessage).toMatch(/BAR, BAZ, FOO, HELLO/)
 })
 
-describe('formatOneLineMissingLoc', () => {
+describe(formatOneLineMissingLoc.name, () => {
+
   test('1 item', () => {
     const missingLocalizations = { en: ['HELLO'] }
     const output = formatOneLineMissingLoc(missingLocalizations)
     expect(output).toBe('Missing localizations (en): HELLO')
   })
+
   test('Multiple items', () => {
     const missingLocalizations = { en: ['HELLO', 'FOO', 'BAR'] }
     const output = formatOneLineMissingLoc(missingLocalizations)
     expect(output).toBe('Missing localizations (en): BAR, FOO, HELLO')
   })
+
 })
 
-test('formatMultiLineMissingLoc', () => {
+test(formatMultiLineMissingLoc.name, () => {
   const missingLocalizations = {
     ms: ['HELLO', 'FOO', 'BAR'],
     zh: ['FOO'],
