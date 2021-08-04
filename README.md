@@ -16,6 +16,10 @@
 
 <br/>
 
+![Langutil Demo](https://raw.githubusercontent.com/chin98edwin/langutil/main/assets/langutil-demo.gif)
+
+<br/>
+
 A localization utility for JavaScript that comes with support for React and React Native.
 
 <br/>
