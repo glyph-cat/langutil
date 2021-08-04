@@ -8,7 +8,7 @@ import {
 
 // NOTE: `stringmap` is an exposed API so it is tested under integration
 
-test('substituteWithUniqueSwapper', () => {
+test(substituteWithUniqueSwapper.name, () => {
   const str = 'lorem-ipsum-dolor-sit-amet'
   const [newStr, swapper] = substituteWithUniqueSwapper(str, /-/g)
   const swapperExistsInOriginalString = !!str.match(swapper)
@@ -18,7 +18,7 @@ test('substituteWithUniqueSwapper', () => {
   )
 })
 
-describe('getItemByPath', () => {
+describe(getItemByPath.name, () => {
 
   test('Dot notation', () => {
     const data = { a: { b: { c: 1 } } }
@@ -36,7 +36,7 @@ describe('getItemByPath', () => {
 
 })
 
-describe('stringmapArray', () => {
+describe(stringmapArray.name, () => {
 
   describe('Valid placeholders only', () => {
 
@@ -84,7 +84,7 @@ describe('stringmapArray', () => {
 
 })
 
-describe('stringmapObject', () => {
+describe(stringmapObject.name, () => {
 
   test('Valid placeholders only', () => {
     const str = 'Hello {:name1} and {:name2}'
@@ -114,9 +114,22 @@ describe('stringmapObject', () => {
     expect(output).toBe('Hello foo')
   })
 
+  test('Values are falsey', () => {
+    const str = '{:item.count}-{:item.hasError}-{:item.status}-{:item.unicorn}'
+    const param = {
+      item: {
+        count: 0,
+        hasError: false,
+        status: undefined,
+      }
+    }
+    const output = stringmapObject(str, param)
+    expect(output).toBe('0-false-undefined-{:item.unicorn}')
+  })
+
 })
 
-describe('warnIfPlaceholdersArePresent', () => {
+describe(warnIfPlaceholdersArePresent.name, () => {
 
   test('Leftover placeholders are present', () => {
     const str = 'Hello %p and {:name}'
