@@ -16,11 +16,11 @@
 
 <br/>
 
-![Langutil Demo](https://raw.githubusercontent.com/chin98edwin/langutil/main/assets/langutil-demo.gif)
+A localization utility for JavaScript that comes with support for React and React Native.
 
 <br/>
 
-A localization utility for JavaScript that comes with support for React and React Native.
+![Langutil Demo](https://raw.githubusercontent.com/chin98edwin/langutil/main/assets/langutil-demo.gif)
 
 <br/>
 
@@ -36,17 +36,7 @@ A localization utility for JavaScript that comes with support for React and Reac
     - [Basic](#basic)
     - [With Dynamic Values](#with-dynamic-values)
     - [Alternative Syntax](#alternative-syntax)
-- [Advanced Usage](#advanced-usage)
-  - [Advanced Localization](#advanced-localization)
-  - [Hydration & Persistence](#hydration--persistence)
-- [Using with React](#using-with-react)
-  - [Function Components](#function-components)
-  - [Higher Order Component (For Classes)](#higher-order-component-for-classes)
-  - [UNPKG Script tag](#unpkg-script-tag)
-- [Testing Recipes](#testing-recipes)
-- [Error Codes](#error-codes)
-- [Migrating from v3 and below](#migrating-from-v3-and-below)
-- [Miscellaneous](#miscellaneous)
+- [Further Reading](#further-reading)
 
 <br/>
 
@@ -155,223 +145,12 @@ const localizedValue = core.localize({
 // Good morning, John and Jane.
 ```
 
-# Advanced Usage
-
-## Advanced Localization
-
-In rare cases, you might need to get values that are localized into a different language from the one currently set, this is when `.localizeExplicitly` and `localizeFromScratch` become useful.
-
-```js
-import { createLangutilCore, localizeFromScratch } from 'langutil'
-
-const dictionary = {
-  en: {
-    SOMETIMES_IM_A_BEAR: 'Sometimes, I\'m a bear, and at other times I am a be-ar.',
-  },
-  id: {
-    SOMETIMES_IM_A_BEAR: 'Kadang-kadang aku beruang, dan kadang-kadang aku ber-uang.',
-  },
-  ja: {
-    SOMETIMES_IM_A_BEAR: 'ある時はクマ、そしてまたある時は…ク-マ。'
-  },
-}
-
-const core = createLangutilCore(dictionary, 'en')
-
-core.localizeExplicitly('ja', 'SOMETIMES_IM_A_BEAR')
-// ある時はクマ、そしてまたある時は…ク-マ。
-
-core.localizeExplicitly('id', 'SOMETIMES_IM_A_BEAR')
-// Kadang-kadang aku beruang, dan kadang-kadang aku ber-uang.
-
-core.localize('SOMETIMES_IM_A_BEAR')
-// Sometimes, I'm a bear, and at other times I am a be-ar.
-
-const dictionaryAlt = {
-  en: {
-    GOOD_NIGHT: 'Good night.',
-  },
-  id: {
-    GOOD_NIGHT: 'Selamat malam.',
-  },
-  ja: {
-    GOOD_NIGHT: 'おやすみなさい。',
-  },
-}
-
-localizeFromScratch(dictionaryAlt, 'ja', 'GOOD_NIGHT')
-// おやすみなさい。
-
-```
-
 <br/>
 
-## Hydration & Persistence
+# Further Reading
 
-```js
-
-import { createLangutilCore, LangutilEvents } from 'langutil'
-
-const DEFAULT_LANGUAGE = 'en'
-const DEFAULT_AUTO = true
-
-const STORAGE_KEY = 'language-pref'
-
-const core = createLangutilCore(dictionary, DEFAULT_LANGUAGE, {
-  auto: DEFAULT_AUTO,
-})
-
-const rawData = localStorage.getItem(STORAGE_KEY)
-if (rawData) {
-  try {
-    // NOTE: Data structure of `parsedData` depends on how you persist it
-    // (Refer to `core.watch(...)` section below)
-    const parsedData = JSON.parse(rawData)
-    core.hydrate(null, parsedData.language, { auto: parsedData.isAuto })
-    // Pass `null` to to use dictionary passed into `createLangutilCore`,
-    // or pass in another dictionary to completely override it. The former
-    // method is usually prefered.
-  } catch (e) {
-    // Remove from storage if the JSON string is malformed.
-    // App will continue to run with the configuration as specified when
-    // calling `createLangutilCore` in the first place.
-    localStorage.removeItem(STORAGE_KEY)
-  }
-}
-
-core.watch((event) => {
-  if (event.type === LangutilEvents.language) {
-    const { current } = event.data.state
-    const isDefaultLanguage = current.language === DEFAULT_LANGUAGE
-    const isDefaultAuto = current.isAuto === DEFAULT_AUTO
-    if (isDefaultLanguage && isDefaultAuto) {
-      // If preferences are same as default, remove from storage.
-      localStorage.removeItem(STORAGE_KEY)
-    } else {
-      // If preferences are different from default, save into storage.
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(current))
-    }
-  }
-})
-
-```
+* [Documentations](https://github.com/chin98edwin/langutil/tree/main/docs)
+* [Migrating from v3 and below](https://github.com/chin98edwin/langutil/tree/main/docs/v3-migration.md)
+* Miscellaneous: Looking for a general-purpose state manager for React? Then you might be interested in [React Relink](https://github.com/chin98edwin/react-relink).
 
 <br/>
-
-# Using with React
-
-To use Langutil with React, you will first need to install the `hoist-non-react-statics` package. 
-
-See [React Docs: Higher-Order Components](https://reactjs.org/docs/higher-order-components.html#static-methods-must-be-copied-over) (Head over to the section **Static Methods Must Be Copied Over** if the site doesn't automatically scroll to it).
-
-<br/>
-
-## Function Components
-
-```js
-import { useLangutil } from 'langutil/react'
-
-// It is recommended to create a custom hook instead of
-// directly consuming it in components.
-export function useLang() {
-  return useLangutil(core)
-}
-
-function MyComponent() {
-  const langutilState = useLang()
-  return <h1>{langutilState.localize('HELLO')}</h1>
-}
-
-```
-
-<br/>
-
-## Higher Order Component (For Classes)
-
-```js
-import React from 'react'
-import { createLangutilHOC } from 'langutil/react'
-
-export const withLang = createLangutilHOC(core)
-
-class MyComponent extends React.Component {
-  render() {
-    const { langutilState } = this.props
-    return <h1>{langutilState.localize('HELLO')}</h1>
-  }
-}
-
-export default withLang(MyComponent)
-
-```
-
-## UNPKG Script tag
-
-* The react additions can be imported with a script tag as shown below.
-* Remember to replace `index.js` with `index.min.js` when deploying.
-
-```html
-<script src="https://unpkg.com/langutil@<VERSION>/react/dist/umd/index.js" crossorigin></script>
-```
-
-<br/>
-
-# Testing Recipes
-
-You can check if your dictionary contains missing localizations with the code snippet below. The code below uses [Jest](https://jestjs.io).
-
-```js
-import dictionary from './path/to/dictionary'
-
-describe('Localizations are tally', () => {
-  const languageStack = Object.keys(dictionary)
-  const firstLanguage = languageStack[0]
-  const firstKeywordStack = Object.keys(dictionary[firstLanguage]).sort()
-  for (let i = 1; i < languageStack.length; i++) {
-    const language = languageStack[i]
-    test(`Comparing ${firstLanguage} - ${language}`, () => {
-      const keywordStack = Object.keys(dictionary[language]).sort()
-      expect(firstKeywordStack).toStrictEqual(keywordStack)
-    })
-  }
-})
-```
-
-<br/>
-
-# Error Codes
-In production builds, these error codes are thrown instead of the usual messages.
-
-* **`LangutilE1,x`**<br/>
-Expected `param` to be an array or object but got `x`
-
-* **`LangutilE2,x`**<br/>
-Expected `dictionary` to be an object but got `x`
-
-* **`LangutilE3,x`**<br/>
-Prop conflict for `langutilState` in <`x`/>
-
-<br/>
-
-# Migrating from v3 and below
-
-Sad enough to say, I am no longer able to maintain this library with a pretty docs site. This includes a proper migration guide as well.
-
-But this README file should be more than enough to grasp the concept of the new version. It still has familiar method names such as `localize`, `setLanguage` and `setDictionary`, except for a few key changes highlighted below:
-
-Here are some of the key changes summarized:
-* You need to create a `LangutilCore` before you can start localizing content;
-* Dictionaries must now be structured by language first; 
-* Case formatting features have been removed, there are other libraries out there that handles casings waaay better than Langutil.
-
-Although this is one step extra, it actually brings a few benefits. There may be cases where your website needs to display different languages in different containers or canvases and this can be useful. For example, a novel reading website, where novels might only be written in limited languages but the website itself supports 20+ languages.
-
-Of course, that is quite a crazy example, but even if your app is going to need just one `LangutilCore`, you can still benefit from TypeScript autocomplete thanks to the factory pattern in v4. Cheers 🍻
-
-![TypeScript autocomplete - keywords](https://raw.githubusercontent.com/chin98edwin/langutil/main/assets/ts-autocomplete-keywords.png)
-
-<br/>
-
-# Miscellaneous
-
-Looking for a general-purpose state manager for React? Then you might be interested in [React Relink](https://github.com/chin98edwin/react-relink).

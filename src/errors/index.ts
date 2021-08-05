@@ -7,7 +7,7 @@ export function __formatErrorCode(
   code: number,
   ...args: Array<unknown>
 ): string {
-  const PREFIX = 'LangutilE'
+  const PREFIX = 'e'
   if (args.length > 0) {
     return `${PREFIX}${code}-${args.join(',')}`
   } else {

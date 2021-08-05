@@ -8,7 +8,7 @@ import {
 test('__formatErrorCode', () => {
   const args = ['foo', 'bar', 'baz']
   const output = __formatErrorCode(1, ...args)
-  expect(output).toBe('LangutilE1-foo,bar,baz')
+  expect(output).toBe('e1-foo,bar,baz')
 })
 
 test('TYPE_ERROR_DICTIONARY_INVALID_TYPE', () => {
