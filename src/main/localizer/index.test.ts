@@ -1,7 +1,7 @@
 import { SAMPLE_DICTIONARY } from '../../../tests/sample-dictionary'
 import { baseLocalizer } from './'
 
-// eslint-disable-next-line
+// eslint-disable-next-line @typescript-eslint/no-empty-function
 const mockDebouncedWarning = () => { }
 
 describe(baseLocalizer.name, () => {
@@ -17,17 +17,55 @@ describe(baseLocalizer.name, () => {
     expect(output).toBe('Good morning.')
   })
 
+  test('Non-existent language', () => {
+    const output = baseLocalizer(
+      SAMPLE_DICTIONARY,
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore Ignored on purpose to test incorrect types
+      'ab',
+      'GOOD_MORNING',
+      undefined,
+      mockDebouncedWarning
+    )
+    expect(output).toBe('GOOD_MORNING')
+  })
+
   test('Non-existent key', () => {
     const output = baseLocalizer(
       SAMPLE_DICTIONARY,
       'en',
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore Ignored on purpose to test incorrect types
       'ABC',
       undefined,
       mockDebouncedWarning
     )
     expect(output).toBe('ABC')
+  })
+
+  test('Falsy values', () => {
+    const specialDictionary = {
+      en: {
+        A: 0,
+        B: '',
+        C: false,
+        D: null,
+        E: undefined,
+      }
+    }
+    const wrappedLocalizer = (keyword: string) => {
+      return baseLocalizer(
+        specialDictionary,
+        'en',
+        keyword,
+        undefined,
+        mockDebouncedWarning
+      )
+    }
+    expect(wrappedLocalizer('A')).toBe(0)
+    expect(wrappedLocalizer('B')).toBe('')
+    expect(wrappedLocalizer('C')).toBe(false)
+    expect(wrappedLocalizer('D')).toBe(null)
+    expect(wrappedLocalizer('E')).toBe(undefined)
+    expect(wrappedLocalizer('X')).toBe('X')
   })
 
   describe('With parameters', () => {

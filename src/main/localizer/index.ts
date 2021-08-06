@@ -5,6 +5,7 @@ import {
   LangutilLocalizedValue,
   LangutilStringmapParam,
 } from '../../schema'
+import { propertyExists } from '../object-utils'
 import stringmap, { warnIfPlaceholdersArePresent } from '../stringmap'
 import { WarningDebouncer } from '../warning-debouncer'
 
@@ -22,7 +23,7 @@ export function baseLocalizer<D>(
   if (dictionary[language]) {
     const dL = dictionary[language]
     const kw = keyword as keyof D[keyof D]
-    if (dL[kw]) {
+    if (propertyExists(dL as unknown as Record<string, unknown>, kw as string)) {
       localizedValue = dL[kw]
       isLocalizationSuccessful = true
     }

@@ -2,6 +2,7 @@ import { IS_DEBUG_ENV, TYPE_OBJECT } from '../../constants'
 import { TYPE_ERROR_STRINGMAP_INVALID_PARAM_TYPE } from '../../errors'
 import { devWarn } from '../dev'
 import getRandomHash from '../get-random-hash'
+import { propertyExists } from '../object-utils'
 
 const globalArrayPlaceholderPattern = /(%p)/g
 const globalObjectPlaceholderPattern = /{:[a-z][a-z0-9.]*}/gi
@@ -47,7 +48,7 @@ export function getItemByPath(
   const keyStack = path.split('.')
   for (let i = 0, n = keyStack.length; i < n; ++i) {
     const key = keyStack[i]
-    if (Object.prototype.hasOwnProperty.call(data, key)) {
+    if (propertyExists(data, key)) {
       data = data[key] as Record<string, unknown>
     } else {
       return NO_VALUE
