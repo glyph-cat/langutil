@@ -1,4 +1,4 @@
-import { IS_DEBUG_ENV } from '../../constants'
+import { IS_DEBUG_ENV, TYPE_OBJECT } from '../../constants'
 import { TYPE_ERROR_STRINGMAP_INVALID_PARAM_TYPE } from '../../errors'
 import { devWarn } from '../dev'
 import getRandomHash from '../get-random-hash'
@@ -140,7 +140,7 @@ export default function stringmap(
     const mappedString = stringmapArray(str, param)
     warnIfPlaceholdersArePresent(mappedString)
     return mappedString
-  } else if (typeof param === 'object') {
+  } else if (typeof param === TYPE_OBJECT) {
     const mappedString = stringmapObject(str, param)
     warnIfPlaceholdersArePresent(mappedString)
     return mappedString

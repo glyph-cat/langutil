@@ -6,6 +6,13 @@ export const INTERNALS_SYMBOL = Symbol()
 export const IS_BROWSER_ENV = typeof window !== 'undefined'
 export const IS_SERVER_ENV = !IS_BROWSER_ENV
 
+const _o = 'object'
+/**
+ * Throughout the entire project, there are many `typeof variable === 'object'`
+ * comparisons. By refactoring this `'object'` string, we can save a few bytes.
+ */
+export const TYPE_OBJECT: (typeof _o) = 'object'
+
 /**
  * @public
  */

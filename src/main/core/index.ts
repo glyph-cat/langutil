@@ -4,6 +4,7 @@ import {
   IS_DEBUG_ENV,
   IS_DIST_ENV,
   LangutilEvents,
+  TYPE_OBJECT,
 } from '../../constants'
 import { TYPE_ERROR_DICTIONARY_INVALID_TYPE } from '../../errors'
 import {
@@ -131,7 +132,7 @@ export function createLangutilCore<D extends LangutilDictionaryIsolated>(
   const __setDictionaryBase = (
     dictionary: LangutilDictionaryIsolated
   ): LangutilEventData<D> => {
-    if (typeof dictionary !== 'object') {
+    if (typeof dictionary !== TYPE_OBJECT) {
       throw TYPE_ERROR_DICTIONARY_INVALID_TYPE(dictionary)
     }
     // Note: Type of dictionary that is set or appended at runtime is unavailable
@@ -180,7 +181,7 @@ export function createLangutilCore<D extends LangutilDictionaryIsolated>(
   }
 
   const appendDictionary = (dictionary: LangutilDictionaryIsolated) => {
-    if (typeof dictionary !== 'object') {
+    if (typeof dictionary !== TYPE_OBJECT) {
       throw TYPE_ERROR_DICTIONARY_INVALID_TYPE(dictionary)
     }
     // Note: Type of dictionary that is set or appended at runtime is unavailable
@@ -203,14 +204,20 @@ export function createLangutilCore<D extends LangutilDictionaryIsolated>(
     a: LangutilKeyword<D> | LangutilMethodObjArgsLocalize<D>,
     b?: LangutilStringmapParam
   ): LangutilLocalizedValue<D> => {
-    if (typeof a !== 'object') {
-      return baseLocalizer(self.M$dictionary, self.M$language, a, b, pushWarning)
+    if (typeof a !== TYPE_OBJECT) {
+      return baseLocalizer(
+        self.M$dictionary,
+        self.M$language,
+        a as LangutilKeyword<D>,
+        b,
+        pushWarning
+      )
     } else {
       return baseLocalizer(
         self.M$dictionary,
         self.M$language,
-        a.keyword,
-        a.param,
+        (a as LangutilMethodObjArgsLocalize<D>).keyword,
+        (a as LangutilMethodObjArgsLocalize<D>).param,
         pushWarning
       )
     }
@@ -221,14 +228,20 @@ export function createLangutilCore<D extends LangutilDictionaryIsolated>(
     b: LangutilKeyword<D>,
     c?: LangutilStringmapParam
   ): LangutilLocalizedValue<D> => {
-    if (typeof a !== 'object') {
-      return baseLocalizer(self.M$dictionary, a, b, c, pushWarning)
+    if (typeof a !== TYPE_OBJECT) {
+      return baseLocalizer(
+        self.M$dictionary,
+        a as LangutilLanguage<D>,
+        b,
+        c,
+        pushWarning
+      )
     } else {
       return baseLocalizer(
         self.M$dictionary,
-        a.language,
-        a.keyword,
-        a.param,
+        (a as LangutilMethodObjArgsLocalizeExplicitly<D>).language,
+        (a as LangutilMethodObjArgsLocalizeExplicitly<D>).keyword,
+        (a as LangutilMethodObjArgsLocalizeExplicitly<D>).param,
         pushWarning
       )
     }
@@ -251,10 +264,18 @@ export function createLangutilCore<D extends LangutilDictionaryIsolated>(
         b: LangutilStringmapParam
       ) => {
         const safeBaseLanguage = safelyResolveLanguage(baseLanguage)
-        if (typeof a !== 'object') {
-          return localizeExplicitly(safeBaseLanguage, a, b)
+        if (typeof a !== TYPE_OBJECT) {
+          return localizeExplicitly(
+            safeBaseLanguage,
+            a as LangutilKeyword<D>,
+            b
+          )
         } else {
-          return localizeExplicitly(safeBaseLanguage, a.keyword, a.param)
+          return localizeExplicitly(
+            safeBaseLanguage,
+            (a as LangutilMethodObjArgsLocalize<D>).keyword,
+            (a as LangutilMethodObjArgsLocalize<D>).param
+          )
         }
       }
     }
@@ -363,8 +384,14 @@ export function localizeFromScratch<Dn>(
 ): LangutilLocalizedValue<Dn> {
   // NOTE: `dictionary` cannot be part of the a,b,c because the dictionary
   // itself is an object, which means `isByObj` will always evaluate to true
-  if (typeof a !== 'object') {
-    return baseLocalizer(dictionary, a, b, c, pushWarning)
+  if (typeof a !== TYPE_OBJECT) {
+    return baseLocalizer(
+      dictionary,
+      a as LangutilLanguage<Dn>,
+      b,
+      c,
+      pushWarning
+    )
   } else {
     return baseLocalizer(
       dictionary,
