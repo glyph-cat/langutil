@@ -114,17 +114,19 @@ describe(stringmapObject.name, () => {
     expect(output).toBe('Hello foo')
   })
 
-  test('Values are falsey', () => {
-    const str = '{:item.count}-{:item.hasError}-{:item.status}-{:item.unicorn}'
+  test('Falsy values VS non-existent values', () => {
+    const str = '{:item.a}-{:item.b}-{:item.c}-{:item.d}-{:item.e}-{:item.x}-{:x}'
     const param = {
       item: {
-        count: 0,
-        hasError: false,
-        status: undefined,
+        a: 0,
+        b: '',
+        c: false,
+        d: null,
+        e: undefined,
       }
     }
     const output = stringmapObject(str, param)
-    expect(output).toBe('0-false-undefined-{:item.unicorn}')
+    expect(output).toBe('0--false-null-undefined-{:item.x}-{:x}')
   })
 
 })
