@@ -1,4 +1,4 @@
-export { LangutilEvents, VERSION, INTERNALS_SYMBOL } from '../constants'
+export { LangutilEvents, VERSION, I } from '../constants'
 export * from './core'
 export { default as getClientLanguages } from './get-client-languages'
 export * from '../schema'

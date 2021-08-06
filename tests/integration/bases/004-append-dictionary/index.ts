@@ -7,7 +7,7 @@ import { IntegrationTestProps } from '../../constants'
 export default function (testProps: IntegrationTestProps): void {
 
   const { Langutil } = testProps
-  const { createLangutilCore, INTERNALS_SYMBOL } = Langutil
+  const { createLangutilCore, I } = Langutil
 
   test('.appendDictionary', () => {
 
@@ -21,7 +21,7 @@ export default function (testProps: IntegrationTestProps): void {
     expect(core.localize('GOOD_NIGHT')).toBe('Good night.')
 
     // Expect both dictionaries to be merged
-    const output = core[INTERNALS_SYMBOL].getDictionary()
+    const output = core[I].getDictionary()
     expect(output).toStrictEqual({
       en: {
         ...SAMPLE_DICTIONARY.en,
