@@ -1,4 +1,4 @@
-export { LangutilEvents, VERSION, I } from '../constants'
+export { LangutilEvents, VERSION } from '../constants'
 export * from './core'
 export { default as getClientLanguages } from './get-client-languages'
 export * from '../schema'
