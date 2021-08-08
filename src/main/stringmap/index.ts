@@ -2,7 +2,7 @@ import { IS_DEBUG_ENV, TYPE_OBJECT } from '../../constants'
 import { TYPE_ERROR_STRINGMAP_INVALID_PARAM_TYPE } from '../../errors'
 import { devWarn } from '../dev'
 import getRandomHash from '../get-random-hash'
-import { propertyExists } from '../object-utils'
+import { getItemByPath, NO_VALUE } from '../object-utils'
 
 const globalArrayPlaceholderPattern = /(%p)/g
 const globalObjectPlaceholderPattern = /{:[a-z][a-z0-9.]*}/gi
@@ -12,7 +12,7 @@ const globalObjectPlaceholderPattern = /{:[a-z][a-z0-9.]*}/gi
  * the hash can be later be swapped into another value.
  * @param str The original string to perform substitution on.
  * @param rgx The regular expression of string to swap.
- * @returns The substituted string and the swapper used.
+ * @returns A tuple containing the substituted string and the swapper used.
  */
 export function substituteWithUniqueSwapper(
   str: string,
@@ -28,33 +28,6 @@ export function substituteWithUniqueSwapper(
   }
   str = str.replace(rgx, swapper)
   return [str, swapper]
-}
-
-export const NO_VALUE = {}
-
-/**
- * Allows you to access object properties by dot notation.
- * @param data The data that you wish to access it's value by dot notation.
- * @param path The key of the item in dot notation.
- * @see https://stackoverflow.com/a/6491621
- * @returns The value of item at the specified path.
- */
-export function getItemByPath(
-  data: Record<string, unknown>,
-  path: string
-): unknown {
-  path = path.replace(/\[(\w+)\]/g, '.$1') // convert indexes to properties
-  path = path.replace(/^\./, '') // strip a leading dot
-  const keyStack = path.split('.')
-  for (let i = 0, n = keyStack.length; i < n; ++i) {
-    const key = keyStack[i]
-    if (propertyExists(data, key)) {
-      data = data[key] as Record<string, unknown>
-    } else {
-      return NO_VALUE
-    }
-  }
-  return data
 }
 
 /**
