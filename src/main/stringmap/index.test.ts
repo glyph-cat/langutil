@@ -1,5 +1,4 @@
 import {
-  getItemByPath,
   stringmapArray,
   stringmapObject,
   substituteWithUniqueSwapper,
@@ -16,24 +15,6 @@ test(substituteWithUniqueSwapper.name, () => {
   expect(newStr).toBe(
     `lorem${swapper}ipsum${swapper}dolor${swapper}sit${swapper}amet`
   )
-})
-
-describe(getItemByPath.name, () => {
-
-  test('Dot notation', () => {
-    const data = { a: { b: { c: 1 } } }
-    const path = 'a.b.c'
-    const output = getItemByPath(data, path)
-    expect(output).toBe(1)
-  })
-
-  test('Square brackets', () => {
-    const data = { a: { b: [0, 1, 2] } }
-    const path = 'a.b[2]'
-    const output = getItemByPath(data, path)
-    expect(output).toBe(2)
-  })
-
 })
 
 describe(stringmapArray.name, () => {
