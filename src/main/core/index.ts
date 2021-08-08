@@ -2,7 +2,6 @@ import {
   INTERNALS_SYMBOL,
   IS_BROWSER_ENV,
   IS_DEBUG_ENV,
-  IS_DIST_ENV,
   LangutilEvents,
   TYPE_OBJECT,
 } from '../../constants'
@@ -76,7 +75,7 @@ export function createLangutilCore<D extends LangutilDictionaryIsolated>(
     self.M$dictionary
   )
 
-  const __getDictionary = (): D => self.M$dictionary
+  const getDictionary = (): D => self.M$dictionary
 
   // === Base Methods ===
 
@@ -315,11 +314,13 @@ export function createLangutilCore<D extends LangutilDictionaryIsolated>(
   // === Core Instance ===
 
   const coreInstance: LangutilCore<D> = {
+    [INTERNALS_SYMBOL]: {},
     hydrate,
     setLanguage,
     getLanguage,
     getLangutilState: getLangutilState,
     getAllLanguages,
+    getDictionary,
     setDictionary,
     appendDictionary,
     localize,
@@ -330,9 +331,6 @@ export function createLangutilCore<D extends LangutilDictionaryIsolated>(
     cloneInitial,
     cloneCurrent,
     watch: self.M$watcher.M$watch,
-    [INTERNALS_SYMBOL]: IS_DIST_ENV ? {} : {
-      getDictionary: __getDictionary,
-    },
   }
   return coreInstance
 
@@ -410,5 +408,5 @@ export function isLangutilCore(value: unknown): boolean {
   // NOTE: Must do preliminary check. If value is undefined, trying to directly
   // access `value[INTERNALS_SYMBOL]` would've resulted in an error.
   if (!value) { return false } // Early exit
-  return typeof value[INTERNALS_SYMBOL] !== 'undefined'
+  return !!value[INTERNALS_SYMBOL]
 }

@@ -132,9 +132,7 @@ export interface LangutilCore<D = LangutilDictionaryIsolated> {
   /**
    * @internal
    */
-  [INTERNALS_SYMBOL]: {
-    getDictionary?(): D
-  }
+  [INTERNALS_SYMBOL]: Record<string, never>
   hydrate(
     dictionary: D,
     language: LangutilLanguage<D>,
@@ -164,6 +162,13 @@ export interface LangutilCore<D = LangutilDictionaryIsolated> {
    * @public
    */
   getAllLanguages(): Array<LangutilLanguage<D>>
+  /**
+   * Get the current dictionary.
+   * CAUTION: The returned value is a direct reference, mutating it will cause
+   * unwanted and hard-to-debug problems.
+   * @public
+   */
+  getDictionary?(): D
   /**
    * Replaces the current dictionary.
    * @public

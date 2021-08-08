@@ -7,7 +7,7 @@ import { IntegrationTestProps } from '../../constants'
 export default function (testProps: IntegrationTestProps): void {
 
   const { Langutil } = testProps
-  const { createLangutilCore, I } = Langutil
+  const { createLangutilCore } = Langutil
 
   test('.setDictionary', () => {
 
@@ -15,7 +15,7 @@ export default function (testProps: IntegrationTestProps): void {
     core.setDictionary(SAMPLE_DICTIONARY_ALT)
 
     // Expect dictionary to be completely replaced
-    const output = core[I].getDictionary()
+    const output = core.getDictionary()
     expect(output).toStrictEqual(SAMPLE_DICTIONARY_ALT)
 
     // Old dictionary should no longer be in use
