@@ -1,6 +1,6 @@
 {
   "name": "langutil",
-  "version": "4.0.0-beta.3",
+  "version": "4.0.0-beta.4",
   "description": "Localization utility for JavaScript",
   "main": "dist/cjs/index.js",
   "module": "dist/es/index.js",
