@@ -404,7 +404,7 @@ export function localizeFromScratch<Dn>(
 /**
  * @public
  */
-export function isLangutilCore(value: unknown): boolean {
+export function isLangutilCore(value: unknown): value is LangutilCore {
   // NOTE: Must do preliminary check. If value is undefined, trying to directly
   // access `value[INTERNALS_SYMBOL]` would've resulted in an error.
   if (!value) { return false } // Early exit
