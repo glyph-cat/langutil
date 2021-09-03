@@ -75,6 +75,9 @@ module.exports = {
       message: 'Please import `test` instead',
     }],
     'no-trailing-spaces': ERROR,
+    'object-property-newline': [ERROR, {
+      allowAllPropertiesOnSameLine: true,
+    }],
     'operator-linebreak': [
       ERROR,
       'after',
