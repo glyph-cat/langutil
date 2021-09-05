@@ -3,7 +3,7 @@
 // The errors should then be thrown in the parent function that calls them.
 import { IS_DEBUG_ENV } from '../constants'
 
-export function __formatErrorCode(
+export function formatErrorCode(
   code: number,
   ...args: Array<unknown>
 ): string {
@@ -22,7 +22,7 @@ export function TYPE_ERROR_STRINGMAP_INVALID_PARAM_TYPE(
   return new TypeError(
     IS_DEBUG_ENV
       ? `Expected \`param\` to be an array or object but got ${typeofParam}`
-      : __formatErrorCode(1, typeofParam)
+      : formatErrorCode(1, typeofParam)
   )
 }
 
@@ -33,7 +33,7 @@ export function TYPE_ERROR_DICTIONARY_INVALID_TYPE(
   return new TypeError(
     IS_DEBUG_ENV
       ? `Expected \`dictionary\` to be an object but got ${typeofDictionary}`
-      : __formatErrorCode(2, typeofDictionary)
+      : formatErrorCode(2, typeofDictionary)
   )
 }
 
@@ -43,6 +43,6 @@ export function SYNTAX_ERROR_CONFLICTING_LANGUTIL_STATE_PROP(
   return new SyntaxError(
     IS_DEBUG_ENV
       ? `Prop conflict for \`langutilState\` in <${componentDisplayName}/>`
-      : __formatErrorCode(3, componentDisplayName)
+      : formatErrorCode(3, componentDisplayName)
   )
 }

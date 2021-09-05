@@ -1,5 +1,5 @@
 import {
-  __formatErrorCode,
+  formatErrorCode,
   TYPE_ERROR_DICTIONARY_INVALID_TYPE,
   TYPE_ERROR_STRINGMAP_INVALID_PARAM_TYPE,
   SYNTAX_ERROR_CONFLICTING_LANGUTIL_STATE_PROP,
@@ -7,7 +7,7 @@ import {
 
 test('__formatErrorCode', () => {
   const args = ['foo', 'bar', 'baz']
-  const output = __formatErrorCode(1, ...args)
+  const output = formatErrorCode(1, ...args)
   expect(output).toBe('e1-foo,bar,baz')
 })
 
