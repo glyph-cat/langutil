@@ -744,10 +744,10 @@
   resolved "https://registry.yarnpkg.com/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
-"@chin98edwin/react-test-utils@^0.0.0-experimental.0":
-  version "0.0.0-experimental.0"
-  resolved "https://registry.yarnpkg.com/@chin98edwin/react-test-utils/-/react-test-utils-0.0.0-experimental.0.tgz#ead63fe2d8013a9701bb166942b9430bdfcd64b3"
-  integrity sha512-pt2du/fbnV1KRZWsRbzTvy3NM4t0Tm+sEgmSooGUoR0T6OS+eZNuARxnn5YdV0tp0fR2hDmNwqB7b2swCBNYjw==
+"@chin98edwin/react-test-utils@^0.0.0-experimental.1":
+  version "0.0.0-experimental.1"
+  resolved "https://registry.yarnpkg.com/@chin98edwin/react-test-utils/-/react-test-utils-0.0.0-experimental.1.tgz#0535d1ce435a6c6812724f7362238aa557ac9a5e"
+  integrity sha512-RMmEEIsxKy8ywxTw754X0v4z/O+Keyi/6DsI54Fn8r5FlGUBDumtYex72RiuIbX9OLVWmWHiaM0qSKCk5myrYQ==
 
 "@cnakazawa/watch@^1.0.3":
   version "1.0.4"

@@ -20,10 +20,7 @@ export default function (testProps: IntegrationTestProps): void {
     const useLang = () => useLangutil<typeof SAMPLE_DICTIONARY>(core)
 
     const hookInterface = createHookInterface({
-      hook: {
-        method: useLang,
-        parameters: [core],
-      },
+      hook: useLang,
       actions: {
         changeLangToId: ({ hookValue: langutilState }) => {
           langutilState.setLanguage('id')
