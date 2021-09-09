@@ -52,7 +52,7 @@ module.exports = {
     // === Code Styles ===
     // Problems that fall under this category will at most make the codebase
     // look inconsistent
-
+    'eol-last': [ERROR, 'always'],
     'import/newline-after-import': ERROR,
     indent: [ERROR, 2],
     'lines-between-class-members': [
@@ -101,7 +101,7 @@ module.exports = {
     'yoda': [ERROR, 'never'],
 
     // React
-    'react/no-children-prop': OFF,
+    'react/no-children-prop': ERROR,
     'react/prop-types': OFF,
     'react/react-in-jsx-scope': OFF,
 
