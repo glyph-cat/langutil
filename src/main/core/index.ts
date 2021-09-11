@@ -7,28 +7,28 @@ import {
 } from '../../constants'
 import { TYPE_ERROR_DICTIONARY_INVALID_TYPE } from '../../errors'
 import {
-  LangutilState,
   LangutilAutoDetectFlag,
   LangutilCore,
   LangutilDictionaryIsolated,
   LangutilEvent,
+  LangutilEventData,
   LangutilInitOptions,
+  LangutilKeyword,
   LangutilLanguage,
-  LangutilSetLanguageOptions,
   LangutilLocalizedValue,
   LangutilMethodObjArgsLocalize,
   LangutilMethodObjArgsLocalizeExplicitly,
   LangutilMethodObjArgsLocalizeFromScratch,
-  LangutilKeyword,
+  LangutilSetLanguageOptions,
+  LangutilState,
   LangutilStringmapParam,
-  LangutilEventData,
 } from '../../schema'
 import { devInfo, devWarn, displayStringArray } from '../dev'
 import getClientLanguages from '../get-client-languages'
 import getMergedDictionary from '../get-merged-dictionary'
 import { baseLocalizer } from '../localizer'
 import { getResolvedLanguageAnyToMany } from '../resolve-language'
-import { VirtualBatchFunction, createVirtualBatcher } from '../virtual-batch'
+import { createVirtualBatcher, VirtualBatchFunction } from '../virtual-batch'
 import { createWarningDebouncer } from '../warning-debouncer'
 import { createWatcher, Watcher } from '../watcher'
 
