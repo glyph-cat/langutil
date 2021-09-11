@@ -1,5 +1,5 @@
 import { SAMPLE_DICTIONARY } from '../../../tests/sample-dictionary'
-import { baseLocalizer } from './'
+import { baseLocalizer } from '.'
 
 // eslint-disable-next-line @typescript-eslint/no-empty-function
 const mockDebouncedWarning = () => { }

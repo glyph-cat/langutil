@@ -1,7 +1,7 @@
 import {
   createWarningDebouncer,
-  formatOneLineMissingLoc,
   formatMultiLineMissingLoc,
+  formatOneLineMissingLoc,
 } from '.'
 
 test(`${createWarningDebouncer.name} - Warnings are batched`, () => {
