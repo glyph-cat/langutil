@@ -6,7 +6,7 @@ import { terser } from 'rollup-plugin-terser'
 import typescript from 'rollup-plugin-typescript2'
 import { version } from '../package.json'
 
-// NOTE: Adding '@types/react-native' will cause error when running `yarn tsc`
+// NOTE: Adding '@types/react-native' will cause error when running `yarn types`
 
 const NODE_RESOLVE_CONFIG_BASE = {
   extensions: ['.ts', '.js'],
@@ -49,15 +49,11 @@ const UMD_GLOBALS = {
  * @param {object} config.overrides
  * @param {Array<string>} config.presets
  * @param {'development'|'production'} config.mode
- * @param {'boolean'} config.isRNBuild
+ * @param {string?} config.buildEnv
  * @returns {Array}
  */
-function getPlugins({
-  overrides,
-  mode,
-  presets = [],
-} = {}) {
-
+function getPlugins(config = {}) {
+  const { overrides, mode, presets = [], buildEnv } = config
   const basePlugins = {
     nodeResolve: nodeResolve(NODE_RESOLVE_CONFIG_BASE),
     typescript: typescript({
@@ -94,6 +90,7 @@ function getPlugins({
 
   // Replace values
   const replaceValues = {
+    'process.env.BUILD_ENV': JSON.stringify(buildEnv),
     'process.env.DIST_ENV': JSON.stringify(true),
     'process.env.NPM_PACKAGE_VERSION': JSON.stringify(version),
   }
@@ -160,6 +157,7 @@ const coreConfig = [
     },
     external: EXTERNAL_LIBS_REACT_NATIVE,
     plugins: getPlugins({
+      buildEnv: 'react-native',
       overrides: {
         nodeResolve: nodeResolve(NODE_RESOLVE_CONFIG_REACT_NATIVE),
       },
@@ -242,6 +240,7 @@ const reactConfig = [
     },
     external: EXTERNAL_LIBS_REACT_NATIVE,
     plugins: getPlugins({
+      buildEnv: 'react-native',
       presets: ['@babel/preset-react'],
       overrides: {
         nodeResolve: nodeResolve(NODE_RESOLVE_CONFIG_REACT_NATIVE),

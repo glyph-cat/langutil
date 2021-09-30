@@ -1,4 +1,4 @@
-import { IS_BROWSER_ENV } from '../../constants'
+import { IS_CLIENT_ENV } from '../../constants'
 
 type VirtualBatchedCallback = (...args: Array<unknown>) => unknown
 
@@ -27,7 +27,7 @@ export function createServerBatcher(): VirtualBatchFunction {
 }
 
 export function createVirtualBatcher(): VirtualBatchFunction {
-  return IS_BROWSER_ENV
+  return IS_CLIENT_ENV
     ? createBrowserBatcher()
     : createServerBatcher()
 }

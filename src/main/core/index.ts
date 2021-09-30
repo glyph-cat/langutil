@@ -1,6 +1,6 @@
 import {
   INTERNALS_SYMBOL,
-  IS_BROWSER_ENV,
+  IS_CLIENT_ENV,
   IS_DEBUG_ENV,
   LangutilEvents,
   TYPE_OBJECT,
@@ -252,7 +252,7 @@ export function createLangutilCore<D extends LangutilDictionaryIsolated>(
     a: LangutilKeyword<D> | LangutilMethodObjArgsLocalize<D>,
     b?: LangutilStringmapParam
   ) => LangutilLocalizedValue<D>) => {
-    if (IS_BROWSER_ENV) {
+    if (IS_CLIENT_ENV) {
       return (
         a: LangutilKeyword<D> | LangutilMethodObjArgsLocalize<D>,
         b: LangutilStringmapParam

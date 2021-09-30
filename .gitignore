@@ -29,8 +29,6 @@ node_modules
 
 # Temporary
 temp/
-
-# Drafts
 *.draft*
 
 # OS

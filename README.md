@@ -6,7 +6,7 @@
 ![Build Status](https://img.shields.io/github/workflow/status/chin98edwin/langutil/Test/main)
 ![Bundle size](https://img.shields.io/bundlephobia/min/langutil)
 ![Downloads](https://img.shields.io/npm/dt/langutil)
-[![License](![GitHub](https://img.shields.io/github/license/chin98edwin/langutil))](https://github.com/chin98edwin/langutil/blob/main/LICENSE)
+[![License](https://img.shields.io/github/license/chin98edwin/langutil)](https://github.com/chin98edwin/langutil/blob/main/LICENSE)
 
 [![Works with React](https://img.shields.io/static/v1?label&logo=react&logoColor=61DBFB&message=Works%20with%20React&color=4a4a4a)](#using-with-react)
 [![Open in Visual Studio Code](https://open.vscode.dev/badges/open-in-vscode.svg)](https://open.vscode.dev/chin98edwin/langutil)
@@ -37,6 +37,7 @@ A localization utility for JavaScript that comes with support for React and Reac
     - [With Dynamic Values](#with-dynamic-values)
     - [Alternative Syntax](#alternative-syntax)
 - [Further Reading](#further-reading)
+- [Support Me](#support-me)
 
 <br/>
 
@@ -152,5 +153,13 @@ const localizedValue = core.localize({
 * [Documentations](https://github.com/chin98edwin/langutil/tree/main/docs)
 * [Migrating from v3 and below](https://github.com/chin98edwin/langutil/tree/main/docs/v3-migration.md)
 * Miscellaneous: Looking for a general-purpose state manager for React? Then you might be interested in [React Relink](https://github.com/chin98edwin/react-relink).
+
+<br/>
+
+# Support Me
+
+* Ko-fi: [`ko-fi.com/dev_chin98edwin`](https://ko-fi.com/dev_chin98edwin)
+* PayPal: [`paypal.me/chin98edwin`](http://paypal.me/chin98edwin)
+* BTC: [`bc1q5qp6a972l8m0k26ln9deuhup0nmldf86ndu5we`](bitcoin:bc1q5qp6a972l8m0k26ln9deuhup0nmldf86ndu5we)
 
 <br/>
