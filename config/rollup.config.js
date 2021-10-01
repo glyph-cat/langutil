@@ -173,7 +173,10 @@ const coreConfig = [
       exports: 'named',
     },
     external: EXTERNAL_LIBS_MAIN,
-    plugins: getPlugins({ mode: 'development' }),
+    plugins: getPlugins({
+      buildEnv: 'umd',
+      mode: 'development',
+    }),
   },
   {
     // UMD (Production)
@@ -185,7 +188,10 @@ const coreConfig = [
       exports: 'named',
     },
     external: EXTERNAL_LIBS_MAIN,
-    plugins: getPlugins({ mode: 'production' }),
+    plugins: getPlugins({
+      buildEnv: 'umd',
+      mode: 'production',
+    }),
   },
 ]
 
@@ -259,6 +265,7 @@ const reactConfig = [
     },
     external: EXTERNAL_LIBS_REACT_DOM,
     plugins: getPlugins({
+      buildEnv: 'umd',
       mode: 'development',
       presets: ['@babel/preset-react'],
     }),
@@ -275,6 +282,7 @@ const reactConfig = [
     },
     external: EXTERNAL_LIBS_REACT_DOM,
     plugins: getPlugins({
+      buildEnv: 'umd',
       mode: 'production',
       presets: ['@babel/preset-react'],
     }),
