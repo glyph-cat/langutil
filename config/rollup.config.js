@@ -91,7 +91,7 @@ function getPlugins(config = {}) {
   // Replace values
   const replaceValues = {
     'process.env.BUILD_ENV': JSON.stringify(buildEnv),
-    'process.env.DIST_ENV': JSON.stringify(true),
+    'process.env.IS_DIST_ENV': JSON.stringify(true),
     'process.env.NPM_PACKAGE_VERSION': JSON.stringify(version),
   }
   if (mode) {
