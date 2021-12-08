@@ -12,6 +12,7 @@
   ],
   "types": "dist/types/index.d.ts",
   "scripts": {
+    "deps": "node ./scripts/update-project-dependencies",
     "clean": "rm -rf ./dist ./react/dist ./temp ./yarn-error.log && mkdir temp dist react/dist",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
@@ -20,13 +21,13 @@
     "rollup": "rollup -c ./config/rollup.config.js",
     "types": "tsc --declaration",
     "api:main": "api-extractor run -c ./config/api-extractor.main.json --local --verbose",
-    "postapi:main": "node __scripts__/post-api-main",
+    "postapi:main": "node scripts/post-api-main",
     "api:react": "api-extractor run -c ./config/api-extractor.react.json --local --verbose",
-    "postapi:react": "node __scripts__/post-api-react",
+    "postapi:react": "node scripts/post-api-react",
     "api": "yarn api:main && yarn api:react",
     "build": "yarn rollup && yarn types && yarn api",
     "postbuild": "rm -r ./temp/tsc",
-    "all": "yarn clean && yarn lint:fix && yarn build && node __scripts__/mid-all && yarn test && yarn pack",
+    "all": "yarn clean && yarn lint:fix && yarn build && node scripts/mid-all && yarn test && yarn pack",
     "ci:test": "yarn lint && yarn build && yarn test"
   },
   "keywords": [
@@ -66,6 +67,7 @@
     "@types/node": "^16.4.1",
     "@types/react": "^17.0.14",
     "@types/react-dom": "^17.0.9",
+    "@types/react-native": "^0.66.2",
     "@types/react-test-renderer": "^17.0.1",
     "eslint": "^7.31.0",
     "eslint-plugin-functional": "^3.2.2",
