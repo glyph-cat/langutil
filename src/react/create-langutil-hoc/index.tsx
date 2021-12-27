@@ -49,11 +49,18 @@ export function createLangutilHOC<D, P extends WithLangutilProps<D> = WithLangut
       if (props['langutilState']) {
         throw SYNTAX_ERROR_CONFLICTING_LANGUTIL_STATE_PROP(displayName)
       }
-      return createElement(WrappedComponent, {
-        langutilState: state,
-        ref,
-        ...props,
-      })
+      return (
+        <WrappedComponent
+          langutilState={state}
+          ref={ref}
+          {...props}
+        />
+      )
+      // return createElement(WrappedComponent, {
+      //   langutilState: state,
+      //   ref,
+      //   ...props,
+      // })
     }
     WithLangutil.displayName = displayName
     hoistNonReactStatics(WithLangutil, WrappedComponent)

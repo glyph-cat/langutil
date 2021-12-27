@@ -3,6 +3,7 @@ module.exports = {
     test: {
       presets: [
         '@babel/preset-typescript',
+        ['@babel/preset-react', { runtime: 'automatic' }],
       ],
       plugins: [
         '@babel/plugin-proposal-optional-chaining',
@@ -10,9 +11,4 @@ module.exports = {
       ],
     },
   },
-  // Moved out of `env/test` to support linting
-  plugins: [
-    ['@babel/plugin-transform-react-jsx', { pragma: 'React.createElement' }],
-    '@babel/plugin-proposal-class-properties',
-  ],
 }

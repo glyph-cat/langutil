@@ -1,5 +1,5 @@
-dist
-react/
-node_modules
-temp
 *.draft*
+dist
+node_modules
+react/
+temp

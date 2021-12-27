@@ -56,6 +56,7 @@ function getPlugins(config = {}) {
   const { overrides, mode, presets = [], buildEnv } = config
   const basePlugins = {
     nodeResolve: nodeResolve(NODE_RESOLVE_CONFIG_BASE),
+    autoImportReact: autoImportReact(),
     typescript: typescript({
       tsconfigOverride: {
         compilerOptions: {
@@ -296,6 +297,26 @@ const config = [
 
 export default config
 
+/**
+ * Automatically `imports React from "react"` if a file ends with '.tsx'.
+ */
+function autoImportReact() {
+  return {
+    name: 'autoImportReact',
+    transform(code, id) {
+      if (/tsx/gi.test(id)) {
+        code = 'import React from "react";\n' + code
+        return { code }
+      }
+      return null
+    },
+  }
+}
+
+/**
+ * Removes redundant license information about tslib that is wasting precious
+ * bytes in the final code bundle.
+ */
 function forceCleanup() {
   return {
     name: 'forceCleanup',

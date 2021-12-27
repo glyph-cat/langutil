@@ -20,8 +20,7 @@ describe(baseLocalizer.name, () => {
   test('Non-existent language', () => {
     const output = baseLocalizer(
       SAMPLE_DICTIONARY,
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore Ignored on purpose to test incorrect types
+      // @ts-expect-error: Ignored on purpose to test incorrect types.
       'ab',
       'GOOD_MORNING',
       undefined,
@@ -152,7 +151,7 @@ describe(baseLocalizer.name, () => {
           'en',
           'GOOD_MORNING_NAME',
           // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-          // @ts-ignore Ignored on purpose to test incorrect types
+          // @ts-expect-error: Ignored on purpose to test incorrect types.
           2,
           mockDebouncedWarning
         )

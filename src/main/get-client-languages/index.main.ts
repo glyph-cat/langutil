@@ -6,3 +6,5 @@
 //   : getClientLanguagesMain
 
 // export default getClientLanguages
+
+export { }
