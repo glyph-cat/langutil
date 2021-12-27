@@ -50,7 +50,6 @@
   "homepage": "https://github.com/chin98edwin/langutil#readme",
   "devDependencies": {
     "@babel/plugin-proposal-class-properties": "^7.14.5",
-    "@babel/plugin-proposal-optional-chaining": "^7.14.5",
     "@babel/plugin-transform-react-jsx": "^7.14.5",
     "@babel/preset-flow": "^7.14.5",
     "@babel/preset-react": "^7.14.5",

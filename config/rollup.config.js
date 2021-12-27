@@ -68,7 +68,6 @@ function getPlugins(config = {}) {
     }),
     babel: babel({
       presets,
-      plugins: ['@babel/plugin-proposal-optional-chaining'],
       exclude: '**/node_modules/**',
       babelHelpers: 'bundled',
     }),
