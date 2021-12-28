@@ -37,25 +37,24 @@
     "Localization",
     "Translation"
   ],
-  "author": "chin98edwin",
+  "author": "glyph-cat",
   "readme": "README.md",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/chin98edwin/langutil.git"
+    "url": "https://github.com/glyph-cat/langutil.git"
   },
   "bugs": {
-    "url": "https://github.com/chin98edwin/langutil/issues"
+    "url": "https://github.com/glyph-cat/langutil/issues"
   },
-  "homepage": "https://github.com/chin98edwin/langutil#readme",
+  "homepage": "https://github.com/glyph-cat/langutil#readme",
   "devDependencies": {
     "@babel/plugin-proposal-class-properties": "^7.14.5",
     "@babel/plugin-transform-react-jsx": "^7.14.5",
     "@babel/preset-flow": "^7.14.5",
     "@babel/preset-react": "^7.14.5",
     "@babel/preset-typescript": "^7.14.5",
-    "@chin98edwin/eslint-plugin": "^0.0.0-experimental.3",
-    "@chin98edwin/react-test-utils": "^0.0.0-experimental.1",
+    "@glyph-cat/react-test-utils": "^0.1.1-experimental.1",
     "@microsoft/api-extractor": "^7.18.4",
     "@rollup/plugin-babel": "^5.3.0",
     "@rollup/plugin-commonjs": "^19.0.1",
@@ -76,6 +75,7 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-native": "^0.64.2",
+    "react-relink": "^1.1.0",
     "react-test-renderer": "^17.0.2",
     "rollup": "^2.53.3",
     "rollup-plugin-terser": "^7.0.2",

@@ -2,7 +2,7 @@ import { SAMPLE_DICTIONARY } from '../../../sample-dictionary'
 import {
   createCleanupRef,
   UNSTABLE_createHocInterface,
-} from '@chin98edwin/react-test-utils'
+} from '@glyph-cat/react-test-utils'
 import { IntegrationTestProps } from '../../constants'
 
 const cleanupRef = createCleanupRef()
@@ -32,7 +32,7 @@ export default function (testProps: IntegrationTestProps): void {
     }, cleanupRef)
 
     expect(hocInterface.get('value')).toBe('Good morning.')
-    hocInterface.actions(['changeLangToId'])
+    hocInterface.actions('changeLangToId')
     expect(hocInterface.get('value')).toBe('Selamat pagi.')
 
   })

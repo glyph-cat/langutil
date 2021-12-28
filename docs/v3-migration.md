@@ -13,6 +13,6 @@ Although this is one step extra, it actually brings a few benefits. There may be
 
 Of course, that is quite a crazy example, but even if your app is going to need just one `LangutilCore`, you can still benefit from TypeScript autocomplete thanks to the factory pattern in v4. Cheers 🍻
 
-![TypeScript autocomplete - keywords](https://raw.githubusercontent.com/chin98edwin/langutil/main/assets/ts-autocomplete-keywords.png)
+![TypeScript autocomplete - keywords](https://raw.githubusercontent.com/glyph-cat/langutil/main/assets/ts-autocomplete-keywords.png)
 
 <br/>

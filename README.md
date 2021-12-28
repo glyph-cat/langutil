@@ -1,16 +1,16 @@
 <div align="center">
 
-[![Langutil](https://raw.githubusercontent.com/chin98edwin/langutil/main/assets/langutil-wording.svg)](https://github.com/chin98edwin/langutil)
+[![Langutil](https://raw.githubusercontent.com/glyph-cat/langutil/main/assets/langutil-wording.svg)](https://github.com/glyph-cat/langutil)
 
-[![Version](https://img.shields.io/npm/v/langutil.svg)](https://github.com/chin98edwin/langutil/releases)
-![Build Status](https://img.shields.io/github/workflow/status/chin98edwin/langutil/Test/main)
+[![Version](https://img.shields.io/npm/v/langutil.svg)](https://github.com/glyph-cat/langutil/releases)
+![Build Status](https://img.shields.io/github/workflow/status/glyph-cat/langutil/Test/main)
 ![Bundle size](https://img.shields.io/bundlephobia/min/langutil)
 ![Downloads](https://img.shields.io/npm/dt/langutil)
-[![License](https://img.shields.io/github/license/chin98edwin/langutil)](https://github.com/chin98edwin/langutil/blob/main/LICENSE)
+[![License](https://img.shields.io/github/license/glyph-cat/langutil)](https://github.com/glyph-cat/langutil/blob/main/LICENSE)
 
 [![Works with React](https://img.shields.io/static/v1?label&logo=react&logoColor=61DBFB&message=Works%20with%20React&color=4a4a4a)](#using-with-react)
-[![Open in Visual Studio Code](https://open.vscode.dev/badges/open-in-vscode.svg)](https://open.vscode.dev/chin98edwin/langutil)
-[![Support me on Ko-fi](https://img.shields.io/static/v1?label&logo=kofi&logoColor=ffffff&message=Support%20me%20on%20Ko-fi&color=FF5E5B)](https://ko-fi.com/dev_chin98edwin)
+[![Open in Visual Studio Code](https://open.vscode.dev/badges/open-in-vscode.svg)](https://open.vscode.dev/glyph-cat/langutil)
+[![Support me on Ko-fi](https://img.shields.io/static/v1?label&logo=kofi&logoColor=ffffff&message=Support%20me%20on%20Ko-fi&color=FF5E5B)](https://ko-fi.com/glyphcat)
 
 </div>
 
@@ -20,7 +20,7 @@ A localization utility for JavaScript that comes with support for React and Reac
 
 <br/>
 
-![Langutil Demo](https://raw.githubusercontent.com/chin98edwin/langutil/main/assets/langutil-demo.gif)
+![Langutil Demo](https://raw.githubusercontent.com/glyph-cat/langutil/main/assets/langutil-demo.gif)
 
 <br/>
 
@@ -43,15 +43,15 @@ A localization utility for JavaScript that comes with support for React and Reac
 
 # Installation/Setup
 
-With [NPM](https://www.npmjs.com/package/langutil):
+With [Yarn](https://yarnpkg.com/package/langutil) (Recommended)
 ```sh
-npm i langutil
+yarn add langutil
 ```
 <br/>
 
-With [Yarn](https://yarnpkg.com/package/langutil):
+With [NPM](https://www.npmjs.com/package/langutil)
 ```sh
-yarn add langutil
+npm i langutil
 ```
 <br/>
 
@@ -59,7 +59,7 @@ With UNPKG:
 ```html
 <script src="https://unpkg.com/langutil@<VERSION>/dist/umd/index.js" crossorigin></script>
 ```
-Remember to replace `index.js` with `index.min.js` when deploying.
+Note: Replace `index.js` with `index.min.js` when deploying.
 
 <br/>
 
@@ -150,16 +150,15 @@ const localizedValue = core.localize({
 
 # Further Reading
 
-* [Documentations](https://github.com/chin98edwin/langutil/tree/main/docs)
-* [Migrating from v3 and below](https://github.com/chin98edwin/langutil/tree/main/docs/v3-migration.md)
-* Miscellaneous: Looking for a general-purpose state manager for React? Then you might be interested in [React Relink](https://github.com/chin98edwin/react-relink).
+* [Documentations](https://github.com/glyph-cat/langutil/tree/main/docs)
+* [Migrating from v3 and below](https://github.com/glyph-cat/langutil/tree/main/docs/v3-migration.md)
+* Miscellaneous: Looking for a general-purpose state manager for React? Then you might be interested in [React Relink](https://github.com/glyph-cat/react-relink).
 
 <br/>
 
 # Support Me
 
-* Ko-fi: [`ko-fi.com/dev_chin98edwin`](https://ko-fi.com/dev_chin98edwin)
-* PayPal: [`paypal.me/chin98edwin`](http://paypal.me/chin98edwin)
+* Ko-fi: [`ko-fi.com/glyphcat`](https://ko-fi.com/glyphcat)
 * BTC: [`bc1q5qp6a972l8m0k26ln9deuhup0nmldf86ndu5we`](bitcoin:bc1q5qp6a972l8m0k26ln9deuhup0nmldf86ndu5we)
 
 <br/>
