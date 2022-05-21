@@ -4,10 +4,10 @@ import { IntegrationTestProps } from '../../constants'
 export default function (testProps: IntegrationTestProps): void {
 
   const { Langutil } = testProps
-  const { createLangutilCore, isLangutilCore } = Langutil
+  const { LangutilCore, isLangutilCore } = Langutil
 
   test('Test against a Langutil Core', () => {
-    const core = createLangutilCore(SAMPLE_DICTIONARY, 'en')
+    const core = new LangutilCore(SAMPLE_DICTIONARY, 'en')
     const output = isLangutilCore(core)
     expect(output).toBe(true)
   })

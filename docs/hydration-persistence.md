@@ -2,14 +2,14 @@
 
 ```js
 
-import { createLangutilCore, LangutilEvents } from 'langutil'
+import { LangutilCore, LangutilEvents } from 'langutil'
 
 const DEFAULT_LANGUAGE = 'en'
 const DEFAULT_AUTO = true
 
 const STORAGE_KEY = 'language-pref'
 
-const core = createLangutilCore(dictionary, DEFAULT_LANGUAGE, {
+const core = new LangutilCore(dictionary, DEFAULT_LANGUAGE, {
   auto: DEFAULT_AUTO,
 })
 
@@ -20,13 +20,13 @@ if (rawData) {
     // (Refer to `core.watch(...)` section below)
     const parsedData = JSON.parse(rawData)
     core.hydrate(null, parsedData.language, { auto: parsedData.isAuto })
-    // Pass `null` to to use dictionary passed into `createLangutilCore`,
-    // or pass in another dictionary to completely override it. The former
-    // method is usually prefered.
+    // Pass `null` to use the dictionary that was passed into `LangutilCore`
+    // upon instatiation, or pass in another dictionary to completely override
+    // it. The former method is usually prefered.
   } catch (e) {
     // Remove from storage if the JSON string is malformed.
     // App will continue to run with the configuration as specified when
-    // calling `createLangutilCore` in the first place.
+    // instantiating `LangutilCore` in the first place.
     localStorage.removeItem(STORAGE_KEY)
   }
 }

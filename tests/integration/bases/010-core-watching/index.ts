@@ -5,11 +5,11 @@ import { IntegrationTestProps } from '../../constants'
 export default function (testProps: IntegrationTestProps): void {
 
   const { Langutil } = testProps
-  const { createLangutilCore, LangutilEvents } = Langutil
+  const { LangutilCore, LangutilEvents } = Langutil
 
   test('.watch', () => {
 
-    const core = createLangutilCore(SAMPLE_DICTIONARY, 'en')
+    const core = new LangutilCore(SAMPLE_DICTIONARY, 'en')
 
     const eventSnapshots: Array<LangutilEvent<typeof SAMPLE_DICTIONARY>> = []
     const unwatch = core.watch((event) => {

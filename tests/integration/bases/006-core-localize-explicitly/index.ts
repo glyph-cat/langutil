@@ -4,10 +4,10 @@ import { IntegrationTestProps } from '../../constants'
 export default function (testProps: IntegrationTestProps): void {
 
   const { Langutil } = testProps
-  const { createLangutilCore } = Langutil
+  const { LangutilCore } = Langutil
 
   test('Basic usage', () => {
-    const core = createLangutilCore(SAMPLE_DICTIONARY, 'en')
+    const core = new LangutilCore(SAMPLE_DICTIONARY, 'en')
     const output1 = core.localizeExplicitly('en', 'SOMETIMES_IM_A_BEAR')
     expect(output1).toBe('Sometimes, I\'m a bear, and at other times I am a be-ar.')
     const output2 = core.localizeExplicitly('id', 'SOMETIMES_IM_A_BEAR')
@@ -19,7 +19,7 @@ export default function (testProps: IntegrationTestProps): void {
   describe('Different argument syntaxes', () => {
 
     test('Argument are spreaded', () => {
-      const core = createLangutilCore(SAMPLE_DICTIONARY, 'en')
+      const core = new LangutilCore(SAMPLE_DICTIONARY, 'en')
       const output1 = core.localizeExplicitly('en', 'GOOD_MORNING_PNAME', ['John'])
       expect(output1).toBe('Good morning, John.')
       const output2 = core.localizeExplicitly('id', 'GOOD_MORNING_PNAME', ['John'])
@@ -29,7 +29,7 @@ export default function (testProps: IntegrationTestProps): void {
     })
 
     test('Argument as object', () => {
-      const core = createLangutilCore(SAMPLE_DICTIONARY, 'en')
+      const core = new LangutilCore(SAMPLE_DICTIONARY, 'en')
       const o1 = core.localizeExplicitly('en', 'GOOD_MORNING_NAME', { name: 'John' })
       expect(o1).toBe('Good morning, John.')
       const o2 = core.localizeExplicitly('id', 'GOOD_MORNING_NAME', { name: 'John' })

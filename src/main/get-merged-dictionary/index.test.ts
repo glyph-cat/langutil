@@ -1,4 +1,4 @@
-import getMergedDictionary from '.'
+import { getMergedDictionary } from '.'
 
 test(getMergedDictionary.name, () => {
   const d1 = {

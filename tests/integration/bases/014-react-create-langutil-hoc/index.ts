@@ -11,12 +11,12 @@ afterEach(() => { cleanupRef.run() })
 export default function (testProps: IntegrationTestProps): void {
 
   const { Langutil, LangutilReact } = testProps
-  const { createLangutilCore } = Langutil
+  const { LangutilCore } = Langutil
   const { createLangutilHOC } = LangutilReact
 
   test('Basic usage', () => {
 
-    const core = createLangutilCore(SAMPLE_DICTIONARY, 'en')
+    const core = new LangutilCore(SAMPLE_DICTIONARY, 'en')
     const withLang = createLangutilHOC<typeof SAMPLE_DICTIONARY>(core)
 
     const hocInterface = UNSTABLE_createHocInterface({

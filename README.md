@@ -68,7 +68,7 @@ Note: Replace `index.js` with `index.min.js` when deploying.
 ## Initialization
 
 ```js
-import { createLangutilCore } from 'langutil'
+import { LangutilCore } from 'langutil'
 
 const dictionary = {
   en: {
@@ -85,7 +85,7 @@ const dictionary = {
   },
 }
 
-const core = createLangutilCore(dictionary, 'en', { auto: true })
+const core = new LangutilCore(dictionary, 'en', { auto: true })
 ```
 
 ## Set language

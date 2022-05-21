@@ -7,7 +7,7 @@ import { LangutilDictionaryIsolated, LangutilLanguage } from '../../schema'
  * @param d2 The second dictionary
  * @returns A new copy of the merged dictionary
  */
-export default function getMergedDictionary(
+export function getMergedDictionary(
   d1: LangutilDictionaryIsolated,
   d2: LangutilDictionaryIsolated
 ): LangutilDictionaryIsolated {

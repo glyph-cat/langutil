@@ -1,10 +1,12 @@
-const { configs } = require('@glyph-cat/swiss-army-knife/eslint-config')
+const { configs } = require('@glyph-cat/eslint-config')
+
+const strictConfigs = configs.strict
 
 module.exports = {
   root: true,
-  ...configs.strict,
+  ...strictConfigs,
   plugins: [
-    ...configs.strict.plugins,
+    ...strictConfigs.plugins,
     'eslint-plugin-functional',
   ],
 }

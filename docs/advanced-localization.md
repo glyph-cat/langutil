@@ -3,7 +3,7 @@
 In rare cases, you might need to get values that are localized into a different language from the one currently set, this is when `.localizeExplicitly` and `localizeFromScratch` become useful.
 
 ```js
-import { createLangutilCore, localizeFromScratch } from 'langutil'
+import { LangutilCore, localizeFromScratch } from 'langutil'
 
 const dictionary = {
   en: {
@@ -17,7 +17,7 @@ const dictionary = {
   },
 }
 
-const core = createLangutilCore(dictionary, 'en')
+const core = new LangutilCore(dictionary, 'en')
 
 core.localizeExplicitly('ja', 'SOMETIMES_IM_A_BEAR')
 // ある時はクマ、そしてまたある時は…ク-マ。

@@ -6,7 +6,7 @@ import { LangutilLanguage } from '../../schema'
  * @returns A array of strings representing the available client languages, or
  * null if unavailable.
  */
-function getClientLanguages(): Array<LangutilLanguage> | null {
+export function getClientLanguages(): Array<LangutilLanguage> | null {
   if (typeof navigator !== 'undefined') {
     if (navigator.language) {
       return [navigator.language]
@@ -16,5 +16,3 @@ function getClientLanguages(): Array<LangutilLanguage> | null {
   }
   return null
 }
-
-export default getClientLanguages

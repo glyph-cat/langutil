@@ -4,11 +4,11 @@ import { IntegrationTestProps } from '../../constants'
 export default function (testProps: IntegrationTestProps): void {
 
   const { Langutil } = testProps
-  const { createLangutilCore } = Langutil
+  const { LangutilCore } = Langutil
 
   test('.cloneCurrent', () => {
     // Original core is compared as well to test for mutability
-    const originalCore = createLangutilCore(SAMPLE_DICTIONARY, 'id')
+    const originalCore = new LangutilCore(SAMPLE_DICTIONARY, 'id')
     originalCore.setLanguage('en', { auto: true })
     const clonedCore = originalCore.cloneCurrent()
     originalCore.setLanguage('id', { auto: false })
@@ -24,7 +24,7 @@ export default function (testProps: IntegrationTestProps): void {
 
   test('.cloneCurrent', () => {
     // Original core is compared as well to test for mutability
-    const originalCore = createLangutilCore(SAMPLE_DICTIONARY, 'id')
+    const originalCore = new LangutilCore(SAMPLE_DICTIONARY, 'id')
     originalCore.setLanguage('en', { auto: true })
     const clonedCore = originalCore.cloneInitial()
     originalCore.setLanguage('id', { auto: false })

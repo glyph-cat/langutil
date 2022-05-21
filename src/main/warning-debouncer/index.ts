@@ -9,6 +9,8 @@ export type WarningDebouncer = (
 
 type MissingLocalizationsSchema = Record<LangutilLanguage, Array<LangutilKeyword>>
 
+// TODO: Convert to class
+
 export function createWarningDebouncer(
   spy?: (msg: string) => void
 ): WarningDebouncer {

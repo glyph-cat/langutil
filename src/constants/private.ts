@@ -1,4 +1,21 @@
+import { BUILD_TYPE } from './public'
+
+/**
+ * @internal
+ */
 export const INTERNALS_SYMBOL = Symbol()
+
+/**
+ * Refers to the non-production environment where Relink is used by developers.
+ * @internal
+ */
+export const IS_DEV_ENV = process.env.NODE_ENV !== 'production'
+
+/**
+ * Refers to the environment used to develop Relink.
+ * @internal
+ */
+export const IS_INTERNAL_DEBUG_ENV = process.env.IS_INTERNAL_DEBUG_ENV !== 'false'
 
 /**
  * Used to be `IS_BROWSER_ENV` which only `typeof window` is checked.
@@ -6,34 +23,37 @@ export const INTERNALS_SYMBOL = Symbol()
  * browser. Even though it is accessible now, there's no guarantee it will stay
  * the same in the future. A more logical and transparent way is to create a
  * separate build for React Native where `IS_CLIENT_ENV` will always be true.
+ * Here, it is also assumed that the internal debug environment and UMD builds
+ * run on a client.
+ *
+ * NOTE: This should only be used to control the library's behaviour in
+ * different environments, NOT for checking whether browser APIs are available.
+ *
+ * @internal
  */
-export const IS_CLIENT_ENV = process.env.BUILD_ENV === 'react-native' ||
+export const IS_CLIENT_ENV =
+  IS_INTERNAL_DEBUG_ENV ||
+  BUILD_TYPE === 'RN' ||
+  BUILD_TYPE === 'UMD' ||
+  BUILD_TYPE === 'UMD_MIN' ||
   typeof window !== 'undefined'
 // ^ NOTE: `typeof window !== 'undefined'` must be placed at the last because
 // the value remains unknown at compile time, and will result in dead code not
 // trimmed even when `IS_CLIENT_ENV` is undoubtedly true.
 
+/**
+ * @internal
+ */
 export const IS_DEBUG_ENV = process.env.NODE_ENV !== 'production'
 
+/**
+ * @internal
+ */
 export const IS_DIST_ENV = process.env.IS_DIST_ENV === 'true'
 
 /**
  * Throughout the entire project, there are many `typeof variable === 'object'`
  * comparisons. By refactoring this `'object'` string, we can save a few bytes.
+ * @internal
  */
 export const TYPE_OBJECT = 'object'
-
-/**
- * @public
- */
-export enum LangutilEvents {
-  hydration = 1,
-  dictionarySet,
-  dictionaryAppend,
-  language,
-}
-
-/**
- * @public
- */
-export const VERSION = process.env.NPM_PACKAGE_VERSION

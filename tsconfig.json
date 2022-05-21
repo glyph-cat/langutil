@@ -13,7 +13,7 @@
     "outDir": "./temp/tsc/js",
     "skipLibCheck": true,
     "stripInternal": true,
-    "target": "ESNext"
+    // "target": "ESNext"
   },
   "exclude": [
     "node_modules",

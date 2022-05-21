@@ -7,11 +7,11 @@ import { IntegrationTestProps } from '../../constants'
 export default function (testProps: IntegrationTestProps): void {
 
   const { Langutil } = testProps
-  const { createLangutilCore } = Langutil
+  const { LangutilCore } = Langutil
 
   test('.setDictionary', () => {
 
-    const core = createLangutilCore(SAMPLE_DICTIONARY, 'en')
+    const core = new LangutilCore(SAMPLE_DICTIONARY, 'en')
     core.setDictionary(SAMPLE_DICTIONARY_ALT)
 
     // Expect dictionary to be completely replaced

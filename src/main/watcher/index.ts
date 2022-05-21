@@ -1,17 +1,8 @@
-export type WatcherCallback<P> = (...args: Array<P>) => void
-
-export type UnwatchCallback = () => void
-
-export interface Watcher<P> {
-  M$watch(callback: WatcherCallback<P>): UnwatchCallback
-  M$refresh: WatcherCallback<P>
-}
-
 /**
  * Creates a Watcher.
  * @returns A Watcher object.
  * @example
- * const watcher = createWatcher()
+ * const watcher = new Watcher()
  *
  * const unwatch = watcher.watch(() => { ... })
  *
@@ -20,29 +11,24 @@ export interface Watcher<P> {
  *
  * unwatch()
  */
-export function createWatcher<P>(): Watcher<P> {
+export class Watcher<P> {
 
-  const watcherMap: Map<number, CallableFunction> = new Map()
-  let incrementalWatchId = 1
+  private incrementalWatchId = 0
+  private watcherMap: Map<number, CallableFunction> = new Map()
 
-  function M$watch(callback: WatcherCallback<P>): UnwatchCallback {
-    const newId = incrementalWatchId++
-    watcherMap.set(newId, callback)
+  M$watch = (callback: ((...args: Array<P>) => void)): (() => void) => {
+    const newId = ++this.incrementalWatchId
+    this.watcherMap.set(newId, callback)
     const unwatch = (): void => {
-      watcherMap.delete(newId)
+      this.watcherMap.delete(newId)
     }
     return unwatch
   }
 
-  function M$refresh(...args: Array<P>): void {
-    watcherMap.forEach((callback) => {
+  M$refresh = (...args: Array<P>): void => {
+    this.watcherMap.forEach((callback) => {
       callback(...args)
     })
-  }
-
-  return {
-    M$watch,
-    M$refresh,
   }
 
 }
