@@ -1,4 +1,5 @@
-import { LangutilCore, LangutilState } from '../schema'
+import { LangutilCore } from '../main/core'
+import { LangutilState } from '../schema'
 
 /**
  * @public

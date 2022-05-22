@@ -1,13 +1,12 @@
 import hoistNonReactStatics from 'hoist-non-react-statics'
 import {
-  createElement,
   ForwardedRef,
   forwardRef,
   PropsWithChildren,
 } from 'react'
 import { SYNTAX_ERROR_CONFLICTING_LANGUTIL_STATE_PROP } from '../../errors'
-import { LangutilCore } from '../../schema'
-import getDisplayName from '../get-display-name'
+import { LangutilCore } from '../../main/core'
+import { getDisplayName } from '../get-display-name'
 import { LangutilReactState } from '../schema'
 import { useLangutil } from '../use-langutil'
 

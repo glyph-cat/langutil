@@ -1,6 +1,6 @@
 import { getMergedDictionary } from '.'
 
-test(getMergedDictionary.name, () => {
+test(getMergedDictionary.name, (): void => {
   const d1 = {
     en: { FOO: 'foo', BAR: 'bar', BAZ: 'Baz' },
     zh: { FOO: '胡', BAR: '巴' },

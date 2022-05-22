@@ -1,11 +1,17 @@
 import {
-  INTERNALS_SYMBOL,
+  $$INTERNALS,
   IS_CLIENT_ENV,
   IS_DEBUG_ENV,
   LangutilEvents,
   TYPE_OBJECT,
 } from '../../constants'
 import { TYPE_ERROR_DICTIONARY_INVALID_TYPE } from '../../errors'
+import { devInfo, devWarn, displayStringArray } from '../../internals/dev'
+import { getMergedDictionary } from '../../internals/get-merged-dictionary'
+import { baseLocalizer } from '../../internals/localizer'
+import { getResolvedLanguageAnyToMany } from '../../internals/resolve-language'
+import { createWarningDebouncer } from '../../internals/warning-debouncer'
+import { Watcher } from '../../internals/watcher'
 import {
   LangutilAutoDetectFlag,
   LangutilDictionaryIsolated,
@@ -22,17 +28,11 @@ import {
   LangutilState,
   LangutilStringmapParam,
 } from '../../schema'
-import { devInfo, devWarn, displayStringArray } from '../dev'
 import { getClientLanguages } from '../get-client-languages'
-import { getMergedDictionary } from '../get-merged-dictionary'
-import { baseLocalizer } from '../localizer'
-import { getResolvedLanguageAnyToMany } from '../resolve-language'
-import { createWarningDebouncer } from '../warning-debouncer'
-import { Watcher } from '../watcher'
 
 const pushWarning = IS_DEBUG_ENV ? createWarningDebouncer() : undefined
 
-// TODO: Bind all public methods and use arrow functions 
+// TODO: Bind all public methods and use arrow functions
 
 /**
  * @public
@@ -62,7 +62,7 @@ export class LangutilCore<D = LangutilDictionaryIsolated> {
   /**
    * @internal
    */
-  M$watcher = new Watcher<LangutilEvent<D>>()
+  M$watcher = new Watcher<[LangutilEvent<D>]>()
 
   // TODO:
   /**
@@ -447,7 +447,7 @@ export class LangutilCore<D = LangutilDictionaryIsolated> {
    * Watch for changes when language is set or dictionary is set or appendded.
    * @public
    */
-  watch: Watcher<LangutilEvent<D>>['M$watch'] // LangutilEventCallback<D>
+  watch: Watcher<[LangutilEvent<D>]>['M$watch'] // LangutilEventCallback<D>
 
 }
 
@@ -455,7 +455,7 @@ interface LangutilCoreInternalInstance<D> {
   M$dictionary: D
   M$language: keyof D
   M$isAuto: LangutilAutoDetectFlag
-  M$watcher: Watcher<LangutilEvent<D>>
+  M$watcher: Watcher<[LangutilEvent<D>]>
   M$refresh(event: LangutilEvent<D>): void
 }
 
@@ -467,7 +467,7 @@ export function createLangutilCore_OLD<D extends LangutilDictionaryIsolated>(
     M$dictionary: ({} as D),
     M$language: null,
     M$isAuto: false,
-    M$watcher: new Watcher<LangutilEvent<D>>(),
+    M$watcher: new Watcher<[LangutilEvent<D>]>(),
     M$refresh: (event: LangutilEvent<D>) => {
       self.M$watcher.M$refresh(event)
     },
@@ -725,7 +725,7 @@ export function createLangutilCore_OLD<D extends LangutilDictionaryIsolated>(
   // === Core Instance ===
 
   const coreInstance: LangutilCore<D> = {
-    [INTERNALS_SYMBOL]: {},
+    [$$INTERNALS]: null,
     hydrate,
     setLanguage,
     getLanguage,

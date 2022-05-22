@@ -6,7 +6,7 @@ import {
   LangutilStringmapParam,
 } from '../../schema'
 import { propertyExists } from '../object-utils'
-import stringmap, { warnIfPlaceholdersArePresent } from '../stringmap'
+import { stringmap, warnIfPlaceholdersArePresent } from '../../main/stringmap'
 import { WarningDebouncer } from '../warning-debouncer'
 
 export function baseLocalizer<D>(

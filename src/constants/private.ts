@@ -3,7 +3,7 @@ import { BUILD_TYPE } from './public'
 /**
  * @internal
  */
-export const INTERNALS_SYMBOL = Symbol()
+export const $$INTERNALS = Symbol()
 
 /**
  * Refers to the non-production environment where Relink is used by developers.

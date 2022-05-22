@@ -1,8 +1,8 @@
 import { IS_DEBUG_ENV, TYPE_OBJECT } from '../../constants'
 import { TYPE_ERROR_STRINGMAP_INVALID_PARAM_TYPE } from '../../errors'
-import { devWarn } from '../dev'
-import getRandomHash from '../get-random-hash'
-import { getItemByPath, NO_VALUE } from '../object-utils'
+import { devWarn } from '../../internals/dev'
+import getRandomHash from '../../internals/get-random-hash'
+import { getItemByPath, NO_VALUE } from '../../internals/object-utils'
 
 const globalArrayPlaceholderPattern = /(%p)/g
 const globalObjectPlaceholderPattern = /{:[a-z][a-z0-9.]*}/gi
@@ -13,6 +13,7 @@ const globalObjectPlaceholderPattern = /{:[a-z][a-z0-9.]*}/gi
  * @param str The original string to perform substitution on.
  * @param rgx The regular expression of string to swap.
  * @returns A tuple containing the substituted string and the swapper used.
+ * @internal
  */
 export function substituteWithUniqueSwapper(
   str: string,
@@ -32,9 +33,10 @@ export function substituteWithUniqueSwapper(
 
 /**
  * Substitutes each element in an array into a given string.
- * @param newStr String to modify.
+ * @param str String to modify.
  * @param arr Array to use.
  * @returns The mapped string.
+ * @internal
  */
 export function stringmapArray(str: string, arr: Array<unknown>): string {
   const swapperSpecs = substituteWithUniqueSwapper(str, /(%%p)/g)
@@ -71,6 +73,7 @@ export function stringmapArray(str: string, arr: Array<unknown>): string {
  * @param obj The supplementary data where its items will be swapped into the
  * string.
  * @returns The mapped string.
+ * @internal
  */
 export function stringmapObject(
   str: string,
@@ -103,7 +106,7 @@ export function stringmapObject(
  * Langutil for inserting parameters into localized values.
  * @public
  */
-export default function stringmap(
+export function stringmap(
   str: string,
   param: Array<unknown> | Record<string, unknown>
 ): string {
@@ -123,6 +126,9 @@ export default function stringmap(
   }
 }
 
+/**
+ * @internal
+ */
 export function warnIfPlaceholdersArePresent(str: string): boolean | undefined {
   if (IS_DEBUG_ENV) {
     let shouldWarn = false

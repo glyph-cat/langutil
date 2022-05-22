@@ -93,5 +93,8 @@
     "react-native": {
       "optional": true
     }
+  },
+  "dependencies": {
+    "use-sync-external-store": "^1.1.0"
   }
 }

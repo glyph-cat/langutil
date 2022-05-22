@@ -1,4 +1,4 @@
-import getDisplayName from '.'
+import { getDisplayName } from '.'
 
 describe(getDisplayName.name, () => {
 

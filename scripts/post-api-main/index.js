@@ -6,7 +6,7 @@ const fileContents = fs.readFileSync(FILE_PATH, FS_OPTIONS)
 const fileContentsByRow = fileContents.split('\n')
 
 let lineToRemove = -1
-const lineContentsToRemove = 'export declare const INTERNALS_SYMBOL: unique symbol'
+const lineContentsToRemove = 'export declare const $$INTERNALS: unique symbol'
 for (let i = 0; i < fileContentsByRow.length; i++) {
   if (fileContentsByRow[i].includes(lineContentsToRemove)) {
     lineToRemove = i

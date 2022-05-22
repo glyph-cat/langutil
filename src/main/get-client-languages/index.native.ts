@@ -1,4 +1,3 @@
-// eslint-disable-next-line import/no-deprecated
 import { NativeModules, Platform } from 'react-native'
 import { LangutilLanguage } from '../../schema'
 import parseAppleKeyboards from './parse-apple-keyboards'
