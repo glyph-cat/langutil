@@ -14,6 +14,7 @@ const EMPTY_CACHED_SYNC_VALUE: SyncValue<any> = {
 
 /**
  * @public
+ * @ReactBundle
  */
 export function useLangutil<D>(core: LangutilCore<D>): LangutilReactState<D> {
   const cachedSyncValue = useRef<SyncValue<LangutilReactState<D>>>(EMPTY_CACHED_SYNC_VALUE)

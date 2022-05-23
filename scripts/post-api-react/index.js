@@ -3,45 +3,38 @@ const fs = require('fs')
 const FS_OPTIONS = { encoding: 'utf-8' }
 const FILE_PATH = './react/lib/types/index.d.ts'
 const fileContents = fs.readFileSync(FILE_PATH, FS_OPTIONS)
-const fileContentsByRow = fileContents.split('\n')
 
-let firstImportLine = -1
-let lastImportLine = -1
+let fileContentsByLine = fileContents.split('\n')
 
-for (let i = 0; i < fileContentsByRow.length; i++) {
+// Inject missing import
+// eslint-disable-next-line quotes
+const missingImport = "\nimport { LangutilCore, LangutilState } from '../../..';"
+fileContentsByLine.splice(1, 0, missingImport)
 
-  const currentRow = fileContentsByRow[i]
-  const importRegex = /^import/
-
-  // Find first import line
-  if (firstImportLine < 0) {
-    if (importRegex.test(currentRow)) {
-      firstImportLine = i
-    }
+// TODO: Ideally, automatically remove all exports without the `@ReactBundle` tag
+// Tamper with all exported declarations that don't have the `@ReactBundle` tag
+// so the editor will underline them in red, which makes it less likely to
+// forget to remove them.
+for (let i = 0; i < fileContentsByLine.length; i++) {
+  if (/^declare/.test(fileContentsByLine[i])) {
+    fileContentsByLine[i] = `un${fileContentsByLine[i]}`
+    // declare -> undeclare
   }
-
-  // Find last import line
-  if (firstImportLine >= 0 && lastImportLine < 0) {
-    if (!importRegex.test(currentRow)) {
-      // If current line is no longer an import statement,
-      // then the previous line is the last one
-      lastImportLine = i
-      // break
-    }
-  }
-
-  // Tamper with all exported declarations so that editor will underline them in red
-  // This makes it less likely that we will forget to remove them
-  if (firstImportLine >= 0 && lastImportLine >= 0) {
-    fileContentsByRow[i] = fileContentsByRow[i].replace(/^declare/, 'TO_REMOVE')
-  }
-
 }
 
-// eslint-disable-next-line quotes
-const missingImport = "import { LangutilCore, LangutilState } from '../../..';"
-fileContentsByRow.splice(lastImportLine, 0, missingImport)
+// Remove lines:
+// - with `@ReactBundle` tags
+// - useless `export { }` statement
+fileContentsByLine = fileContentsByLine.filter((currentLine) => {
+  return !/@ReactBundle/.test(currentLine) && !/export { }/.test(currentLine)
+})
 
 // Rewrite the file
-const newFileContents = fileContentsByRow.join('\n')
+const newFileContents = fileContentsByLine
+  .join('\n')
+  .replace(/\n\n+/, '\n') // If more than one empty line, trim them.
 fs.writeFileSync(FILE_PATH, newFileContents, FS_OPTIONS)
+
+// NOTE: Old implementation that actually scans each line to find the last line
+// of import statement has been removed. To find it back refer to this commit:
+// 128523c3e20d49a66bbeea400e04e48fa8e45898

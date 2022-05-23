@@ -1,5 +1,6 @@
 import hoistNonReactStatics from 'hoist-non-react-statics'
 import {
+  createElement,
   ForwardedRef,
   forwardRef,
   PropsWithChildren,
@@ -12,6 +13,7 @@ import { useLangutil } from '../use-langutil'
 
 /**
  * @public
+ * @ReactBundle
  */
 export interface withLangutilOptions {
   displayName?: string
@@ -19,6 +21,7 @@ export interface withLangutilOptions {
 
 /**
  * @public
+ * @ReactBundle
  */
 export interface WithLangutilProps<D> extends React.ComponentProps<any> {
   langutilState: LangutilReactState<D>
@@ -28,6 +31,7 @@ export interface WithLangutilProps<D> extends React.ComponentProps<any> {
 
 /**
  * @public
+ * @ReactBundle
  */
 export function createLangutilHOC<D, P extends WithLangutilProps<D> = WithLangutilProps<D>>(
   core: LangutilCore<D>,
@@ -48,18 +52,11 @@ export function createLangutilHOC<D, P extends WithLangutilProps<D> = WithLangut
       if (props['langutilState']) {
         throw SYNTAX_ERROR_CONFLICTING_LANGUTIL_STATE_PROP(displayName)
       }
-      return (
-        <WrappedComponent
-          langutilState={state}
-          ref={ref}
-          {...props}
-        />
-      )
-      // return createElement(WrappedComponent, {
-      //   langutilState: state,
-      //   ref,
-      //   ...props,
-      // })
+      return createElement(WrappedComponent, {
+        langutilState: state,
+        ref: ref,
+        ...props,
+      })
     }
     WithLangutil.displayName = displayName
     hoistNonReactStatics(WithLangutil, WrappedComponent)

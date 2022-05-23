@@ -9,37 +9,40 @@ import typescript from 'rollup-plugin-typescript2'
 import { version } from '../package.json'
 import { LangutilBuildType } from '../src/constants'
 
-const NODE_RESOLVE_CONFIG_BASE = {
+const BASE_NODE_RESOLVE_CONFIG = {
   extensions: ['.ts', '.js'],
 }
+
 const NODE_RESOLVE_CONFIG_REACT_NATIVE = {
-  ...NODE_RESOLVE_CONFIG_BASE,
+  ...BASE_NODE_RESOLVE_CONFIG,
   extensions: [
     '.native.ts',
     '.native.js',
-    ...NODE_RESOLVE_CONFIG_BASE.extensions,
+    ...BASE_NODE_RESOLVE_CONFIG.extensions,
   ],
 }
 
 const MAIN_INPUT_FILE = 'src/main-bundle.ts'
 const REACT_INPUT_FILE = 'src/react/index.ts'
 
-const EXTERNAL_LIBS_MAIN = []
-const EXTERNAL_LIBS_REACT = [
-  ...EXTERNAL_LIBS_MAIN,
+const MAIN_BUNDLE_EXTERNAL_LIBS = []
+const MAIN_BUNDLE_UMD_GLOBALS = {}
+
+const REACT_BUNDLE_EXTERNAL_LIBS = [
+  ...MAIN_BUNDLE_EXTERNAL_LIBS,
   'hoist-non-react-statics',
   'react',
 ]
-const EXTERNAL_LIBS_REACT_DOM = [
-  ...EXTERNAL_LIBS_REACT,
+const REACT_DOM_EXTERNAL_LIBS = [
+  ...REACT_BUNDLE_EXTERNAL_LIBS,
   'react-dom',
 ]
-const EXTERNAL_LIBS_REACT_NATIVE = [
-  ...EXTERNAL_LIBS_REACT,
+const REACT_NATIVE_EXTERNAL_LIBS = [
+  ...REACT_BUNDLE_EXTERNAL_LIBS,
   'react-native',
 ]
-
-const UMD_GLOBALS = {
+const REACT_BUNDLE_UMD_GLOBALS = {
+  ...MAIN_BUNDLE_UMD_GLOBALS,
   react: 'React',
   'hoist-non-react-statics': 'hoistNonReactStatics',
   'react-dom': 'ReactDOM',
@@ -60,7 +63,7 @@ function getPlugins(config: PluginConfigSchema): Array<RollupPlugin> {
     buildType,
   } = config
   const basePlugins = {
-    nodeResolve: nodeResolve(NODE_RESOLVE_CONFIG_BASE),
+    nodeResolve: nodeResolve(BASE_NODE_RESOLVE_CONFIG),
     autoImportReact: autoImportReact(),
     typescript: typescript({
       tsconfigOverride: {
@@ -129,7 +132,7 @@ const coreConfig: Array<RollupOptions> = [
       format: 'cjs',
       exports: 'named',
     },
-    external: EXTERNAL_LIBS_MAIN,
+    external: MAIN_BUNDLE_EXTERNAL_LIBS,
     plugins: getPlugins({
       buildType: LangutilBuildType.CJS,
     }),
@@ -142,7 +145,7 @@ const coreConfig: Array<RollupOptions> = [
       format: 'es',
       exports: 'named',
     },
-    external: EXTERNAL_LIBS_MAIN,
+    external: MAIN_BUNDLE_EXTERNAL_LIBS,
     plugins: getPlugins({
       buildType: LangutilBuildType.ES,
     }),
@@ -155,7 +158,7 @@ const coreConfig: Array<RollupOptions> = [
       format: 'es',
       exports: 'named',
     },
-    external: EXTERNAL_LIBS_MAIN,
+    external: MAIN_BUNDLE_EXTERNAL_LIBS,
     plugins: getPlugins({
       buildType: LangutilBuildType.MJS,
       mode: 'production',
@@ -169,7 +172,7 @@ const coreConfig: Array<RollupOptions> = [
       format: 'es',
       exports: 'named',
     },
-    external: EXTERNAL_LIBS_REACT_NATIVE,
+    external: REACT_NATIVE_EXTERNAL_LIBS,
     plugins: getPlugins({
       buildType: LangutilBuildType.RN,
       overrides: {
@@ -186,7 +189,7 @@ const coreConfig: Array<RollupOptions> = [
       name: 'Langutil',
       exports: 'named',
     },
-    external: EXTERNAL_LIBS_MAIN,
+    external: MAIN_BUNDLE_EXTERNAL_LIBS,
     plugins: getPlugins({
       buildType: LangutilBuildType.UMD,
       mode: 'development',
@@ -201,7 +204,7 @@ const coreConfig: Array<RollupOptions> = [
       name: 'Langutil',
       exports: 'named',
     },
-    external: EXTERNAL_LIBS_MAIN,
+    external: MAIN_BUNDLE_EXTERNAL_LIBS,
     plugins: getPlugins({
       buildType: LangutilBuildType.UMD_MIN,
       mode: 'production',
@@ -218,7 +221,7 @@ const reactConfig: Array<RollupOptions> = [
       format: 'cjs',
       exports: 'named',
     },
-    external: EXTERNAL_LIBS_REACT_DOM,
+    external: REACT_DOM_EXTERNAL_LIBS,
     plugins: getPlugins({
       buildType: LangutilBuildType.CJS,
       presets: ['@babel/preset-react'],
@@ -232,7 +235,7 @@ const reactConfig: Array<RollupOptions> = [
       format: 'es',
       exports: 'named',
     },
-    external: EXTERNAL_LIBS_REACT_DOM,
+    external: REACT_DOM_EXTERNAL_LIBS,
     plugins: getPlugins({
       buildType: LangutilBuildType.ES,
       presets: ['@babel/preset-react'],
@@ -246,7 +249,7 @@ const reactConfig: Array<RollupOptions> = [
       format: 'es',
       exports: 'named',
     },
-    external: EXTERNAL_LIBS_REACT_DOM,
+    external: REACT_DOM_EXTERNAL_LIBS,
     plugins: getPlugins({
       buildType: LangutilBuildType.MJS,
       mode: 'production',
@@ -261,7 +264,7 @@ const reactConfig: Array<RollupOptions> = [
       format: 'es',
       exports: 'named',
     },
-    external: EXTERNAL_LIBS_REACT_NATIVE,
+    external: REACT_NATIVE_EXTERNAL_LIBS,
     plugins: getPlugins({
       buildType: LangutilBuildType.RN,
       presets: ['@babel/preset-react'],
@@ -278,9 +281,9 @@ const reactConfig: Array<RollupOptions> = [
       format: 'umd',
       name: 'LangutilReact',
       exports: 'named',
-      globals: UMD_GLOBALS,
+      globals: REACT_BUNDLE_UMD_GLOBALS,
     },
-    external: EXTERNAL_LIBS_REACT_DOM,
+    external: REACT_DOM_EXTERNAL_LIBS,
     plugins: getPlugins({
       buildType: LangutilBuildType.UMD,
       mode: 'development',
@@ -295,9 +298,9 @@ const reactConfig: Array<RollupOptions> = [
       format: 'umd',
       name: 'LangutilReact',
       exports: 'named',
-      globals: UMD_GLOBALS,
+      globals: REACT_BUNDLE_UMD_GLOBALS,
     },
-    external: EXTERNAL_LIBS_REACT_DOM,
+    external: REACT_DOM_EXTERNAL_LIBS,
     plugins: getPlugins({
       buildType: LangutilBuildType.UMD_MIN,
       mode: 'production',
@@ -307,8 +310,9 @@ const reactConfig: Array<RollupOptions> = [
 ]
 
 const config = [
-  ...coreConfig,
-  ...reactConfig,
+  coreConfig[0],
+  // ...coreConfig,
+  // ...reactConfig,
 ]
 
 export default config
