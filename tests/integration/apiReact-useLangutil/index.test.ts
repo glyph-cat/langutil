@@ -9,6 +9,8 @@ import { wrapper } from '../wrapper'
 const cleanupRef = createCleanupRef()
 afterEach((): void => { cleanupRef.run() })
 
+// TODO: Also test if core methods are forwarded
+
 wrapper(({
   Langutil: { LangutilCore },
   LangutilReact: { useLangutil },

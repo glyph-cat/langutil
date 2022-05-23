@@ -17,7 +17,7 @@
     "sourceMap": true,
     "strict": false,
     "stripInternal": true,
-    // "target": "ESNext"
+    "target": "ES5"
   },
   "exclude": [
     "node_modules",

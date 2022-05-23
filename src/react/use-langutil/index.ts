@@ -20,20 +20,30 @@ export function useLangutil<D>(core: LangutilCore<D>): LangutilReactState<D> {
   const syncState = useSyncExternalStore(
     core.watch,
     useCallback(() => {
-      const {
-        isAuto: previousAuto,
-        language: previousLanguage,
-      } = cachedSyncValue.current[$$INTERNALS]
+      /**
+       * It is `false` by default so that if it's first time the hook is
+       * running, a new value will be created.
+       */
+      let shouldReturnCachedValue = false
       const currentLangutilState = core.getLangutilState()
-      const {
-        isAuto: currentAuto,
-        language: currentLanguage,
-      } = currentLangutilState
-
-      const shouldReturnCachedValue =
-        previousAuto === currentAuto &&
-        previousLanguage === currentLanguage
-
+      /**
+       * If cached sync value is `null`, it means it's probably the first time
+       * this hook is running and there is no "cached value" that we can return.
+       */
+      const isFirstTimeRunningHook = Object.is(cachedSyncValue.current[$$INTERNALS], null)
+      if (!isFirstTimeRunningHook) {
+        const {
+          isAuto: previousAuto,
+          language: previousLanguage,
+        } = cachedSyncValue.current[$$INTERNALS]
+        const {
+          isAuto: currentAuto,
+          language: currentLanguage,
+        } = currentLangutilState
+        shouldReturnCachedValue =
+          previousAuto === currentAuto &&
+          previousLanguage === currentLanguage
+      }
       if (shouldReturnCachedValue) {
         return cachedSyncValue.current
       } else {

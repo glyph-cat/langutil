@@ -48,14 +48,21 @@ export interface LangutilState<D = LangutilDictionaryIsolated> {
 /**
  * @public
  */
-export interface LangutilInitOptions {
+export interface LangutilCoreOptions {
   auto?: boolean
 }
 
 /**
  * @public
+ * @deprecated Please use {@link LangutilCoreOptions} instead.
  */
-export type LangutilSetLanguageOptions = LangutilInitOptions
+export type LangutilInitOptions = LangutilCoreOptions
+
+/**
+ * @public
+ * @deprecated Please use {@link LangutilCoreOptions} instead.
+ */
+export type LangutilSetLanguageOptions = LangutilCoreOptions
 
 /**
  * @public

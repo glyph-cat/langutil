@@ -16,9 +16,7 @@ describe(getDisplayName.name, (): void => {
   })
 
   test('Unavailable', (): void => {
-    const MyComponent = (): JSX.Element => null
-    delete MyComponent['displayName']
-    const output = getDisplayName(MyComponent)
+    const output = getDisplayName(null)
     expect(output).toBe('Unknown')
   })
 
