@@ -1,5 +1,5 @@
 export * from '../constants/public'
 export * from './core'
-export { getClientLanguages } from './get-client-languages'
+export * from './get-client-languages'
 export * from '../schema'
 export { stringmap } from './stringmap'

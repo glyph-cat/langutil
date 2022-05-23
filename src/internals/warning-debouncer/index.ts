@@ -1,4 +1,4 @@
-import { IS_DIST_ENV } from '../../constants'
+import { IS_INTERNAL_DEBUG_ENV } from '../../constants'
 import { LangutilKeyword, LangutilLanguage } from '../../schema'
 import { devWarn } from '../dev'
 
@@ -33,7 +33,7 @@ export function createWarningDebouncer(
       : formatMultiLineMissingLoc(missingLocalizations)
     missingLocalizations = {}
     devWarn(message)
-    if (!IS_DIST_ENV) {
+    if (IS_INTERNAL_DEBUG_ENV) {
       // NOTE: Must be nested otherwise terser will not be able to completely
       // remove it.
       if (typeof spy === 'function') {

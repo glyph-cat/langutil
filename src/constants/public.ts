@@ -1,7 +1,7 @@
 /**
  * @public
  */
-export enum RelinkBuildType {
+export enum LangutilBuildType {
   /**
    * React Native
    */
@@ -31,7 +31,7 @@ export enum RelinkBuildType {
 /**
  * @public
  */
-export const BUILD_TYPE = process.env.BUILD_TYPE as RelinkBuildType
+export const BUILD_TYPE = process.env.BUILD_TYPE as LangutilBuildType
 
 /**
  * @public

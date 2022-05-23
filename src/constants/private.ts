@@ -1,3 +1,4 @@
+import type { ObjectMarker } from '../internals/helper-types'
 import { BUILD_TYPE } from './public'
 
 /**
@@ -6,13 +7,18 @@ import { BUILD_TYPE } from './public'
 export const $$INTERNALS = Symbol()
 
 /**
- * Refers to the non-production environment where Relink is used by developers.
+ * @internal
+ */
+export const EMPTY_OBJECT: ObjectMarker = {} as const
+
+/**
+ * Refers to the non-production environment where Langutil is used by developers.
  * @internal
  */
 export const IS_DEV_ENV = process.env.NODE_ENV !== 'production'
 
 /**
- * Refers to the environment used to develop Relink.
+ * Refers to the environment used to develop Langutil.
  * @internal
  */
 export const IS_INTERNAL_DEBUG_ENV = process.env.IS_INTERNAL_DEBUG_ENV !== 'false'
@@ -45,11 +51,6 @@ export const IS_CLIENT_ENV =
  * @internal
  */
 export const IS_DEBUG_ENV = process.env.NODE_ENV !== 'production'
-
-/**
- * @internal
- */
-export const IS_DIST_ENV = process.env.IS_DIST_ENV === 'true'
 
 /**
  * Throughout the entire project, there are many `typeof variable === 'object'`

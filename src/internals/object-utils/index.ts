@@ -1,11 +1,11 @@
+import { EMPTY_OBJECT } from '../../constants'
+
 export function propertyExists(
   obj: Record<string, unknown>,
   key: string
 ): boolean {
   return Object.prototype.hasOwnProperty.call(obj, key)
 }
-
-export const NO_VALUE = {}
 
 /**
  * Allows you to access object properties by dot notation.
@@ -26,7 +26,7 @@ export function getItemByPath(
     if (propertyExists(data, key)) {
       data = data[key] as Record<string, unknown>
     } else {
-      return NO_VALUE
+      return EMPTY_OBJECT
     }
   }
   return data

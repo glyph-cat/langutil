@@ -1,6 +1,6 @@
-import getRandomhash from '.'
+import { getRandomHash } from '.'
 
-test(getRandomhash.name, (): void => {
-  const output = getRandomhash(8)
+test(getRandomHash.name, (): void => {
+  const output = getRandomHash(8)
   expect(output).toMatch(/^[0-9a-f]{8}$/)
 })

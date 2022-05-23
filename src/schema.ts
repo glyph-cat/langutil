@@ -80,11 +80,6 @@ export interface LangutilEvent<D = LangutilDictionaryIsolated> {
   data: LangutilEventData<D>
 }
 
-// /**
-//  * @public
-//  */
-// export type LangutilEventCallback<D = LangutilDictionaryIsolated> = Watcher<LangutilEvent<D>>['M$watch']
-
 /**
  * @public
  */

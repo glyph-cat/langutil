@@ -1,17 +1,24 @@
-import { IS_DEBUG_ENV, TYPE_OBJECT } from '../../constants'
+import { EMPTY_OBJECT, IS_DEBUG_ENV, TYPE_OBJECT } from '../../constants'
 import { TYPE_ERROR_STRINGMAP_INVALID_PARAM_TYPE } from '../../errors'
 import { devWarn } from '../../internals/dev'
-import getRandomHash from '../../internals/get-random-hash'
-import { getItemByPath, NO_VALUE } from '../../internals/object-utils'
+import { getRandomHash } from '../../internals/get-random-hash'
+import { getItemByPath } from '../../internals/object-utils'
 
+/**
+ * @internal
+ */
 const globalArrayPlaceholderPattern = /(%p)/g
+
+/**
+ * @internal
+ */
 const globalObjectPlaceholderPattern = /{:[a-z][a-z0-9.]*}/gi
 
 /**
  * Substitutes all occurence of a key in the string with a random hash, which
  * the hash can be later be swapped into another value.
- * @param str The original string to perform substitution on.
- * @param rgx The regular expression of string to swap.
+ * @param str - The original string to perform substitution on.
+ * @param rgx - The regular expression of string to swap.
  * @returns A tuple containing the substituted string and the swapper used.
  * @internal
  */
@@ -33,8 +40,8 @@ export function substituteWithUniqueSwapper(
 
 /**
  * Substitutes each element in an array into a given string.
- * @param str String to modify.
- * @param arr Array to use.
+ * @param str - String to modify.
+ * @param arr - Array to use.
  * @returns The mapped string.
  * @internal
  */
@@ -68,9 +75,9 @@ export function stringmapArray(str: string, arr: Array<unknown>): string {
 
 /**
  * Replaces all {:placeholder} in `string` with `data.placeholder`.
- * @param str The original string containing {:placeholders}.
+ * @param str - The original string containing {:placeholders}.
  * Use double-colon such as {::placeholder} to escape from swapping.
- * @param obj The supplementary data where its items will be swapped into the
+ * @param obj - The supplementary data where its items will be swapped into the
  * string.
  * @returns The mapped string.
  * @internal
@@ -92,7 +99,7 @@ export function stringmapObject(
     // Data is accessed based on dot notation only when needed instead of
     // accessing it by flattening out the children
     const valueToSwap = getItemByPath(obj, _p)
-    if (!Object.is(valueToSwap, NO_VALUE)) {
+    if (!Object.is(valueToSwap, EMPTY_OBJECT)) {
       newString = newString.replace(rgx, `${valueToSwap}`)
     }
   }
@@ -100,6 +107,7 @@ export function stringmapObject(
   return newString
 }
 
+// TODO: Params, docs, example
 /**
  * A convenience wrapper around `stringmapArray` and `stringmapObject`, which
  * maps values in arrays/objects to a string. This is internally used by

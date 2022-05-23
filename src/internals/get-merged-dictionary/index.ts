@@ -1,11 +1,12 @@
 import { LangutilDictionaryIsolated, LangutilLanguage } from '../../schema'
 
 /**
- * @description Merges two dictionaries together
- * BUT dictionaries must be of the same language-keyword structure.
- * @param d1 The first dictionary
- * @param d2 The second dictionary
- * @returns A new copy of the merged dictionary
+ * Merges two dictionaries together BUT dictionaries must be of the same
+ * language-keyword structure.
+ * @param d1 - The first dictionary.
+ * @param d2 - The second dictionary.
+ * @returns A new copy of the merged dictionary.
+ * @internal
  */
 export function getMergedDictionary(
   d1: LangutilDictionaryIsolated,

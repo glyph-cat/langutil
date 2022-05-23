@@ -1,15 +1,9 @@
 import { useCallback, useDebugValue, useRef } from 'react'
 import { useSyncExternalStore } from 'use-sync-external-store/shim'
 import { $$INTERNALS } from '../../constants'
+import { SyncValue } from '../../internals/helper-types'
 import { LangutilCore } from '../../main/core'
 import { LangutilReactState } from '../schema'
-
-/**
- * @internal
- */
-interface SyncValue<D> {
-  [$$INTERNALS]: LangutilReactState<D>
-}
 
 /**
  * @internal

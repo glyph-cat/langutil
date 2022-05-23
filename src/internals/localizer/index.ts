@@ -9,6 +9,17 @@ import { propertyExists } from '../object-utils'
 import { stringmap, warnIfPlaceholdersArePresent } from '../../main/stringmap'
 import { WarningDebouncer } from '../warning-debouncer'
 
+/**
+ * The internal or "base" function, which all other variations of the
+ * "localize" function stem from.
+ * @param dictionary - The source of localizations.
+ * @param language - The language to localize to.
+ * @param keyword - The keyword to be localized.
+ * @param param - Extra parameters to be inserted into the localized value.
+ * @param pushWarning - A {@link WarningDebouncer}.
+ * @returns The localized value.
+ * @internal
+ */
 export function baseLocalizer<D>(
   dictionary: D,
   language: LangutilLanguage<D>,
