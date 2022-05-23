@@ -58,7 +58,7 @@ npm i langutil
 
 With UNPKG:
 ```html
-<script src="https://unpkg.com/langutil@<VERSION>/dist/umd/index.js" crossorigin></script>
+<script src="https://unpkg.com/langutil@<VERSION>/lib/umd/index.js" crossorigin></script>
 ```
 Note: Replace `index.js` with `index.min.js` when deploying.
 

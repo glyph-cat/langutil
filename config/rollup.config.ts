@@ -133,7 +133,7 @@ const coreConfig: Array<RollupOptions> = [
     // CommonJS
     input: MAIN_INPUT_FILE,
     output: {
-      file: 'dist/cjs/index.js',
+      file: 'lib/cjs/index.js',
       format: 'cjs',
       exports: 'named',
     },
@@ -146,7 +146,7 @@ const coreConfig: Array<RollupOptions> = [
     // EcmaScript
     input: MAIN_INPUT_FILE,
     output: {
-      file: 'dist/es/index.js',
+      file: 'lib/es/index.js',
       format: 'es',
       exports: 'named',
     },
@@ -159,7 +159,7 @@ const coreConfig: Array<RollupOptions> = [
     // EcmaScript (Browsers)
     input: MAIN_INPUT_FILE,
     output: {
-      file: 'dist/es/index.mjs',
+      file: 'lib/es/index.mjs',
       format: 'es',
       exports: 'named',
     },
@@ -173,7 +173,7 @@ const coreConfig: Array<RollupOptions> = [
     // React Native
     input: MAIN_INPUT_FILE,
     output: {
-      file: 'dist/native/index.js',
+      file: 'lib/native/index.js',
       format: 'es',
       exports: 'named',
     },
@@ -189,7 +189,7 @@ const coreConfig: Array<RollupOptions> = [
     // UMD
     input: MAIN_INPUT_FILE,
     output: {
-      file: 'dist/umd/index.js',
+      file: 'lib/umd/index.js',
       format: 'umd',
       name: 'Langutil',
       exports: 'named',
@@ -204,7 +204,7 @@ const coreConfig: Array<RollupOptions> = [
     // UMD (Production)
     input: MAIN_INPUT_FILE,
     output: {
-      file: 'dist/umd/index.min.js',
+      file: 'lib/umd/index.min.js',
       format: 'umd',
       name: 'Langutil',
       exports: 'named',
@@ -222,7 +222,7 @@ const reactConfig: Array<RollupOptions> = [
     // CommonJS
     input: REACT_INPUT_FILE,
     output: {
-      file: 'react/dist/cjs/index.js',
+      file: 'react/lib/cjs/index.js',
       format: 'cjs',
       exports: 'named',
     },
@@ -236,7 +236,7 @@ const reactConfig: Array<RollupOptions> = [
     // EcmaScript
     input: REACT_INPUT_FILE,
     output: {
-      file: 'react/dist/es/index.js',
+      file: 'react/lib/es/index.js',
       format: 'es',
       exports: 'named',
     },
@@ -250,7 +250,7 @@ const reactConfig: Array<RollupOptions> = [
     // EcmaScript (Browsers)
     input: REACT_INPUT_FILE,
     output: {
-      file: 'react/dist/es/index.mjs',
+      file: 'react/lib/es/index.mjs',
       format: 'es',
       exports: 'named',
     },
@@ -265,7 +265,7 @@ const reactConfig: Array<RollupOptions> = [
     // React Native
     input: REACT_INPUT_FILE,
     output: {
-      file: 'react/dist/native/index.js',
+      file: 'react/lib/native/index.js',
       format: 'es',
       exports: 'named',
     },
@@ -282,7 +282,7 @@ const reactConfig: Array<RollupOptions> = [
     // UMD
     input: REACT_INPUT_FILE,
     output: {
-      file: 'react/dist/umd/index.js',
+      file: 'react/lib/umd/index.js',
       format: 'umd',
       name: 'LangutilReact',
       exports: 'named',
@@ -299,7 +299,7 @@ const reactConfig: Array<RollupOptions> = [
     // UMD (Production)
     input: REACT_INPUT_FILE,
     output: {
-      file: 'react/dist/umd/index.min.js',
+      file: 'react/lib/umd/index.min.js',
       format: 'umd',
       name: 'LangutilReact',
       exports: 'named',

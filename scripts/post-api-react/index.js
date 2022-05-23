@@ -1,7 +1,7 @@
 const fs = require('fs')
 
 const FS_OPTIONS = { encoding: 'utf-8' }
-const FILE_PATH = './react/dist/types/index.d.ts'
+const FILE_PATH = './react/lib/types/index.d.ts'
 const fileContents = fs.readFileSync(FILE_PATH, FS_OPTIONS)
 const fileContentsByRow = fileContents.split('\n')
 

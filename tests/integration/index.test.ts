@@ -13,37 +13,37 @@ const DEBUG_BUILDS = [
 const BUNDLED_BUILDS = [
   {
     tag: 'CJS',
-    src: require('../../dist/cjs/index.js'),
-    srcReact: require('../../react/dist/cjs/index.js'),
+    src: require('../../lib/cjs/index.js'),
+    srcReact: require('../../react/lib/cjs/index.js'),
     debug: true,
   },
   {
     tag: 'UMD',
-    src: require('../../dist/umd/index.js'),
-    srcReact: require('../../react/dist/umd/index.js'),
+    src: require('../../lib/umd/index.js'),
+    srcReact: require('../../react/lib/umd/index.js'),
     debug: true,
   },
   {
     tag: 'UMD (Minified)',
-    src: require('../../dist/umd/index.min.js'),
-    srcReact: require('../../react/dist/umd/index.min.js'),
+    src: require('../../lib/umd/index.min.js'),
+    srcReact: require('../../react/lib/umd/index.min.js'),
   },
   {
     tag: 'ES',
-    src: require('../../dist/es/index.js'),
-    srcReact: require('../../react/dist/es/index.js'),
+    src: require('../../lib/es/index.js'),
+    srcReact: require('../../react/lib/es/index.js'),
     debug: true,
   },
   // Will fail (unexpected token "import"):
   // {
   //   tag: 'ES (Minified)',
-  //   src: require('../../dist/es/index.mjs'),
-  //   srcReact: require('../../react/dist/es/index.mjs'),
+  //   src: require('../../lib/es/index.mjs'),
+  //   srcReact: require('../../react/lib/es/index.mjs'),
   // },
   // {
   //   tag: 'React Native',
-  //   src: require('../../dist/native/index.js'),
-  //   srcReact: require('../../react/dist/native/index.js'),
+  //   src: require('../../lib/native/index.js'),
+  //   srcReact: require('../../react/lib/native/index.js'),
   //   debug: true,
   // },
 ]

@@ -51,7 +51,7 @@ export default withLang(MyComponent)
 * Remember to replace `index.js` with `index.min.js` when deploying.
 
 ```html
-<script src="https://unpkg.com/langutil@<VERSION>/react/dist/umd/index.js" crossorigin></script>
+<script src="https://unpkg.com/langutil@<VERSION>/react/lib/umd/index.js" crossorigin></script>
 ```
 
 <br/>
