@@ -1,8 +1,8 @@
 import { NativeModules, Platform } from 'react-native'
 import { LangutilLanguage } from '../../schema'
-import parseAppleKeyboards from './parse-apple-keyboards'
+import { parseAppleKeyboards } from './parse-apple-keyboards'
 
-function getClientLanguages(): Array<LangutilLanguage> | null {
+export function getClientLanguages(): Array<LangutilLanguage> | null {
   const getLocale = Platform.select({
     android: () => {
       // Is a string, must wrap in [] to convert to array
@@ -27,5 +27,3 @@ function getClientLanguages(): Array<LangutilLanguage> | null {
   })
   return getLocale()
 }
-
-export default getClientLanguages

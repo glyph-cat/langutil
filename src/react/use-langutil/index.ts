@@ -37,10 +37,39 @@ export function useLangutil<D>(core: LangutilCore<D>): LangutilReactState<D> {
       if (shouldReturnCachedValue) {
         return cachedSyncValue.current
       } else {
-        const nextSyncValue: LangutilReactState<D> = {
-          ...core,
-          ...currentLangutilState,
+        const nextSyncValue: SyncValue<LangutilReactState<D>> = {
+          [$$INTERNALS]: Object.assign({}, core, currentLangutilState),
+          // KIV: TS will complain about missing properties with the syntax below
+          // [$$INTERNALS]: {
+          //   ...core,
+          //   ...currentLangutilState,
+          // }
         }
+        // const nextSyncValue: LangutilReactState<D> = {
+        //   // M$dictionary: core.M$dictionary,
+        //   // M$isAuto: core.M$isAuto,
+        //   // M$language: core.M$language,
+        //   // M$watcher: core.M$watcher,
+        //   // hydrate: core.hydrate,
+        //   // setLanguage: core.setLanguage,
+        //   // getLanguage: core.getLanguage,
+        //   // getLangutilState: core.getLangutilState,
+        //   // getAllLanguages: core.getAllLanguages,
+        //   // getDictionary: core.getDictionary,
+        //   // setDictionary: core.setDictionary,
+        //   // appendDictionary: core.appendDictionary,
+        //   // localize: core.localize,
+        //   // localizeExplicitly: core.localizeExplicitly,
+        //   // resolveLanguage: core.resolveLanguage,
+        //   // safelyResolveLanguage: core.safelyResolveLanguage,
+        //   // createIsomorphicLocalizer: core.createIsomorphicLocalizer,
+        //   // cloneInitial: core.cloneInitial,
+        //   // cloneCurrent: core.cloneCurrent,
+        //   // watch: core.watch,
+        //   ...core,
+        //   ...currentLangutilState,
+        // }
+        // nextSyncValue.
         cachedSyncValue.current = nextSyncValue
         return nextSyncValue
       }

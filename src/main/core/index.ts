@@ -38,10 +38,11 @@ const pushWarning = IS_DEBUG_ENV ? createWarningDebouncer() : undefined
  */
 export class LangutilCore<D = LangutilDictionaryIsolated> {
 
-  /**
-   * @internal
-   */
-  private M$initArgs: [D, LangutilLanguage<D>, LangutilInitOptions] // TODO?
+  // /**
+  //  * @internal
+  //  */
+  // private M$initArgs: [D, LangutilLanguage<D>, LangutilInitOptions]
+  // TOFIX: 'M$initArgs' is declared but its value is never read.
 
   /**
    * @internal
@@ -77,7 +78,7 @@ export class LangutilCore<D = LangutilDictionaryIsolated> {
   ) {
     this.M$dictionary = {} as D
     this.hydrate(dictionary, language, options)
-    this.M$initArgs = [dictionary, language, options]
+    // this.M$initArgs = [dictionary, language, options]
     this.hydrate = this.hydrate.bind(this)
     this.setLanguage = this.setLanguage.bind(this)
     this.getLanguage = this.getLanguage.bind(this)
@@ -243,7 +244,7 @@ export class LangutilCore<D = LangutilDictionaryIsolated> {
    * unwanted and hard-to-debug problems.
    * @public
    */
-  getDictionary?(): D {
+  getDictionary(): D {
     return this.M$dictionary
   }
 
@@ -268,7 +269,10 @@ export class LangutilCore<D = LangutilDictionaryIsolated> {
       throw TYPE_ERROR_DICTIONARY_INVALID_TYPE(dictionary)
     }
     // Note: Type of dictionary that is set or appended at runtime is unavailable
-    this.M$dictionary = getMergedDictionary(this.M$dictionary, dictionary) as D
+    this.M$dictionary = getMergedDictionary(
+      this.M$dictionary as unknown as LangutilDictionaryIsolated,
+      dictionary
+    ) as unknown as D
     this.M$watcher.M$refresh({
       type: LangutilEvents.dictionaryAppend,
       data: {
@@ -388,6 +392,9 @@ export class LangutilCore<D = LangutilDictionaryIsolated> {
       return (
         a: LangutilKeyword<D> | LangutilMethodObjArgsLocalize<D>,
         b: LangutilStringmapParam
+        // @ts-expect-error The call would have succeeded against this
+        // implementation, but implementation signatures of overloads are not
+        // externally visible.
       ) => this.localize(a, b)
     } else {
       return (

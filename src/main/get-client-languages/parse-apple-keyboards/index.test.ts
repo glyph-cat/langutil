@@ -1,4 +1,4 @@
-import parseAppleKeyboards from '.'
+import { parseAppleKeyboards } from '.'
 
 describe(parseAppleKeyboards.name, () => {
 

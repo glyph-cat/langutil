@@ -1,4 +1,4 @@
-function parseAppleKeyboards<S extends string = string>(
+export function parseAppleKeyboards<S extends string = string>(
   values: Array<S>
 ): Array<S> {
   const parsedValues = []
@@ -10,5 +10,3 @@ function parseAppleKeyboards<S extends string = string>(
   }
   return parsedValues
 }
-
-export default parseAppleKeyboards
