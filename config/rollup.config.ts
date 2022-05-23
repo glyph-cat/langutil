@@ -21,7 +21,7 @@ const NODE_RESOLVE_CONFIG_REACT_NATIVE = {
   ],
 }
 
-const MAIN_INPUT_FILE = 'src/main/index.ts'
+const MAIN_INPUT_FILE = 'src/main-bundle.ts'
 const REACT_INPUT_FILE = 'src/react/index.ts'
 
 const EXTERNAL_LIBS_MAIN = []
@@ -52,14 +52,6 @@ interface PluginConfigSchema {
   presets?: Array<string>
 }
 
-/**
- * @param {object} config
- * @param {object} config.overrides
- * @param {Array<string>} config.presets
- * @param {'development'|'production'} config.mode
- * @param {string?} config.buildEnv
- * @returns {Array}
- */
 function getPlugins(config: PluginConfigSchema): Array<RollupPlugin> {
   const {
     overrides = {},

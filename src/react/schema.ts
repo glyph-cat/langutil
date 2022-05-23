@@ -1,4 +1,4 @@
-import { LangutilCore } from '../main/core'
+import { LangutilCore } from '../main-bundle'
 import { LangutilState } from '../schema'
 
 /**

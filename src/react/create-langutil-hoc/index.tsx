@@ -5,7 +5,7 @@ import {
   PropsWithChildren,
 } from 'react'
 import { SYNTAX_ERROR_CONFLICTING_LANGUTIL_STATE_PROP } from '../../errors'
-import { LangutilCore } from '../../main/core'
+import { LangutilCore } from '../../main-bundle'
 import { getDisplayName } from '../get-display-name'
 import { LangutilReactState } from '../schema'
 import { useLangutil } from '../use-langutil'

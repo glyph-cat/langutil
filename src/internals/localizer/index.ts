@@ -1,4 +1,5 @@
 import { IS_DEBUG_ENV } from '../../constants'
+import { stringmap, warnIfPlaceholdersArePresent } from '../../api/stringmap'
 import {
   LangutilKeyword,
   LangutilLanguage,
@@ -6,7 +7,6 @@ import {
   LangutilStringmapParam,
 } from '../../schema'
 import { propertyExists } from '../object-utils'
-import { stringmap, warnIfPlaceholdersArePresent } from '../../main/stringmap'
 import { WarningDebouncer } from '../warning-debouncer'
 
 /**

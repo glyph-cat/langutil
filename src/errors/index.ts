@@ -3,6 +3,9 @@
 // The errors should then be thrown in the parent function that calls them.
 import { IS_DEBUG_ENV } from '../constants'
 
+/**
+ * @internal
+ */
 export function formatErrorCode(
   code: number,
   ...args: Array<unknown>
@@ -15,6 +18,9 @@ export function formatErrorCode(
   }
 }
 
+/**
+ * @internal
+ */
 export function TYPE_ERROR_STRINGMAP_INVALID_PARAM_TYPE(
   param: unknown
 ): TypeError {
@@ -26,6 +32,9 @@ export function TYPE_ERROR_STRINGMAP_INVALID_PARAM_TYPE(
   )
 }
 
+/**
+ * @internal
+ */
 export function TYPE_ERROR_DICTIONARY_INVALID_TYPE(
   dictionary: unknown
 ): TypeError {
@@ -37,6 +46,9 @@ export function TYPE_ERROR_DICTIONARY_INVALID_TYPE(
   )
 }
 
+/**
+ * @internal
+ */
 export function SYNTAX_ERROR_CONFLICTING_LANGUTIL_STATE_PROP(
   componentDisplayName: string
 ): SyntaxError {

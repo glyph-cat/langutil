@@ -2,7 +2,7 @@ import { useCallback, useDebugValue, useRef } from 'react'
 import { useSyncExternalStore } from 'use-sync-external-store/shim'
 import { $$INTERNALS } from '../../constants'
 import { SyncValue } from '../../internals/helper-types'
-import { LangutilCore } from '../../main/core'
+import { LangutilCore } from '../../main-bundle'
 import { LangutilReactState } from '../schema'
 
 /**
@@ -17,7 +17,7 @@ const EMPTY_CACHED_SYNC_VALUE: SyncValue<any> = {
  */
 export function useLangutil<D>(core: LangutilCore<D>): LangutilReactState<D> {
   const cachedSyncValue = useRef<SyncValue<LangutilReactState<D>>>(EMPTY_CACHED_SYNC_VALUE)
-  const state = useSyncExternalStore(
+  const syncState = useSyncExternalStore(
     core.watch,
     useCallback(() => {
       const {
@@ -75,6 +75,7 @@ export function useLangutil<D>(core: LangutilCore<D>): LangutilReactState<D> {
       }
     }, [core])
   )
+  const state = syncState[$$INTERNALS]
   useDebugValue(undefined, () => ({
     language: state.language,
     isAuto: state.isAuto,
