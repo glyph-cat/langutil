@@ -1,6 +1,6 @@
-const fs = require('fs')
+import * as  fs from 'fs'
+import { FS_OPTIONS } from '../constants'
 
-const FS_OPTIONS = { encoding: 'utf-8' }
 const FILE_PATH = './lib/types/index.d.ts'
 const fileContents = fs.readFileSync(FILE_PATH, FS_OPTIONS)
 const fileContentsByRow = fileContents.split('\n')

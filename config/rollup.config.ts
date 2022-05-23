@@ -310,9 +310,8 @@ const reactConfig: Array<RollupOptions> = [
 ]
 
 const config = [
-  coreConfig[0],
-  // ...coreConfig,
-  // ...reactConfig,
+  ...coreConfig,
+  ...reactConfig,
 ]
 
 export default config
