@@ -16,7 +16,7 @@ import { WarningDebouncer } from '../warning-debouncer'
  * @param language - The language to localize to.
  * @param keyword - The keyword to be localized.
  * @param param - Extra parameters to be inserted into the localized value.
- * @param pushWarning - A {@link WarningDebouncer}.
+ * @param warningDebouncer - A {@link WarningDebouncer}.
  * @returns The localized value.
  * @internal
  */
@@ -25,7 +25,7 @@ export function baseLocalizer<D>(
   language: LangutilLanguage<D>,
   keyword: LangutilKeyword<D>,
   param: LangutilStringmapParam,
-  pushWarning: WarningDebouncer | undefined
+  warningDebouncer: WarningDebouncer | undefined
 ): LangutilLocalizedValue<D> {
 
   let localizedValue: LangutilLocalizedValue<D>
@@ -58,7 +58,7 @@ export function baseLocalizer<D>(
   } else {
     localizedValue = `${keyword}`.toUpperCase()
     if (IS_DEBUG_ENV) {
-      pushWarning(
+      warningDebouncer.M$pushWarning(
         language as LangutilLanguage,
         keyword as LangutilKeyword
       )

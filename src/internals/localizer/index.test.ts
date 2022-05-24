@@ -1,18 +1,27 @@
 import { SAMPLE_DICTIONARY } from '../../../tests/sample-dictionary'
 import { baseLocalizer } from '.'
+import { WarningDebouncer } from '../warning-debouncer'
 
-// eslint-disable-next-line @typescript-eslint/no-empty-function
-const mockDebouncedWarning = () => { }
+class MockWarningDebouncer extends WarningDebouncer {
+
+  /**
+   * Do nothing here to suppress warning
+   */
+  M$pushWarning = () => { /* ... */ }
+
+}
+
+const mockWarningDebouncer = new MockWarningDebouncer()
 
 describe(baseLocalizer.name, () => {
 
-  test('Basic localization', () => {
+  test('Basic localization', () => {
     const output = baseLocalizer(
       SAMPLE_DICTIONARY,
       'en',
       'GOOD_MORNING',
       undefined,
-      mockDebouncedWarning
+      mockWarningDebouncer
     )
     expect(output).toBe('Good morning.')
   })
@@ -24,7 +33,7 @@ describe(baseLocalizer.name, () => {
       'ab',
       'GOOD_MORNING',
       undefined,
-      mockDebouncedWarning
+      mockWarningDebouncer
     )
     expect(output).toBe('GOOD_MORNING')
   })
@@ -35,7 +44,7 @@ describe(baseLocalizer.name, () => {
       'en',
       'ABC',
       undefined,
-      mockDebouncedWarning
+      mockWarningDebouncer
     )
     expect(output).toBe('ABC')
   })
@@ -56,7 +65,7 @@ describe(baseLocalizer.name, () => {
         'en',
         keyword,
         undefined,
-        mockDebouncedWarning
+        mockWarningDebouncer
       )
     }
     expect(wrappedLocalizer('A')).toBe(0)
@@ -77,7 +86,7 @@ describe(baseLocalizer.name, () => {
           'en',
           'GOOD_MORNING_PNAME',
           ['John'],
-          mockDebouncedWarning
+          mockWarningDebouncer
         )
         expect(output).toBe('Good morning, John.')
       })
@@ -88,7 +97,7 @@ describe(baseLocalizer.name, () => {
           'en',
           'GOOD_MORNING_PNAME_AND_PNAME',
           ['John', 'Jane'],
-          mockDebouncedWarning
+          mockWarningDebouncer
         )
         expect(output).toBe('Good morning, John and Jane.')
       })
@@ -99,7 +108,7 @@ describe(baseLocalizer.name, () => {
           'en',
           'GOOD_MORNING_PNAME',
           undefined,
-          mockDebouncedWarning
+          mockWarningDebouncer
         )
         expect(output).toBe('Good morning, %p.')
       })
@@ -113,7 +122,7 @@ describe(baseLocalizer.name, () => {
           'en',
           'GOOD_MORNING_NAME',
           { name: 'John' },
-          mockDebouncedWarning
+          mockWarningDebouncer
         )
         expect(output).toBe('Good morning, John.')
       })
@@ -127,7 +136,7 @@ describe(baseLocalizer.name, () => {
             name1: 'John',
             name2: 'Jane',
           },
-          mockDebouncedWarning
+          mockWarningDebouncer
         )
         expect(output).toBe('Good morning, John and Jane.')
       })
@@ -138,7 +147,7 @@ describe(baseLocalizer.name, () => {
           'en',
           'GOOD_MORNING_NAME',
           undefined,
-          mockDebouncedWarning
+          mockWarningDebouncer
         )
         expect(output).toBe('Good morning, {:name}.')
       })
@@ -153,7 +162,7 @@ describe(baseLocalizer.name, () => {
           // eslint-disable-next-line @typescript-eslint/ban-ts-comment
           // @ts-expect-error: Ignored on purpose to test incorrect types.
           2,
-          mockDebouncedWarning
+          mockWarningDebouncer
         )
       }
       expect(callback).toThrowError(TypeError)

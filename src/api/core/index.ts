@@ -9,7 +9,7 @@ import { devInfo, devWarn, displayStringArray } from '../../internals/dev'
 import { getMergedDictionary } from '../../internals/get-merged-dictionary'
 import { baseLocalizer } from '../../internals/localizer'
 import { getResolvedLanguageAnyToMany } from '../../internals/resolve-language'
-import { createWarningDebouncer } from '../../internals/warning-debouncer'
+import { WarningDebouncer } from '../../internals/warning-debouncer'
 import { Watcher } from '../../internals/watcher'
 import {
   LangutilCoreOptions,
@@ -30,7 +30,7 @@ import { getClientLanguages } from '../get-client-languages'
 /**
  * @internal
  */
-const pushWarning = IS_DEBUG_ENV ? createWarningDebouncer() : undefined
+const warningDebouncer = IS_DEBUG_ENV ? new WarningDebouncer() : undefined
 
 /**
  * @internal
@@ -69,11 +69,10 @@ export class LangutilCore<D = LangutilDictionaryIsolated> {
    */
   M$watcher = new Watcher<[LangutilEvent<D>]>()
 
-  // TODO: docs
   /**
-   * @param dictionary
-   * @param language
-   * @param options
+   * @param dictionary - The source of localizations.
+   * @param language - The language to localize to.
+   * @param options - Additional options.
    * @public
    */
   constructor(
@@ -189,11 +188,10 @@ export class LangutilCore<D = LangutilDictionaryIsolated> {
     }
   }
 
-  // TODO: docs (can copy from `constructor`)
   /**
-   * @param dictionary
-   * @param language
-   * @param options
+   * @param dictionary - The source of localizations.
+   * @param language - The language to localize to.
+   * @param options - Additional options.
    * @public
    */
   hydrate(
@@ -334,7 +332,7 @@ export class LangutilCore<D = LangutilDictionaryIsolated> {
         this.M$language,
         a as LangutilKeyword<D>,
         b,
-        pushWarning
+        warningDebouncer
       )
     } else {
       return baseLocalizer(
@@ -342,7 +340,7 @@ export class LangutilCore<D = LangutilDictionaryIsolated> {
         this.M$language,
         (a as LangutilMethodObjArgsLocalize<D>).keyword,
         (a as LangutilMethodObjArgsLocalize<D>).param,
-        pushWarning
+        warningDebouncer
       )
     }
   }
@@ -381,7 +379,7 @@ export class LangutilCore<D = LangutilDictionaryIsolated> {
         a as LangutilLanguage<D>,
         b,
         c,
-        pushWarning
+        warningDebouncer
       )
     } else {
       return baseLocalizer(
@@ -389,7 +387,7 @@ export class LangutilCore<D = LangutilDictionaryIsolated> {
         (a as LangutilMethodObjArgsLocalizeExplicitly<D>).language,
         (a as LangutilMethodObjArgsLocalizeExplicitly<D>).keyword,
         (a as LangutilMethodObjArgsLocalizeExplicitly<D>).param,
-        pushWarning
+        warningDebouncer
       )
     }
   }
@@ -561,7 +559,7 @@ export function localizeFromScratch<Dn>(
       a as LangutilLanguage<Dn>,
       b,
       c,
-      pushWarning
+      warningDebouncer
     )
   } else {
     return baseLocalizer(
@@ -569,7 +567,7 @@ export function localizeFromScratch<Dn>(
       (a as LangutilMethodObjArgsLocalizeFromScratch<Dn>).language,
       (a as LangutilMethodObjArgsLocalizeFromScratch<Dn>).keyword,
       (a as LangutilMethodObjArgsLocalizeFromScratch<Dn>).param,
-      pushWarning
+      warningDebouncer
     )
   }
 }

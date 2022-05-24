@@ -2,69 +2,79 @@ import { IS_INTERNAL_DEBUG_ENV } from '../../constants'
 import { LangutilKeyword, LangutilLanguage } from '../../schema'
 import { devWarn } from '../dev'
 
-export type WarningDebouncer = (
-  language: LangutilLanguage,
-  keyword: LangutilKeyword
-) => void
+/**
+ * @internal
+ */
+type SpyCallback = (msg: string) => void
 
-type MissingLocalizationsSchema = Record<LangutilLanguage, Array<LangutilKeyword>>
+/**
+ * @internal
+ */
+export class WarningDebouncer {
 
-// TODO: Convert to class
+  memoizedStack: Array<string> = []
+  missingLocalizations: MissingLocalizationsSchema = {}
+  timer: ReturnType<typeof setTimeout>
+  spy: SpyCallback
 
-export function createWarningDebouncer(
-  spy?: (msg: string) => void
-): WarningDebouncer {
-  const memoizedStack: Array<string> = []
-  let missingLocalizations: MissingLocalizationsSchema = {}
-  let timer: ReturnType<typeof setTimeout>
+  constructor(spy?: (msg: string) => void) {
+    this.spy = spy
+  }
 
-  const debounce = (callback: () => void) => {
-    return function () {
-      clearTimeout(timer)
-      timer = setTimeout(callback)
+  M$debounce = (callback: (() => void)): (() => void) => {
+    return (): void => {
+      clearTimeout(this.timer)
+      this.timer = setTimeout(callback)
     }
   }
 
-  const printWarning = debounce((): void => {
-    const mIndex = Object.keys(missingLocalizations)
+  M$printWarning = this.M$debounce((): void => {
+    const mIndex = Object.keys(this.missingLocalizations)
     // Show a one line warning for better readability
     const message = mIndex.length === 1
-      ? formatOneLineMissingLoc(missingLocalizations)
-      : formatMultiLineMissingLoc(missingLocalizations)
-    missingLocalizations = {}
+      ? formatOneLineMissingLoc(this.missingLocalizations)
+      : formatMultiLineMissingLoc(this.missingLocalizations)
+    this.missingLocalizations = {}
     devWarn(message)
     if (IS_INTERNAL_DEBUG_ENV) {
       // NOTE: Must be nested otherwise terser will not be able to completely
       // remove it.
-      if (typeof spy === 'function') {
-        spy(message)
+      if (typeof this.spy === 'function') {
+        this.spy(message)
       }
     }
   })
 
-  const pushWarning = (
+  M$pushWarning = (
     language: LangutilLanguage,
     keyword: LangutilKeyword
   ): void => {
     const memoKey = `${language},${keyword}`
-    if (!memoizedStack.includes(memoKey)) {
+    if (!this.memoizedStack.includes(memoKey)) {
       // Since these slots are dynamically allocated, we need to make sure
       // that every language has an array slot initialized before pushing anything in
-      if (!missingLocalizations[language]) {
-        missingLocalizations[language] = []
+      if (!this.missingLocalizations[language]) {
+        this.missingLocalizations[language] = []
       }
       // Keywords themselves are pushed into missingLoc
       // so that they can all be logged at once later
-      missingLocalizations[language].push(keyword)
+      this.missingLocalizations[language].push(keyword)
       // Detected missing localizations are memoized so that they are only warned once
-      memoizedStack.push(memoKey)
-      printWarning()
+      this.memoizedStack.push(memoKey)
+      this.M$printWarning()
     }
   }
 
-  return pushWarning
 }
 
+/**
+ * @internal
+ */
+type MissingLocalizationsSchema = Record<LangutilLanguage, Array<LangutilKeyword>>
+
+/**
+ * @internal
+ */
 export function formatOneLineMissingLoc(
   missingLocalizations: MissingLocalizationsSchema
 ): string {
@@ -74,6 +84,9 @@ export function formatOneLineMissingLoc(
   return `Missing localizations (${mIndex[0]}): ${sortedKeywords.join(', ')}`
 }
 
+/**
+ * @internal
+ */
 export function formatMultiLineMissingLoc(
   missingLocalizations: MissingLocalizationsSchema
 ): string {

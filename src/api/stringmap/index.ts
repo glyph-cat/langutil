@@ -107,11 +107,15 @@ export function stringmapObject(
   return newString
 }
 
-// TODO: Params, docs, example
 /**
  * A convenience wrapper around `stringmapArray` and `stringmapObject`, which
  * maps values in arrays/objects to a string. This is internally used by
  * Langutil for inserting parameters into localized values.
+ * @param str - The original string containing placeholders.
+ * @param param - Parameters to be mapped to the string.
+ * @example
+ * stringmap('Hello, %p!', ['John']) // Hello, John!
+ * stringmap('Hello, {:name}!', { name: 'Jane' }) // Hello, Jane!
  * @public
  */
 export function stringmap(

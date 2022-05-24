@@ -1,10 +1,10 @@
 import {
-  createWarningDebouncer,
+  WarningDebouncer,
   formatMultiLineMissingLoc,
   formatOneLineMissingLoc,
 } from '.'
 
-test(`${createWarningDebouncer.name} - Warnings are batched`, () => {
+test(`${WarningDebouncer.name} - Warnings are batched`, () => {
   jest.useFakeTimers()
 
   let warningMessage = ''
@@ -12,11 +12,11 @@ test(`${createWarningDebouncer.name} - Warnings are batched`, () => {
     warningMessage = msg
   })
 
-  const pushWarning = createWarningDebouncer(spyFunction)
-  pushWarning('en', 'HELLO')
-  pushWarning('en', 'FOO')
-  pushWarning('en', 'BAR')
-  pushWarning('en', 'BAZ')
+  const warningDebouncer = new WarningDebouncer(spyFunction)
+  warningDebouncer.M$pushWarning('en', 'HELLO')
+  warningDebouncer.M$pushWarning('en', 'FOO')
+  warningDebouncer.M$pushWarning('en', 'BAR')
+  warningDebouncer.M$pushWarning('en', 'BAZ')
   expect(spyFunction).toHaveBeenCalledTimes(0)
   jest.advanceTimersByTime(0)
   expect(spyFunction).toHaveBeenCalledTimes(1)
