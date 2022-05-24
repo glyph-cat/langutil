@@ -182,9 +182,13 @@ export class LangutilCore<D = LangutilDictionaryIsolated> {
     if (typeof dictionary !== TYPE_OBJECT) {
       throw TYPE_ERROR_DICTIONARY_INVALID_TYPE(dictionary)
     }
+    // NOTE: Only increase mutation count if dictionary object points to
+    // different references.
+    if (!Object.is(this.M$dictionary, dictionary)) {
+      this.M$dictionaryMutationCount += 1
+    }
     // Note: Type of dictionary that is set or appended at runtime is unavailable
     this.M$dictionary = dictionary as unknown as D
-    this.M$dictionaryMutationCount += 1
     return {
       state: {
         // Get the values separately to prevent hard-to-debug mutability issues

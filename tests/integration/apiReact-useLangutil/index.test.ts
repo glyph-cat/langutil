@@ -13,7 +13,10 @@ afterEach((): void => { cleanupRef.run() })
 wrapper(({
   Langutil: { LangutilCore },
   LangutilReact: { useLangutil },
+  buildEnv,
 }: IntegrationTestConfig): void => {
+
+  const isNotProductionBuild = buildEnv !== 'prod'
 
   test('Make sure properties & methods are forwarded accordingly', (): void => {
 
@@ -36,10 +39,12 @@ wrapper(({
     const spiedLangutilState = hookInterface.get('value') as LangutilReactState<typeof SAMPLE_DICTIONARY>
     expect(spiedLangutilState.language).toBe('en')
     expect(spiedLangutilState.isAuto).toBe(false)
-    expect(spiedLangutilState.M$language).toStrictEqual('en')
-    expect(spiedLangutilState.M$coreOptions).toStrictEqual({ auto: false })
-    expect(Object.is(spiedLangutilState.M$dictionary, SAMPLE_DICTIONARY)).toBe(true)
-    expect(Object.is(spiedLangutilState.M$watcher, core.M$watcher)).toBe(true)
+    if (isNotProductionBuild) {
+      expect(spiedLangutilState.M$language).toStrictEqual('en')
+      expect(spiedLangutilState.M$coreOptions).toStrictEqual({ auto: false })
+      expect(Object.is(spiedLangutilState.M$dictionary, SAMPLE_DICTIONARY)).toBe(true)
+      expect(Object.is(spiedLangutilState.M$watcher, core.M$watcher)).toBe(true)
+    }
     expect(Object.is(spiedLangutilState.appendDictionary, core.appendDictionary)).toBe(true)
     expect(Object.is(spiedLangutilState.cloneCurrent, core.cloneCurrent)).toBe(true)
     expect(Object.is(spiedLangutilState.cloneInitial, core.cloneInitial)).toBe(true)
@@ -100,6 +105,9 @@ wrapper(({
           langutilState.setLanguage('id', { auto: true })
         },
         setDictionary: ({ hookData: langutilState }) => {
+          langutilState.setDictionary(SAMPLE_DICTIONARY)
+        },
+        setDictionary_NEW_OBJ: ({ hookData: langutilState }) => {
           langutilState.setDictionary({ ...SAMPLE_DICTIONARY })
         },
         appendDictionary: ({ hookData: langutilState }) => {
@@ -123,6 +131,9 @@ wrapper(({
     expect(hookInterface.getRenderCount()).toBe(3)
 
     hookInterface.actions('setDictionary')
+    expect(hookInterface.getRenderCount()).toBe(3)
+
+    hookInterface.actions('setDictionary_NEW_OBJ')
     expect(hookInterface.getRenderCount()).toBe(4)
 
     hookInterface.actions('appendDictionary')

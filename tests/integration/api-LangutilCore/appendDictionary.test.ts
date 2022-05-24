@@ -5,16 +5,28 @@ import {
 } from '../../sample-dictionary'
 import { wrapper } from '../wrapper'
 
-wrapper(({ Langutil: { LangutilCore } }: IntegrationTestConfig): void => {
+wrapper(({
+  Langutil: {
+    LangutilCore,
+  },
+  buildEnv,
+}: IntegrationTestConfig): void => {
+
+  // TOFIX: `core.M$dictionaryMutationCount` is not accessible in minified builds
+  const isNotProductionBuild = buildEnv !== 'prod'
 
   test('main', (): void => {
 
     const core = new LangutilCore(SAMPLE_DICTIONARY, 'en')
-    expect(core.M$dictionaryMutationCount).toBe(1)
+    if (isNotProductionBuild) {
+      expect(core.M$dictionaryMutationCount).toBe(1)
+    }
 
     // Old dictionary should still be effective
     core.appendDictionary(SAMPLE_DICTIONARY_ALT)
-    expect(core.M$dictionaryMutationCount).toBe(2)
+    if (isNotProductionBuild) {
+      expect(core.M$dictionaryMutationCount).toBe(2)
+    }
     expect(core.localize('GOOD_MORNING')).toBe('Good morning.')
 
     // New dictionary should also be effective
