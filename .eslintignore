@@ -1,5 +1,7 @@
 *.draft*
+*.old*
+dist
 lib
 node_modules
 react/
-temp
+temp/

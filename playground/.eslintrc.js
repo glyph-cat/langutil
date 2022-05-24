@@ -1,17 +1,14 @@
 const { configs } = require('@glyph-cat/eslint-config')
 
-const strictConfigs = configs.strict
-const [NRIstatus, NRIconfig] = strictConfigs.rules['no-restricted-imports']
+const OFF = 0
+const recommendedConfig = configs.recommended
+const [NRIstatus, NRIconfig] = recommendedConfig.rules['no-restricted-imports']
 
 module.exports = {
-  root: true,
-  ...strictConfigs,
-  plugins: [
-    ...strictConfigs.plugins,
-    'eslint-plugin-functional',
-  ],
+  ...recommendedConfig,
   rules: {
-    ...strictConfigs.rules,
+    ...recommendedConfig.rules,
+    'no-console': OFF,
     'no-restricted-imports': [NRIstatus, {
       ...NRIconfig,
       paths: [

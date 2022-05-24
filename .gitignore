@@ -8,10 +8,10 @@ yarn-error.log*
 report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
 
 # Builds
-lib
 *.tgz
+dist
+lib
 react/lib
-react/index.d.ts
 
 # Dependency directories
 node_modules
@@ -28,8 +28,10 @@ node_modules
 .eslintcache
 
 # Temporary
+.cache
 temp/
 *.draft*
+*.old*
 
 # OS
 .DS_Store
