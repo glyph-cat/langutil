@@ -70,6 +70,11 @@ export class LangutilCore<D = LangutilDictionaryIsolated> {
   M$watcher = new Watcher<[LangutilEvent<D>]>()
 
   /**
+   * @internal
+   */
+  M$dictionaryMutationCount = 0
+
+  /**
    * @param dictionary - The source of localizations.
    * @param language - The language to localize to.
    * @param options - Additional options.
@@ -179,9 +184,10 @@ export class LangutilCore<D = LangutilDictionaryIsolated> {
     }
     // Note: Type of dictionary that is set or appended at runtime is unavailable
     this.M$dictionary = dictionary as unknown as D
+    this.M$dictionaryMutationCount += 1
     return {
       state: {
-        // Separately get the values to prevent hard-to-debug mutability issues
+        // Get the values separately to prevent hard-to-debug mutability issues
         previous: this.getLangutilState(),
         current: this.getLangutilState(),
       }
@@ -284,20 +290,15 @@ export class LangutilCore<D = LangutilDictionaryIsolated> {
     if (typeof dictionary !== TYPE_OBJECT) {
       throw TYPE_ERROR_DICTIONARY_INVALID_TYPE(dictionary)
     }
-    // Note: Type of dictionary that is set or appended at runtime is unavailable
-    this.M$dictionary = getMergedDictionary(
-      this.M$dictionary as unknown as LangutilDictionaryIsolated,
-      dictionary
-    ) as unknown as D
+    const eventData = this.M$setDictionaryBase(
+      getMergedDictionary(
+        this.M$dictionary as unknown as LangutilDictionaryIsolated,
+        dictionary
+      )
+    )
     this.M$watcher.M$refresh({
       type: LangutilEvents.dictionaryAppend,
-      data: {
-        state: {
-          // Separately get the values to prevent hard-to-debug mutability issues
-          previous: this.getLangutilState(),
-          current: this.getLangutilState(),
-        }
-      },
+      data: eventData,
     })
   }
 

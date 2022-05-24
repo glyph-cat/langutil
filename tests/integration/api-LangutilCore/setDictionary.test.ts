@@ -9,11 +9,12 @@ wrapper(({ Langutil: { LangutilCore } }: IntegrationTestConfig): void => {
   test('main', (): void => {
 
     const core = new LangutilCore(SAMPLE_DICTIONARY, 'en')
-    core.setDictionary(SAMPLE_DICTIONARY_ALT)
+    expect(core.M$dictionaryMutationCount).toBe(1)
 
     // Expect dictionary to be completely replaced
-    const output = core.getDictionary()
-    expect(output).toStrictEqual(SAMPLE_DICTIONARY_ALT)
+    core.setDictionary(SAMPLE_DICTIONARY_ALT)
+    expect(core.getDictionary()).toStrictEqual(SAMPLE_DICTIONARY_ALT)
+    expect(core.M$dictionaryMutationCount).toBe(2)
 
     // Old dictionary should no longer be in use
     expect(core.localize('GOOD_MORNING')).toBe('GOOD_MORNING')

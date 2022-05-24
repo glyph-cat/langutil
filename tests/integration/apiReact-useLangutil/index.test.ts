@@ -86,4 +86,48 @@ wrapper(({
 
   })
 
+  test('Rendering', (): void => {
+
+    const core = new LangutilCore(SAMPLE_DICTIONARY, 'en')
+
+    const hookInterface = createHookInterface({
+      useHook: () => useLangutil<typeof SAMPLE_DICTIONARY>(core),
+      actions: {
+        changeLanguage: ({ hookData: langutilState }) => {
+          langutilState.setLanguage('id')
+        },
+        toggleAutoDetect: ({ hookData: langutilState }) => {
+          langutilState.setLanguage('id', { auto: true })
+        },
+        setDictionary: ({ hookData: langutilState }) => {
+          langutilState.setDictionary({ ...SAMPLE_DICTIONARY })
+        },
+        appendDictionary: ({ hookData: langutilState }) => {
+          langutilState.appendDictionary({ ...SAMPLE_DICTIONARY })
+        },
+      },
+      values: {
+        value: ({ hookData: langutilState }) => {
+          return langutilState.localize('GOOD_MORNING')
+        },
+      },
+    }, cleanupRef)
+
+    // Initial stage
+    expect(hookInterface.getRenderCount()).toBe(1)
+
+    hookInterface.actions('changeLanguage')
+    expect(hookInterface.getRenderCount()).toBe(2)
+
+    hookInterface.actions('toggleAutoDetect')
+    expect(hookInterface.getRenderCount()).toBe(3)
+
+    hookInterface.actions('setDictionary')
+    expect(hookInterface.getRenderCount()).toBe(4)
+
+    hookInterface.actions('appendDictionary')
+    expect(hookInterface.getRenderCount()).toBe(5)
+
+  })
+
 })

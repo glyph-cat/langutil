@@ -7,7 +7,7 @@ const config: Config.InitialOptions = {
   ],
   testTimeout: 1000,
   testRegex: '.test.(tsx|ts|jsx|js)',
-  verbose: true,
+  verbose: false,
 }
 
 export default config
