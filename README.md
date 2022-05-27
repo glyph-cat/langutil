@@ -10,7 +10,7 @@
 
 [![Works with React](https://img.shields.io/static/v1?label&logo=react&logoColor=61DBFB&message=Works%20with%20React&color=4a4a4a)](#using-with-react)
 <!-- See: https://github.com/microsoft/vscode/issues/128813#issuecomment-943125631 -->
-[![Open in Visual Studio Code](https://img.shields.io/static/v1?logo=visualstudiocode&label=&message=Open%20in%20Visual%20Studio%20Code&labelColor=2c2c32&color=007acc&logoColor=007acc)](https://open.vscode.dev/glyph-cat/react-relink)
+[![Open in Visual Studio Code](https://img.shields.io/static/v1?logo=visualstudiocode&label=&message=Open%20in%20Visual%20Studio%20Code&labelColor=2c2c32&color=007acc&logoColor=007acc)](https://open.vscode.dev/glyph-cat/langutil)
 [![Support me on Ko-fi](https://img.shields.io/static/v1?label&logo=kofi&logoColor=ffffff&message=Support%20me%20on%20Ko-fi&color=FF5E5B)](https://ko-fi.com/glyphcat)
 
 </div>
