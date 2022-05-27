@@ -117,6 +117,16 @@ export class LangutilCore<D = LangutilDictionaryIsolated> {
   }
 
   /**
+   * Literally a "M$getDictionaryMutationCount", requires such declaration so
+   * that react additions can access the dictionary mutation count even in
+   * minified bundles.
+   * @internal
+   */
+  x = (): number => {
+    return this.M$dictionaryMutationCount
+  }
+
+  /**
    * @internal
    */
   private M$setLanguageBase = (

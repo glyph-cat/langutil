@@ -196,7 +196,7 @@ const coreConfig: Array<RollupOptions> = [
     }),
   },
   {
-    // UMD (Production)
+    // UMD (Minified)
     input: MAIN_INPUT_FILE,
     output: {
       file: 'lib/umd/index.min.js',
@@ -291,7 +291,7 @@ const reactConfig: Array<RollupOptions> = [
     }),
   },
   {
-    // UMD (Production)
+    // UMD (Minified)
     input: REACT_INPUT_FILE,
     output: {
       file: 'react/lib/umd/index.min.js',

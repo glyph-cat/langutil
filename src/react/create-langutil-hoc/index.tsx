@@ -11,6 +11,9 @@ import { getDisplayName } from '../get-display-name'
 import { LangutilReactState } from '../schema'
 import { useLangutil } from '../use-langutil'
 
+// TODO: Solve the `any` type
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 /**
  * @public
  * @ReactBundle
@@ -26,8 +29,6 @@ export interface withLangutilOptions {
 export interface WithLangutilProps<D> extends React.ComponentProps<any> {
   langutilState: LangutilReactState<D>
 }
-
-// TODO: Solve the `any` type
 
 /**
  * @public

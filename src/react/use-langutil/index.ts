@@ -8,6 +8,7 @@ import { LangutilReactState } from '../schema'
 /**
  * @internal
  */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const INITIAL_STATE_SYNC_VALUE: SyncValue<[number, any]> = {
   [$$INTERNALS]: [-1, EMPTY_OBJECT]
 }
@@ -29,7 +30,7 @@ export function useLangutil<D>(core: LangutilCore<D>): LangutilReactState<D> {
       let shouldReturnCachedValue = false
 
       const currentLangutilState = core.getLangutilState()
-      const currentDictionaryMutationCount = core.M$dictionaryMutationCount
+      const currentDictionaryMutationCount = core.x()
 
       /**
        * If cached sync value is `null`, it means it's probably the first time
