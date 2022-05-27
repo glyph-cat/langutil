@@ -31,7 +31,7 @@
     "test": "jest -c ./jest.config.ts",
     "preall": "yarn clean",
     "all": "yarn lint:fix && yarn build && yarn ts-node ./scripts/mid-all && yarn test && yarn pack",
-    "ci:test": "yarn lint"
+    "ci:test": "yarn lint && yarn build"
   },
   "keywords": [
     "Accessbility",
