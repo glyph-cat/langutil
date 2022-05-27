@@ -25,6 +25,20 @@ const BUNDLED_BUILDS: Array<IntegrationTestConfig> = [
     Langutil: require('../../lib/es/index.js'),
     LangutilReact: require('../../react/lib/es/index.js'),
   },
+  // {
+  //   buildEnv: 'prod',
+  //   buildType: 'es',
+  //   description: 'EcmaScript (Minified)',
+  //   Langutil: require('../../lib/es/index.mjs'),
+  //   LangutilReact: require('../../react/lib/es/index.mjs'),
+  // },
+  // {
+  //   buildEnv: 'debug',
+  //   buildType: 'rn',
+  //   description: 'React Native',
+  //   Langutil: require('../../lib/native/index.js'),
+  //   LangutilReact: require('../../react/lib/native/index.js'),
+  // },
   {
     buildEnv: 'dev',
     buildType: 'umd',
