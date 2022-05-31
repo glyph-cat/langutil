@@ -91,7 +91,7 @@ wrapper(({
 
   })
 
-  test.only('Rendering', (): void => {
+  test('Rendering', (): void => {
 
     const core = new LangutilCore(SAMPLE_DICTIONARY, 'en')
 
