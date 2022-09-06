@@ -1,7 +1,7 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/api-extractor/v7/api-extractor.schema.json",
   "extends": "./api-extractor.main.json",
-  "mainEntryPointFilePath": "<projectFolder>/temp/tsc/types/src/react/index.d.ts",
+  "mainEntryPointFilePath": "<projectFolder>/temp/tsc/types/react/index.d.ts",
   "dtsRollup": {
     "enabled": true,
     // `untrimmedFilePath` defaults to 'dist' folder, must use empty string to

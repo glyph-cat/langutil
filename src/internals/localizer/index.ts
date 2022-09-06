@@ -42,7 +42,7 @@ export function baseLocalizer<D>(
 
   if (localizationIsSuccessful) {
     // Apply params
-    if (typeof localizedValue === 'string') {
+    if (typeof localizedValue === 'string') { // TODO: isString
       if (param) {
         // If param is provided, do mapping, warning for leftover
         // placeholders will be shown in `stringmap`
@@ -56,7 +56,7 @@ export function baseLocalizer<D>(
       // be spotted easily and urge for necessary fixes to be applied
     }
   } else {
-    localizedValue = `${keyword}`.toUpperCase()
+    localizedValue = String(keyword).toUpperCase()
     if (IS_DEBUG_ENV) {
       warningDebouncer.M$pushWarning(
         language as LangutilLanguage,

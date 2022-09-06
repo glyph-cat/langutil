@@ -141,15 +141,20 @@ export class LangutilCore<D = LangutilDictionaryIsolated> {
     let newLanguage = language
     const newAuto = options?.auto === true
 
+    // KIV: Implicit conversion of a 'symbol' to a 'string' will fail at runtime.
+    // Consider wrapping this expression in 'String(...)'.ts(2731)
+    // Applies to `resolvedLanguage` and `language`.
+    // `String(...)` is tolerable here because it only affects development env.
+
     if (newAuto) {
       const rawDetectedLanguage = getClientLanguages()
       const resolvedLanguage = this.resolveLanguage(rawDetectedLanguage)
       if (resolvedLanguage) {
         newLanguage = resolvedLanguage
-        devInfo(`Automatically recognized language: ${resolvedLanguage}`)
+        devInfo(`Automatically recognized language: ${String(resolvedLanguage)}`)
       } else {
         devInfo(
-          `Unable to automatically recognize language, falling back to ${language}`
+          `Unable to automatically recognize language, falling back to ${String(language)}`
         )
       }
     } else {
@@ -159,7 +164,7 @@ export class LangutilCore<D = LangutilDictionaryIsolated> {
         // still include code for `displayStringArray` in the minified bundles.
         if (IS_DEBUG_ENV) {
           devWarn(
-            `The language '${language}' does not exist within the ` +
+            `The language '${String(language)}' does not exist within the ` +
             'dictionary, available languages: ' +
             displayStringArray(this.getAllLanguages() as Array<string>) + '.'
           )
