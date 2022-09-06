@@ -42,7 +42,7 @@ export function baseLocalizer<D>(
 
   if (localizationIsSuccessful) {
     // Apply params
-    if (typeof localizedValue === 'string') { // TODO: isString
+    if (typeof localizedValue === 'string') {
       if (param) {
         // If param is provided, do mapping, warning for leftover
         // placeholders will be shown in `stringmap`
